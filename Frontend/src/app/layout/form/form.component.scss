@@ -1,0 +1,17 @@
+.table, div, fieldset>div>label {
+    color:white;
+}
+input {
+    color: red;
+}
+.card{
+    color: white;
+    background-color: #2d303a !important;
+}
+.form-group>label, thead tr th , .card-header, h2, h3, h4, h5{color: #76daff; }
+tbody tr th{color: #7db5c9; }
+tbody tr:hover td{  color: rgb(99, 183, 216);}
+.valid-feedback{color: green; background-color: rgba(0,128,0, 0.3);}
+
+.invalid-feedback{color: red; background-color: rgba(128,0,0, 0.5);}
+
