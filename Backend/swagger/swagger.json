@@ -1,0 +1,346 @@
+{
+  "swagger":"2.0",
+  "info":{
+    "version":"1.0.1",
+    "title":"Node APIs",
+    "descriptions":"Node backend rest APIs",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+"host":"localhost:4000",
+"tags":[{
+  "name":"User",
+  "descriptions":"APIs les utilisateurs"
+}],
+"schemes":[
+  "http"
+],
+"consumes":[
+  "application/json"
+],
+"produces":[
+  "application/json"
+],
+
+
+"paths":{
+
+
+"/api/auth/register":{
+  "post":{
+    "tags":[
+      "User registration APIs"
+    ],
+    "summary":"Création d'un nouveau utilisateur dans le systeme",
+    "descriptions":"Créer un nouveau utilisateur",
+    "parameters":[
+      {
+        "name":"Enregistrement de l'utilisateur ",
+        "in":"body",
+        "descriptions":"Un utlisateur veut s'inscrire",
+        "schema":{
+          "$ref":"#/definations/register"
+        }
+      }
+    ],
+    "produces":[
+      "application/json"
+    ],
+    "responses":{
+      "200":{
+        "descriptions":"Un nouvel utilisateur est créé",
+        "schema":{
+          "$ref":"#/definations/register"
+        }
+      }
+    }
+  }
+},
+
+
+"/api/auth/login":{
+  "post":{
+    "tags":[
+      "User Authentication APIs"
+    ],
+    "summary":"Connexion de l'utilisateur au système",
+    "descriptions":"Connexion de l'tilisateur",
+    "parameters":[
+      {
+        "name":"Utilisateur en ligne",
+        "in":"body",
+        "descriptions":"Utilisateur veut se connecter au système",
+        "schema":{
+          "$ref":"#/definations/login"
+        }
+      }
+    ],
+    "produces":[
+      "application/json"
+    ],
+    "responses":{
+      "200":{
+        "descriptions":"Utilisateur en ligne",
+        "schema":{
+          "$ref":"#/definations/login"
+        }
+      }
+    }
+  }
+},
+
+
+"/api/user/":{
+  "get":{
+    "tags":[
+      "List of all user"
+    ],
+    "summary":"Liste de tous les utilisateurs du système",
+    "descriptions":"Obtenir tous les utilisateurs",
+    "parameters":[
+      {
+        "name":"Autorisation",
+        "in":"header",
+        "required":true,
+        "type":"string"
+      }
+    ],
+    "responses":{
+      "200":{
+        "descriptions":"Liste avec succès"
+      }
+    }
+  }
+},
+
+
+"/api/user/profile":{
+  "get":{
+    "tags":[
+      "User Profile"
+    ],
+    "summary":"Profil de connexion de l'utilisateur",
+    "descriptions":"Profil de l'utilisateur",
+    "parameters":[
+      {
+        "name":"Autorisation",
+        "in":"header",
+        "required":true,
+        "type":"string"
+      }
+    ],
+    "responses":{
+      "200":{
+        "descriptions":"Obtenir le profil avec succès"
+      }
+    }
+  }
+},
+
+
+"/api/user/{id}":{
+  "parameters":[
+    {
+      "$ref":"#/parameters/id"
+    },
+    {
+      "$ref":"#/parameters/Authorization"
+    }
+  ],
+  "get":{
+    "tags":[
+      "user"
+    ],
+    "summary":"Obtenir les utilisateurs par leur identifiant",
+    "responses":{
+      "200":{
+        "descriptions":"Ok"
+      }
+    }
+  },
+  "put":{
+    "tags":[
+      "user"
+    ],
+    "summary":"Mettre à jour l'utilisateur par son identifiant",
+    "parameters":[
+      {
+        "name":"user",
+        "in":"body",
+        "schema":{
+          "$ref":"#/definations/updateUser"
+        }
+      }
+    ],
+    "responses":{
+      "200":{
+        "descriptions":"Utilisateur mis à jour."
+      }
+    }
+  },
+  "delete":{
+    "tags":[
+      "user"
+    ],
+    "summary":"Supprimer des utilisateurs par leur identifiant",
+    "responses":{
+      "200":{
+        "descriptions":"Ok"
+      }
+    }
+  }
+}
+},
+
+
+  "definations":{
+    "register":{
+      "required":[
+        "email",
+        "username",
+        "password",
+        "role",
+        "isActive"
+      ],
+      "properties":{
+        "username":{
+          "type":"string"
+        },
+        "email":{
+          "type":"string",
+          "uniqueItems":true
+        },
+        "password":{
+          "type":"string"
+        },
+        "role": 5,
+        "isActive": 0
+      }
+    },
+    "login":{
+      "required":[
+        "email",
+        "password"
+      ],
+      "properties":{
+        "email":{
+          "type":"string"
+        },
+        "password":{
+          "type":"string"
+        }
+      }
+    },
+    "updateUser":{
+      "properties":{
+
+        "username":{
+          "type":"string"
+        },
+        "email":{
+          "type":"string"
+        },
+        "isActive":{
+          "type":"number"
+        },
+        "role":{
+          "type":"number"
+        },
+        "asbl":{
+          "type":"string"
+        },
+        "firstName":{
+          "type":"string"
+        },
+        "lastName":{
+          "type":"string"
+        },
+        "birthday":{
+          "type":"date"
+        },
+        "sexGenre":{
+          "type":"string"
+        },
+        "adPvStreet":{
+          "type":"string"
+        },
+        "adPvNum":{
+          "type":"string"
+        },
+        "adPvZip":{
+          "type":"number"
+        },
+        "adPvCity":{
+          "type":"string"
+        },
+        "adPvCountry":{
+          "type":"string"
+        },
+        "firm":{
+          "type":"string"
+        },
+        "tva":{
+          "type":"string"
+        },
+        "adProStreet":{
+          "type":"string"
+        },
+        "adProNum":{
+          "type":"string"
+        },
+        "adProZip":{
+          "type":"number"
+        },
+        "adProCity":{
+          "type":"string"
+        },
+        "adProCountry":{
+          "type":"string"
+        },
+        "contPhonePro":{
+          "type":"string"
+        },
+        "contPhonePv":{
+          "type":"string"
+        },
+        "contPhoneGsm":{
+          "type":"string"
+        },
+        "contFacebook":{
+          "type":"string"
+        },
+        "contWebsite":{
+          "type":"string"
+        },
+        "shortDesc":{
+          "type":"string"
+        },
+        "longDesc":{
+          "type":"string"
+        }
+      }
+    }
+  },
+  "parameters":{
+    "Authorization":{
+      "name":"Autorisation",
+      "in":"header",
+      "required":true,
+      "descriptions":"Une autorisation token de l'utilisateur",
+      "schema":{
+        "type":"string"
+      }
+    },
+    "id":{
+      "name":"id",
+      "in":"path",
+      "required":true,
+      "descriptions":"Identifiant de l'utilisateur que vous souhaitez obtenir pour voir les détails",
+      "schema":{
+        "type":"integer"
+      }
+    }
+  }
+}
