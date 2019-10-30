@@ -1,8 +1,8 @@
 # Projet Site Web pour l'ABSL - Un Ami Pour La Vie
 
 <a href="http://www.unamipourlavie.be"><img src="http://www.unamipourlavie.be/images/logo.jpg" title="ASBL - Un Ami Pour La Vie" alt="Un Ami Pour La Vie"></a>
-[![Build Status](https://img.shields.io/badge/Un%20Ami%20Pour%20La%20Vie-Mode%20Dev-blue)](https://travis-ci.org/badges/badgerbadgerbadger)  [![FrameWork](https://img.shields.io/badge/Angular%20CLI-v8.2.9-green?logo=angular&style=plastic)](https://cli.angular.io/) [![JavaScript engine.](https://img.shields.io/badge/node.js-grey?logo=Node.js&style=plastic)](https://nodejs.org/en/) [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](https://github.com/Hess-Gregory/un_ami_pour_la_vie/blob/master/LICENSE) 
-https://img.shields.io/badge/node.js-grey?logo=Node.js&style=plastic
+[![Build Status](https://img.shields.io/badge/Un%20Ami%20Pour%20La%20Vie-Mode%20Dev-blue)](https://travis-ci.org/badges/badgerbadgerbadger)  [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](https://github.com/Hess-Gregory/un_ami_pour_la_vie/blob/master/LICENSE)  [![FrameWork](https://img.shields.io/badge/Angular%20CLI-v8.2.9-green?logo=angular&style=plastic)](https://cli.angular.io/) [![JavaScript engine.](https://img.shields.io/badge/node.js-grey?logo=Node.js&style=plastic)](https://nodejs.org/en/) [![Security.](https://img.shields.io/badge/Json%20Web%20Token-v8.5.1-red?logo=JSON&style=plastic)](https://jwt.io/) 
+
 ## Table des matières
 
 
