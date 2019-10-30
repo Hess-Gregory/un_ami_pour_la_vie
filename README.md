@@ -43,7 +43,7 @@ Voir aussi la liste des [contributeurs](https://github.com/Hess-Gregory/uaplv/gr
 
 <a name="caractéristiques"></a>
 ## Licence
-Ce projet est sous licence MIT - voir le fichier  [LICENSE.md](https://github.com/Hess-Gregory/un_ami_pour_la_vie//blob/master/LICENSE.md) pour plus de détails.
+Ce projet est sous licence MIT - voir le fichier  [LICENSE.md](https://github.com/Hess-Gregory/un_ami_pour_la_vie/blob/master/LICENSE) pour plus de détails.
 
 <a name="support"></a>
 ## Support
