@@ -1,7 +1,7 @@
 # Projet Site Web pour l'ABSL - Un Ami Pour La Vie
 
 <a href="http://www.unamipourlavie.be"><img src="http://www.unamipourlavie.be/images/logo.jpg" title="ASBL - Un Ami Pour La Vie" alt="Un Ami Pour La Vie"></a>
-[![Build Status](http://img.shields.io/travis/badges/badgerbadgerbadger.svg?style=flat-square)](https://travis-ci.org/badges/badgerbadgerbadger)  [![Gem Version](http://img.shields.io/gem/v/badgerbadgerbadger.svg?style=flat-square)](https://rubygems.org/gems/badgerbadgerbadger) [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org) 
+[![Build Status](https://img.shields.io/badge/Un%20Ami%20Pour%20La%20Vie-Mode%20Dev-blue)](https://travis-ci.org/badges/badgerbadgerbadger)  [![Gem Version](http://img.shields.io/gem/v/badgerbadgerbadger.svg?style=flat-square)](https://rubygems.org/gems/badgerbadgerbadger) [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](https://github.com/Hess-Gregory/un_ami_pour_la_vie/blob/master/LICENSE) 
 
 ## Table des matières
 
