@@ -8,7 +8,7 @@ const envVarsSchema = Joi.object({
         .default('development'),
     PORT: Joi.number()
         .default(4040),
-    JWT_SECRET: Joi.string().required()
+    JWT_SECRET: Joi.string().default('jwt')
         .description('JWT Secret requis pour signer'),
     JWT_EXPIRES_IN: Joi.number().default(1440)
         .description('JWT Expiration temps en seconde'),

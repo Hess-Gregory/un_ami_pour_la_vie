@@ -14,25 +14,29 @@ module.exports = {
      */
     login(req, res, next) { 
     //console.log(User.generatePassword(req.body.password));
+    //console.log(User.getByEmail(req.body.token));
     
         User.getByEmail(req.body.email)
             .then((foundUser) => {
-                
                 if (!foundUser) { 
-                    const err = new APIError('Utilisateur non trouvé', httpStatus.UNAUTHORIZED, true);
+                    console.log("Un utilisateur tente de se connecter avec l'email : \"",req.body.email , "\" mais celui-ci n'existe pas !" );
+                    const err = new APIError('Utilisateur non trouvé !', httpStatus.UNAUTHORIZED, true);
                     return next(err);
                 }
                 if (!foundUser.validPassword(req.body.password)) { 
-                    const err = new APIError('Email ou mot de passe incorrect', httpStatus.UNAUTHORIZED, true);
+                    console.log("Un utilisateur tente de se connecter avec l'email : \"",req.body.email , "\" mais son mot de passe n'est pas valable !" );
+                    const err = new APIError('Mot de passe incorrect !', httpStatus.UNAUTHORIZED, true);
                     return next(err);
                 }
-
-                const token = jwt.sign(foundUser.safeModel(), config.jwtSecret, {
+                const token = jwt.sign(foundUser.safeModel(), config.jwtSecret,
+                console.log("L'utilisateur: ",foundUser.safeModel() , " s'est identifié avec sucés !" ),
+                 {
                     expiresIn: config.jwtExpiresIn,
                 });
                 return res.json({
+                    Msg: "Vous étes connecté avec succès !",
                     token,
-                    user: foundUser.safeModel()
+                    utilisateur: foundUser.safeModel()
                 })
             })
             .catch(err => next(new APIError( err.message, httpStatus.NOT_FOUND)));
@@ -56,6 +60,7 @@ module.exports = {
             })
             .then((savedUser) => {
                 const token = jwt.sign(savedUser.safeModel(), config.jwtSecret, {
+                    
                     expiresIn: config.jwtExpiresIn,
                     
                     
