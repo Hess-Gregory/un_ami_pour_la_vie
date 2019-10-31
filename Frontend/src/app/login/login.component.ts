@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component, OnInit , Input, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { routerTransition } from '../router.animations';
 import { first } from 'rxjs/operators';
@@ -8,31 +9,32 @@ import { AuthService } from '../auth.service';
     selector: 'app-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     animations: [routerTransition()]
 })
-export class LoginComponent implements OnInit {
-    public username: string;
+export class LoginComponent  implements OnInit {
+    public email: string;
     public password: string;
     public error: string;
+    @Input() data: string[];
 
     constructor(private auth: AuthService, public router: Router ) {}
-    onLoggedin() {
-        localStorage.setItem('isLoggedin', 'true');
 
-        console.log('onLoggedin');
-    }
+      ngOnInit() {}
 
       public submit() {
-    this.auth.login(this.username, this.password)
+        console.log('test');
+    this.auth.login(this.email, this.password)
       .pipe(first())
       .subscribe(
-        result => this.router.navigate(['']),
-        err => this.error = 'Could not authenticate'
+        result => this.router.navigate(['/admin']),
+        err => this.error = 'Erreur de connexion'
       );
-          console.log('submit');
+
+
+
   }
 
-    ngOnInit() {}
 
 
 }

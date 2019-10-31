@@ -18,13 +18,14 @@
                   <div class="p-5">
                     <div class="text-center">
                       <h1 class="h4 text-gray-900 mb-4">Bienvenue!</h1>
+                      <h4 *ngIf="error">{{error}}</h4>
                     </div>
-                    <form  (ngSubmit)="onSubmit()">
+                    <form  (ngSubmit)="submit()">
                       <div class="form-group">
-                        <input type="text"   [(ngModel)]="username"  class="form-control form-control-user"  id="" placeholder="{{ 'username' | translate }}">
+                        <input type="text"   (ngModel)="email"  name="email" class="form-control form-control-user"  placeholder="{{ 'email' | translate }}">
                       </div>
                       <div class="form-group">
-                        <input type="password" [(ngModel)]="password"  class="form-control form-control-user"  id="" placeholder="{{ 'Password' | translate }}">
+                        <input type="password" (ngModel)="password" name="password" class="form-control form-control-user"   placeholder="{{ 'Password' | translate }}">
                       </div>
                       <div class="form-group">
                         <div class="custom-control custom-checkbox small">
@@ -32,9 +33,9 @@
                           <label class="custom-control-label" for="customCheck">Souviens-toi de moi</label>
                         </div>
                       </div>
-                      <a class="btn btn-orangedbl btn-user btn-block" type="submit">
+                      <button  class="btn btn-orangedbl btn-user btn-block" type="submit">
                         {{ 'Log in' | translate }}
-                      </a>
+                    </button>
 
                     </form>
                     <hr>

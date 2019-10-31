@@ -1,20 +1,15 @@
 import { CommonModule } from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LanguageTranslationModule } from './shared/modules/language-translation/language-translation.module';
 import { NgxPopper } from 'angular-popper';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TodoService } from './todo.service';
-import { UserService } from './user.service';
-import { LoginComponent } from './login/login.component';
-import { TodoListComponent } from './todo-list/todo-list.component';
-import { UserListComponent } from './user-list/user-list.component';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './shared';
 import { AuthService } from './auth.service';
 import * as $ from 'jquery';
 import * as moment from 'moment';
@@ -27,8 +22,8 @@ export function tokenGetter() {
    imports: [
       CommonModule,
       BrowserModule,
-      BrowserAnimationsModule,
       HttpClientModule,
+      BrowserAnimationsModule,
       LanguageTranslationModule,
       AppRoutingModule,
       FormsModule,
@@ -43,9 +38,7 @@ export function tokenGetter() {
       })
    ],
    declarations: [
-      AppComponent,
-      TodoListComponent,
-      UserListComponent
+      AppComponent
    ],
    exports: [
       CommonModule,
@@ -53,9 +46,6 @@ export function tokenGetter() {
       ReactiveFormsModule
    ],
    providers: [
-
-    TodoService,
-    UserService,
     AuthService,
     AuthGuard
    ],

@@ -9,7 +9,6 @@ import { AuthService } from './auth.service';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-    console = console;
     constructor(private auth: AuthService, private router: Router) {
     }
     logout() {
