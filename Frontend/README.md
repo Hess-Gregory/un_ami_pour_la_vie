@@ -1,62 +1,65 @@
-# Projet Site Web pour l'ABSL - Un Ami Pour La Vie
+# SB Admin rewritten in Angular8 and Bootstrap 4
 
-<a href="http://www.unamipourlavie.be"><img src="http://www.unamipourlavie.be/images/logo.jpg" title="ASBL - Un Ami Pour La Vie" alt="Un Ami Pour La Vie"></a>
-[![Build Status](http://img.shields.io/travis/badges/badgerbadgerbadger.svg?style=flat-square)](https://travis-ci.org/badges/badgerbadgerbadger)  [![Gem Version](http://img.shields.io/gem/v/badgerbadgerbadger.svg?style=flat-square)](https://rubygems.org/gems/badgerbadgerbadger) [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org) 
+Simple Dashboard Admin App built using Angular 8 and Bootstrap 4
 
-## Table des matières
+This project is a port of the famous Free Admin Bootstrap Theme [SB Admin v8.0](http://startbootstrap.com/template-overviews/sb-admin-2/) to Angular8 Theme.
 
+Powered by [StartAngular](http://startangular.com/) & [StrapUI](http://strapui.com/)
 
-- [Versioning](https://github.com/Hess-Gregory/uaplv#versioning)
-- [Équipe](https://github.com/Hess-Gregory/uaplv#equipe)
-- [Contribuant](https://github.com/Hess-Gregory/uaplv#contribuant)
-- [Auteur](https://github.com/Hess-Gregory/uaplv#autheur)
-- [Installation](https://github.com/Hess-Gregory/uaplv#installation)
-- [Caractéristiques](https://github.com/Hess-Gregory/uaplv#caractéristiques)
-- [Contribuant](https://github.com/Hess-Gregory/uaplv#contribuant)
-- [Support](https://github.com/Hess-Gregory/uaplv#support)
-- [Contact](https://github.com/Hess-Gregory/uaplv#contact)
-- [Licence](https://github.com/Hess-Gregory/uaplv#licence)
-- [Remerciements"](https://github.com/Hess-Gregory/uaplv#remerciements)
+## [Demo](http://rawgit.com/start-angular/SB-Admin-BS4-Angular-6/master/dist/)
 
+## [SB Admin Material version](https://github.com/start-javascript/sb-admin-material)
 
----
-<a name="versioning"></a>
-## Versioning
-Nous utilisons GitHub pour la gestion des versions. Pour les versions disponibles, voir les Tags sur ce [référentiel](https://github.com/Hess-Gregory/uaplv/tags). 
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.0.
 
-<a name="équipe"></a>
-## Équipe
-<a name="autheur"></a>
-### Auteur
+### Introduction
 
-* **HESS Gregory** - *Full Stack Developer* - [GsweeT-WebDesign](https://github.com/Hess-Gregory)
+Provides fast, reliable and extensible starter for the development of Angular projects.
 
-<a name="contribuant"></a>
-### Contribuant
-Voir aussi la liste des [contributeurs](https://github.com/Hess-Gregory/uaplv/graphs/contributors) ayant participé à ce projet.
+`sb-admin-bs4-angular8` provides the following features:
 
-<a name="installation"></a>
-## Installation
+*   Developed using boostrap-v4.0.0
+*   angular-v8.0.0
+*   angular/cli-v8.0.0
+*   [ng-bootstrap-v4.0.0](https://github.com/ng-bootstrap/)
+*   [ngx-translate-v11.0.0](https://github.com/ngx-translate)
+*   Following the best practices.
+*   Ahead-of-Time compilation support.
+*   Official Angular i18n support.
+*   Production and development builds.
+*   Tree-Shaking production builds.
 
-<a name="caractéristiques"></a>
-## Caractéristiques
+### How to start
 
-<a name="caractéristiques"></a>
-## Licence
-Ce projet est sous licence MIT - voir le fichier  [LICENSE.md](https://github.com/Hess-Gregory/uaplv//blob/master/LICENSE.md) pour plus de détails.
+**Note** that this seed project requires **node >=v8.9.0 and npm >=4**.
 
-<a name="support"></a>
-## Support
+In order to start the project use:
 
-Des problèmes avec cette page? Découvrez nos [documentation](https://help.github.com/categories/github-pages-basics/).
-<a name="contact"></a>
-## Contact
+```bash
+$ git clone https://github.com/start-angular/SB-Admin-BS4-Angular-8.git
+$ cd SB-Admin-BS4-Angular-8
+# install the project's dependencies
+$ npm install
+# watches your files and uses livereload by default run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+$ npm start
+# prod build, will output the production application in `dist`
+# the produced code can be deployed (rsynced) to a remote server
+$ npm run build
+```
 
-[contact](https://github.com/contact) ici nous vous aiderons à résoudre votre problèmes.
+### Code scaffolding
 
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
 
-<a name="remerciements"></a>
-## Remerciements
+### Running unit tests
 
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
--
+### Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Before running the tests make sure you are serving the app via `ng serve`.
+
+### Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
