@@ -1,0 +1,22 @@
+html {
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    font: 1em/1.5 "Lato", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizelegibility;
+
+
+}
+body {
+        font-size: 1.3em !important;
+        overflow-x: hidden;
+        font-family: 'Roboto Slab', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    }
+
+    header {
+        height: 100vh;
+        position: relative;
+        background-image: linear-gradient(rgba(10, 189, 227, 0.65),rgba(255, 159, 67, 0.70)), url("../../assets/images/background.jpg");
+        background-size: cover;}
