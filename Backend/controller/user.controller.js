@@ -1,17 +1,21 @@
 const db = require('../models');
-const user = db.connect_jwt;
+const user = db.user;
+//const userEdit = db.user_details;
+//const user = db.connect_jwt; //Lecture des noms de role
 const bcrypt = require('bcrypt-nodejs');
 const httpStatus = require('http-status');
 const APIError = require('../helper/APIError');
 const _ = require('lodash');
 
 module.exports = {
-    getByEmail(email) {
+    getByEmail(email) { 
         return user.findOne({
             where: {
                 email:email,
             }
-        })
+        }
+        )
+        
     },
 
     getAll(req, res, next) {
@@ -20,8 +24,8 @@ module.exports = {
                 exclude: ['password','createdAt', 'updatedAt']
             }
         })
-        .then(users => res.json(users))
-        .catch(e => next(e));
+        .then(users => res.json(users) )
+        .catch(e => next(e),);  
     },
 
     getProfile(req, res, next) {
@@ -59,11 +63,12 @@ module.exports = {
         })
     },
 
-    update(req, res, next) {
+    update(req, res, next) {;
+        console.log('Les données a envoyer vers MySQL : ', req.body);
         return user.update({
                 email: req.body.email,
                 username: req.body.username,
-                password: req.body.password,
+                //password: User.generatePassword(req.body.password),
                 isActive: req.body.isActive  ,
                 role: req.body.role,
                 asbl: req.body.asbl,
@@ -98,7 +103,7 @@ module.exports = {
         })
         .then((result) => {
             if(result) {
-                return res.status(200).send({message: "Mis à jour avec succés", data: result});
+                return res.status(200).send({message: "Mis à jour avec succés", data: req.body});
             }else{
                 return res.status(httpStatus.BAD_REQUEST).send('Erreur lors de la mise à jour');
             }
@@ -127,18 +132,23 @@ module.exports = {
     },
 
     create(userdata) {
+        console.log('Les données suivante sont a envoyer vers MySQL : ', userdata);
         return user.create({
-            username: userdata.username,
-            email: userdata.email,
-            password: userdata.password,
-            role: 5,
-            isActive: 0
-        })
+                firstName: userdata.firstName,
+                lastName: userdata.lastName,
+                username: userdata.username,
+                email: userdata.email,
+                password: userdata.password
+                })
+                
         .then((savedUser) => {
+            console.log('L\'inscription est OK : ', savedUser);
                 return savedUser;
         })
         .catch((error) => {
-            return res.status(httpStatus.BAD_REQUEST).send('Quelque chose ne va pas dans l\'inscription');
+            
+        console.log('Erreur : status "',httpStatus.BAD_REQUEST,'" - Quelque chose ne va pas dans l\'inscription, vérifiez ceci: ', userEdit);
+        return res.status(httpStatus.BAD_REQUEST).send('Something wrong in Registration');  
         })
     }
 

@@ -11,6 +11,7 @@ const db = {};
 let sequelize;
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
+
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
@@ -30,9 +31,12 @@ Object.keys(db).forEach(function (modelName) {
     db[modelName].associate(db);
   }
 });
-
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
-db.user = require('../models/connect_jwt')(sequelize, Sequelize);
+db.user = require('../models/user')(sequelize, Sequelize);
+
+
+//db.user_details = require('../models/user_details')(sequelize, Sequelize);
+//db.connect_jwt = require('../models/connect_jwt')(sequelize, Sequelize);
 
 module.exports = db;

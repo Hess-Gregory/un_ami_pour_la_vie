@@ -14,40 +14,38 @@ module.exports = {
      */
     login(req, res, next) { 
     //console.log(User.generatePassword(req.body.password));
-    //console.log(User.getByEmail(req.body.token));
     
         User.getByEmail(req.body.email)
             .then((foundUser) => {
+                
                 if (!foundUser) { 
-                    console.log("Un utilisateur tente de se connecter avec l'email : \"",req.body.email , "\" mais celui-ci n'existe pas !" );
-                    const err = new APIError('Utilisateur non trouvé !', httpStatus.UNAUTHORIZED, true);
+                    const err = new APIError('Utilisateur non trouvé', httpStatus.UNAUTHORIZED, true);
                     return next(err);
                 }
                 if (!foundUser.validPassword(req.body.password)) { 
-                    console.log("Un utilisateur tente de se connecter avec l'email : \"",req.body.email , "\" mais son mot de passe n'est pas valable !" );
-                    const err = new APIError('Mot de passe incorrect !', httpStatus.UNAUTHORIZED, true);
+                    const err = new APIError('Email ou mot de passe incorrect', httpStatus.UNAUTHORIZED, true);
                     return next(err);
                 }
-                const token = jwt.sign(foundUser.safeModel(), config.jwtSecret,
-                console.log("L'utilisateur: ",foundUser.safeModel() , " s'est identifié avec sucés !" ),
-                 {
+
+                const token = jwt.sign(foundUser.safeModel(), config.jwtSecret, {
                     expiresIn: config.jwtExpiresIn,
                 });
                 return res.json({
-                    Msg: "Vous étes connecté avec succès !",
                     token,
-                    utilisateur: foundUser.safeModel()
+                    user: foundUser.safeModel()
                 })
             })
             .catch(err => next(new APIError( err.message, httpStatus.NOT_FOUND)));
     },
 
     register(req, res, next) {
-        console.log("fichier auth.controller ligne 39, req.body.email: ", req.body.email); 
-        console.log("fichier auth.controller ligne 40, req.body.password: ", req.body.password);
-        console.log("fichier auth.controller ligne 41, req.body.username: ", req.body.username);   
-        console.log("fichier auth.controller ligne 42, req.body.role: ", req.body.role);  
-        console.log("fichier auth.controller ligne 43, req.body.isActive: ", req.body.isActive);       
+        // console.log("fichier auth.controller ligne 38, req.body.firstName: ", req.body.firstName); 
+        // console.log("fichier auth.controller ligne 39, req.body.lastName: ", req.body.lastName); 
+        // console.log("fichier auth.controller ligne 40, req.body.username: ", req.body.username);   
+        // console.log("fichier auth.controller ligne 41, req.body.email: ", req.body.email); 
+        // console.log("fichier auth.controller ligne 42, req.body.password: ", req.body.password);
+        // console.log("fichier auth.controller ligne 43, req.body.role: ", req.body.role);  
+        console.log("getByEmail: ", req.body);       
 
         User.getByEmail(req.body.email)
             .then((foundUser) => {
@@ -60,10 +58,7 @@ module.exports = {
             })
             .then((savedUser) => {
                 const token = jwt.sign(savedUser.safeModel(), config.jwtSecret, {
-                    
                     expiresIn: config.jwtExpiresIn,
-                    
-                    
                 });
                 if(!savedUser.id){
                     return res.status(200).send({
@@ -75,7 +70,6 @@ module.exports = {
                         id: savedUser.id,
                         username: savedUser.username,
                         email: savedUser.email,
-
                     });
                 }
             })

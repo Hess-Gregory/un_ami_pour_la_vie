@@ -1,10 +1,10 @@
+/* jshint indent: 2 */
 'use strict';
 const bcrypt = require('bcrypt-nodejs');
 const _ = require('lodash');
 
 module.exports = function(sequelize, DataTypes) {
-  const User =  sequelize.define('User', {
-    
+  const user =  sequelize.define('user',{
     id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
@@ -18,7 +18,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     email: {
       type: DataTypes.STRING(100),
-      allowNull: false,
+      allowNull: true,
       unique: true
     },
     password: {
@@ -32,7 +32,8 @@ module.exports = function(sequelize, DataTypes) {
     },
     role: {
       type: DataTypes.INTEGER(11),
-      allowNull: false,
+      allowNull: true,
+      defaultValue: '1',
       references: {
         model: 'role',
         key: 'idROLE'
@@ -56,6 +57,15 @@ module.exports = function(sequelize, DataTypes) {
     },
     sexGenre: {
       type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    created_date: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
+    },
+    updated_date: {
+      type: DataTypes.DATE,
       allowNull: true
     },
     adPvStreet: {
@@ -133,6 +143,14 @@ module.exports = function(sequelize, DataTypes) {
     longDesc: {
       type: DataTypes.TEXT,
       allowNull: true
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: true
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: true
     }
   }, {
     timestamps: false,
@@ -140,12 +158,12 @@ module.exports = function(sequelize, DataTypes) {
   });
   
   
-  User.prototype.validPassword = function (password) {
+  user.prototype.validPassword = function (password) {
     return bcrypt.compareSync(password, this.password);
   };
-  User.prototype.safeModel = function() {
+  user.prototype.safeModel = function() {
       return _.omit(this.toJSON(), ['password']);
   };
 
-  return User;
+  return user;
 };

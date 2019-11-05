@@ -16,8 +16,6 @@ after((done)=>{
      let user = {
         username: faker.internet.userName(),
         email: faker.internet.email(),
-        role:faker.random.number({min:1, max:6}),
-        isActive: faker.random.boolean(),
         password: faker.internet.password(),
      };
     describe('#POST /api/auth/register', () => {
