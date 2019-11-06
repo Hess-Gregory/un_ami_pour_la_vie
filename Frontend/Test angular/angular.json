@@ -3,11 +3,11 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "todoapp": {
+    "todoapp": { 
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "app", 
+      "prefix": "app",
       "schematics": {
         "@schematics/angular:class": {
           "spec": false
