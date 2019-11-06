@@ -1,0 +1,20 @@
+<div class="container-fluid w-100 p-5 bg-dark">
+  <nav class="nav nav-pills float-left">
+    <a class="nav-link" routerLink="register" routerLinkActive="active" *ngIf="!auth.loggedIn">S'inscrire</a>
+    <a class="nav-link" routerLink="users" routerLinkActive="active" *ngIf="auth.loggedIn">Liste des utlisateurs</a>
+    <a class="nav-link" routerLink="login" routerLinkActive="active" *ngIf="!auth.loggedIn">Se connecter</a>
+    <a class="nav-link" (click)="logout()" href="#" *ngIf="auth.loggedIn">Se déconnecter</a>      
+
+
+
+
+
+    
+  </nav>
+  <ng-template [ngIf]="">
+      <p class="float-right text-white">tu est connecté en tant que : <span class="text-primary">{{Username}} </span></p>
+  </ng-template>
+      
+</div>  
+  <router-outlet></router-outlet>
+
