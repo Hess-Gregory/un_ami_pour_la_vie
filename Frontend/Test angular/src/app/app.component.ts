@@ -22,20 +22,20 @@ export class AppComponent {
     this.router.navigate(['login']);
   }}
 
- const localStorage ='';
+//  const localStorage ='';
   
-  if (localStorage === 'undefined') {
-    console.log('nous sommes pas connecté');
-    const jwtToken = localStorage.getItem('access_token');
-    const decoded = jwt_decode(jwtToken);
-    const itUsername = decoded.username;
-    const itEmail = decoded.email;
-    const itIsActive = decoded.isActive;
-    const itRole = decoded.role;
+//   if (localStorage !== 'undefined') {
+//     console.log('nous sommes pas connecté');
+//     const jwtToken = localStorage.getItem('access_token');
+//     const decoded = jwt_decode(jwtToken);
+//     const itUsername = decoded.username;
+//     const itEmail = decoded.email;
+//     const itIsActive = decoded.isActive;
+//     const itRole = decoded.role;
 
-     }
-     else{
-      console.log('nous sommes connecté');
+//      }
+//      else{
+//       console.log('nous sommes connecté');
 
-     }
+//      }
 
