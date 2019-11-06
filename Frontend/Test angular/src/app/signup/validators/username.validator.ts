@@ -10,6 +10,6 @@ export class UsernameValidator {
     } else {
       return null;
     }
-  } 
+  }
 }
 

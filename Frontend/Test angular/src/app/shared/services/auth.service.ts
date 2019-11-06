@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class AuthService {
   constructor(private http: HttpClient) { }
- 
+
   login(email: string, password: string): Observable<boolean> {
     return this.http.post<{token: string}>('http://localhost:4000/api/auth/login', 
     {email: email, password: password})

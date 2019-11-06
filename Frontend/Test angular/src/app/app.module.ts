@@ -13,7 +13,7 @@ import { SignupComponent } from './signup/signup.component';
 import { AuthService } from './shared/services/auth.service';
 import { AuthGuard } from './shared/guard/auth.guard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { 
+import {
   MatButtonModule,
   MatCheckboxModule,
   MatSelectModule,

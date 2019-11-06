@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { UserListComponent } from './user-list/user-list.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './shared/guard/auth.guard';
- 
+
 const routes: Routes = [
   { path: 'users', component: UserListComponent, canActivate: [AuthGuard] },
   { path: 'register', component: SignupComponent},

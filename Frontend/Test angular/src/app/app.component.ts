@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from './shared/services/auth.service';
 import * as jwt_decode from 'jwt-decode';
 import { fakeAsync } from '@angular/core/testing';
-  
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
