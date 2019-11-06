@@ -13,7 +13,7 @@ import {UsernameValidator, PasswordValidator, ParentErrorStateMatcher} from './v
   encapsulation: ViewEncapsulation.None
 })
 
-
+ 
 export class SignupComponent implements OnInit {
 
   userDetailsForm: FormGroup;

@@ -8,3 +8,4 @@ export class User {
     isActive: boolean;
     roleName: number;
   }
+ 
