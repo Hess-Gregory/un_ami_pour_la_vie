@@ -60,8 +60,4 @@ Des problèmes avec cette page? Découvrez nos [documentation](https://help.gith
 ## Remerciements
 
 ### [Asile18](https://github.com/Asile18) - Design Logo
-### Vasanta - CTSU Bordet (Stage)
-### Amed - CTSU Bordet (Stage)
-### Centre de Formation Evoliris
 
--
