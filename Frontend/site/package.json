@@ -38,6 +38,7 @@
     "core-js": "^3.3.6",
     "font-awesome": "4.7.0",
     "jquery": "^3.4.1",
+    "jwt-decode": "^2.2.0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "ng2-charts": "2.3.0",
