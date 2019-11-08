@@ -4,7 +4,7 @@
   "license": "Apache",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config proxy.conf.json --open --port 4100",
+    "start": "ng serve --proxy-config proxy.conf.json --open --port 4300",
     "build": "ng build --prod",
     "gitbuild": "ng build --prod --base-href /start-angular/SB-Admin-BS4-Angular-7/master/dist/",
     "test": "ng test",
@@ -16,11 +16,14 @@
   "dependencies": {
     "@angular-devkit/architect": "0.803.16",
     "@angular/animations": "8.2.13",
+    "@angular/cdk": "^8.2.3",
     "@angular/common": "8.2.13",
     "@angular/compiler": "8.2.13",
+    "@angular/compiler-cli": "^8.2.13",
     "@angular/core": "8.2.13",
     "@angular/forms": "8.2.13",
     "@angular/http": "^7.2.15",
+    "@angular/material": "^8.2.3",
     "@angular/platform-browser": "8.2.13",
     "@angular/platform-browser-dynamic": "8.2.13",
     "@angular/router": "~8.2.13",
@@ -43,7 +46,7 @@
     "rxjs": "6.5.3",
     "tslib": "^1.10.0",
     "webpack": "^4.41.2",
-    "zone.js": "~0.10.2"
+    "zone.js": "^0.9.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.803.16",
