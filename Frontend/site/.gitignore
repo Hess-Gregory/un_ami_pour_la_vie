@@ -14,6 +14,12 @@ package-lock.json
 .project
 .classpath
 .history
+yarn-error.log
+yarm.lock
+.gitignore
+.editorconfig
+.travis.yml
+.angulardoc.json
 .c9/
 *.launch
 .settings/

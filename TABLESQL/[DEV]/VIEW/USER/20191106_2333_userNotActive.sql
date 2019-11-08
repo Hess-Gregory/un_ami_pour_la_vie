@@ -1,0 +1,1 @@
+SELECT id, username, email, firstName, lastName, isActive, roleName FROM user LEFT JOIN role ON user.role = role.idROLE WHERE isActive=0

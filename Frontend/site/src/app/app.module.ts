@@ -5,22 +5,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LanguageTranslationModule } from './shared/modules/language-translation/language-translation.module';
 import { JwtModule } from '@auth0/angular-jwt';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AuthService } from './shared/services/auth.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
-import {
-    MatButtonModule,
-    MatCheckboxModule,
-    MatSelectModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatInputModule
-   } from '@angular/material';
-   export function tokenGetter() {
-    return localStorage.getItem('access_token');
-  }
+import { MatButtonModule, MatCheckboxModule, MatSelectModule,  MatDatepickerModule,
+    MatNativeDateModule, MatInputModule } from '@angular/material';
+   export function tokenGetter() { return localStorage.getItem('access_token'); }
 
 @NgModule({
     imports: [

@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
 
 const routes: Routes = [
-    { path: '', loadChildren: () => import('./layout/layout.module').then(m => m.LayoutModule), canActivate: [AuthGuard] },
+    { path: 'admin', loadChildren: () => import('./layout/layout.module').then(m => m.LayoutModule), canActivate: [AuthGuard] },
     { path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule) },
     { path: 'signup', loadChildren: () => import('./signup/signup.module').then(m => m.SignupModule) },
     { path: 'error', loadChildren: () => import('./server-error/server-error.module').then(m => m.ServerErrorModule) },

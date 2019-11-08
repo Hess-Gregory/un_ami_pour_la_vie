@@ -1,0 +1,1 @@
+SELECT id, firstName, lastName, username, email, roleName FROM user LEFT JOIN role ON user.role = role.idROLE WHERE isActive=1 AND role >=3 ORDER BY role DESC

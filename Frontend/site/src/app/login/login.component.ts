@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { Router } from '@angular/router';
 import { routerTransition } from '../router.animations';
 import { AuthService } from './../shared/services/auth.service';
 import { first } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: 'app-login',
@@ -22,7 +21,7 @@ export class LoginComponent {
 
     public submit() {
         this.auth.login(this.email, this.password).pipe(first()).subscribe(
-            result => this.router.navigate(['users']),
+            result => this.router.navigate(['admin']),
             err => this.error = 'Votre email ou votre mot de passe ne sont pas corrects, ou bien votre compte n\'est pas activé.'
           );
       }
