@@ -16,13 +16,13 @@ This project was built with [Angular CLI](https://github.com/angular/angular-cli
 
 Provides fast, reliable and extensible starter for the development of Angular projects.
 
-`sb-admin-bs4-angular8` provides the following features:
+`UN-AMI-POUR-LA-VIE` provides the following features:
 
-*   Developed using boostrap-v4.0.0
-*   angular-v8.0.0
-*   angular/cli-v8.0.0
-*   [ng-bootstrap-v4.0.0](https://github.com/ng-bootstrap/)
-*   [ngx-translate-v11.0.0](https://github.com/ngx-translate)
+*   Developed using boostrap-v4.3.1
+*   angular-v8.2.13
+*   angular/cli-v8.3.17
+*   [ng-bootstrap-v4.3.1](https://github.com/ng-bootstrap/)
+*   [ngx-translate-v11.0.1](https://github.com/ngx-translate)
 *   Following the best practices.
 *   Ahead-of-Time compilation support.
 *   Official Angular i18n support.
