@@ -1,0 +1,31 @@
+.navbar-fixed-bottom {
+    border: 1px transparent;
+    background-color: transparent;
+    padding: 0 auto;
+    padding: 0.5rem 0rem;
+
+    #navBarBottom {
+      height: 50px;
+      margin: 0;
+      padding: 15px 0;
+      background-color: rgb(52, 58, 64);
+      color: white;
+      width: 100vw;
+
+      div {
+        width: 50%;
+        padding: 0 10%;
+      }
+
+      #leftMessage {
+        float: left;
+        padding: 0 6%;
+      }
+
+      #rightMessage {
+        float: right;
+        text-align: right;
+        padding: 0 6%;
+      }
+    }
+  }

@@ -10,12 +10,18 @@ import * as jwt_decode from 'jwt-decode';
 })
 export class HeaderComponent implements OnInit {
     public pushRightClass: string;
+    Username: string;
+    itUser: any;
 
-    jwtToken = localStorage.getItem('access_token');
-    decoded = jwt_decode(this.jwtToken);
-    itUser = this.decoded.username;
     constructor(private translate: TranslateService, public router: Router) {
-console.log(this.itUser);
+        const jwtToken = localStorage.getItem('access_token');
+            if (jwtToken) {
+                console.log('Nouveau token: ', jwtToken);
+                const decoded = jwt_decode(jwtToken);
+                this.itUser = decoded.username;
+                console.log('username : ', this.itUser);
+                this.Username = this.itUser;
+            }
         this.router.events.subscribe(val => {
             if (
                 val instanceof NavigationEnd &&

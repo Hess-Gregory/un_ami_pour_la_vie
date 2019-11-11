@@ -1,0 +1,87 @@
+<section class="site" id="about">
+        <!-- Navigation -->
+
+        <nav class="fill navbar navbar-expand-lg navbar-dark bg-dark fixed-top navbar-novisible" id="mainNav">
+                <a dropdownToggle  class="navbar-brand" href="index.html">
+                    <img  alt="Logo" src="../../assets/images/final2.png" class="navbar-logo">
+                </a>
+                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                     <span class="navbar-toggler-icon"></span>
+                 </button>
+                 <div class="container-fluid collapse navbar-collapse" id="navbarResponsive">
+                     <ul class="navbar-nav ml-auto">
+                         <li class="nav-item ">
+                             <a class="nav-link js-scroll-trigger" href="#about">Accueil<span class="sr-only">(current)</span></a>
+                         </li>
+                         <li class="nav-item dropdown">
+                             <a class="nav-link dropdown-toggle" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Adoption</a>
+                             <div class="dropdown-menu" aria-labelledby="dropdown01">
+                                 <a class="dropdown-item" href="chien-adopter.html">Chiens à adopter</a>
+                                 <a class="dropdown-item" href="#">Je désire adopter</a>
+                                 <a class="dropdown-item" href="#">Conditions d'adoption</a>
+                                 <a class="dropdown-item" href="#">Nos heureux adoptés</a>
+                                 <a class="dropdown-item" href="#">Livres d'or</a>
+                             </div>
+                         </li>
+                         <li class="nav-item dropdown">
+                             <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Animal perdu/trouvé</a>
+                             <div class="dropdown-menu" aria-labelledby="dropdown02">
+                                 <a class="dropdown-item" href="#">Animal perdu</a>
+                                 <a class="dropdown-item" href="#">Animal trouvé</a>
+                                 <a class="dropdown-item" href="#">J'ai perdu un animal</a>
+                                 <a class="dropdown-item" href="#">J'ai trouvé un animal</a>
+                             </div>
+                         </li>
+                         <li class="nav-item dropdown">
+                             <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Abandon</a>
+                             <div class="dropdown-menu" aria-labelledby="dropdown03">
+                                 <a class="dropdown-item" href="#">Abondonné un animal</a>
+                                 <a class="dropdown-item" href="#">Conseils utiles</a>
+                             </div>
+                         </li>
+                         <li class="nav-item dropdown">
+                             <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pension</a>
+                             <div class="dropdown-menu" aria-labelledby="dropdown04">
+                                 <a class="dropdown-item" href="#">Réservation</a>
+                                 <a class="dropdown-item" href="#">À propos</a>
+                                 <a class="dropdown-item" href="#">Tarifs</a>
+                                 <a class="dropdown-item" href="#">Conditions générales</a>
+                                 <a class="dropdown-item" href="#">Horaires</a>
+                             </div>
+                         </li>
+                         <li class="nav-item dropdown">
+                             <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Nous aider</a>
+                             <div class="dropdown-menu" aria-labelledby="dropdown05">
+                                 <a class="dropdown-item" href="#">Faire un don</a>
+                                 <a class="dropdown-item" href="#">Devenir bénévole</a>
+                                 <a class="dropdown-item" href="#">Le parrainage</a>
+                                 <a class="dropdown-item" href="#">Ordre permanent</a>
+                                 <a class="dropdown-item" href="#">Les legs testamentaires</a>
+                             </div>
+                         </li>
+                         <li class="nav-item dropdown">
+                             <a class="nav-link dropdown-toggle" href="#" id="dropdown06" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actualités</a>
+                             <div class="dropdown-menu" aria-labelledby="dropdown06">
+                                 <a class="dropdown-item" href="#">Albums</a>
+                                 <a class="dropdown-item" href="#">Évenements</a>
+                             </div>
+                         </li>
+                         <li class="nav-item">
+                             <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+                         </li>
+                         <li class="nav-item dropdown">
+                             <a class="nav-link dropdown-toggle" href="#" id="dropdown06" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</a>
+                             <div class="dropdown-menu" aria-labelledby="dropdown06">
+                                 <a class="dropdown-item" [routerLink]="['/admin']" routerLinkActive="active" *ngIf="auth.loggedIn">Admin</a>
+                                 <a class="dropdown-item" routerLink="register" routerLinkActive="active" *ngIf="!auth.loggedIn">S'inscrire</a>
+                                 <a class="dropdown-item" routerLink="login" routerLinkActive="active" *ngIf="!auth.loggedIn">Se connecter</a>
+                                 <a class="dropdown-item" (click)="logout()" href="#" *ngIf="auth.loggedIn">Se déconnecter</a>
+                             </div>
+                         </li>
+                     </ul>
+                 </div>
+             </nav>
+
+
+        <router-outlet></router-outlet>
+    </section>

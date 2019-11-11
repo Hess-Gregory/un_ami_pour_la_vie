@@ -10,6 +10,7 @@ const routes: Routes = [
     children: [
 
         { path: '', redirectTo: 'home', pathMatch: 'prefix' },
+        { path: 'homepage', loadChildren: () => import('./homepage/homepage.module').then(m => m.HomepageModule) },
     ]
 }
 ];
