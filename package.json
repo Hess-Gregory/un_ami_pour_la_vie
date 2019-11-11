@@ -15,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/Hess-Gregory/un_ami_pour_la_vie/issues"
   },
-  "homepage": "https://github.com/Hess-Gregory/un_ami_pour_la_vie#readme"
+  "homepage": "https://github.com/Hess-Gregory/un_ami_pour_la_vie#readme",
+  "dependencies": {
+    "angular-datatables": "^8.0.0",
+    "datatables.net": "^1.10.20",
+    "datatables.net-dt": "^1.10.20"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.3.31"
+  }
 }

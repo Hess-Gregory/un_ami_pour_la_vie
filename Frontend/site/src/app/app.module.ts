@@ -1,3 +1,4 @@
+import { DataTablesModule } from 'angular-datatables';
 
 
 import { CommonModule } from '@angular/common';
@@ -34,6 +35,7 @@ export function tokenGetter() { return localStorage.getItem('access_token'); }
         MatNativeDateModule,
         MatCheckboxModule,
         MatSelectModule,
+        DataTablesModule,
         JwtModule.forRoot({
             config: {
               tokenGetter: tokenGetter,

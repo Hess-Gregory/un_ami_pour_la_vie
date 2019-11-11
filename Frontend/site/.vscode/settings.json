@@ -13,8 +13,8 @@
         },
     "typings": true,
     "node_modules": true,
-    ".history": true,
-    ".vscode": true // this excludes the folder
+    ".history": false,
+    ".vscode": false // this excludes the folder
   },
   "search.exclude": {
     "**/node_modules": true,

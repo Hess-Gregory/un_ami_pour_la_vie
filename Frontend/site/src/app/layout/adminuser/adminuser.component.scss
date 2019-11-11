@@ -1,0 +1,28 @@
+.table{
+    color:white;
+}
+.card{
+    color: white;
+    background-color: #2d303a !important;
+}
+thead tr th , .card-header, h2, h3, h4, h5{color: #76daff; }
+tbody tr th{color: #7db5c9; }
+
+tbody tr:hover td{
+    color: rgb(99, 183, 216);
+}
+
+  table.dataTable tbody tr {
+    background-color: #2d303a !important;
+}
+.dataTables_empty {
+    text-align: center;
+
+    background-color: #2d303a !important;
+}
+
+
+  label .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
+
+        color: #fff !important;
+    }

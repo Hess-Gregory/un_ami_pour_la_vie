@@ -2,8 +2,32 @@
     <div class="list-group">
         <a routerLink="/admin/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;
-            <span>{{ 'Dashboard' | translate }}</span>
+            <span>Dashboard</span>
         </a>
+        <div class="nested-menu">
+                <a class="list-group-item" (click)="addExpandClass('pages')">
+                    <i class="fa fa-users"></i>&nbsp;
+                    <span>Utilisateurs</span>
+                </a>
+                <li class="nested" [class.expand]="showMenu === 'pages'">
+                    <ul class="submenu">
+                        <li>
+                            <a [routerLink]="['/admin/users']" [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-users"></i>&nbsp;
+                                <span>Listes</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a  [routerLink]="['/admin/users']" [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-user-plus"></i>&nbsp;
+                                <span>Ajouter</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+
+
         <a  [routerLink]="['/admin/charts']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;
             <span>{{ 'Charts' | translate }}</span>
