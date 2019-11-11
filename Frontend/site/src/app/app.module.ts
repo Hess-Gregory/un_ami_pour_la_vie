@@ -13,7 +13,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
 import {Globals} from './globals';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { MatButtonModule, MatCheckboxModule, MatSelectModule,  MatDatepickerModule,
     MatNativeDateModule, MatInputModule } from '@angular/material';
 
@@ -35,7 +34,6 @@ export function tokenGetter() { return localStorage.getItem('access_token'); }
         MatNativeDateModule,
         MatCheckboxModule,
         MatSelectModule,
-        MDBBootstrapModule.forRoot(),
         JwtModule.forRoot({
             config: {
               tokenGetter: tokenGetter,
