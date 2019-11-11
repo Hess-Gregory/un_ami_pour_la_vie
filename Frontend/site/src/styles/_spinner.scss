@@ -1,16 +1,24 @@
 .spinner {
+    // position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // -ms-transform: translate(-50%,-50%); /* IE 9 */
+    // -webkit-transform: translate(-50%,-50%); /* Safari */
+    // transform: translate(-50%,-50%); /* Standard syntax */
+    // width: 70px;
+    // height: 70px;
+    height: 100vh;
+    width: 100vw;
+    background-image: linear-gradient(rgba(10, 189, 227, 0.65),rgba(255, 159, 67, 0.70)), url("./../assets/images/background.jpg");
+    background-size: cover;
     position: absolute;
     top: 50%;
     left: 50%;
-    -ms-transform: translate(-50%,-50%); /* IE 9 */
-    -webkit-transform: translate(-50%,-50%); /* Safari */
-    transform: translate(-50%,-50%); /* Standard syntax */
-    width: 70px;
-    height: 70px;
+    transform: translate(-50%, -50%);
     > div {
         width: 18px;
         height: 18px;
-        background-color: #333;
+        background-color: rgb(216, 39, 39);
 
         border-radius: 100%;
         display: inline-block;
@@ -25,6 +33,18 @@
     .bounce2 {
         -webkit-animation-delay: -0.16s;
         animation-delay: -0.16s;
+    }
+    .dog {        -webkit-animation-delay: -0.32s;
+        animation-delay: -0.32s;
+        width: 10vw;
+        /* border: 1px #aaa solid; */
+        text-align: center;
+        display: block;
+        vertical-align: middle;
+        margin: auto;
+        /* line-height: 568px; */
+        margin-top: 25%;
+        margin-bottom: 25%;
     }
 }
 
