@@ -12,6 +12,8 @@ import { User } from '../exports';
     constructor(private http: HttpClient) { }
 
     getUsers() {
+        console.log('this http get:', JSON.stringify(this.http.get<User[]>('/api/users')));
+
         return this.http.get<User[]>('/api/users');
       }
 

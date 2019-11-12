@@ -9,15 +9,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { HomepageComponent } from './homepage/homepage.component';
-
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
 @NgModule({
   imports: [
     CommonModule,
     HomeRoutingModule,
     NgbDropdownModule,
-    TranslateModule,
-    MDBBootstrapModule.forRoot()
+    TranslateModule
   ],
   declarations: [HomeComponent, NavbarComponent, HomepageComponent, FooterComponent, HeaderHomepageComponent, TimerComponent ]
 })
