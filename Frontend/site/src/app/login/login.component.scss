@@ -47,14 +47,13 @@
     background-color: rgb(255, 159, 67) !important;
   }
   .bg-login-logo{
-    height: 10vh;
+    width: 35vh;
   margin-left: auto;
   margin-right: auto;
   margin-top: 5px;
   display: block;
   top: 0%;
   position: relative;
-  left: 53%;
   }
   .pt-5-B{
     padding-top: 8rem!important;
@@ -65,7 +64,7 @@
     min-height: 100vh;
     width: 100vw;
     max-width: 100vw;
-    background-image: url('https://image.shutterstock.com/image-photo/grooming-equipment-brushes-toys-care-600w-1045648285.jpg');
+    background-image: url('./../../assets/images/photo-1557682250-33bd709cbe85.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -124,22 +123,24 @@
   }
 
 
-
+  .custom-checkbox .custom-control-label::before {
+    margin-left: -13px !important;
+}
 
   .bg-login-image {
-    background: url("https://source.unsplash.com/K4mSJ7kc0As/600x800");
+    background: url("./../../assets/images/dog1.jpg");
     background-position: center;
     background-size: cover;
   }
 
   .bg-register-image {
-    background: url("https://source.unsplash.com/Mv9hjnEUHR4/600x800");
+    background: url("./../../assets/images/dog2.jpg");
     background-position: center;
     background-size: cover;
   }
 
   .bg-password-image {
-    background: url("https://source.unsplash.com/oWTW-jNGl9I/600x800");
+    background: url("./../../assets/images/dog3.jpg");
     background-position: center;
     background-size: cover;
   }
