@@ -1,6 +1,3 @@
-
-
-
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
@@ -11,6 +8,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AuthService } from './shared/services/auth.service';
 import { AppRoutingModule } from './app-routing.module';
+import { AccordionModule } from 'primeng/accordion';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
 import {Globals} from './globals';
@@ -26,6 +24,7 @@ export function tokenGetter() { return localStorage.getItem('access_token'); }
         BrowserAnimationsModule,
         HttpClientModule,
         LanguageTranslationModule,
+        AccordionModule,
         AppRoutingModule,
         FormsModule,
         ReactiveFormsModule,
@@ -38,8 +37,8 @@ export function tokenGetter() { return localStorage.getItem('access_token'); }
         JwtModule.forRoot({
             config: {
               tokenGetter: tokenGetter,
-              whitelistedDomains: ['localhost:4000'],
-              blacklistedRoutes: ['localhost:4000/api/auth']
+              whitelistedDomains: ['localhost:4100'],
+              blacklistedRoutes: ['localhost:4100/api/auth']
             }
           })
     ],

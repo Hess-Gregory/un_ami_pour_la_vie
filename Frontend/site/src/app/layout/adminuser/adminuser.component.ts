@@ -5,7 +5,6 @@ import { User, UserService } from './../../shared/index';
 import { Observable, Subscription } from 'rxjs';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 
-
 @Component({
     selector: 'app-adminuser',
     templateUrl: './adminuser.component.html',

@@ -5,22 +5,34 @@
             <span>Dashboard</span>
         </a>
         <div class="nested-menu">
-                <a class="list-group-item" (click)="addExpandClass('pages')">
+                <a class="list-group-item" [routerLink]="['/admin/users']"  (click)="addExpandClass('pages')"  [routerLinkActive]="['router-link-active']" >
                     <i class="fa fa-users"></i>&nbsp;
                     <span>Utilisateurs</span>
                 </a>
                 <li class="nested" [class.expand]="showMenu === 'pages'">
                     <ul class="submenu">
                         <li>
-                            <a [routerLink]="['/admin/users']" [routerLinkActive]="['router-link-active']">
+                            <a [routerLink]="['/admin/users/all-users']" [routerLinkActive]="['router-link-active']" >
                                 <i class="fa fa-users"></i>&nbsp;
-                                <span>Listes</span>
+                                <span>Gestion utilisateurs</span>
                             </a>
                         </li>
                         <li>
-                            <a  [routerLink]="['/admin/users']" [routerLinkActive]="['router-link-active']">
+                            <a  [routerLink]="['/admin/users/users-activate']" [routerLinkActive]="['router-link-active']" >
                                 <i class="fa fa-user-plus"></i>&nbsp;
-                                <span>Ajouter</span>
+                                <span>Activation des comptes</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a  [routerLink]="['/admin/users/admin-manager']" [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-user-plus"></i>&nbsp;
+                                <span>Gestion des admins</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a  [routerLink]="['/admin/users/address-book']" [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-user-plus"></i>&nbsp;
+                                <span>Carnet d'adresse</span>
                             </a>
                         </li>
                     </ul>

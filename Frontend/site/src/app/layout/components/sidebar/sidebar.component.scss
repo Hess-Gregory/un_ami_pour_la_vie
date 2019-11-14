@@ -38,10 +38,10 @@ $topnav-background-color: #30C4C9;
                 margin-right: 10px;
             }
         }
-        a:hover {
-            background: darken($topnav-background-color, 5%);
-            color: $topnav-link-color;
-        }
+        // a:hover {
+        //     background: darken($topnav-background-color, 5%);
+        //     color: $topnav-link-color;
+        // }
         a.router-link-active {
             background: darken($topnav-background-color, 5%);
             color: $topnav-link-color;
@@ -126,9 +126,13 @@ $topnav-background-color: #30C4C9;
             height: auto;
             li {
                 a {
-                    color: $topnav-link-color;
+                    color: white;
                     padding: 10px;
                     display: block;
+                }
+                a.router-link-active {
+                    background: darken($topnav-background-color, 5%);
+                    color: $topnav-link-color;
                 }
             }
         }

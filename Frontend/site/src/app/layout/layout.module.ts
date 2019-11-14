@@ -7,14 +7,17 @@ import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
-
+import {BreadcrumbComponent} from './breadcrumb/breadcrumb.component';
+import {BreadcrumbModule} from 'primeng/primeng';
 @NgModule({
     imports: [
         CommonModule,
         LayoutRoutingModule,
         TranslateModule,
-        NgbDropdownModule
+        NgbDropdownModule,
+        BreadcrumbModule
     ],
-    declarations: [LayoutComponent, SidebarComponent, HeaderComponent]
+    declarations: [LayoutComponent, SidebarComponent, HeaderComponent,
+        BreadcrumbComponent]
 })
 export class LayoutModule {}

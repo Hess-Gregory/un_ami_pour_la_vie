@@ -16,10 +16,8 @@ export class HeaderComponent implements OnInit {
     constructor(private translate: TranslateService, public router: Router) {
         const jwtToken = localStorage.getItem('access_token');
             if (jwtToken) {
-                console.log('Nouveau token: ', jwtToken);
                 const decoded = jwt_decode(jwtToken);
                 this.itUser = decoded.username;
-                console.log('username : ', this.itUser);
                 this.Username = this.itUser;
             }
         this.router.events.subscribe(val => {

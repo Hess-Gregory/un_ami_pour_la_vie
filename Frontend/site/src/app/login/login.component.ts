@@ -21,7 +21,7 @@ export class LoginComponent {
 
     public submit() {
         this.auth.login(this.email, this.password).pipe(first()).subscribe(
-            result => this.router.navigate(['admin']),
+            result => this.router.navigate(['']),
             err => this.error = 'Votre email ou votre mot de passe ne sont pas corrects, ou bien votre compte n\'est pas activé.'
           );
       }

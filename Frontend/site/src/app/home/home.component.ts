@@ -13,19 +13,8 @@ import * as $ from 'jquery';
 })
 export class HomeComponent implements OnInit {
 
-    Username: string;
-    itUser: any;
 
-  constructor(public globals: Globals ) {
-    const jwtToken = localStorage.getItem('access_token');
-        if (jwtToken) {
-            console.log('Nouveau token: ', jwtToken);
-            const decoded = jwt_decode(jwtToken);
-            this.itUser = decoded.username;
-            console.log('username : ', this.itUser);
-            this.Username = this.itUser;
-        }
-   }
+  constructor(public globals: Globals ) {}
 
   ngOnInit() {
 

@@ -21,7 +21,6 @@ export class TimerComponent implements OnInit {
     if (jwtToken) {
             const decoded = jwt_decode(jwtToken);
             const expirationTime = decoded.exp;
-            console.log(moment(new Date()));
             new Date().toString();
             const date = new Date(0);
             date.setUTCSeconds(expirationTime);
@@ -35,11 +34,11 @@ export class TimerComponent implements OnInit {
                     this.date333 = new Date( parseInt(expirationTime) * 1000 );
                     this.deltaTime = Math.round((this.date333 - this.currentDate + 30000) / 1000 / 60);
                     this.deltaTimeMessage = ' Votre connexion expirera dans ' + this.deltaTime + ' min';
+                    console.log(this.deltaTimeMessage);
 
-                } else if (current_time  > expirationTime) {
-                this.deltaTimeMessage = ' Votre connexion a expiré';
-                } else {
-                    this.deltaTimeMessage = ' Votre connexion a expiré';
+                 } else {
+                    this.deltaTimeMessage = ' Votre connexion a expiré.';
+                     console.log(this.deltaTimeMessage);
                 }
     }
   }

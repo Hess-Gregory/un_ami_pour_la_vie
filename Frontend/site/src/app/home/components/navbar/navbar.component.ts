@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from './../../../shared/services/auth.service';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from './../../../shared/services/auth.service';
 import * as jwt_decode from 'jwt-decode';
 declare let $: any;
 @Component({
@@ -16,10 +16,10 @@ window: any;
 Username: string;
 itUser: any;
 
-  constructor(public auth: AuthService, private translate: TranslateService, public router: Router) {
+  constructor(public auth: AuthService,  private translate: TranslateService, public router: Router) {
     const jwtToken = localStorage.getItem('access_token');
         if (jwtToken) {
-            console.log('Nouveau token: ', jwtToken);
+            console.log('Token: ', jwtToken);
             const decoded = jwt_decode(jwtToken);
             this.itUser = decoded.username;
             console.log('username : ', this.itUser);
@@ -143,11 +143,6 @@ itUser: any;
 
       }
   }
-//     jwtToken(jwtToken: any); {
-//         throw new Error('Method not implemented.');
-//     }
-//   onLoggedout(); {
-//     localStorage.removeItem('access_token');
-// }
+
 
 
