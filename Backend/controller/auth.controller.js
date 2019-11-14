@@ -14,16 +14,16 @@ module.exports = {
      */
     login(req, res, next) { 
     //console.log(User.generatePassword(req.body.password));
-    
+
         User.getByEmail(req.body.email)
             .then((foundUser) => {
-                
+
                 if (!foundUser) { 
-                    const err = new APIError('Utilisateur non trouvé', httpStatus.UNAUTHORIZED, true);
+                    const err = new APIError('Utilisateur non trouvé ou compte inactif', httpStatus.UNAUTHORIZED, true);
                     return next(err);
                 }
                 if (!foundUser.validPassword(req.body.password)) { 
-                    const err = new APIError('Email ou mot de passe incorrect', httpStatus.UNAUTHORIZED, true);
+                    const err = new APIError('Mot de passe incorrect', httpStatus.UNAUTHORIZED, true);
                     return next(err);
                 }
 

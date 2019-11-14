@@ -11,8 +11,8 @@ module.exports = {
     getByEmail(email) { 
         return user.findOne({
             where: {
-                email:email,
-            }
+                email:email, isActive:1
+            } 
         }
         )
         
