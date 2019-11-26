@@ -9,6 +9,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
 import {BreadcrumbComponent} from './breadcrumb/breadcrumb.component';
 import {BreadcrumbModule} from 'primeng/primeng';
+import { TimerBisComponent} from './timer-bis/timer-bis.component';
 @NgModule({
     imports: [
         CommonModule,
@@ -18,6 +19,6 @@ import {BreadcrumbModule} from 'primeng/primeng';
         BreadcrumbModule
     ],
     declarations: [LayoutComponent, SidebarComponent, HeaderComponent,
-        BreadcrumbComponent]
+        BreadcrumbComponent, TimerBisComponent]
 })
 export class LayoutModule {}

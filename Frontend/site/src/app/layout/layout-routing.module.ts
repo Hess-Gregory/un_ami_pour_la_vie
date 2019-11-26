@@ -16,7 +16,7 @@ const routes: Routes = [
         },
         component: LayoutComponent,
         children: [
-            { path: '', redirectTo: 'dashboard', pathMatch: 'prefix' , canActivate: [AuthGuard] },
+            { path: '', redirectTo: 'dashboard', data: {breadcrumb: 'panneau admin' }, pathMatch: 'prefix' , canActivate: [AuthGuard] },
             { path: 'dashboard',  loadChildren: () => import('./dashboard/dashboard.module')
                 .then(m => m.DashboardModule), data: { breadcrumb: 'Panneau général' } },
             { path: 'users', loadChildren: () => import('./users/users.module')

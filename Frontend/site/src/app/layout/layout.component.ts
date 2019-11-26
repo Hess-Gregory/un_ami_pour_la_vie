@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as jwt_decode from 'jwt-decode';
 
 @Component({
     selector: 'app-layout',
@@ -6,18 +7,22 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
-
+    Username: string;
     collapedSideBar: boolean;
 
     constructor() {
-
+        const jwtToken = localStorage.getItem('access_token');
+            if (jwtToken) {
+                const token = localStorage.getItem('access_token');
+                this.Username = jwt_decode(token)['username'];
+            }
     }
 
     ngOnInit() {
 
     }
 
-    receiveCollapsed($event) {
+    receiveCollapsed($event: boolean) {
         this.collapedSideBar = $event;
     }
 }
