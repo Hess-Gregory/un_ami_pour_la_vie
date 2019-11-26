@@ -39,12 +39,6 @@ module.exports = {
     },
 
     register(req, res, next) {
-        // console.log("fichier auth.controller ligne 38, req.body.firstName: ", req.body.firstName); 
-        // console.log("fichier auth.controller ligne 39, req.body.lastName: ", req.body.lastName); 
-        // console.log("fichier auth.controller ligne 40, req.body.username: ", req.body.username);   
-        // console.log("fichier auth.controller ligne 41, req.body.email: ", req.body.email); 
-        // console.log("fichier auth.controller ligne 42, req.body.password: ", req.body.password);
-        // console.log("fichier auth.controller ligne 43, req.body.role: ", req.body.role);  
         console.log("getByEmail: ", req.body);       
 
         User.getByEmail(req.body.email)

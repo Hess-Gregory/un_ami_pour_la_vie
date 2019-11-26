@@ -1,5 +1,6 @@
 const db = require('../models');
 const user = db.user;
+const admin = db.admin;
 //const userEdit = db.user_details;
 //const user = db.connect_jwt; //Lecture des noms de role
 const bcrypt = require('bcrypt-nodejs');
@@ -25,6 +26,16 @@ module.exports = {
             }
         })
         .then(users => res.json(users) )
+        .catch(e => next(e),);  
+    },
+
+    getAllAdmin(req, res, next) {
+        return admin.findAll({
+            attributes:{
+                exclude: ['password','createdAt', 'updatedAt']
+            }
+        })
+        .then(admins => res.json(admins) )
         .catch(e => next(e),);  
     },
 

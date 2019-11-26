@@ -2,6 +2,7 @@ const express = require('express');
 const expressJWT = require('express-jwt');
 const config = require('../config/index');
 const userRoutes = require('../routes/user.routes');
+const adminRoutes = require('../routes/admin.routes');
 const authRoutes = require('../routes/auth.routes');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../swagger/swagger');
@@ -13,11 +14,10 @@ const router = express.Router();
 router.get('/api-docs',swaggerUi.serve,swaggerUi.setup(swaggerDocument));
 router.use('/api-paths',swaggerUi.serve,swaggerUi.setup(swaggerDocument));
 router.use('/auth', authRoutes);
-
 //valider toutes les API avec le token jwt. (a commenter en cas de probléme de token)
 router.use(expressJWT({secret:config.jwtSecret}));
 
-
+//router.use('/users', userRoutes);
 // Si jwt est valide, stocker les données de l'utilisateur dans une session locale.
  router.use((req, res, next) => { 
      const authorization = req.header('Authorization');
@@ -40,10 +40,11 @@ router.use(expressJWT({secret:config.jwtSecret}));
                                        
                 };
                 if (res.locals.session.role >= 4){
-                    router.use('/users', userRoutes);
+                router.use('/users', userRoutes);
 
                 };
                 if (res.locals.session.role >= 5){
+                router.use('/admins', adminRoutes);
 
                 };
                 if (res.locals.session.role >= 6){

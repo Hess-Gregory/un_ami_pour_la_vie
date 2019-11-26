@@ -91,6 +91,28 @@
   }
 },
 
+"/api/admin/":{
+  "get":{
+    "tags":[
+      "List of all admin"
+    ],
+    "summary":"Liste de tous les utilisateurs du système",
+    "descriptions":"Obtenir tous les utilisateurs",
+    "parameters":[
+      {
+        "name":"Autorisation",
+        "in":"header",
+        "required":true,
+        "type":"string"
+      }
+    ],
+    "responses":{
+      "200":{
+        "descriptions":"Liste avec succès"
+      }
+    }
+  }
+},
 
 "/api/user/":{
   "get":{

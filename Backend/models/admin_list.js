@@ -1,7 +1,9 @@
-/* jshint indent: 2 */
+'use strict';
+const bcrypt = require('bcrypt-nodejs');
+const _ = require('lodash');
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('admin_list', {
+  const admin =  sequelize.define('admin', {
     id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
@@ -29,6 +31,18 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     }
   }, {
-    tableName: 'admin_list'
-  });
+
+  timestamps: false,
+  tableName: 'listadmin'
+});
+
+
+admin.prototype.validPassword = function (password) {
+  return bcrypt.compareSync(password, this.password);
+};
+admin.prototype.safeModel = function() {
+    return _.omit(this.toJSON(), ['password']);
+};
+
+return admin;
 };

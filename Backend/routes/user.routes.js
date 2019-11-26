@@ -52,6 +52,9 @@ const paramValidation = {
 router.route('/')
 // GET /api/users. all the users.
     .get(userController.getAll);
+router.route('/admins')    
+// GET /api/users/admins. all the users.
+    .get(userController.getAllAdmin);
 
 router.route('/profile')
 // GET /api/users/profile. all the users.
