@@ -1,0 +1,75 @@
+<div [@routerTransition]>
+   <div class="jumbotron">
+        <div class="row">
+            <div class="col-12">
+                <a class="FirstBtn btn btn-primary btn-lg col-3 w-75" role="button" [routerLink]="['/admin/users/all-users']" [routerLinkActive]="['router-link-active']">Gestions des utilisateurs</a>
+                <a class="btn btn-primary btn-lg col-3 ml-5 mr-5 w-75" role="button" [routerLink]="['/admin/users/users-activate']" [routerLinkActive]="['router-link-active']">Activation des comptes</a>
+                <a class="btn btn-primary btn-lg col-3 mr-5 w-75" role="button" [routerLink]="['/admin/users/admin-manager']" [routerLinkActive]="['router-link-active']">Gestion des administrateurs</a>
+                <a class="btn btn-primary btn-lg col-3 w-75" role="button" [routerLink]="['/admin/users/address-book']" [routerLinkActive]="['router-link-active']">Carnet d'adresse</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+            <div class="col col-xl-12 col-lg-12">
+                <div class="card  mb-3">
+                    <div class="card-header  bg-dark">
+                        <h2> Gestion des utilisateurs</h2>
+                    </div>
+                    <div *ngIf="ErrorStatus"  class="card-body">
+                            <p *ngFor="let alert of alerts">
+                                <ngb-alert [type]="alert.type" (close)="closeAlert(alert)">Erreur {{ErrorStatus}} : {{ErrorstatusText}}</ngb-alert>
+                            </p>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border display compact table bordered"  id="example">
+                            <thead class=" bg-dark">
+                                <tr *ngIf="users?.length != 0" >
+                                    <th class="text-center">#</th>
+                                    <th class="text-center">Nom d'utilisateur</th>
+                                    <th class="text-center">Prénom</th>
+                                    <th class="text-center">Nom</th>
+                                    <th class="text-center">Email</th>
+                                    <th class="text-center">Date d'ajout</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngIf="users?.length != 0" class="bg-dark">
+                                <tr class="bg-dark  text-white  pt-3 pb-3" *ngFor="let user of users; let i = index" role="button" [routerLink]="['/admin/users/get-user']" >
+                                    <td  class="text-center"><p>{{ user.id }} </p></td>
+                                    <td  class="text-center"><p>{{ user.username }}</p></td>
+                                    <td  class="text-center"><p>{{ user.firstName }}</p></td>
+                                    <td  class="text-center"><p>{{ user.lastName }}</p></td>
+                                    <td  class="text-center"><p>{{ user.email }}</p></td>
+                                    <td  class="text-center"><p>{{ user.created_date| date:'EEEE, d MMMM y à h:mm' }}</p></td>
+                                </tr>
+                            </tbody>
+                            <tbody *ngIf="users?.length == 0">
+                                <tr>
+                                    <td colspan="3" class="no-data-available">
+                                        <div class="alert alert-danger">
+                                            <strong>Oh non!</strong> il n'y as pas de data.
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                                <!-- <tfoot *ngIf="users?.length != 0">
+                                    <tr >
+                                      <th class="text-center"><input type="text" class="inputSearch" placeholder="Search ID" name="search-id"/></th>
+                                      <th class="text-center"><input type="text" class="inputSearch" placeholder="Search username" name="search-username"/></th>
+                                      <th class="text-center"><input type="text" class="inputSearch" placeholder="Search first name" name="search-firstName"/></th>
+                                      <th class="text-center"><input type="text" class="inputSearch" placeholder="Search last name" name="search-lastName"/></th>
+                                      <th class="text-center"><input type="text" class="inputSearch" placeholder="Search email" name="search-email"/></th>
+                                      <th class="text-center"><input type="text" class="inputSearch" placeholder="Search email" name="search-created_date"/></th>
+                                    </tr>
+                            </tfoot> -->
+                        </table>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+
+
+
+
+

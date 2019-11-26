@@ -1,0 +1,27 @@
+<div class="showcase-tabs">
+    <a class="waves-effect btn" [routerLink]="['/admin/users/all-users']" [routerLinkActive]="['router-link-active']">Gestions des utilisateurs</a>
+    <a class="waves-effect btn" [routerLink]="['/admin/users/users-activate']" [routerLinkActive]="['router-link-active']">Activation des comptes</a>
+    <a class="waves-effect btn" [routerLink]="['/admin/users/admin-manager']" [routerLinkActive]="['router-link-active']">Gestion des administrateurs</a>
+    <a class="waves-effect btn" [routerLink]="['/admin/users/address-book']" [routerLinkActive]="['router-link-active']">Carnet d'adresse</a>
+</div>
+
+    <h2>Activation/désactivation des comptes</h2>
+
+<table  datatable  [dtOptions]="dtOptions"  class="row-border hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nom d'utilisateur</th>
+            <th>Email</th>
+            <th>Activation</th>
+        </tr>
+    </thead>
+        <tbody >
+            <tr *ngFor="let user of user$ | async">
+                <th class="tdBody">{{user.id}}</th>
+                <td class="tdBody"> {{user.username}}</td>
+                <td class="tdBody"> {{user.email}}</td>
+                <td class="tdBody"> {{user.isActive}}</td>
+            </tr>
+        </tbody>
+  </table>

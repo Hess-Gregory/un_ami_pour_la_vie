@@ -1,0 +1,102 @@
+<div class="bg-bluedbl" [@routerTransition]>
+
+    <div class="container pb-5 pt-5-B">
+        <img class="bg-login-logo"  src="./../../assets/images/final4.png">
+        <div class="card o-hidden border-0 mt-5 mb-5 shadow-lg">
+          <div class="card-body p-0">
+            <div class="row">
+              <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+              <div class="col-lg-7">
+                <div class="p-5">
+                  <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">Créer un compte!</h1>
+                  </div>
+                  <form [formGroup]="userDetailsForm" (ngSubmit)="onSubmitUserDetails(userDetailsForm.value)" class="user">
+
+                    <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                          <input  matInput type="text"  formControlName="firstName"  class="form-control form-control-user" placeholder="Prénom" required>
+                            <mat-error *ngFor="let validation of validation_messages.firstName">
+                              <mat-error class="error-message" *ngIf="userDetailsForm.get('firstName').hasError(validation.type) &&
+                        (userDetailsForm.get('firstName').dirty || userDetailsForm.get('firstName').touched)">
+                                {{validation.message}}
+                              </mat-error>
+                            </mat-error>
+                        </div>
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                          <input  matInput type="text"  formControlName="lastName"  class="form-control form-control-user" placeholder="Nom de famille" required>
+                          <mat-error *ngFor="let validation of validation_messages.lastName">
+                              <mat-error class="error-message" *ngIf="userDetailsForm.get('lastName').hasError(validation.type) &&
+                              (userDetailsForm.get('lastName').dirty || userDetailsForm.get('lastName').touched)">
+                                {{validation.message}}
+                              </mat-error>
+                          </mat-error>
+                        </div>
+                      </div>
+                    <div class="form-group row">
+                      <div class="col-sm-12 mb-3 mb-sm-0" >
+                          <input  matInput type="text"  formControlName="username" class="form-control form-control-user" placeholder="Nom d'utilisateur" required>
+                          <mat-error *ngFor="let validation of validation_messages.username">
+                              <mat-error class="error-message" *ngIf="userDetailsForm.get('username').hasError(validation.type) &&
+                              (userDetailsForm.get('username').dirty || userDetailsForm.get('username').touched)">
+                                {{validation.message}}
+                              </mat-error>
+                        </mat-error>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-sm-12 mb-3 mb-sm-0" >
+                          <input  matInput type="email" formControlName="email" class="form-control form-control-user" placeholder="Adresse mail" required>
+                        <mat-error *ngFor="let validation of validation_messages.email">
+                          <mat-error class="error-message" *ngIf="userDetailsForm.get('email').hasError(validation.type) &&
+                          (userDetailsForm.get('email').dirty || userDetailsForm.get('email').touched)">
+                            {{validation.message}}
+                          </mat-error>
+                        </mat-error>
+                      </div>
+                    </div>
+                    <div class="form-group row" formGroupName="matching_passwords">
+                      <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input  matInput type="password"  formControlName="password"  class="form-control form-control-user" placeholder="Mot de passe" required>
+                        <mat-error *ngFor="let validation of validation_messages.password">
+                            <mat-error class="error-message" *ngIf="
+                            userDetailsForm.get('matching_passwords').get('password').hasError(validation.type) &&
+                            (userDetailsForm.get('matching_passwords').get('password').dirty ||
+                            userDetailsForm.get('matching_passwords').get('password').touched)">
+                              {{validation.message}}
+                            </mat-error>
+                          </mat-error>
+                        </div>
+                      <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input  matInput type="password"  formControlName="confirm_password"  class="form-control form-control-user" placeholder="Répétez votre mot de passe" required>
+                        <mat-error *ngFor="let validation of validation_messages.confirm_password">
+                            <mat-error class="error-message" *ngIf="(
+                            userDetailsForm.get('matching_passwords').get('confirm_password').hasError(validation.type)||
+                            userDetailsForm.get('matching_passwords').hasError(validation.type)) &&
+                            (userDetailsForm.get('matching_passwords').get('confirm_password').dirty ||
+                            userDetailsForm.get('matching_passwords').get('confirm_password').touched)">
+                              {{validation.message}}
+                            </mat-error>
+                          </mat-error>
+                        </div>
+                    </div>
+
+                    <button mat-raised-button type="submit" [disabled]="!userDetailsForm.valid" class="btn btn-orangedbl btn-user btn-block">
+                        {{ 'Register' | translate }}
+                    </button>
+
+                  </form>
+                  <hr>
+                  <div class="text-center">
+                    <a class="small" routerLink="" routerLinkActive="active">Mot de passe oublié?</a>
+                  </div>
+                  <div class="text-center">
+                    <a class="small"  [routerLink]="['/login']" routerLinkActive="active">{{ 'Log in' | translate }}</a>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
