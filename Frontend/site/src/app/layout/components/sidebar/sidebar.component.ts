@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import * as jwt_decode from 'jwt-decode';
 
 @Component({
     selector: 'app-sidebar',
@@ -12,10 +13,15 @@ export class SidebarComponent implements OnInit {
     collapsed: boolean;
     showMenu: string;
     pushRightClass: string;
-
+    Username: string;
     @Output() collapsedEvent = new EventEmitter<boolean>();
 
     constructor(private translate: TranslateService, public router: Router) {
+        const jwtToken = localStorage.getItem('access_token');
+        if (jwtToken) {
+            const token = localStorage.getItem('access_token');
+            this.Username = jwt_decode(token)['username'];
+        }
         this.router.events.subscribe(val => {
             if (
                 val instanceof NavigationEnd &&
