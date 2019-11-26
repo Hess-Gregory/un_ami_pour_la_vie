@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,8 +12,14 @@ import { AccordionModule } from 'primeng/accordion';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
 import {Globals} from './globals';
+import { TableModule } from 'primeng/table';
+import { DataTablesModule } from 'angular-datatables';
 import { MatButtonModule, MatCheckboxModule, MatSelectModule,  MatDatepickerModule,
     MatNativeDateModule, MatInputModule } from '@angular/material';
+    import localeFr from '@angular/common/locales/fr';
+    import localeFrExtra from '@angular/common/locales/extra/fr';
+
+    registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
 
 export function tokenGetter() { return localStorage.getItem('access_token'); }
 
@@ -23,6 +29,7 @@ export function tokenGetter() { return localStorage.getItem('access_token'); }
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
+        DataTablesModule,
         LanguageTranslationModule,
         AccordionModule,
         AppRoutingModule,
@@ -33,12 +40,13 @@ export function tokenGetter() { return localStorage.getItem('access_token'); }
         MatDatepickerModule,
         MatNativeDateModule,
         MatCheckboxModule,
+        TableModule,
         MatSelectModule,
         JwtModule.forRoot({
             config: {
               tokenGetter: tokenGetter,
-              whitelistedDomains: ['localhost:4100'],
-              blacklistedRoutes: ['localhost:4100/api/auth']
+              whitelistedDomains: ['localhost:4000'],
+              blacklistedRoutes: ['localhost:4000/api/auth']
             }
           })
     ],
