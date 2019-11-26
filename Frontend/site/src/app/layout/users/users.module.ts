@@ -1,16 +1,25 @@
+import { UpdateUserComponent } from './all-users/update-user/update-user.component';
+import { DeleteUserComponent } from './all-users/delete-user/delete-user.component';
+import { GetUserComponent } from './all-users/get-user/get-user.component';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { DataTablesModule } from 'angular-datatables';
 import { UsersRoutingModule } from './users-routing.module';
 import { UsersComponent } from './users.component';
 import { AddressBookComponent } from './address-book/address-book.component';
 import { AdminManagerComponent } from './admin-manager/admin-manager.component';
 import { AllUsersComponent } from './all-users/all-users.component';
 import { UsersActivateComponent } from './users-activate/users-activate.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AddUserComponent } from './all-users/add-user/add-user.component';
 
 @NgModule({
-    imports: [CommonModule, UsersRoutingModule],
-    declarations: [UsersComponent, AddressBookComponent, AdminManagerComponent, AllUsersComponent, UsersActivateComponent]
+    imports: [CommonModule, UsersRoutingModule, DataTablesModule,
+        FormsModule,
+        NgbModule, HttpClientModule],
+    declarations: [UsersComponent, AddressBookComponent, AdminManagerComponent, AllUsersComponent, UsersActivateComponent, AddUserComponent, GetUserComponent, DeleteUserComponent, UpdateUserComponent]
 })
 export class UsersModule {}
