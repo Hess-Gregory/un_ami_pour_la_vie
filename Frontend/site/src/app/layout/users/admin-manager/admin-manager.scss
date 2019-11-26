@@ -8,9 +8,7 @@
   .dataTables_empty {
     display: none;
   }
-  .table{
-     //color:white;
- }
+
  .card{
    //  color: white;
     // background-color: #2d303a !important;
@@ -24,9 +22,6 @@
  }
  tbody tr:hover td{
      color: rgb(99, 183, 216);
- }
- table.dataTable tbody tr {
-   //  background-color: #2d303a !important;
  }
  table.dataTable.display tbody tr.even > .sorting_1, table.dataTable.order-column.stripe tbody tr.even > .sorting_1 {
      background-color: #343a40 !important;

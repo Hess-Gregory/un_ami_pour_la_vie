@@ -20,6 +20,10 @@ import { AddUserComponent } from './all-users/add-user/add-user.component';
     imports: [CommonModule, UsersRoutingModule, DataTablesModule,
         FormsModule,
         NgbModule, HttpClientModule],
-    declarations: [UsersComponent, AddressBookComponent, AdminManagerComponent, AllUsersComponent, UsersActivateComponent, AddUserComponent, GetUserComponent, DeleteUserComponent, UpdateUserComponent]
+    declarations: [UsersComponent, AddressBookComponent,
+        AdminManagerComponent, AllUsersComponent,
+        UsersActivateComponent, AddUserComponent,
+        GetUserComponent, DeleteUserComponent,
+        UpdateUserComponent]
 })
 export class UsersModule {}
