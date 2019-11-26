@@ -11,14 +11,12 @@ import * as jwt_decode from 'jwt-decode';
 export class HeaderComponent implements OnInit {
     public pushRightClass: string;
     Username: string;
-    itUser: any;
 
     constructor(private translate: TranslateService, public router: Router) {
         const jwtToken = localStorage.getItem('access_token');
             if (jwtToken) {
-                const decoded = jwt_decode(jwtToken);
-                this.itUser = decoded.username;
-                this.Username = this.itUser;
+                const token = localStorage.getItem('access_token');
+                this.Username = jwt_decode(token)['username'];
             }
         this.router.events.subscribe(val => {
             if (
