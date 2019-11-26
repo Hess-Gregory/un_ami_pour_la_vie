@@ -1,7 +1,8 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from './../../../shared/services/auth.service';
+import { TranslateService } from '@ngx-translate/core';
+import * as moment from 'moment';
 import * as jwt_decode from 'jwt-decode';
 declare let $: any;
 @Component({
@@ -13,21 +14,29 @@ export class NavbarComponent implements OnInit {
 
 decoded: any;
 window: any;
-Username: string;
-itUser: any;
+currentDate: any;
 
-  constructor(public auth: AuthService,  private translate: TranslateService, public router: Router) {
+  constructor(public auth: AuthService, private translate: TranslateService, public router: Router) {
+
     const jwtToken = localStorage.getItem('access_token');
         if (jwtToken) {
-            console.log('Token: ', jwtToken);
-            const decoded = jwt_decode(jwtToken);
-            this.itUser = decoded.username;
-            console.log('username : ', this.itUser);
-            this.Username = this.itUser;
+            console.log('Nouveau token: ', jwtToken);
+            console.log('username : ', localStorage.getItem('username'));
+
+            const token = localStorage.getItem('access_token');
+            const expirationTime = jwt_decode(token)['exp'];
+            const current_time2: any  = Date.now() / 1000;
+            const current_time: any =  Math.round(current_time2);
+            this.currentDate = moment(new Date());
+
+              if (current_time > expirationTime) {
+                  this.auth.logout();
+                }
         }
   }
   logout() {
     this.auth.logout();
+    localStorage.removeItem('access_token');
     this.router.navigate(['login']);
   }
   ngOnInit() {
@@ -143,6 +152,3 @@ itUser: any;
 
       }
   }
-
-
-
