@@ -1,3 +1,4 @@
+import { JumboUserComponent } from './all-users/jumbo-user/jumbo-user.component';
 import { UpdateUserComponent } from './all-users/update-user/update-user.component';
 import { DeleteUserComponent } from './all-users/delete-user/delete-user.component';
 import { GetUserComponent } from './all-users/get-user/get-user.component';
@@ -15,15 +16,16 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddUserComponent } from './all-users/add-user/add-user.component';
+import { PageHeaderModule } from '../../shared';
 
 @NgModule({
     imports: [CommonModule, UsersRoutingModule, DataTablesModule,
         FormsModule,
-        NgbModule, HttpClientModule],
+        NgbModule, HttpClientModule, PageHeaderModule],
     declarations: [UsersComponent, AddressBookComponent,
         AdminManagerComponent, AllUsersComponent,
         UsersActivateComponent, AddUserComponent,
         GetUserComponent, DeleteUserComponent,
-        UpdateUserComponent]
+        UpdateUserComponent, JumboUserComponent]
 })
 export class UsersModule {}
