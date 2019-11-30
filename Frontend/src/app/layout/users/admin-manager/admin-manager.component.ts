@@ -1,7 +1,9 @@
 import { AdminManagerService } from './admin-manager.service';
-import { Component, OnDestroy, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Component, OnDestroy, OnInit, AfterViewInit, ViewChild, Input } from '@angular/core';
+import { Subject, Observable } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
+import { User } from '../users-export';
+import { routerTransition } from '../../../router.animations';
 
 export interface Error {
     objStringError: string;
@@ -13,7 +15,8 @@ export interface Error {
 @Component({
     // selector: 'app-admin-manager',
     templateUrl: './admin-manager.component.html',
-    styleUrls: ['./admin-manager.scss']
+    styleUrls: ['./admin-manager.scss'],
+    animations: [routerTransition()]
 })
 export class AdminManagerComponent implements OnDestroy,  OnInit, AfterViewInit {
 
@@ -23,7 +26,9 @@ export class AdminManagerComponent implements OnDestroy,  OnInit, AfterViewInit 
     public Errormessage: string;
     public ErrorStatus: string;
     public error: Error;
+    user$: Observable<User[]>;
 
+    @Input('master') masterName: string;
     alerts: Array<any> = [];
 
     constructor(private adminmanagerservice: AdminManagerService) {
@@ -45,7 +50,7 @@ export class AdminManagerComponent implements OnDestroy,  OnInit, AfterViewInit 
 
 
     getAdmins() {
-      this.dtOptions = { pagingType: 'full_numbers', pageLength: 10
+      this.dtOptions = { pagingType: 'full_numbers', pageLength: 100, order:[]
     };
 
       this.adminmanagerservice.getAdmins().subscribe(
@@ -67,7 +72,8 @@ export class AdminManagerComponent implements OnDestroy,  OnInit, AfterViewInit 
 
     ngOnInit() {
         this.getAdmins();
-        //  console.log(typeof this.getAdmins());
+        this.user$ = this.adminmanagerservice.getUsers();
+        console.log(this.user$);
       }
 
     ngOnDestroy(): void {

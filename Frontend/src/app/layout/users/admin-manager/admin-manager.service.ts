@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Admin } from '../users-export';
+import { Admin, User } from '../users-export';
 
 
 @Injectable({
@@ -14,4 +14,8 @@ export class AdminManagerService {
     getAdmins() {
       return this.http.get<Admin[]>('/api/admins');
     }
+    getUsers() {
+        return this.http.get<User[]>('/api/users');
+    }
+
   }
