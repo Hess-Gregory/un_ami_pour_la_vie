@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { routerTransition } from 'src/app/router.animations';
-
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { routerTransition } from './../../router.animations';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -9,9 +9,12 @@ import { routerTransition } from 'src/app/router.animations';
 })
 export class HomepageComponent implements OnInit {
 
-  constructor() { }
+    constructor(private router: Router) { }
 
-  ngOnInit() {
+
+    ngOnInit() {
+
+    }
+
+
   }
-
-}

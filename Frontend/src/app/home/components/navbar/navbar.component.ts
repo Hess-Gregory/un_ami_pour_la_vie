@@ -45,31 +45,67 @@ currentDate: any;
         $(window).scroll(function() {
           const scroll = $(window).scrollTop();
             if (scroll > 0) {
-                $('.navbar').removeClass('navbar-novisible 200');
-                $('.navbar').addClass('navbar-novisible 0');
-                $('.navbar-brand').removeClass('brand-visible 200');
-                $('.navbar-brand').addClass('brand-novisible 0');
-                $('.nav-link').removeClass('nav-link-visible 200');
-                $('.nav-link').addClass('nav-link-novisible 0');
+                $('.navbar').removeClass('navbar-novisible');
+                $('.navbar').addClass('navbar-novisible');
+                $('.navbar-brand').removeClass('brand-visible');
+                $('.navbar-brand').addClass('brand-novisible');
+                $('.navbar-brand').removeClass('200');
+                $('.navbar-brand').addClass('0');
+                $('.navbar-brand-2').removeClass('200');
+                $('.navbar-brand-2').addClass('0');
+                $('.navbar-brand-2').removeClass('add_logo');
+                $('.navbar-brand-2').addClass('remove_logo');
+                $('.nav-link').removeClass('nav-link-visible');
+                $('.nav-link').addClass('nav-link-novisible');
             }
             if (scroll > 200) {
-                $('.navbar-brand').removeClass('brand-visible 0');
-                $('.navbar-brand').addClass('brand-novisible 200');
-                $('.navbar').removeClass('navbar-novisible 0');
-                $('.navbar').addClass('navbar-visible 200');
-                $('.nav-link').addClass('nav-link-novisible 200');
+                $('.navbar-brand').removeClass('brand-visible');
+                $('.navbar-brand').addClass('brand-novisible');
+                $('.navbar-brand').removeClass('0');
+                $('.navbar-brand').removeClass('450');
+                $('.navbar-brand').addClass('200');
+                $('.navbar-brand-2').removeClass('0');
+                $('.navbar-brand-2').removeClass('450');
+                $('.navbar-brand-2').addClass('200');
+                $('.navbar-brand-2').removeClass('add_logo');
+                $('.navbar-brand-2').addClass('remove_logo');
+                $('.navbar').removeClass('navbar-novisible');
+                $('.navbar').addClass('navbar-visible');
+                $('.nav-link').addClass('nav-link-novisible');
             }
             if (scroll > 450) {
-                $('.navbar-brand').removeClass('brand-novisible 200');
-                $('.navbar-brand').addClass('brand-visible 450');
+                $('.navbar-brand').removeClass('brand-novisible');
+                $('.navbar-brand').addClass('brand-visible');
+                $('.navbar-brand').removeClass('200');
+                $('.navbar-brand').removeClass('600');
+                $('.navbar-brand').addClass('450');
+                $('.navbar-brand-2').removeClass('200');
+                $('.navbar-brand-2').removeClass('600');
+                $('.navbar-brand-2').addClass('450');
+                $('.navbar-brand-2').removeClass('add_logo');
+                $('.navbar-brand-2').addClass('remove_logo');
             }
             if (scroll > 600) {
-                $('.nav-link').removeClass('nav-link-novisible 0');
-                $('.nav-link').addClass('nav-link-visible 600');
+                $('.nav-link').removeClass('nav-link-novisible');
+                $('.nav-link').addClass('nav-link-visible');
+                $('.navbar-brand').removeClass('450');
+                $('.navbar-brand').removeClass('850');
+                $('.navbar-brand').addClass('600');
+                $('.navbar-brand-2').removeClass('450');
+                $('.navbar-brand-2').removeClass('850');
+                $('.navbar-brand-2').addClass('600');
+                $('.navbar-brand-2').removeClass('add_logo');
+                $('.navbar-brand-2').addClass('remove_logo');
             }
             if (scroll > 850) {
                 $('.navbar-brand').removeClass('brand-visible');
                 $('.navbar-brand').addClass('brand-novisible');
+                $('.navbar-brand').removeClass('600');
+                $('.navbar-brand').addClass('850');
+                $('.navbar-brand-2').removeClass('600');
+                $('.navbar-brand-2').addClass('850');
+                $('.navbar-brand-2').removeClass('remove_logo');
+                $('.navbar-brand-2').addClass('add_logo');
             }
         });
       });

@@ -4,6 +4,8 @@ import { AppComponent} from './../app.component';
 import { Globals } from '../globals';
 import * as jwt_decode from 'jwt-decode';
 import * as $ from 'jquery';
+import { Router } from '@angular/router';
+import { HomepageComponent } from './homepage/homepage.component';
 
 @Component({
   selector: 'app-home',
@@ -12,9 +14,12 @@ import * as $ from 'jquery';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  @Input() count: Boolean ;
+  constructor(public globals: Globals, private router: Router) {
 
 
-  constructor(public globals: Globals ) {}
+    console.log(this.count);
+  }
 
   ngOnInit() {
 

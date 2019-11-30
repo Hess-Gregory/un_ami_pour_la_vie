@@ -1,4 +1,4 @@
-import { HeaderHomepageComponent } from './homepage/header/header.component';
+
 import { TimerComponent } from './components/timer/timer.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -9,6 +9,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { HeaderHomepageComponent } from './components/header/header.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -16,6 +17,6 @@ import { HomepageComponent } from './homepage/homepage.component';
     NgbDropdownModule,
     TranslateModule
   ],
-  declarations: [HomeComponent, NavbarComponent, HomepageComponent, FooterComponent, HeaderHomepageComponent, TimerComponent ]
+  declarations: [HomeComponent, NavbarComponent, HeaderHomepageComponent, FooterComponent,  TimerComponent ]
 })
 export class HomeModule { }

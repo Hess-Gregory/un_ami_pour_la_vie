@@ -4,15 +4,15 @@ import { NgModule } from '@angular/core';
 
 
 const routes: Routes = [
-  {
-    path: '',
-    component: HomeComponent,
-    children: [
+    {
+        path: '',
+        component: HomeComponent,
+        children: [
 
-        { path: '', redirectTo: 'home', pathMatch: 'prefix' },
-        { path: 'homepage', loadChildren: () => import('./homepage/homepage.module').then(m => m.HomepageModule) },
-    ]
-}
+            { path: '', redirectTo: 'homepage', pathMatch: 'prefix' },
+            { path: 'homepage', loadChildren: () => import('./homepage/homepage.module').then(m => m.HomepageModule) }
+        ]
+    }
 ];
 
 @NgModule({
