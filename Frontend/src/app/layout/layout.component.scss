@@ -44,7 +44,7 @@
     #navBarBottom {
       height: 50px;
       margin: 0;
-      padding: 15px 0;
+      padding: 3px 0;
       background-color: rgb(52, 58, 64);
       color: white;
       width: 100vw;
@@ -63,6 +63,13 @@
         float: right;
         text-align: right;
         padding: 0 6%;
+
+    padding-top: 10px;
       }
+    }
+    .fullhestack-logo{
+        height: 50px;
+
+    padding-bottom: 5px;
     }
   }

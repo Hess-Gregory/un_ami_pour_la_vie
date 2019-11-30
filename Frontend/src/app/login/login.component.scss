@@ -3,10 +3,10 @@
   }
 
   :root {
-    --orangedbl:rgb(255, 159, 67) ;
-    --bluedbl:rgb(10, 189, 227) ; }
+    --orangedbl:rgb(248, 156, 27) ;
+    --bluedbl:rgb(10, 189, 233) ; }
   body{
-  background-image: linear-gradient(rgba(10, 189, 227, 0.90), rgba(255, 159, 67, 0.0));
+  background-image: linear-gradient(rgba(10, 189, 233, 0.90), rgba(248, 156, 27, 0.0));
   position: absolute;
   top: 0;
   left: 0;
@@ -17,11 +17,11 @@
   padding: 3em;
   }
   .bg-orangedbl {
-    background-color: rgb(255, 159, 67) !important;
+    background-color: rgb(248, 156, 27) !important;
   }
   .btn-orangedbl {
     color: #fff;
-    background-color: rgb(255, 159, 67);
+    background-color: rgb(248, 156, 27);
     border-color: rgb(255, 140, 50);
   }
   .msgError{color: red}
@@ -37,14 +37,14 @@
   }
   .btn-orangedbl:hover {
     color: #fff;
-    background-color: rgb(10, 189, 227);
+    background-color: rgb(10, 189, 233);
     border-color: #2653d4;
   }
 
   a.bg-orangedbl:hover, a.bg-orangedbl:focus,
   button.bg-orangedbl:hover,
   button.bg-orangedbl:focus {
-    background-color: rgb(255, 159, 67) !important;
+    background-color: rgb(248, 156, 27) !important;
   }
   .bg-login-logo{
     width: 35vh;
@@ -108,18 +108,18 @@
   a.bg-bluedbl:hover, a.bg-bluedbl:focus,
   button.bg-bluedbl:hover,
   button.bg-bluedbl:focus {
-    background-color: rgb(10, 189, 227) !important;
+    background-color: rgb(10, 189, 233) !important;
   }
   .shadow-lg {
     -webkit-box-shadow: 1px 1px 12px #666 !important;
     box-shadow: 1px 1px 12px #666 !important;
   }
   .border-left-orangedbl {
-    border-left: 0.25rem solid rgb(255, 159, 67) !important;
+    border-left: 0.25rem solid rgb(248, 156, 27) !important;
   }
 
   .border-left-bluedbl {
-    border-left: 0.25rem solid rgb(10, 189, 227) !important;
+    border-left: 0.25rem solid rgb(10, 189, 233) !important;
   }
 
 

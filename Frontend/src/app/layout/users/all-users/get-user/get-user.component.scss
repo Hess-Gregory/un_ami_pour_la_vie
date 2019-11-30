@@ -1,5 +1,7 @@
-.form-control{
-	background-color: transparent !important;
+
+.form-control:disabled{
+	background-color:  rgba(10, 189, 233, 0.6);
+            color:#fff;
 	border: 1px solid #ced4da;
 }
 .mb-3b {
@@ -14,4 +16,78 @@
     border: 1px solid #ced4da;
     border-radius: .25rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+
+
+.row {
+  [class="navbar navbar-default"] {
+    border-color: transparent;
+  }
+}
+
+#sae-navbar {
+  [class="nav navbar-nav"] {
+    .navbar-text {
+      margin-right: 0;
+      margin-left: 0;
+    }
+    .navbar-fa {
+      margin: 10px 0;
+    }
+  }
+  [class="navbar-form navbar-left"] {
+    .button-group {
+      margin-right: 5px;
+      margin-left: 5px;
+    }
+  }
+}
+
+
+.clickable {
+  cursor: pointer;
+}
+.small.alert {
+  padding: 4px;
+}
+.modal {
+  margin-top: 200px;
+}
+.modal-body {
+  textarea {
+    width: 100%;
+  }
+}
+.fa-info-circle {
+  color: royalblue;
+}
+.fa.invalid {
+  color: #a94442;
+}
+
+.userActionButton {
+  display: inline-block;
+  border-radius: 15px;
+  padding: 6px 18px;
+  margin: 0 2px;
+  span { color: white }
+}
+.fa-info-circle{color:#4169e1}
+.fa.invalid{color:#a94442}
+.userActionButton{display:inline-block;border-radius:15px;padding:6px 18px;margin:0 2px}
+.userActionButton span{color:#fff}
+.userActionButton .blueButton{background-color:#2d6da3;border-color:#2d6da3}
+
+.navbar-control{
+    margin: 0 auto;
+
+    border-radius: 15px;
+    width: 60%;
+}
+.btn:disabled{
+opacity: 0.2;
+}
+.navbar-fa{
+margin-right: 10px;
 }
