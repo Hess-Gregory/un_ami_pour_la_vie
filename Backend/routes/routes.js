@@ -3,9 +3,13 @@ const expressJWT = require('express-jwt');
 const config = require('../config/index');
 const userRoutes = require('../routes/user.routes');
 const adminRoutes = require('../routes/admin.routes');
+const membersRoutes = require('../routes/members.routes');
 const authRoutes = require('../routes/auth.routes');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../swagger/swagger');
+const validate = require('express-validation');
+const userController = require('../controller/user.controller');
+const paramValidation = require('../routes/user.routes');
 
 
 // Tous les itinéraires sont définis ici.
@@ -14,6 +18,8 @@ const router = express.Router();
 router.get('/api-docs',swaggerUi.serve,swaggerUi.setup(swaggerDocument));
 router.use('/api-paths',swaggerUi.serve,swaggerUi.setup(swaggerDocument));
 router.use('/auth', authRoutes);
+
+
 //valider toutes les API avec le token jwt. (a commenter en cas de probléme de token)
 router.use(expressJWT({secret:config.jwtSecret}));
 
@@ -34,13 +40,18 @@ router.use(expressJWT({secret:config.jwtSecret}));
 
                 };
                 if (res.locals.session.role >= 2){
-                          
+                    router.route('/users/profile').get(userController.getProfile);
+                    router.use('/users/status', membersRoutes);     
                 };
                 if (res.locals.session.role >= 3){
                                        
                 };
                 if (res.locals.session.role >= 4){
-                router.use('/users', userRoutes);
+                    router.use('/users', userRoutes);
+                    // router.route('/users/:id')
+                    //     .get(validate(paramValidation.getUser),userController.getById)
+                    //     .put(validate(userRoutes.paramValidation.updateUser), userController.update)
+                    //     .delete(validate(userRoutes.paramValidation.getUser), userController.deleteUser);
 
                 };
                 if (res.locals.session.role >= 5){
@@ -50,10 +61,8 @@ router.use(expressJWT({secret:config.jwtSecret}));
                 if (res.locals.session.role >= 6){
 
                 };                                        
-         
         }               
         next();  
-
      }   
 });
 // Charger des itinéraires utilisateur

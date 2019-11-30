@@ -9,6 +9,7 @@ const APIError = require('../helper/APIError');
 const _ = require('lodash');
 
 module.exports = {
+    
     getByEmail(email) { 
         return user.findOne({
             where: {

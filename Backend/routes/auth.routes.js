@@ -2,6 +2,7 @@ const express = require('express');
 const validate = require('express-validation');
 const Joi = require('joi');
 const authController = require('../controller/auth.controller');
+const userController = require('../controller/user.controller');
 
 
 const router = express.Router();
@@ -24,6 +25,9 @@ const paramValidation = {
                 }  
             }
         }
+    router.route('/newpass')
+    // GET /api/users/:userId. all the users.    
+    .get(validate(userController.generatePassword));   
 // POST /api/auth/register S'inscrire dans le système.
 router.route('/register')
     .post(validate(paramValidation.registerUser), authController.register);
@@ -32,5 +36,6 @@ router.route('/register')
 router.route('/login')
     .post(validate(paramValidation.login), authController.login);
 
+    
 
 module.exports = router;

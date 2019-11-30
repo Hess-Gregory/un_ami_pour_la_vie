@@ -1,7 +1,7 @@
 const express = require('express');
 const validate = require('express-validation');
-const Joi = require('joi');
 const userController = require('../controller/user.controller');
+const Joi = require('joi');
 
 const router = express.Router();
 
@@ -65,5 +65,6 @@ router.route('/:id')
     .get(validate(paramValidation.getUser),userController.getById)
     .put(validate(paramValidation.updateUser), userController.update)
     .delete(validate(paramValidation.getUser), userController.deleteUser);
+ 
 
 module.exports = router;
