@@ -9,6 +9,8 @@ import * as jwt_decode from 'jwt-decode';
 export class LayoutComponent implements OnInit {
     Username: string;
     collapedSideBar: boolean;
+    dateNow = new Date();
+    YearNow = this.dateNow.getFullYear();
 
     constructor() {
         const jwtToken = localStorage.getItem('access_token');
