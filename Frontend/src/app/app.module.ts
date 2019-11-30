@@ -1,6 +1,6 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LanguageTranslationModule } from './shared/modules/language-translation/language-translation.module';
@@ -17,9 +17,7 @@ import { DataTablesModule } from 'angular-datatables';
 import { MatButtonModule, MatCheckboxModule, MatSelectModule,  MatDatepickerModule,
     MatNativeDateModule, MatInputModule } from '@angular/material';
     import localeFr from '@angular/common/locales/fr';
-    import localeFrExtra from '@angular/common/locales/extra/fr';
-
-    registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
+    registerLocaleData(localeFr, 'fr');
 
 export function tokenGetter() { return localStorage.getItem('access_token'); }
 
@@ -51,7 +49,7 @@ export function tokenGetter() { return localStorage.getItem('access_token'); }
           })
     ],
     declarations: [AppComponent],
-    providers: [ AuthService, AuthGuard, Globals],
+    providers: [ AuthService, AuthGuard, Globals,{ provide: LOCALE_ID, useValue: 'fr-FR' }],
     bootstrap: [AppComponent],
     schemas: [ NO_ERRORS_SCHEMA ]
 })

@@ -1,0 +1,11 @@
+<div class="jumbotron">
+            <h2 class="text-center">{{ModuleName}}</h2>
+        <div class="row">
+            <div class="col-12 text-center button-centre inline-flex">
+                <button type="button" class="btn btn-lg btn-primary btn-lg " role="button" [routerLink]="['/admin/users/all-users']" [routerLinkActive]="['router-link-active']">Gestions des utilisateurs</button>
+                <button type="button" class="btn btn-lg btn-primary btn-lg " role="button" [routerLink]="['/admin/users/users-activate']" [routerLinkActive]="['router-link-active']">Activation des comptes</button>
+                <button type="button" class="btn btn-lg btn-primary btn-lg " role="button" [routerLink]="['/admin/users/admin-manager']" [routerLinkActive]="['router-link-active']">Gestion des administrateurs</button>
+                <button type="button" class="btn btn-lg btn-primary btn-lg " role="button" [routerLink]="['/admin/users/address-book']" [routerLinkActive]="['router-link-active']">Carnet d'adresse</button>
+            </div>
+        </div>
+    </div>
