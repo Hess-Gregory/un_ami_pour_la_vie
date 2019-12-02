@@ -1,12 +1,13 @@
-import { NgForm } from '@angular/forms';
-import { GetUserService } from './get-user.service';
-import { routerTransition } from '../../../../router.animations';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { User } from '../../users-export';
-import {of} from 'rxjs';
 import { Component, OnDestroy, OnInit, ViewChild, ElementRef } from '@angular/core';
-import {  Subject } from 'rxjs';
+import { FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
+import {UsernameValidator, PasswordValidator, ParentErrorStateMatcher} from './../../../../shared/validators';
+import { routerTransition } from '../../../../router.animations';
+import { User } from './../../../../shared/exports';
+import { GetUserService } from './get-user.service';
+import {Observable, of, Subject} from 'rxjs';
+import { first } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 declare let $: any;
 
 export interface Error {
@@ -25,17 +26,8 @@ export interface Error {
   animations: [routerTransition()]
 })
 export class GetUserComponent  implements  OnDestroy,  OnInit {
-    [x: string]: any;
 
-  constructor(private userservice: GetUserService, private router: Router) {
-    this.getUsers();
-    this.getStatus();
-    this.alerts.push( {
-        id: 3,
-        type: 'danger',
-        message: 'this.Errormessage',
-        });
-  }
+    [x: string]: any;
     adressbook = false;
     locked = true;
     create = false;
@@ -45,22 +37,26 @@ export class GetUserComponent  implements  OnDestroy,  OnInit {
     public Errormessage: string;
     public ErrorStatus: string;
     public error: Error;
-    users: Array<any> = [];
-    status: Array<any> = [];
-    dtTrigger: Subject<any> = new Subject();
     alerts: Array<any> = [];
+    users: any = [];
+    status: any = [];
+    dtTrigger: Subject<any> = new Subject();
     fileData: File = null;
     previewUrl: any = null;
     fileUploadProgress: string = null;
     uploadedFilePath: string = null;
 
+  constructor(private userservice: GetUserService, private router: Router) {
+    this.getUsers();
+    this.getStatus();
+    this.alerts.push( {
+        id: 3,
+        type: 'danger',
+        message: 'this.Errormessage',
+        });
+    }
 
-
-  ngOnInit() {
-
-
-  }
-
+ngOnInit() {}
 
   onUnlock() {
     this.locked = false;
@@ -73,13 +69,11 @@ export class GetUserComponent  implements  OnDestroy,  OnInit {
   }
   onCreate() {
     this.create = true;
-
   }
   onCancel() {
     this.locked = true;
     this.create = false;
     this.previewUrl = false;
-
   }
 
   onDelete() {
@@ -90,7 +84,6 @@ export class GetUserComponent  implements  OnDestroy,  OnInit {
   onClose() {
     this.locked = true;
     this.previewUrl = false;
-
     this.router.navigate(['admin/users/all-users']);
   }
 
@@ -119,25 +112,24 @@ export class GetUserComponent  implements  OnDestroy,  OnInit {
     }
 
     getBook() {
-        console.log('getbook', this.adressbook);
         return this.adressbook;
-        }
-  getStatus() {
-    this.userservice.getStatus().subscribe(
-      response => {
-          this.status = response;
+    }
+    getStatus() {
+        this.userservice.getStatus().subscribe(
+        response => {
+            this.status = response;
 
-          this.dtTrigger.next();
-          },
-      error => {
-          this.objStringError = JSON.stringify(error);
-          this.objError = JSON.parse(this.objStringError);
-          this.ErrorStatus = this.objError.status;
-          this.ErrorstatusText = this.objError.statusText;
-          this.Errormessage = this.objError.message;
-          }
-    );
-  }
+            this.dtTrigger.next();
+            },
+        error => {
+            this.objStringError = JSON.stringify(error);
+            this.objError = JSON.parse(this.objStringError);
+            this.ErrorStatus = this.objError.status;
+            this.ErrorstatusText = this.objError.statusText;
+            this.Errormessage = this.objError.message;
+            }
+        );
+    }
 
   fileProgress(fileInput: any) {
     this.fileData = <File>fileInput.target.files[0];

@@ -1,263 +1,532 @@
 <app-jumbo-user></app-jumbo-user>
-<div [@routerTransition]>
+    <div [@routerTransition]>
         <div *ngIf="ErrorStatus"  class="card-body">
-                <p *ngFor="let alert of alerts">
-                    <ngb-alert [type]="alert.type" (close)="closeAlert(alert)">Erreur {{ErrorStatus}} : {{ErrorstatusText}}</ngb-alert>
-                </p>
+            <p *ngFor="let alert of alerts">
+                <ngb-alert [type]="alert.type" (close)="closeAlert(alert)">Erreur {{ErrorStatus}} : {{ErrorstatusText}}</ngb-alert>
+            </p>
         </div>
-            <div class="container-fluid"  >
-                <div class='text-center'>
-                    <h2 *ngIf="!create" >Fiche de l'utilisateur (ID : {{users.id}}):
-                        <br> {{users.username}}
-                    </h2>
-                    <h2 *ngIf="create" >Créer un nouveau contact ou membre:
-                        <br> {{newusers.username}}
-                    </h2>
+        <div class="container-fluid">
+            <div class='text-center'>
+                <h2 *ngIf="!create" >
+                    Fiche de l'utilisateur (ID : {{users.id}}):<br>
+                    {{users.username}}
+                </h2>
+                <h2 *ngIf="create" >
+                    Créer un nouveau contact ou membre<br>
+                </h2>
                 <div class="image-preview mb-3 picture-user gradient-box">
-                    <img *ngIf="!create && users.pachMedia && !previewUrl" class="picture d-block mx-auto mb-4"
-                    src="{{users.pachMedia}}" alt="">
-                    <img *ngIf="(create || !users.pachMedia) && !previewUrl" class="picture d-block mx-auto mb-4"
-                    src="./../../../../../assets/images/user-male-circle.png" alt="">
+                    <img *ngIf="!create && users.pachMedia && !previewUrl" class="picture d-block mx-auto mb-4" src="{{users.pachMedia}}" alt="">
+                    <img *ngIf="(create || !users.pachMedia) && !previewUrl" class="picture d-block mx-auto mb-4" src="./../../../../../assets/images/user-male-circle.png" alt="">
                     <img *ngIf="previewUrl" [src]="previewUrl" class="picture" />
                 </div>
-
                 <div class="form-group" *ngIf="!locked">
-                        <input  matInput  type="file" name="image" (change)="fileProgress($event)" />
-                    </div>
-                <div *ngIf="fileUploadProgress">
-                        Progression chargement: {{ fileUploadProgress }}
-                    </div>
-                    <div class="mb-3" *ngIf="uploadedFilePath">
-                        {{uploadedFilePath}}
-                    </div>
-                        <div class="form-group" *ngIf="!locked">
-                            <button class="btn btn-primary"  (click)="onSubmit()">Valider la nouvelle photo</button>
-                        </div>
-
-                    <p class='lead'>
-                        Inscrit depuis {{ users.created_date| date:'EEEE, d MMMM y à h:mm' }}
-                    </p>
-                    <br>
-        <div class="navbar-control text-dark bg-white">
-            <p class="navbar-text navbar-fa" >
-                <span class="clickable" *ngIf="locked" (click)="onUnlock()">
-                    <i class="fa fa-lock fa-2x"></i>
-                </span>
-                <span *ngIf="!locked">
-                    <i class="fa fa-unlock-alt fa-2x"></i>
-                </span>
-            </p>
-            <span class="button-group">
-                <span >
-                    <button type="button" class="btn btn-success userActionButton blueButton"
-                    [disabled]="locked || create" (click)="onCreate()">Créer un nouveau</button>
-                    <button type="button" class="btn btn-info userActionButton blueButton"
-                    [disabled]="locked" (click)="onSave()">Sauvegarder</button>
-                    <button type="button" class="btn btn-secondary userActionButton"
-                    [disabled]="locked" (click)="onCancel()">Annuler</button>
-                    <button type="button" class="btn btn-warning userActionButton"
-                    [disabled]="locked || create" (click)="onFrozen()">Geler le compte</button>
-                    <button type="button" class="btn btn-danger userActionButton"
-                    [disabled]="locked || create" (click)="onDelete()">Supprimer l'utilisateur</button>
-                    <button type="button" class="btn btn-secondary userActionButton"
-                    [disabled]="!locked"  (click)="onClose()">Quitter</button>
-                </span>
-            </span>
-        </div>
-
+                    <input  type="file" name="image" (change)="fileProgress($event)" />
                 </div>
-                <div class='row user'>
-                    <div class='col-md-12'>
-                        <hr class='mb-4'>
-                        <h4 class='mb-3'>Login et Rôle</h4>
-                        <hr class='mb-4'>
-                        <div class='row'>
-                            <div class='mb-3 mb-3a col-md-12'>
-                                    <label for='login'>Login</label>
-                                <div class='input-group'>
-                                    <div class='input-group-prepend'>
-                                        <span class='input-group-text'>@</span>
-                                    </div>
-                                    <input mdInput   class='form-control' type='text' [(ngModel)]="users.username"   [disabled]="locked" required>
+                <div *ngIf="fileUploadProgress">
+                    Progression chargement: {{ fileUploadProgress }}
+                </div>
+                <div class="mb-3" *ngIf="uploadedFilePath">
+                    {{uploadedFilePath}}
+                </div>
+                <div class="form-group" *ngIf="!locked">
+                        <button class="btn btn-primary"  (click)="onSubmit()">Valider la nouvelle photo</button>
+                    </div>
+
+                    <p  *ngIf="!create" class='lead'>
+                    Inscrit depuis {{ users.created_date| date:'EEEE, d MMMM y à h:mm' }}
+                    </p><br>
+                <div class="navbar-control text-dark bg-white">
+                    <p class="navbar-text navbar-fa" >
+                        <span class="clickable" *ngIf="locked" (click)="onUnlock()">
+                            <i class="fa fa-lock fa-2x"></i>
+                        </span>
+                        <span *ngIf="!locked">
+                            <i class="fa fa-unlock-alt fa-2x"></i>
+                        </span>
+                    </p>
+                    <span class="button-group">
+                        <span>
+                            <button  type="button" class="btn btn-info userActionButton blueButton"
+                            [disabled]="locked || create" (click)="onCreate()">Créer un nouveau</button>
+                            <button type="button" class="btn btn-success userActionButton blueButton"
+                            [disabled]="locked" (click)="onSave()">Sauvegarder</button>
+                            <button type="button" class="btn btn-secondary userActionButton"
+                            [disabled]="locked" (click)="onCancel()">Annuler</button>
+                            <button  type="button" class="btn btn-warning userActionButton"
+                            [disabled]="locked || create" (click)="onFrozen()">Geler le compte</button>
+                            <button  type="button" class="btn btn-danger userActionButton"
+                            [disabled]="locked || create" (click)="onDelete()">Supprimer l'utilisateur</button>
+                            <button type="button" class="btn btn-secondary userActionButton"
+                              (click)="onClose()">Quitter</button>
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class='row user'>
+                <div *ngIf="!create" class='col-md-12'>
+                    <hr class='mb-4'>
+                    <h4 class='mb-3'>
+                        Login et Rôle
+                    </h4>
+                    <hr class='mb-4'>
+                    <div class='row'>
+                        <div class='mb-3 mb-3a col-md-12'>
+                            <label for='login'>Login</label>
+                            <div class='input-group'>
+                                <div class='input-group-prepend'>
+                                    <span class='input-group-text'>@</span>
                                 </div>
+                                <input class='form-control' type='text' [(ngModel)]="users.username"   [disabled]="locked" required>
                             </div>
-                            <div class='mb-3 mb-3a col-md-12'>
-                                <label for='email'>Email </label>
-                                <input  matInput  type='email' class='form-control' value='{{users.email}}'  [disabled]="locked" required>
-                            </div>
-                            <div class='row row100 col-md-12 pr-0'>
-                                <div class='col-md-8 mb-3a mb-3'>
-                                    <label  for='ROLE_idROLE'>Rôle</label>
-                                    <input  matInput  *ngIf="locked"  type='text' value='{{status.roleName}}' class='form-control' name='ROLE_idROLE' [disabled]="locked">
+                        </div>
+                        <div class='mb-3 mb-3a col-md-12'>
+                            <label for='email'>Email </label>
+                            <input  type='email' class='form-control' value='{{users.email}}'  [disabled]="locked" required>
+                        </div>
+                        <div class='row row100 col-md-12 pr-0'>
+                            <div class='col-md-8 mb-3a mb-3'>
+                                <label  for='ROLE_idROLE'>Rôle</label>
+                                <input  matInput  *ngIf="locked"  type='text' value='{{status.roleName}}' class='form-control' name='ROLE_idROLE' [disabled]="locked">
                                     <select *ngIf="!locked" class="custom-select d-block w-100"  name="ROLE_idROLE" required>
                                         <option value="<?= $isActive ?>">{{status.roleName}}</option>
                                     </select>
-                                </div>
-                                <div class='col-md-4 mb-3a mb-3 pr-0'>
-                                    <label for='isActive'>Status du compte</label>
-                                    <input  matInput  *ngIf="locked"  name='isActive' class='form-control' value='{{status.status}}'  [disabled]="locked" required>
+                            </div>
+                            <div class='col-md-4 mb-3a mb-3 pr-0'>
+                                <label for='isActive'>Status du compte</label>
+                                <input  matInput  *ngIf="locked"  name='isActive' class='form-control' value='{{status.status}}'  [disabled]="locked" required>
                                     <select *ngIf="!locked"  name="isActive" class="custom-select d-block w-100">
-                                            <option value="<?= $isActive ?>">{{status.status}}</option>
-                                            <option value="0">Gelé</option>
-                                            <option value="1">Activé</option>
-                                        </select>
-                                </div>
+                                        <option value="<?= $isActive ?>">{{status.status}}</option>
+                                        <option value="0">Gelé</option>
+                                        <option value="1">Activé</option>
+                                    </select>
                             </div>
                         </div>
-                            <hr class='mb-4'>
-                            <h4 class='mb-3'>Informations générales</h4>
-                                <div class="custom-control custom-switch"  >
-                                        <input type="checkbox"[(ngModel)]="adressbook" data-toggle="toggle" class="custom-control-input" id="customSwitches"  [disabled]="locked">
-                                    <label class="custom-control-label" for="customSwitches">Ajouter au carnet d'adresse</label>
-                                </div>
-
-                                <hr class='mb-4'>
-                        <div class='row'>
-                            <div class='row row100 col-md-12 pr-0'>
-                                <div class='col-md-6 mb-3'>
-                                    <label  for='FirstName'>Prénom : </label>
-                                    <input  matInput  type='text' name='FirstName' class='form-control'  value='{{users.firstName}}' [disabled]="locked" required>
-                                </div>
-                                <div class='col-md-6 mb-3 pr-0'>
-                                    <label  for='lastName'>Nom</label>
-                                    <input  matInput  type='text' name='lastName' class='form-control' value='{{users.lastName}}' [disabled]="locked" required>
-                                </div>
+                    </div>
+                    <hr class='mb-4'>
+                    <h4 class='mb-3'>
+                        Informations générales
+                    </h4>
+                    <div class="custom-control custom-switch" >
+                        <input type="checkbox"[(ngModel)]="adressbook" data-toggle="toggle" class="custom-control-input" id="customSwitches"  [disabled]="locked">
+                        <label class="custom-control-label" for="customSwitches">Ajouter au carnet d'adresse</label>
+                    </div>
+                    <hr class='mb-4'>
+                    <div class='row'>
+                        <div class='row row100 col-md-12 pr-0'>
+                            <div class='col-md-6 mb-3'>
+                                <label  for='FirstName'>Prénom : </label>
+                                <input  matInput  type='text' name='FirstName' class='form-control'  value='{{users.firstName}}' [disabled]="locked" required>
                             </div>
-                            <div class='row row100  col-md-12 pr-0'>
-                                <div class='col-md-4 mb-3'>
-                                    <label  for='birthday'>Date de naissance</label>
-                                    <input  matInput  class='form-control' value="{{users.birthday| date:'d MMMM y'}}" type='$birthdaytype' name='birthday' [disabled]="locked">
-                                </div>
-                                <div class='col-md-8 mb-3 pr-0'>
-                                    <label for='sexGenre'>Sexe</label>
-                                    <input  matInput  type='text' value='{{users.sexGenre}}' name='sexGenre' class='form-control' [disabled]="locked">
-                                </div>
+                            <div class='col-md-6 mb-3 pr-0'>
+                                <label  for='lastName'>Nom</label>
+                                <input  matInput  type='text' name='lastName' class='form-control' value='{{users.lastName}}' [disabled]="locked" required>
                             </div>
                         </div>
-                        <hr class='mb-4'>
-                        <h4 class='mb-3'>Adresse Privée </h4>
-
-                        <hr class='mb-4'>
-                        <div class='row'>
-                            <div class='row  row100 col-md-12 pr-0'>
-                                <div class='col-md-2 mb-3'>
+                        <div class='row row100  col-md-12 pr-0'>
+                            <div class='col-md-4 mb-3'>
+                                <label  for='birthday'>Date de naissance</label>
+                                <input  matInput  class='form-control' value="{{users.birthday| date:'d MMMM y'}}" type='$birthdaytype' name='birthday' [disabled]="locked">
+                            </div>
+                            <div class='col-md-8 mb-3 pr-0'>
+                                <label for='sexGenre'>Sexe</label>
+                                <input  matInput  type='text' value='{{users.sexGenre}}' name='sexGenre' class='form-control' [disabled]="locked">
+                            </div>
+                        </div>
+                    </div>
+                    <hr class='mb-4'>
+                    <h4 class='mb-3'>
+                        Adresse Privée
+                    </h4>
+                    <hr class='mb-4'>
+                    <div class='row'>
+                        <div class='row  row100 col-md-12 pr-0'>
+                            <div class='col-md-2 mb-3'>
                                 <label for='adPvNum'>Numéro et boite</label>
-                                    <input  matInput  type='text' value='{{users.adPvNum}}' class='form-control'name='adPvNum' [disabled]="locked">
-                                </div>
-                                <div class='col-md-10 mb-3 pr-0'>
-                                    <label for='adPvStreet'>Rue</label>
-                                    <input  matInput  type='text' value='{{users.adPvStreet}}' class='form-control'name='adPvStreet'  [disabled]="locked">
-                                </div>
+                                <input  matInput  type='text' value='{{users.adPvNum}}' class='form-control'name='adPvNum' [disabled]="locked">
                             </div>
-
-                            <div class='row row100  col-md-12 pr-0'>
-                                <div class='col-md-5 mb-3'>
-                                    <label  for='adPvCountry'>Choisir un pays</label>
-                                        <input  matInput  type='text' value='{{users.adPvCountry}}' class='form-control' name='adPvCountry' [disabled]="locked">
-                                </div>
-                                <div class='col-md-4 mb-3'>
-                                    <label for='adPvZip'>Code Postal</label>
-                                    <input  matInput    type='text' value='{{users.adPvZip}}' class='form-control' name='adPvZip'  [disabled]="locked">
-                                </div>
-                                <div class='col-md-3 mb-3 pr-0'>
-                                    <label  for='adPvCity'>Ville</label>
-                                    <input  matInput  type='text' value='{{users.adPvCity}}' class='form-control'name='adPvCity'  [disabled]="locked">
-                                </div>
+                            <div class='col-md-10 mb-3 pr-0'>
+                                <label for='adPvStreet'>Rue</label>
+                                <input  matInput  type='text' value='{{users.adPvStreet}}' class='form-control'name='adPvStreet'  [disabled]="locked">
                             </div>
                         </div>
-                        <hr class='mb-4'>
-                        <h4 class='mb-3'>Adresse Professionnelle</h4>
-                        <hr class='mb-4'>
-                        <div class='row'>
-                                <div class='mb-3 mb-3a col-md-12'>
-                                    <label  for='firm'>Société </label>
-                                    <input  matInput  type='text' value='{{users.firm}}' class='form-control'name='firm' [disabled]="locked">
-                                </div>
-
-                                <div class='mb-3 mb-3a col-md-12'>
-                                    <label  for='tva'>Numéro de TVA </label>
-                                    <input  matInput  type='text' value='{{users.tva}}' class='form-control'name='tva' [disabled]="locked">
-                                </div>
-                            <div class='row row100  col-md-12 pr-0'>
-                                <div class='col-md-2 mb-3'>
+                        <div class='row row100  col-md-12 pr-0'>
+                            <div class='col-md-5 mb-3'>
+                                <label  for='adPvCountry'>Choisir un pays</label>
+                                <input  matInput  type='text' value='{{users.adPvCountry}}' class='form-control' name='adPvCountry' [disabled]="locked">
+                            </div>
+                            <div class='col-md-4 mb-3'>
+                                <label for='adPvZip'>Code Postal</label>
+                                <input  matInput    type='text' value='{{users.adPvZip}}' class='form-control' name='adPvZip'  [disabled]="locked">
+                            </div>
+                            <div class='col-md-3 mb-3 pr-0'>
+                                <label  for='adPvCity'>Ville</label>
+                                <input  matInput  type='text' value='{{users.adPvCity}}' class='form-control'name='adPvCity'  [disabled]="locked">
+                            </div>
+                        </div>
+                    </div>
+                    <hr class='mb-4'>
+                    <h4 class='mb-3'>
+                        Adresse Professionnelle
+                    </h4>
+                    <hr class='mb-4'>
+                    <div class='row'>
+                        <div class='mb-3 mb-3a col-md-12'>
+                            <label  for='firm'>Société </label>
+                            <input  matInput  type='text' value='{{users.firm}}' class='form-control'name='firm' [disabled]="locked">
+                        </div>
+                        <div class='mb-3 mb-3a col-md-12'>
+                            <label  for='tva'>Numéro de TVA </label>
+                            <input  matInput  type='text' value='{{users.tva}}' class='form-control'name='tva' [disabled]="locked">
+                        </div>
+                        <div class='row row100  col-md-12 pr-0'>
+                            <div class='col-md-2 mb-3'>
                                 <label for='adProNum'>Numéro et boite</label>
-                                    <input  matInput  type='text' value='{{users.adProNum}}' class='form-control'name='adProNum' [disabled]="locked">
-                                </div>
-                                <div class='col-md-10 mb-3 pr-0'>
-                                    <label for='adProStreet'>Rue</label>
-                                    <input  matInput  type='text' value='{{users.adProStreet}}' class='form-control'name='adProStreet' [disabled]="locked">
-                                </div>
+                                <input  matInput  type='text' value='{{users.adProNum}}' class='form-control'name='adProNum' [disabled]="locked">
                             </div>
-                            <div class='row  row100 col-md-12 pr-0'>
-                                <div class='col-md-5 mb-3'>
-                                    <label  for='adProCountry'>Choisir un pays</label>
-                                        <input  matInput  value='{{users.adProCountry}}' class='form-control'  name='adProCountry' [disabled]="locked">
-
+                            <div class='col-md-10 mb-3 pr-0'>
+                                <label for='adProStreet'>Rue</label>
+                                <input  matInput  type='text' value='{{users.adProStreet}}' class='form-control'name='adProStreet' [disabled]="locked">
+                            </div>
+                        </div>
+                        <div class='row  row100 col-md-12 pr-0'>
+                            <div class='col-md-5 mb-3'>
+                                <label  for='adProCountry'>Choisir un pays</label>
+                                <input  matInput  value='{{users.adProCountry}}' class='form-control'  name='adProCountry' [disabled]="locked">
+                            </div>
+                            <div class='col-md-4 mb-3'>
+                                <label for='adProZip'>Code Postal</label>
+                                <input  matInput  value='{{users.adProZip}}'  type='text' class='form-control' name='adProZip'  [disabled]="locked">
+                            </div>
+                            <div class='col-md-3 mb-3 pr-0'>
+                                <label  for='adProCity'>Ville</label>
+                                <input  matInput  type='text' value='{{users.adProCity}}' class='form-control' name='adProCity'  [disabled]="locked">
+                            </div>
+                        </div>
+                    </div>
+                    <hr class='mb-4'>
+                    <h4 class='mb-3'>
+                        Contacts
+                    </h4>
+                    <hr class='mb-4'>
+                    <div class='row'>
+                        <div class='row row100  col-md-12 pr-0'>
+                            <div class='col-md-4 mb-3'>
+                                <label   for='contPhonePv'>Télèphone privé</label>
+                                <input  matInput    type='tel' value='{{users.contPhonePv}}' name='contPhonePv'class='form-control' [disabled]="locked">
+                            </div>
+                            <div class='col-md-4 mb-3'>
+                                <label   for='contPhoneGsm'>GSM</label>
+                                <input  matInput    type='tel' value='{{users.contPhoneGsm}}' name='contPhoneGsm'class='form-control' [disabled]="locked">
+                            </div>
+                            <div class='col-md-4 mb-3 pr-0'>
+                                <label   for='contPhonePro'>Télèphone (bureau)</label>
+                                <input  matInput    type='tel' value='{{users.contPhonePro}}' name='contPhonePro'class='form-control' [disabled]="locked">
+                            </div>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='row row100  col-md-12 pr-0'>
+                            <div class='col-md-6 mb-3'>
+                                <label   for='contFacebook'>Facebook</label><a href='{{users.contFacebook}}'>
+                                <input  matInput    type='url' value='{{users.contFacebook}}' name='contFacebook'class='form-control' [disabled]="locked"></a>
+                            </div>
+                            <div class='col-md-6 mb-3 pr-0'>
+                                <label   for='contWebsite'>Site Web</label><a href='{{users.contWebsite}}'>
+                                <input  matInput    type='url' value='{{users.contWebsite}}' name='contWebsite'class='form-control' [disabled]="locked"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class='mb-4'>
+                    <h4 class='mb-3'>
+                        Autres informations
+                    </h4>
+                    <hr class='mb-4'>
+                    <div class='row'>
+                        <div class='mb-3 col-md-12'>
+                            <label for='asbl'>En rapport avec l'ASBL </label>
+                            <input  matInput  type='text' value='{{users.asbl}}' class='form-control' name='asbl' [disabled]="locked">
+                        </div>
+                        <div class='mb-3 col-md-12'>
+                            <label for='shortDesc'>Petite description </label>
+                            <textarea  value='{{users.shortDesc}}' class='form-control'name='shortDesc' rows="3" [disabled]="locked"></textarea>
+                        </div>
+                        <div class='mb-3 col-md-12'>
+                            <label for='longDesc'>Autre information</label>
+                            <textarea class="form-control" value='{{users.longDesc}}' name='longDesc' rows="7" [disabled]="locked"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="create" class='col-md-12'>
+                    <hr class='mb-4'>
+                    <h4 class='mb-3'>
+                        Login et Rôle
+                    </h4>
+                    <hr class='mb-4'>
+                    <div class='row'>
+                        <div class='mb-3 mb-3a col-md-12'>
+                            <label for="login">Login <span class=" text-danger">(Obligatoire)</span></label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">@</span>
                                 </div>
-                                <div class='col-md-4 mb-3'>
-                                    <label for='adProZip'>Code Postal</label>
-                                    <input  matInput  value='{{users.adProZip}}'  type='text' class='form-control' name='adProZip'  [disabled]="locked">
-                                </div>
-                                <div class='col-md-3 mb-3 pr-0'>
-                                    <label  for='adProCity'>Ville</label>
-                                    <input  matInput  type='text' value='{{users.adProCity}}' class='form-control' name='adProCity'  [disabled]="locked">
+                                <input class="form-control  <?= $loginred ?>"  type="text" name="login"  placeholder="Username" required>
+                                <div class="invalid-feedback" style="width: 100%;">
+                                Le Login est necessaire.
                                 </div>
                             </div>
                         </div>
-                        <hr class='mb-4'>
-                        <h4 class='mb-3'>Contacts</h4>
-                        <hr class='mb-4'>
-                        <div class='row'>
-                            <div class='row row100  col-md-12 pr-0'>
-                                <div class='col-md-4 mb-3'>
-                                    <label   for='contPhonePv'>Télèphone privé</label>
-                                    <input  matInput    type='tel' value='{{users.contPhonePv}}' name='contPhonePv'class='form-control' [disabled]="locked">
+                        <div class='mb-3 mb-3a col-md-12'>
+                            <label for="email">Email <span class="text-danger">(Obligatoire)</span></label>
+                            <input type="email" class="form-control <?= $mailred ?>" name="email" placeholder="ton-adresse@example.com"required>
+                            <div class="invalid-feedback">
+                                Veuillez entrer une adresse email valide pour que l'utilisateur puisse se connecter.
+                            </div>
+                        </div>
+                        <div class='row row100 col-md-12 pr-0'>
+                            <div class='col-md-8 mb-3a mb-3'>
+                                <label  for="ROLE_idROLE">Role <span class=" text-danger">(Obligatoire)</span></label>
+                                <select class="custom-select d-block w-100  <?= $rolered ?>"  name="ROLE_idROLE" required>
+                                    <option value="">Choix...</option>
+                                        <?= $optionRole ?>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Veuillez choisir un role.
                                 </div>
-                                <div class='col-md-4 mb-3'>
-                                    <label   for='contPhoneGsm'>GSM</label>
-                                    <input  matInput    type='tel' value='{{users.contPhoneGsm}}' name='contPhoneGsm'class='form-control' [disabled]="locked">
-                                </div>
-                                <div class='col-md-4 mb-3 pr-0'>
-                                    <label   for='contPhonePro'>Télèphone (bureau)</label>
-                                    <input  matInput    type='tel' value='{{users.contPhonePro}}' name='contPhonePro'class='form-control' [disabled]="locked">
+                            </div>
+                            <div class='col-md-4 mb-3a mb-3 pr-0'>
+                                <label for='isActive'>Status du compte</label>
+                                <select name="isActive" class="custom-select d-block w-100">
+                                    <option value="0">NON</option>
+                                    <option value="1">OUI</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                Veuillez configurer l'utilisateur.
                                 </div>
                             </div>
                         </div>
-                        <div class='row'>
-                            <div class='row row100  col-md-12 pr-0'>
-                                <div class='col-md-6 mb-3'>
-                                    <label   for='contFacebook'>Facebook</label><a href='{{users.contFacebook}}'>
-                                    <input  matInput    type='url' value='{{users.contFacebook}}' name='contFacebook'class='form-control' [disabled]="locked"></a>
+                    </div>
+                    <hr class='mb-4'>
+                    <h4 class='mb-3'>
+                        Informations générales
+                    </h4>
+                    <div class="custom-control custom-switch"  >
+                        <input type="checkbox" data-toggle="toggle" class="custom-control-input" id="customSwitches"  [disabled]="locked">
+                        <label class="custom-control-label" for="customSwitches">Ajouter au carnet d'adresse</label>
+                    </div>
+                    <hr class='mb-4'>
+                    <div class='row'>
+                        <div class='row row100 col-md-12 pr-0'>
+                            <div class='col-md-6 mb-3'>
+                                <label  for="FirstName">Prénom <span class=" text-danger">(Obligatoire)</span></label>
+                                <input type="text" name="FirstName" class="form-control <?= $prenomred ?>" id="firstName" placeholder="" value=""required>
+                                <div class="invalid-feedback">
+                                    Prénom valide requis.
                                 </div>
-                                <div class='col-md-6 mb-3 pr-0'>
-                                    <label   for='contWebsite'>Site Web</label><a href='{{users.contWebsite}}'>
-                                    <input  matInput    type='url' value='{{users.contWebsite}}' name='contWebsite'class='form-control' [disabled]="locked"></a>
+                                <input  type="text"  formControlName="firstName"  class="form-control form-control-user" placeholder="Prénom" required>
+
+                            </div>
+                            <div class='col-md-6 mb-3 pr-0'>
+                                <label  for="lastName">Nom <span class=" text-danger">(Obligatoire)</span></label>
+                                <input type="text" name="lastName" class="form-control  <?= $nomred ?>" id="lastName" placeholder="" value=""required>
+                                <div class="invalid-feedback">
+                                    Nom valide est requis.
                                 </div>
                             </div>
                         </div>
-                        <hr class='mb-4'>
-                        <h4 class='mb-3'>Autres informations</h4>
-                        <hr class='mb-4'>
-                        <div class='row'>
-
-
-                            <div class='mb-3 col-md-12'>
-                                <label for='asbl'>En rapport avec l'ASBL </label>
-                                <input  matInput  type='text' value='{{users.asbl}}' class='form-control' name='asbl' [disabled]="locked">
+                        <div class='row row100  col-md-12 pr-0'>
+                            <div class='col-md-4 mb-3'>
+                                <label  for="birthday">Date de naissance</label>
+                                <input class="form-control"  value="2050-12-31" type="date" name="birthday">
                             </div>
-
-                            <div class='mb-3 col-md-12'>
-                                <label for='shortDesc'>Petite description </label>
-                                <textarea  value='{{users.shortDesc}}' class='form-control'name='shortDesc' rows="3" [disabled]="locked"></textarea>
+                            <div class='col-md-8 mb-3 pr-0'>
+                                <label for="sexGenre">Sexe</label>
+                                    <select name="sexGenre" id="sexGenre" class="custom-select d-block w-100">
+                                        <option value="">Choix...</option>
+                                        <option value="Homme">Homme</option>
+                                        <option value="Femme">Femme</option>
+                                    </select>
+                                <div class="invalid-feedback">
+                                Choissisez le sexe.
+                                </div>
                             </div>
-
-                            <div class='mb-3 col-md-12'>
-                                <label for='longDesc'>Autre information</label>
-                                <textarea class="form-control" value='{{users.longDesc}}' name='longDesc' rows="7" [disabled]="locked"></textarea>
-
+                        </div>
+                    </div>
+                    <hr class='mb-4'>
+                    <h4 class='mb-3'>
+                        Adresse Privée
+                    </h4>
+                    <hr class='mb-4'>
+                    <div class='row'>
+                        <div class='row  row100 col-md-12 pr-0'>
+                            <div class='col-md-2 mb-3'>
+                                <label for="adPvNum">Numéro et boite</label>
+                                <input type="text" class="form-control" name="adPvNum" placeholder="123">
+                                    <div class="invalid-feedback">
+                                    Indiquer un numéro de rue.
+                                    </div>
                             </div>
+                            <div class='col-md-10 mb-3 pr-0'>
+                                <label for="adPvStreet">Rue</label>
+                                <input type="text" class="form-control" name="adPvStreet" placeholder="Rue Saint-Mont">
+                                <div class="invalid-feedback">
+                                    Indiquer l'adresse.
+                                </div>
+                            </div>
+                        </div>
+                        <div class='row row100  col-md-12 pr-0'>
+                            <div class='col-md-5 mb-3'>
+                                <label  for="adPvCountry">Choisir un pays</label>
+                                <select class="custom-select d-block w-100" search="pays" name="adPvCountry" id="adPvCountry">
+                                    <option value="">Choix...</option>
+                                    <option value="be">Belgique</option>
+                                    <option value="fr">France</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                Veuillez sélectionner un pays valide.
+                                </div>
+                            </div>
+                            <div class='col-md-4 mb-3'>
+                                <label for="adPvZip">Code Postal</label>
+                                <input   type="number"class="form-control" placeholder="Code Postal" name="adPvZip"  id="postal" search="cp" value="0000" onchange="completionVillePv(this.value);" >
+                                <div class="invalid-feedback">
+                                Code postal requis.
+                                </div>
+                            </div>
+                            <div class='col-md-3 mb-3 pr-0'>
+                                <label  for="adPvCity">Ville</label>
+                                <input type="text" class="form-control" name="adPvCity" id="adPvCity" placeholder="Paris">
+                                <div class="invalid-feedback">
+                                S'il vous plaît fournir une ville valide.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class='mb-4'>
+                    <h4 class='mb-3'>
+                        Adresse Professionnelle
+                    </h4>
+                    <hr class='mb-4'>
+                    <div class='row'>
+                        <div class='mb-3 mb-3a col-md-12'>
+                            <label  for="firm">Société </label>
+                            <input type="text" class="form-control" name="firm" >
+                        </div>
+                        <div class='mb-3 mb-3a col-md-12'>
+                            <label  for="tva">Numéro de TVA </label>
+                            <input type="text" class="form-control" name="tva" >
+                        </div>
+                        <div class='row row100  col-md-12 pr-0'>
+                            <div class='col-md-2 mb-3'>
+                                <label for="adProNum">Numéro et boite</label>
+                                    <input type="text" class="form-control" name="adProNum" placeholder="1234">
+                                        <div class="invalid-feedback">
+                                        Indiquer un numéro de rue.
+                                        </div>
+                            </div>
+                            <div class='col-md-10 mb-3 pr-0'>
+                                <label for="adProStreet">Rue</label>
+                                <input type="text" class="form-control" name="adProStreet" placeholder="Rue Saint-Mont">
+                                <div class="invalid-feedback">
+                                Indiquer l'adresse.
+                                </div>
+                            </div>
+                        </div>
+                        <div class='row  row100 col-md-12 pr-0'>
+                            <div class='col-md-5 mb-3'>
+                                <label  for="adProCountry">Choisir un pays</label>
+                                <select class="custom-select d-block w-100" search="pays" name="adProCountry" id="adProvCountry">
+                                    <option value="">Choix...</option>
+                                    <option value="be">Belgique</option>
+                                    <option value="fr">France</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Veuillez sélectionner un pays valide.
+                                </div>
+                            </div>
+                            <div class='col-md-4 mb-3'>
+                                <label for="adProZip">Code Postal</label>
+                                <input   type="number"class="form-control" value="0000" placeholder="Code Postal" name="adProZip"  id="postal" search="cp" onchange="completionVillePro(this.value);" >
+                                <div class="invalid-feedback">
+                                Code postal requis.
+                                </div>
+                            </div>
+                            <div class='col-md-3 mb-3 pr-0'>
+                                <label  for="adProCity">Ville</label>
+                                <input type="text" class="form-control" name="adProCity" id="adProCity" placeholder="Paris">
+                                <div class="invalid-feedback">
+                                S'il vous plaît fournir une ville valide.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class='mb-4'>
+                    <h4 class='mb-3'>
+                        Contacts
+                    </h4>
+                    <hr class='mb-4'>
+                    <div class='row'>
+                        <div class='row row100  col-md-12 pr-0'>
+                            <div class='col-md-4 mb-3'>
+                                <label   for="contPhonePv">Télèphone privé</label>
+                                <input   type="tel" name="contPhonePv" class="form-control" placeholder="02/123.45.67">
+                                <div class="invalid-feedback">
+                                Veuillez entrer un numéro de télèphone fixe.
+                                </div>
+                            </div>
+                            <div class='col-md-4 mb-3'>
+                                <label   for="contPhoneGsm">GSM</label>
+                                <input   type="tel" name="contPhoneGsm" class="form-control" placeholder="0490/01.02.03">
+                                <div class="invalid-feedback">
+                                Veuillez entrer un numéro de Gsm.
+                                </div>
+                            </div>
+                            <div class='col-md-4 mb-3 pr-0'>
+                                <label   for="contPhonePro">Télèphone (bureau))</label>
+                                <input   type="tel" name="contPhonePro" class="form-control" placeholder="0123/34.56.78">
+                                <div class="invalid-feedback">
+                                Veuillez entrer un numéro de télèphone de bureau.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='row row100  col-md-12 pr-0'>
+                            <div class='col-md-6 mb-3'>
+                                <label   for="contFacebook">Facebook</label>
+                                <input   type="url" name="contFacebook" class="form-control" placeholder="https://www.facebook.com/user">
+                                <div class="invalid-feedback">
+                                Veuillez entrer l'url complet du facebook de l'utilisateur.
+                                </div>
+                            </div>
+                            <div class='col-md-6 mb-3 pr-0'>
+                                <label   for="contWebsite">Site Web</label>
+                                <input   type="url" name="contWebsite" class="form-control" placeholder="https://www.siteweb.com">
+                                <div class="invalid-feedback">
+                                Veuillez entrer l'url complet du site web.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class='mb-4'>
+                    <h4 class='mb-3'>
+                        Autres informations
+                    </h4>
+                    <hr class='mb-4'>
+                    <div class='row'>
+                        <div class='mb-3 col-md-12'>
+                            <label for="asbl">En rapport avec l'ASBL </label>
+                            <input type="text" class="form-control"  name="asbl" >
+                        </div>
+                        <div class='mb-3 col-md-12'>
+                            <label for='shortDesc'>Petite description </label>
+                            <textarea  type="textarea"  class='form-control'name='shortDesc' rows="3" [disabled]="locked"></textarea>
+                        </div>
+                        <div class='mb-3 col-md-12'>
+                            <label for='longDesc'>Autre information</label>
+                            <textarea  type="textarea" class="form-control" name='longDesc' rows="7" [disabled]="locked"></textarea>
                         </div>
                     </div>
                 </div>
             </div>
-</div>
+        </div>
+    </div>

@@ -1,12 +1,11 @@
-import { map } from 'rxjs/operators';
+
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { User } from '../../users-export';
-import {of} from 'rxjs';
+import { User } from './../../../../shared/exports';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import {  Subject } from 'rxjs';
+import { Observable,  Subject, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 declare let $: any;
-import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
