@@ -64,6 +64,11 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true,
       defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
     },
+    adressbook: {
+      type: DataTypes.INTEGER(1),
+      allowNull: true,
+      defaultValue: '0'
+    },
     updated_date: {
       type: DataTypes.DATE,
       allowNull: true
@@ -144,26 +149,21 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.TEXT,
       allowNull: true
     },
-    createdAt: {
-      type: DataTypes.DATE,
+    pachMedia: {
+      type: DataTypes.STRING(255),
       allowNull: true
     },
-    updatedAt: {
-      type: DataTypes.DATE,
-      allowNull: true
+    newRegister: {
+      type: DataTypes.INTEGER(1),
+      allowNull: true,
+      defaultValue: '1'
     }
   }, {
     timestamps: false,
     tableName: 'user'
   });
   
-  
-  user.prototype.validPassword = function (password) {
-    return bcrypt.compareSync(password, this.password);
-  };
-  user.prototype.safeModel = function() {
-      return _.omit(this.toJSON(), ['password']);
-  };
+
 
   return user;
 };

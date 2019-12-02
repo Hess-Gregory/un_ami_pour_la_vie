@@ -81,7 +81,7 @@ module.exports = {
                 email: req.body.email,
                 username: req.body.username,
                 //password: User.generatePassword(req.body.password),
-                isActive: req.body.isActive  ,
+                isActive: req.body.isActive,
                 role: req.body.role,
                 asbl: req.body.asbl,
                 firstName: req.body.firstName,
@@ -106,7 +106,10 @@ module.exports = {
                 contFacebook: req.body.contFacebook,
                 contWebsite: req.body.contWebsite,
                 shortDesc: req.body.shortDesc,
-                longDesc: req.body.longDesc
+                longDesc: req.body.longDesc,
+                patchMedia: req.body.patchMedia,
+                newRegister: req.body.newRegister,
+                adressbook: req.body.adressbook
             },
             {
                 where: {

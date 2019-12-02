@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const httpStatus = require('http-status');
 const APIError = require('../helper/APIError');
 const config = require('../config');
-const User = require('../controller/user.controller');
+const User = require('../controller/login.controller');
 
 module.exports = {
 

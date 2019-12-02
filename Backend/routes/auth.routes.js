@@ -24,10 +24,7 @@ const paramValidation = {
 
                 }  
             }
-        }
-    router.route('/newpass')
-    // GET /api/users/:userId. all the users.    
-    .get(validate(userController.generatePassword));   
+        }  
 // POST /api/auth/register S'inscrire dans le système.
 router.route('/register')
     .post(validate(paramValidation.registerUser), authController.register);

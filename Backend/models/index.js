@@ -36,6 +36,7 @@ db.Sequelize = Sequelize;
 db.user = require('../models/user')(sequelize, Sequelize);
 db.admin = require('../models/admin_list')(sequelize, Sequelize);
 db.members = require('../models/members')(sequelize, Sequelize);
+db.login = require('../models/login')(sequelize, Sequelize);
 
 
 //db.user_details = require('../models/user_details')(sequelize, Sequelize);
