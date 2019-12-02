@@ -8,6 +8,7 @@ import { AddressBookComponent } from './address-book/address-book.component';
 import { AdminManagerComponent } from './admin-manager/admin-manager.component';
 import { AllUsersComponent } from './all-users/all-users.component';
 import { UsersActivateComponent } from './users-activate/users-activate.component';
+import { UsersInfoComponent } from './users-info/users-info.component';
 import { AddUserComponent } from './all-users/add-user/add-user.component';
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
         },
         component: UsersComponent,
         children: [
-            { path: '', data: { breadcrumb: null }, component: UsersComponent },
+            { path: '', redirectTo: 'dashboard', data: { breadcrumb: null }, component: UsersComponent },
+            { path: 'users-info', data: { breadcrumb: 'Utilisateurs' },  component: UsersInfoComponent},
             { path: 'all-users', data: { breadcrumb: 'Gestion des utilisateurs' },  component: AllUsersComponent},
             { path: 'add-user', data: { breadcrumb: 'Ajouter utilisateur' },  component: AddUserComponent},
             { path: 'update-user', data: { breadcrumb: 'Modifier utilisateur' },  component: UpdateUserComponent},

@@ -12,6 +12,7 @@ import { AddressBookComponent } from './address-book/address-book.component';
 import { AdminManagerComponent } from './admin-manager/admin-manager.component';
 import { AllUsersComponent } from './all-users/all-users.component';
 import { UsersActivateComponent } from './users-activate/users-activate.component';
+import { UsersInfoComponent } from './users-info/users-info.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -26,6 +27,6 @@ import { PageHeaderModule } from '../../shared';
         AdminManagerComponent, AllUsersComponent,
         UsersActivateComponent, AddUserComponent,
         GetUserComponent, DeleteUserComponent,
-        UpdateUserComponent, JumboUserComponent]
+        UpdateUserComponent, JumboUserComponent, UsersInfoComponent]
 })
 export class UsersModule {}
