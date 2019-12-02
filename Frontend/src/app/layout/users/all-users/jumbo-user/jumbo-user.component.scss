@@ -1,8 +1,9 @@
 
 .inline-flex{
-    display: inline-flex;
-    margin: 0 auto;
-    text-align: center;
+    // display: inline-flex;
+    display: flex;
+    // margin: 0 auto;
+    // text-align: center;
     align-items: center;
     justify-content: center;
 }
@@ -18,10 +19,10 @@ margin-right: 5px ;
 }
 
 .button-centre{
-    max-width: 60%;
+    // max-width: 60%;
     margin: 0 auto;
-    padding: 0;
-  justify-content: space-between;
+    // padding: 0;
+  justify-content: space-around;
 }
 .jumbotron{
     margin: 15px;
@@ -32,4 +33,7 @@ margin-right: 5px ;
 .btn-primary{
 background-color:  rgb(10, 189, 233);
             color:#fff;
+            font-size: 0.7rem;
+            margin-bottom: 10px;
 }
+
