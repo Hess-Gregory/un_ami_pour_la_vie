@@ -2,11 +2,13 @@ import { AddressBookService } from './address-book.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable} from 'rxjs';
 import { User } from '../users-export';
+import { routerTransition } from '../../../router.animations';
 
 @Component({
     selector: 'app-address-book',
     templateUrl: './address-book.component.html',
-    styleUrls: ['./address-book.scss']
+    styleUrls: ['./address-book.scss'],
+    animations: [routerTransition()]
 })
 export class AddressBookComponent implements OnInit {
 

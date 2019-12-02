@@ -1,3 +1,5 @@
+<app-jumbo-user></app-jumbo-user>
+<div [@routerTransition]>
 <div class="showcase-tabs">
     <a class="waves-effect btn" [routerLink]="['/admin/users/all-users']" [routerLinkActive]="['router-link-active']">Gestions des utilisateurs</a>
     <a class="waves-effect btn" [routerLink]="['/admin/users/users-activate']" [routerLinkActive]="['router-link-active']">Activation des comptes</a>
@@ -27,3 +29,4 @@
         </tr>
     </tbody>
   </table>
+</div>
