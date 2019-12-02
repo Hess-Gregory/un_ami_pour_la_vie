@@ -46,11 +46,17 @@ export class AllUsersComponent implements OnDestroy,  OnInit {
     alerts: Array<any> = [];
     dtOptions: DataTables.Settings = {};
     datatableElement: DataTableDirective;
+    newregister = true;
+    bgcolor = 'bg-dark';
 
     @ViewChild(DataTableDirective, {static: false})
 
 
-    ngOnInit() {}
+    ngOnInit() {
+        if (this.newregister) {
+            this.bgcolor = 'bg-danger';
+        }
+    }
 
     getUsers() {
       this.dtOptions = {
@@ -60,6 +66,11 @@ export class AllUsersComponent implements OnDestroy,  OnInit {
       this.allusersservice.getUsers().subscribe(
         response => {
             this.users = response;
+            this.stringifyUsers = JSON.stringify(this.users);
+            this.parseUsers = JSON.parse(this.stringifyUsers);
+            this.newregister = this.parseUsers.newregister;
+            console.log('this.newregister:', this.newregister);
+
             this.dtTrigger.next();
             },
         error => {
@@ -85,6 +96,9 @@ export class AllUsersComponent implements OnDestroy,  OnInit {
         RowSelected(user: any) {
             this.data = user.id;
             sessionStorage.setItem('idSelect', this.data);
+            if (user.newRegister) {
+            sessionStorage.setItem('new', 'true');
+            }
             this.router.navigate(['admin/users/get-user']);
           }
 

@@ -13,9 +13,12 @@ import { AllUsersComponent } from './all-users.component';
 import { AddUserComponent } from './add-user/add-user.component';
 
 @NgModule({
-    imports: [CommonModule, AllUsersRoutingModule, DataTableDirective,  DataTablesModule,
+    imports: [CommonModule, AllUsersRoutingModule,  DataTablesModule,
         FormsModule,
-        NgbModule, HttpClientModule, MatDialog, MatTable],
-    declarations: [AllUsersComponent, AddUserComponent, DeleteUserComponent, GetUserComponent, UpdateUserComponent]
+        NgbModule, HttpClientModule],
+    declarations: [],
+      exports: [
+        DataTableDirective
+     ]
 })
 export class AllUsersModule {}

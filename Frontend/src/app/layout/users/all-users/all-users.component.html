@@ -1,5 +1,5 @@
+<app-jumbo-user></app-jumbo-user>
 <div [@routerTransition]>
-
     <div class="row">
             <div class="col col-xl-12 col-lg-12">
                 <div class="card  mb-3">
@@ -24,24 +24,18 @@
                                     <th class="text-center">Nom</th>
                                     <th class="text-center">Email</th>
                                     <th class="text-center">Date d'ajout</th>
-                                    <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <ng-container *ngIf="users?.length != 0">
                                 <tbody  class="bg-dark">
-                                    <tr class="bg-dark   text-white  pt-3 pb-3" *ngFor="let user of users" >
-                                        <td (click)="RowSelected(user)" class="text-center"><p>{{ user.id }} </p></td>
+                                    <tr (click)="RowSelected(user)" class="{{user.newRegister == 1 ? 'bg-danger' :'bg-dark'}}   text-white  pt-3 pb-3" *ngFor="let user of users" >
+                                        <td class="text-center"><p>{{ user.id }} </p></td>
                                         <td  role="button" class="text-center"><p>{{ user.username }}</p></td>
                                         <td  role="button"class="text-center"><p>{{ user.lastName }}</p></td>
                                         <td  role="button"  class="text-center"><p>{{ user.firstName }}</p></td>
                                         <td  role="button"class="text-center"><p>{{ user.email }}</p></td>
                                         <td  role="button" class="text-center"><p>{{ user.created_date| date:'EEEE, d MMMM y à h:mm' }}</p></td>
-                                        <td class="text-center">
-                                            <button type="button" class="btn btn-info btn m-1">
-                                                <i class="fa fa-edit"></i>&nbsp; Modifier</button>
-                                            <button type="button" class="btn btn-danger btn m-1">
-                                                <i class="fa fa-trash">&nbsp; Supprimer</i></button>
-                                        </td>
+
                                 </tbody>
                             </ng-container>
 
