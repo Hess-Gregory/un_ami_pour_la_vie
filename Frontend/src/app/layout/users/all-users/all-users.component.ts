@@ -40,10 +40,10 @@ export class AllUsersComponent implements OnDestroy,  OnInit {
     public Errormessage: string;
     public ErrorStatus: string;
     public error: Error;
+    alerts: Array<any> = [];
     users: any = [];
     dataSource = this.users;
     dtTrigger: Subject<any> = new Subject();
-    alerts: Array<any> = [];
     dtOptions: DataTables.Settings = {};
     datatableElement: DataTableDirective;
     newregister = true;
@@ -69,7 +69,6 @@ export class AllUsersComponent implements OnDestroy,  OnInit {
             this.stringifyUsers = JSON.stringify(this.users);
             this.parseUsers = JSON.parse(this.stringifyUsers);
             this.newregister = this.parseUsers.newregister;
-            console.log('this.newregister:', this.newregister);
 
             this.dtTrigger.next();
             },

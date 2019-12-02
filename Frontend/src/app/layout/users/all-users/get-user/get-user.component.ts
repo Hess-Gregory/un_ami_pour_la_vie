@@ -1,10 +1,11 @@
+import { NgForm } from '@angular/forms';
 import { GetUserService } from './get-user.service';
 import { routerTransition } from '../../../../router.animations';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from '../../users-export';
 import {of} from 'rxjs';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {  Subject } from 'rxjs';
 declare let $: any;
 
@@ -35,8 +36,9 @@ export class GetUserComponent  implements  OnDestroy,  OnInit {
         message: 'this.Errormessage',
         });
   }
-adressbook = false;
+    adressbook = false;
     locked = true;
+    create = false;
     public objStringError: string;
     public objError: any;
     public ErrorstatusText: any;
@@ -45,7 +47,6 @@ adressbook = false;
     public error: Error;
     users: Array<any> = [];
     status: Array<any> = [];
-
     dtTrigger: Subject<any> = new Subject();
     alerts: Array<any> = [];
     fileData: File = null;
@@ -67,21 +68,29 @@ adressbook = false;
 
   onSave() {
     this.locked = true;
+    this.create = false;
+    this.previewUrl = false;
   }
+  onCreate() {
+    this.create = true;
 
+  }
   onCancel() {
     this.locked = true;
+    this.create = false;
+    this.previewUrl = false;
 
   }
 
   onDelete() {
     this.locked = true;
+    this.previewUrl = false;
   }
 
   onClose() {
     this.locked = true;
-    console.log('getbook', this.adressbook);
-    return this.adressbook;
+    this.previewUrl = false;
+
     this.router.navigate(['admin/users/all-users']);
   }
 
@@ -138,7 +147,7 @@ adressbook = false;
   preview() {
     // Show preview
     const mimeType = this.fileData.type;
-    if (mimeType.match(/image\/*/) == null) {
+    if (mimeType.match(/image\/*/) == null ) {
       return;
     }
 

@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit {
     alerts: Array<any> = [];
     http: any;
     constructor(private auth: AuthService, public router: Router ) {
-        console.log(this.Errormessage);
         this.alerts.push( {
             id: 3,
             type: 'danger',
