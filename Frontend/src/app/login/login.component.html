@@ -24,6 +24,11 @@
                         <label class="custom-control-label" for="customCheck">&nbsp; Souviens-toi de moi</label>
                       </div>
                     </div>
+                    <div *ngIf="ErrorStatus"  class="card-body">
+                        <p *ngFor="let alert of alerts">
+                            <ngb-alert [type]="alert.type" (close)="closeAlert(alert)">Erreur {{ErrorStatus}} : {{ErrorstatusText}}</ngb-alert>
+                        </p>
+                    </div>
                     <button type="submit" class="btn btn-orangedbl btn-user btn-block">
                       S'identifier
                     </button>
@@ -43,5 +48,6 @@
         </div>
 
       </div>
+
 
 
