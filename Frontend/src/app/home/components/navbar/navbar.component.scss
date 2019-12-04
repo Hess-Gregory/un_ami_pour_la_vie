@@ -1,16 +1,33 @@
+.site0{
+    padding: 137px 0 !important;
+}
+.site50{
+    padding: 27px 0 !important;
+}
+.site450{
+    padding: 105px 0 !important;
+}
+.site600{
+    padding: 120px 0 !important;
 
+    height: 300px;
+}
+.site850{
+    padding: 41px 0 !important;
+}
 .site {
     //font-size: 1.3em !important;
     overflow-x: hidden;
     // font-family: 'Roboto Slab', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    padding: 37px 0 !important;
+
     text-align: center;
     background-color: #efefef;
-    //font-size: .8em !important;
+    font-size: .8em !important;
     //font-size: .9em !important;
     //font-size: 1em !important;
     position: relative;
     letter-spacing: 0.5px;
+    color: #444;
 
     .navbar-novisible {
         position: absolute !important;
@@ -49,7 +66,6 @@
             text-transform: uppercase;
             color: white;
             border: 0;
-            background-color: #fed136;
             margin: 0 auto;
             float: none;
             width: 100%;
@@ -182,4 +198,10 @@
     text-align: center !important;
     transform: translate(-50%, 0) !important;
 
+}
+.nav0, .nav200, .nav450, .nav600{
+    position: absolute !important;
+}
+.nav800{
+    position: fixed !important;
 }

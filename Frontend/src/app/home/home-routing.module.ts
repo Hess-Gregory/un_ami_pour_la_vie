@@ -9,8 +9,7 @@ const routes: Routes = [
         component: HomeComponent,
         children: [
 
-            { path: '', redirectTo: 'homepage', pathMatch: 'prefix' },
-            { path: 'homepage', loadChildren: () => import('./homepage/homepage.module').then(m => m.HomepageModule) }
+            { path: '', pathMatch: 'prefix', loadChildren: () => import('./homepage/homepage.module').then(m => m.HomepageModule) }
         ]
     }
 ];

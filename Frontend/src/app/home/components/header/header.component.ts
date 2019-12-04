@@ -13,6 +13,6 @@ export class HeaderHomepageComponent implements OnInit {
   ngOnInit() {
   }
   isHomeRoute() {
-    return this.router.url === '/homepage';
+    return this.router.url === '/';
   }
 }
