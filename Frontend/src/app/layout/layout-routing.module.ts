@@ -3,10 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout.component';
 
 import { AuthGuard } from './../shared';
-import { AddressBookComponent } from './users/address-book/address-book.component';
-import { AdminManagerComponent } from './users/admin-manager/admin-manager.component';
-import { AllUsersComponent } from './users/all-users/all-users.component';
-import { UsersActivateComponent } from './users/users-activate/users-activate.component';
 
 const routes: Routes = [
     {
@@ -20,7 +16,7 @@ const routes: Routes = [
             { path: 'dashboard',  loadChildren: () => import('./dashboard/dashboard.module')
                 .then(m => m.DashboardModule), data: { breadcrumb: 'Panneau général' } },
             { path: 'users', loadChildren: () => import('./users/users.module')
-                .then(m => m.UsersModule), data: { breadcrumb: 'Users' } },
+                .then(m => m.UsersModule), data: { breadcrumb: 'Users Manager' } },
             { path: 'charts', loadChildren: () => import('./charts/charts.module')
                 .then(m => m.ChartsModule), data: { breadcrumb: 'Charts' } },
             { path: 'tables', loadChildren: () => import('./tables/tables.module')

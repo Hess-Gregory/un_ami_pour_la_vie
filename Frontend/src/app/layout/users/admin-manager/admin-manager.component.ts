@@ -2,7 +2,7 @@ import { AdminManagerService } from './admin-manager.service';
 import { Component, OnDestroy, OnInit, AfterViewInit, ViewChild, Input } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
-import { User } from '../users-export';
+import { User } from './../services/users-export';
 import { routerTransition } from '../../../router.animations';
 
 export interface Error {

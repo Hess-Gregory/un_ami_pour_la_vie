@@ -1,7 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Observable} from 'rxjs';
-import { User } from '../users-export';
+import { User } from './../services/users-export';
 import { routerTransition } from '../../../router.animations';
 
 @Component({

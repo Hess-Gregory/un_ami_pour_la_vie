@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../users-export';
+import { User } from './../../services/users-export';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AllUsersService {
+export class UserUpdateService {
 
 
   constructor(private http: HttpClient) { }

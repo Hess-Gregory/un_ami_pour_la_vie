@@ -9,7 +9,7 @@ declare let $: any;
 @Injectable({
   providedIn: 'root'
 })
-export class GetUserService {
+export class UserDetailService {
     userid: string;
     users: any;
     status: any;

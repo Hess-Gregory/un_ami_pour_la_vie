@@ -1,15 +1,11 @@
-import { DeleteUserComponent } from './all-users/delete-user/delete-user.component';
-import { GetUserComponent } from './all-users/get-user/get-user.component';
-import { UpdateUserComponent } from './all-users/update-user/update-user.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UsersComponent } from './users.component';
-import { AddressBookComponent } from './address-book/address-book.component';
-import { AdminManagerComponent } from './admin-manager/admin-manager.component';
-import { AllUsersComponent } from './all-users/all-users.component';
-import { UsersActivateComponent } from './users-activate/users-activate.component';
 import { UsersInfoComponent } from './users-info/users-info.component';
-import { AddUserComponent } from './all-users/add-user/add-user.component';
+import { UsersManagerComponent } from './users-manager/users-manager.component';
+import { AdminManagerComponent } from './admin-manager/admin-manager.component';
+import { UsersActivateComponent } from './users-activate/users-activate.component';
+import { AddressBookComponent } from './address-book/address-book.component';
 
 const routes: Routes = [
     {
@@ -19,16 +15,12 @@ const routes: Routes = [
         },
         component: UsersComponent,
         children: [
-            { path: '', redirectTo: 'dashboard', data: { breadcrumb: null }, component: UsersComponent },
-            { path: 'users-info', data: { breadcrumb: 'Utilisateurs' },  component: UsersInfoComponent},
-            { path: 'all-users', data: { breadcrumb: 'Gestion des utilisateurs' },  component: AllUsersComponent},
-            { path: 'add-user', data: { breadcrumb: 'Ajouter utilisateur' },  component: AddUserComponent},
-            { path: 'update-user', data: { breadcrumb: 'Modifier utilisateur' },  component: UpdateUserComponent},
-            { path: 'get-user', data: { breadcrumb: 'Voir utilisateur' },  component: GetUserComponent},
-            { path: 'delete-user', data: { breadcrumb: 'Supprimer utilisateur' },  component: DeleteUserComponent},
-            { path: 'users-activate', data: { breadcrumb: 'Activations' }, component: UsersActivateComponent},
+            { path: '', redirectTo: 'users-info', data: { breadcrumb: null } },
+            { path: 'users-info', data: { breadcrumb: 'Info Utilisateurs' },  component: UsersInfoComponent},
+            { path: 'user-manager', data: { breadcrumb: 'Gestion des membres' },  component: UsersManagerComponent},
             { path: 'admin-manager', data: { breadcrumb: 'Gestion des administrateurs' },  component: AdminManagerComponent},
-            { path: 'address-book', data: { breadcrumb: 'Carnet adresse' },  component: AddressBookComponent}
+            { path: 'users-activate', data: { breadcrumb: 'Activations des membres' }, component: UsersActivateComponent},
+            { path: 'address-book', data: { breadcrumb: 'Carnet d\'adresses' },  component: AddressBookComponent}
         ]
     }
 ];

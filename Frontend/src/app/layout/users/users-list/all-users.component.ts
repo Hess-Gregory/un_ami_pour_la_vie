@@ -98,7 +98,7 @@ export class AllUsersComponent implements OnDestroy,  OnInit {
             if (user.newRegister) {
             sessionStorage.setItem('new', 'true');
             }
-            this.router.navigate(['admin/users/get-user']);
+            this.router.navigate(['admin/users/user-list/details']);
           }
 
 }

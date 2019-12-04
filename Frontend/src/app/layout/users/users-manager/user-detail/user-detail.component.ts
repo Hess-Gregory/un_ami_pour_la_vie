@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
 import {UsernameValidator, PasswordValidator, ParentErrorStateMatcher} from './../../../../shared/validators';
 import { routerTransition } from '../../../../router.animations';
 import { User } from './../../../../shared/exports';
-import { GetUserService } from './get-user.service';
+import { UserDetailService } from './user-detail.service';
 import {Observable, of, Subject} from 'rxjs';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -20,12 +20,12 @@ export interface Error {
 
 
 @Component({
-  selector: 'app-get-user',
-  templateUrl: './get-user.component.html',
-  styleUrls: ['./get-user.component.scss'],
+  selector: 'app-user-detail',
+  templateUrl: './user-detail.component.html',
+  styleUrls: ['./user-detail.component.scss'],
   animations: [routerTransition()]
 })
-export class GetUserComponent  implements  OnDestroy,  OnInit {
+export class UserDetailComponent  implements  OnDestroy,  OnInit {
 
     [x: string]: any;
     adressbook = false;
@@ -46,9 +46,10 @@ export class GetUserComponent  implements  OnDestroy,  OnInit {
     fileUploadProgress: string = null;
     uploadedFilePath: string = null;
 
-  constructor(private userservice: GetUserService, private router: Router) {
+  constructor(private userservice: UserDetailService, private router: Router) {
     this.getUsers();
     this.getStatus();
+
     this.alerts.push( {
         id: 3,
         type: 'danger',
@@ -99,6 +100,9 @@ ngOnInit() {}
             this.stringifyUsers = JSON.stringify(this.users);
             this.parseUsers = JSON.parse(this.stringifyUsers);
             this.adressbook = this.parseUsers.adressbook;
+            this.user_id = this.parseUsers.id;
+            const url: string = '/admin/users/user-list/details/' + this.user_id;
+            this.router.navigateByUrl(url);
             this.dtTrigger.next();
             },
         error => {
