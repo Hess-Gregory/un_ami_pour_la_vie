@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import {UsernameValidator, PasswordValidator, ParentErrorStateMatcher} from './validators';
+import {UsernameValidator, PasswordValidator, ParentErrorStateMatcher} from './../shared/validators';
 import { FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
 import { routerTransition } from '../router.animations';
 import { AuthService } from './../shared/services/auth.service';
