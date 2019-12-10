@@ -1,0 +1,76 @@
+<app-jumbo-user></app-jumbo-user>
+<div [@routerTransition]>
+
+     <div class="row">
+             <div class="col col-xl-12 col-lg-12">
+                <div *ngIf="ErrorStatus" class="card-body">
+                        <p *ngFor="let alert of alerts">
+                            <ngb-alert [type]="alert.type" (close)="closeAlert(alert)">Erreur {{ErrorStatus}} : {{ErrorstatusText}}</ngb-alert>
+                        </p>
+                </div>
+                 <div class="card  mb-3">
+                     <div class="card-header  bg-dark">
+                         <h3> Gestion des Administrateurs</h3>
+                     </div>
+
+                     <form action="form">
+                            <div class="form-group row ">
+                                <div class="text-center col-12 inline-flex w-100">
+                                     <select class="form-control col-4 mr-5" >
+                                                <option [ngValue]="null">(Selectionner un utilisateur)</option>
+                                            <option *ngFor="let user of user$ | async" [value]="user.id"> {{user.username}}</option>
+                                        </select>
+                                        <select class="form-control col-4 mr-5">
+                                            <option [ngValue]="null">(Selectionner un role)</option>
+                                            <option>5</option>
+                                        </select>
+                                        <button type="button" class="btn btn-valid  btn-secondary col-4">Valider</button>
+
+                                </div>
+                                         </div>
+                     </form>
+                     <div class="card-body table-responsive">
+                         <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border display compact table bordered">
+                             <thead class=" bg-dark">
+                                 <tr *ngIf="admins?.length != 0" class="headTr">
+                                     <th class="text-center">Nom d'utilisateur</th>
+                                     <th class="text-center">Prénom</th>
+                                     <th class="text-center">Nom</th>
+                                     <th class="text-center">Email</th>
+                                     <th class="text-center">Role</th>
+                                 </tr>
+                             </thead>
+                             <thead *ngIf="admins?.length != 0">
+                                     <tr class="searchTr">
+                                       <th class="text-center"><input type="text" class="inputSearch" placeholder="Chercher utilisateur" name="search-username"/><i class="fa fa-search"></i></th>
+                                       <th class="text-center"><input type="text" class="inputSearch" placeholder="Chercher prénom" name="search-lastName"/><i class="fa fa-search"></i></th>
+                                       <th class="text-center"><input type="text" class="inputSearch" placeholder="Chercher nom de famille" name="search-firstName"/><i class="fa fa-search"></i></th>
+                                       <th class="text-center"><input type="text" class="inputSearch" placeholder="Chercher email" name="search-email"/><i class="fa fa-search"></i></th>
+                                       <th class="text-center"><input type="text" class="inputSearch" placeholder="Chercher rôle" name="search-role"/><i class="fa fa-search"></i></th>
+                                     </tr>
+                                   </thead>
+                             <tbody *ngIf="admins?.length != 0" class="bg-dark">
+                                 <tr class="bg-dark  text-white  pt-3 pb-3" *ngFor="let admin of admins; " role="button" [routerLink]="['/admin/users/address-book']" >
+
+                                     <td  class="text-center"><p>{{ admin.username }}</p></td>
+                                     <td  class="text-center"><p>{{ admin.lastName }}</p></td>
+                                     <td  class="text-center"><p>{{ admin.firstName }}</p></td>
+                                     <td  class="text-center"><p>{{ admin.email }}</p></td>
+                                     <td  class="text-center"><p>{{ admin.roleName }}</p></td>
+                                 </tr>
+                             </tbody>
+                             <tbody *ngIf="admins?.length == 0">
+                                 <tr>
+                                     <td colspan="3" class="no-data-available">
+                                         <div class="alert alert-danger">
+                                             <strong>Oh non!</strong> il n'y as pas de data.
+                                         </div>
+                                     </td>
+                                 </tr>
+                             <tbody>
+                         </table>
+                     </div>
+                 </div>
+             </div>
+     </div>
+ </div>
