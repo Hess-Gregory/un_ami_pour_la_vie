@@ -3,12 +3,14 @@ import {UsernameValidator, PasswordValidator, ParentErrorStateMatcher} from './.
 import { FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
 import { routerTransition } from '../router.animations';
 import { AuthService } from './../shared/services/auth.service';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 @Component({
     selector: 'app-signup',
     templateUrl: './signup.component.html',
     styleUrls: ['./signup.component.scss'],
+    providers: [AuthService, HttpClient],
     encapsulation: ViewEncapsulation.None,
     animations: [routerTransition()]
 })
