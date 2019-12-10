@@ -20,7 +20,7 @@ export class UserDetailService {
 
   getUsers() {
     this.userid = sessionStorage.getItem('idSelect');
-    if (sessionStorage.getItem('new') === 'true') {
+    if (sessionStorage.getItem('new')) {
             this.http.put(`/api/users/${this.userid}`,
             { 'newRegister':  0 })
             .subscribe(

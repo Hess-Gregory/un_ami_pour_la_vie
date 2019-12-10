@@ -4,6 +4,7 @@ export interface User {
     lastName?: string;
     email?: string;
     username?: string;
+    isActive?: string;
   }
   export interface Admin {
     id?: number;
@@ -12,5 +13,6 @@ export interface User {
     email?: string;
     username?: string;
     roleName?: string;
-    
+    isActive?: string;
+
   }

@@ -1,19 +1,18 @@
 <app-jumbo-user></app-jumbo-user>
-<div [@routerTransition]>
     <div class="row">
             <div class="col col-xl-12 col-lg-12">
                 <div class="card  mb-3">
                     <div class="card-header  bg-dark">
-                        <h2><i class="fa fa-user"></i> Gestion des utilisateurs </h2>
+                        <h2><i class="fa fa-users"></i> Gestion des utilisateurs </h2>
                     </div>
                     <div *ngIf="ErrorStatus"  class="card-body">
                             <p *ngFor="let alert of alerts">
                                 <ngb-alert [type]="alert.type" (close)="closeAlert(alert)">Erreur {{ErrorStatus}} : {{ErrorstatusText}}</ngb-alert>
                             </p>
                     </div>
-                    <form action="">
-
-                    </form>
+                    <div class="card-body">
+                        <button type="button" class="col-12 col-sm-4 col-md-2  btn btn-primary btn-lg" role="button" [routerLink]="['/admin/users/user-manager/user-add']" [routerLinkActive]="['router-link-active']">Ajouter un nouveau membre</button>
+                    </div>
                     <div class="card-body table-responsive">
                         <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border display compact table bordered"  id="example">
                             <thead class=" bg-dark">
@@ -28,20 +27,20 @@
                             </thead>
                             <ng-container *ngIf="users?.length != 0">
                                 <tbody  class="bg-dark">
-                                    <tr (click)="RowSelected(user)" class="{{user.newRegister == 1 ? 'bg-danger' :'bg-dark'}}   text-white  pt-3 pb-3" *ngFor="let user of users" >
-                                        <td class="text-center"><p>{{ user.id }} </p></td>
-                                        <td  role="button" class="text-center"><p>{{ user.username }}</p></td>
-                                        <td  role="button"class="text-center"><p>{{ user.lastName }}</p></td>
-                                        <td  role="button"  class="text-center"><p>{{ user.firstName }}</p></td>
-                                        <td  role="button"class="text-center"><p>{{ user.email }}</p></td>
-                                        <td  role="button" class="text-center"><p>{{ user.created_date| date:'EEEE, d MMMM y à h:mm' }}</p></td>
+                                    <tr (click)="RowSelected(user)" class="{{user.newRegister == 1 ? 'bg-danger' :'bg-dark'}}  text-white pt-3 pb-3" *ngFor="let user of users" >
+                                        <td class="text-center bg-dark text-blue"><p>{{ user.id }} </p></td>
+                                        <td  role="button" class=" bg-dark text-center"><p>{{ user.username }}</p></td>
+                                        <td  role="button"class=" bg-dark text-center"><p>{{ user.lastName }}</p></td>
+                                        <td  role="button"  class=" bg-dark text-center"><p>{{ user.firstName }}</p></td>
+                                        <td  role="button"class=" bg-dark text-center"><p>{{ user.email }}</p></td>
+                                        <td  role="button" class=" bg-dark text-center"><p>{{ user.created_date| date:'EEEE, d MMMM y à h:mm' }}</p></td>
 
                                 </tbody>
                             </ng-container>
 
                             <tbody *ngIf="users?.length == 0">
                                 <tr>
-                                    <td colspan="3" class="no-data-available">
+                                    <td colspan="6" class="no-data-available">
                                         <div class="alert alert-danger">
                                             <strong>Oh non!</strong> il n'y as pas de data.
                                         </div>
@@ -63,7 +62,7 @@
                 </div>
             </div>
     </div>
-</div>
+
 
 
 

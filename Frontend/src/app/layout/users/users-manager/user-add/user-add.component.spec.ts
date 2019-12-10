@@ -5,7 +5,7 @@ import { DebugElement } from '@angular/core';
 
 import { UserAddComponent } from './user-add.component';
 
-describe('AddUserComponent', () => {
+describe('UserAddComponent', () => {
   let component: UserAddComponent;
   let fixture: ComponentFixture<UserAddComponent>;
 

@@ -1,32 +1,61 @@
 <app-jumbo-user></app-jumbo-user>
-<div [@routerTransition]>
-<div class="showcase-tabs">
-    <a class="waves-effect btn" [routerLink]="['/admin/users/all-users']" [routerLinkActive]="['router-link-active']">Gestions des utilisateurs</a>
-    <a class="waves-effect btn" [routerLink]="['/admin/users/users-activate']" [routerLinkActive]="['router-link-active']">Activation des comptes</a>
-    <a class="waves-effect btn" [routerLink]="['/admin/users/admin-manager']" [routerLinkActive]="['router-link-active']">Gestion des administrateurs</a>
-    <a class="waves-effect btn" [routerLink]="['/admin/users/address-book']" [routerLinkActive]="['router-link-active']">Carnet d'adresse</a>
+
+  <div class="row">
+    <div class="col col-xl-12 col-lg-12">
+        <div class="card  mb-3">
+            <div class="card-header  bg-dark">
+                <h2><i class="fa fa-address-book"></i> Carnet d'adresses</h2>
+            </div>
+            <div *ngIf="ErrorStatus"  class="card-body">
+                    <p *ngFor="let alert of alerts">
+                        <ngb-alert [type]="alert.type" (close)="closeAlert(alert)">Erreur {{ErrorStatus}} : {{ErrorstatusText}}</ngb-alert>
+                    </p>
+            </div>
+            <div class="card-body table-responsive">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border display compact table bordered"  id="example">
+                    <thead class=" bg-dark">
+                        <tr *ngIf="users?.length != 0" >
+                            <th class="text-center">#</th>
+                            <th class="text-center border-bottom">Nom d'utilisateur</th>
+                            <th class="text-center border-bottom">Email</th>
+                            <th class="text-center border-bottom">Prénom</th>
+                            <th class="text-center border-bottom">Nom</th>
+                        </tr>
+                    </thead>
+                    <ng-container *ngIf="users?.length != 0">
+                        <tbody  class="bg-dark">
+                            <tr (click)="RowSelected(user)" class="bg-dark text-white  pt-3 pb-3" *ngFor="let user of users" >
+                                <td *ngIf="user.adressbook === 1" class="text-center bg-dark text-blue border-right"><p>{{ user.id }} </p></td>
+                                <td *ngIf="user.adressbook === 1"  role="button" class="bg-dark text-center"><p>{{ user.username }}</p></td>
+                                <td *ngIf="user.adressbook === 1"  role="button" class="bg-dark text-center"><p>{{ user.email }}</p></td>
+                                <td *ngIf="user.adressbook === 1"  role="button" class="bg-dark text-center"><p>{{ user.firstName }}</p></td>
+                                <td *ngIf="user.adressbook === 1"  role="button" class="bg-dark text-center"><p>{{ user.lastName }}</p></td>
+
+                        </tbody>
+                    </ng-container>
+
+                    <tbody *ngIf="users?.length == 0">
+                        <tr>
+                            <td colspan="5" class="no-data-available">
+                                <div class="alert alert-danger">
+                                    <strong>Oh non!</strong> il n'y as pas de data.
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                        <!-- <tfoot *ngIf="users?.length != 0">
+                            <tr >
+                              <th class="text-center"><input type="text" class="inputSearch" placeholder="Search ID" name="search-id"/></th>
+                              <th class="text-center"><input type="text" class="inputSearch" placeholder="Search username" name="search-username"/></th>
+                              <th class="text-center"><input type="text" class="inputSearch" placeholder="Search first name" name="search-firstName"/></th>
+                              <th class="text-center"><input type="text" class="inputSearch" placeholder="Search last name" name="search-lastName"/></th>
+                              <th class="text-center"><input type="text" class="inputSearch" placeholder="Search email" name="search-email"/></th>
+                              <th class="text-center"><input type="text" class="inputSearch" placeholder="Search email" name="search-created_date"/></th>
+                            </tr>
+                    </tfoot> -->
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 
-    <h2> Carnet d'adresses</h2>
-
-<table  datatable  [dtOptions]="dtOptions"  class="row-border hover">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Nom d'utilisateur</th>
-            <th>Email</th>
-            <th>Prénom</th>
-            <th>Nom</th>
-        </tr>
-    </thead>
-    <tbody >
-        <tr *ngFor="let user of user$ | async">
-            <th class="tdBody">{{user.id}}</th>
-            <td class="tdBody"> {{user.username}}</td>
-            <td class="tdBody"> {{user.email}}</td>
-            <td class="tdBody"> {{user.firstName}}</td>
-            <td class="tdBody"> {{user.lastName}}</td>
-        </tr>
-    </tbody>
-  </table>
-</div>

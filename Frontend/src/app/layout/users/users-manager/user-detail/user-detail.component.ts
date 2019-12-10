@@ -1,4 +1,5 @@
-import { Component, OnDestroy, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, ElementRef, Output, EventEmitter, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
 import {UsernameValidator, PasswordValidator, ParentErrorStateMatcher} from './../../../../shared/validators';
 import { routerTransition } from '../../../../router.animations';
@@ -22,15 +23,16 @@ export interface Error {
 @Component({
   selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',
-  styleUrls: ['./user-detail.component.scss'],
-  animations: [routerTransition()]
+  providers: [HttpClient],
+  styleUrls: ['./user-detail.component.scss']
 })
+
 export class UserDetailComponent  implements  OnDestroy,  OnInit {
 
+
+    previewUrl: any = null;
     [x: string]: any;
     adressbook = false;
-    locked = true;
-    create = false;
     public objStringError: string;
     public objError: any;
     public ErrorstatusText: any;
@@ -42,11 +44,12 @@ export class UserDetailComponent  implements  OnDestroy,  OnInit {
     status: any = [];
     dtTrigger: Subject<any> = new Subject();
     fileData: File = null;
-    previewUrl: any = null;
     fileUploadProgress: string = null;
     uploadedFilePath: string = null;
 
+
   constructor(private userservice: UserDetailService, private router: Router) {
+
     this.getUsers();
     this.getStatus();
 
@@ -55,6 +58,8 @@ export class UserDetailComponent  implements  OnDestroy,  OnInit {
         type: 'danger',
         message: 'this.Errormessage',
         });
+
+
     }
 
 ngOnInit() {}
@@ -101,8 +106,6 @@ ngOnInit() {}
             this.parseUsers = JSON.parse(this.stringifyUsers);
             this.adressbook = this.parseUsers.adressbook;
             this.user_id = this.parseUsers.id;
-            const url: string = '/admin/users/user-list/details/' + this.user_id;
-            this.router.navigateByUrl(url);
             this.dtTrigger.next();
             },
         error => {
@@ -176,13 +179,15 @@ ngOnInit() {}
 
     // })
   }
-  ngOnDestroy(): void {
-    this.dtTrigger.unsubscribe();
-  }
-
-  public closeAlert(alert: any) {
+    ngOnDestroy(): void {
+        this.dtTrigger.unsubscribe();
+    }
+    public closeAlert(alert: any) {
     const index: number = this.alerts.indexOf(alert);
     this.alerts.splice(index, 1);
     }
+
+
+
 }
 

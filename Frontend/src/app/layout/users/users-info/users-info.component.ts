@@ -1,14 +1,10 @@
 
 import { Component, OnInit } from '@angular/core';
-import { Observable} from 'rxjs';
-import { User } from './../services/users-export';
-import { routerTransition } from '../../../router.animations';
 
 @Component({
     selector: 'app-users-info',
     templateUrl: './users-info.component.html',
-    styleUrls: ['./users-info.scss'],
-    animations: [routerTransition()]
+    styleUrls: ['./users-info.scss']
 })
 export class UsersInfoComponent implements OnInit {
 

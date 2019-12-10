@@ -1,4 +1,2 @@
-<article class="article-container">
-        <app-users-info *ngIf="isHomeRoute()"></app-users-info>
+<app-user-controls *ngIf="router.url !== '/admin/users/user-manager/users-list'"></app-user-controls>
     <router-outlet></router-outlet>
-</article>

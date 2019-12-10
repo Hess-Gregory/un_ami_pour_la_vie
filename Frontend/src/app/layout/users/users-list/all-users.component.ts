@@ -1,7 +1,6 @@
 import { AllUsersService } from './all-users.service';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import {  Subject } from 'rxjs';
-import { routerTransition } from '../../../router.animations';
 import { DataTableDirective } from 'angular-datatables';
 import { Router} from '@angular/router';
 declare let $: any;
@@ -16,8 +15,7 @@ export interface Error {
 @Component({
     selector: 'app-all-users',
     templateUrl: './all-users.component.html',
-    styleUrls: ['./all-users.scss'],
-    animations: [routerTransition()]
+    styleUrls: ['./all-users.scss']
 })
 
 export class AllUsersComponent implements OnDestroy,  OnInit {
@@ -98,7 +96,7 @@ export class AllUsersComponent implements OnDestroy,  OnInit {
             if (user.newRegister) {
             sessionStorage.setItem('new', 'true');
             }
-            this.router.navigate(['admin/users/user-list/details']);
+            this.router.navigate([`admin/users/user-manager/user-get`]);
           }
 
 }

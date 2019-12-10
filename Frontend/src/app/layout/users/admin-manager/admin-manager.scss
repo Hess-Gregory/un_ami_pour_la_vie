@@ -15,7 +15,7 @@
     width: 80vw;
     margin: 0 auto;
  }
- thead tr th , .card-header, h2, h3, h4, h5{color: #76daff; }
+ thead tr th , .card-header, h2, h3, h4, h5, .text-blue{color: #76daff; }
  tbody tr th{color: #7db5c9; }
  .card-header{
      border-radius:18px 18px 0 0 ;
@@ -23,14 +23,8 @@
  tbody tr:hover td{
      color: rgb(99, 183, 216);
  }
- table.dataTable.display tbody tr.even > .sorting_1, table.dataTable.order-column.stripe tbody tr.even > .sorting_1 {
-     background-color: #343a40 !important;
-     color: #76daff;
- }
- table.dataTable.display tbody tr.odd > .sorting_1, table.dataTable.order-column.stripe tbody tr.odd > .sorting_1 {
-     background-color: #343a40 !important;
-     color: #76daff;
- }
+
+
  .table.dataTables_wrapper .table.dataTables_length, .table.dataTables_wrapper .table.dataTables_filter, .table.dataTables_wrapper .table.dataTables_info, .table.dataTables_wrapper .table.dataTables_processing, .table.dataTables_wrapper .table.dataTables_paginate {
      color: white !important;
  }
@@ -116,7 +110,7 @@ table {
     box-shadow: 0 1px 1px #ccc;
 }
 .bordered tr:hover {
-    background: #ECECEC;
+    background-color: #343a40  !important;
     -webkit-transition: all 0.1s ease-in-out;
     -moz-transition: all 0.1s ease-in-out;
     transition: all 0.1s ease-in-out;
