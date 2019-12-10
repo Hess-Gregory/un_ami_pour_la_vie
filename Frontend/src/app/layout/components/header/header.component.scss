@@ -6,6 +6,8 @@ $topnav-background-color2: #1e1f26;
 
 :host {
     .navbar {
+
+        z-index: 6000;
         background: $topnav-background-color2;
         .navbar-brand {
             color: $topnav-text-color;

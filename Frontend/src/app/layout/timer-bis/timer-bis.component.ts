@@ -2,24 +2,26 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import * as jwt_decode from 'jwt-decode';
 import { AuthService } from './../../shared/services/auth.service';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
   selector: 'app-timer-bis',
   templateUrl: './timer-bis.component.html',
+  providers: [AuthService, HttpClient],
   styleUrls: ['./timer-bis.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TimerBisComponent implements OnInit {
     deltaTime: Number;
     deltaTimeMessage: any;
-    router: any;
     currentDate: any;
     date333: any;
     current_time: number;
     expirationTime: number;
     auth: any;
-  constructor(auth: AuthService) {
+  constructor(auth: AuthService, private router: Router) {
 
 }
 
@@ -42,7 +44,7 @@ export class TimerBisComponent implements OnInit {
                     return true;
                 } else {
                   this.deltaTimeMessage = 'La connexion a expiré';
-                  console.log(this.deltaTimeMessage);
+                  console.log('1:', this.deltaTimeMessage);
                   this.router.navigate(['/login']);
                   this.auth.logout();
                   return false;
@@ -50,8 +52,8 @@ export class TimerBisComponent implements OnInit {
 
       } else {
         this.deltaTimeMessage = 'La connexion a expiré';
-        console.log(this.deltaTimeMessage);
-        this.router.navigate(['/login']);
+        console.log('2:', this.deltaTimeMessage);
+       this.router.navigate(['/login']);
         return false;
       }
    }

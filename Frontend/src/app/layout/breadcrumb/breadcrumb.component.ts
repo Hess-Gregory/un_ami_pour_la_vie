@@ -13,7 +13,7 @@ import {filter} from 'rxjs/operators';
 })
 export class BreadcrumbComponent implements OnInit {
     static readonly ROUTE_DATA_BREADCRUMB = 'breadcrumb';
-    readonly home = {icon: 'pi pi-home', url: 'home'};
+    readonly home = {icon: 'pi pi-home', url: ''};
     menuItems: MenuItem[];
 
     constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
@@ -24,7 +24,7 @@ export class BreadcrumbComponent implements OnInit {
         .subscribe(() => this.menuItems = this.createBreadcrumbs(this.activatedRoute.root));
     }
 
-    private createBreadcrumbs(route: ActivatedRoute, url: string = '#', breadcrumbs: MenuItem[] = []): MenuItem[] {
+    private createBreadcrumbs(route: ActivatedRoute, url: string = '', breadcrumbs: MenuItem[] = []): MenuItem[] {
       const children: ActivatedRoute[] = route.children;
 
       if (children.length === 0) {
