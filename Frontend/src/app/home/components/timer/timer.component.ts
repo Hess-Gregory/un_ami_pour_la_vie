@@ -2,24 +2,26 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import * as jwt_decode from 'jwt-decode';
 import { AuthService } from './../../../shared/services/auth.service';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.component.html',
   styleUrls: ['./timer.component.scss'],
+  providers: [AuthService, HttpClient],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TimerComponent implements OnInit {
     deltaTime: Number;
     deltaTimeMessage: any;
-    router: any;
     currentDate: any;
     date333: any;
     current_time: number;
     expirationTime: number;
     auth: any;
 
-  constructor(auth: AuthService) {
+  constructor(auth: AuthService, private router: Router) {
 }
 
   ngOnInit() {
@@ -50,7 +52,7 @@ export class TimerComponent implements OnInit {
       } else {
         this.deltaTimeMessage = 'La connexion a expiré';
         console.log(this.deltaTimeMessage);
-        this.router.navigate(['/login']);
+        this.router.navigate(['/']);
         return false;
       }
    }

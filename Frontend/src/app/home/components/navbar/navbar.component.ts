@@ -6,18 +6,14 @@ import * as moment from 'moment';
 import * as jwt_decode from 'jwt-decode';
 declare let $: any;
 
-declare global {
-    interface Window {
-        requestAnimFrame: any;
-        mozRequestAnimationFrame: any;
-        oRequestAnimationFrame: any;
-        msRequestAnimationFrame: any;
 
-    }
-}
+
+
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
+  providers: [AuthService],
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
@@ -134,6 +130,7 @@ callback: any;
                 $('nav').removeClass('nav450');
                 $('nav').addClass('nav600');
                 $('nav').removeClass('nav850');
+                $('nav').removeClass('header--fixed hide-from-print');
                 $('.site').removeClass('site450');
                 $('.site').addClass('site600');
                 $('.site').removeClass('site850');
@@ -151,6 +148,7 @@ callback: any;
             if (scroll > 920) {
                 $('nav').removeClass('nav600');
                 $('nav').addClass('nav850');
+                $('nav').addClass('header--fixed hide-from-print');
                 $('.site').removeClass('site600');
                 $('.site').addClass('site850');
                 $('.navbar-brand').removeClass('brand-visible');
@@ -165,6 +163,7 @@ callback: any;
         });
       });
 
+
       const $content = $('header .content')
         , $blur    = $('header .overlay')
         , wHeight  = $(window).height();
@@ -174,72 +173,14 @@ callback: any;
       });
 
 
-      window.requestAnimFrame = (function() {
-        return  window.requestAnimationFrame ||
-          window.webkitRequestAnimationFrame ||
-          window.mozRequestAnimationFrame ||
-          window.oRequestAnimationFrame      ||
-          window.msRequestAnimationFrame     ||
-          function(callback: any) {
-            window.setTimeout(callback, 1000 / 60);
-          };
-      })();
+
 
       function Scroller() {
         this.latestKnownScrollY = 0;
         this.ticking            = false;
       }
 
-      Scroller.prototype = {
 
-        init: function() {
-          window.addEventListener('scroll', this.onScroll.bind(this), false);
-          $blur.css('background-image', $('header:first-of-type').css('background-image'));
-        },
-
-
-        onScroll: function() {
-          this.latestKnownScrollY = window.scrollY;
-          this.requestTick();
-        },
-
-
-        requestTick: function() {
-          if ( !this.ticking ) {
-            this.window.requestAnimFrame(this.update.bind(this));
-          }
-          this.ticking = true;
-        },
-
-        update: function() {
-          const currentScrollY = this.latestKnownScrollY;
-          this.ticking       = false;
-
-
-          const slowScroll = currentScrollY / 2
-            , blurScroll = currentScrollY * 2
-            , opaScroll = 1.4 - currentScrollY / 850;
-         if (currentScrollY > wHeight) {
-           $('nav').scss('position', 'fixed !important');
-         } else {
-           $('nav').scss('position', 'absolute !important');
-         }
-
-          $content.scss({
-            'transform'         : 'translateY(' + slowScroll + 'px)',
-            '-moz-transform'    : 'translateY(' + slowScroll + 'px)',
-            '-webkit-transform' : 'translateY(' + slowScroll + 'px)',
-            'opacity' : opaScroll
-          });
-
-          $blur.scss({
-            'opacity' : blurScroll / wHeight
-          });
-        }
-      };
-
-      const scroller = new Scroller();
-      scroller.init();
 
       }
   }

@@ -8,8 +8,8 @@ import { HomepageRoutingModule } from './homepage-routing.module';
 @NgModule({
   imports: [
     CommonModule,
-    HomepageRoutingModule
+    HomepageRoutingModule,
   ],
-  declarations: [HomepageComponent]
+  declarations: [HomepageComponent ]
 })
 export class HomepageModule { }
