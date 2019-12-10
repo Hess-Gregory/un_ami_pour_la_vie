@@ -7,27 +7,29 @@ import { LayoutComponent } from './layout.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
 import {BreadcrumbComponent} from './breadcrumb/breadcrumb.component';
-import {BreadcrumbModule} from 'primeng/primeng';
+import {BreadcrumbModule, AccordionModule} from 'primeng/primeng';
 import { TimerBisComponent} from './timer-bis/timer-bis.component';
-import { UsersComponent } from './users/users.component';
 import { DataTablesModule } from 'angular-datatables';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PageHeaderModule } from '../shared';
 import { MatButtonModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatCheckboxModule, MatSelectModule } from '@angular/material';
+import { TableModule } from 'primeng/table';
+import { LanguageTranslationModule } from '../shared/modules/language-translation/language-translation.module';
+
 @NgModule({
     imports: [
+        AccordionModule,
         CommonModule,
         LayoutRoutingModule,
         TranslateModule,
+        LanguageTranslationModule,
         NgbDropdownModule,
         BreadcrumbModule,
         DataTablesModule,
-        FormsModule,
         NgbModule,
         HttpClientModule,
         PageHeaderModule,
-        FormsModule,
         MatButtonModule,
         MatInputModule,
         MatDatepickerModule,
@@ -35,12 +37,12 @@ import { MatButtonModule, MatInputModule, MatDatepickerModule, MatNativeDateModu
         MatCheckboxModule,
         MatSelectModule,
         ReactiveFormsModule,
-        DataTablesModule,
         FormsModule,
-        NgbModule,
-        HttpClientModule
+        TableModule
+
     ],
-    declarations: [UsersComponent, LayoutComponent, SidebarComponent, HeaderComponent,
-        BreadcrumbComponent, TimerBisComponent]
+    declarations: [LayoutComponent, SidebarComponent, HeaderComponent,
+        BreadcrumbComponent, TimerBisComponent],
+    exports: [NgbModule]
 })
 export class LayoutModule {}
