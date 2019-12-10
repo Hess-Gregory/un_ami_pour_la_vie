@@ -74,7 +74,7 @@
         position: absolute;
         right: -8px;
         bottom: 0px;
-        z-index: 9999;
+        z-index: 5000;
         height: 100%;
         width: 10px;
         background: linear-gradient(90deg, transparent, rgba(173,173,173, 0.8), transparent);
@@ -114,7 +114,7 @@
     .error .msg
     {
         position: relative;
-        z-index: 9999;
+        z-index:  5000;
         display: block;
         background: #535353;
         color: #A2A2A2;
