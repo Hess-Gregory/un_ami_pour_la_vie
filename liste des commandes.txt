@@ -12,4 +12,5 @@ git commit -m "commenter le commit"
 PROJET UAPLV
 pm2 start server.js --name NodeServer --log-date-format 'DD/MM HH:mm:ss' --watch
 ng serve --proxy-config proxy.conf.json --open --port 4300
+ou NPM START
 sequelize-auto -o "./models" -d un_ami_pour_la_vie -h localhost -u root -p 3306  -e mysql
