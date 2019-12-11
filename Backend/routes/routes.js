@@ -4,6 +4,7 @@ const config = require('../config/index');
 const userRoutes = require('../routes/user.routes');
 const adminRoutes = require('../routes/admin.routes');
 const membersRoutes = require('../routes/members.routes');
+const roleRoutes = require('../routes/role.routes');
 const authRoutes = require('../routes/auth.routes');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../swagger/swagger');
@@ -41,7 +42,8 @@ router.use(expressJWT({secret:config.jwtSecret}));
                 };
                 if (res.locals.session.role >= 2){
                     router.route('/users/profile').get(userController.getProfile);
-                    router.use('/users/status', membersRoutes);     
+                    router.use('/users/status', membersRoutes);  
+                    router.use('/users/role', roleRoutes);      
                 };
                 if (res.locals.session.role >= 3){
                                        
@@ -55,7 +57,7 @@ router.use(expressJWT({secret:config.jwtSecret}));
 
                 };
                 if (res.locals.session.role >= 5){
-                router.use('/admins', adminRoutes);
+                    router.use('/admins', adminRoutes);
 
                 };
                 if (res.locals.session.role >= 6){

@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { DebugElement, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AllUsersComponent } from './all-users.component';
 
@@ -9,7 +10,8 @@ describe('AllUsersComponent', () => {
     beforeEach(
         async(() => {
             TestBed.configureTestingModule({
-                declarations: [AllUsersComponent]
+                declarations: [AllUsersComponent],
+                schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
             }).compileComponents();
         })
     );

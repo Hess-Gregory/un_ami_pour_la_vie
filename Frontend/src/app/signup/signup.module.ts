@@ -6,6 +6,7 @@ import { SignupRoutingModule } from './signup-routing.module';
 import { SignupComponent } from './signup.component';
 import { MatButtonModule, MatCheckboxModule, MatSelectModule,  MatDatepickerModule,
     MatNativeDateModule, MatInputModule } from '@angular/material';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 @NgModule({
   imports: [
     CommonModule,
@@ -18,7 +19,9 @@ import { MatButtonModule, MatCheckboxModule, MatSelectModule,  MatDatepickerModu
     MatNativeDateModule,
     MatCheckboxModule,
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    HttpClient
   ],
   declarations: [SignupComponent],
   exports: [

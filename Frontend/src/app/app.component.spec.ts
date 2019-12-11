@@ -4,6 +4,8 @@ import { APP_BASE_HREF } from '@angular/common';
 import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
 import { RouterTestingModule } from '@angular/router/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -12,9 +14,10 @@ describe('AppComponent', () => {
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
-        imports: [AppModule, RouterTestingModule],
+        imports: [AppModule, RouterTestingModule, HttpClient],
         declarations: [AppComponent],
-        providers: [
+        schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+        providers: [HttpClient,
           { provide: APP_BASE_HREF, useValue: '/' },
         ]
       }).compileComponents();

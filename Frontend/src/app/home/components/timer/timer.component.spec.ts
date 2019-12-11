@@ -1,9 +1,11 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { DebugElement, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
 
 import { TimerComponent } from './timer.component';
+import { HttpClient } from '@angular/common/http';
 
 describe('TimerComponent', () => {
   let component: TimerComponent;
@@ -11,7 +13,10 @@ describe('TimerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TimerComponent ]
+      declarations: [ TimerComponent ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+      providers: [HttpClient ]
+
     })
     .compileComponents();
   }));

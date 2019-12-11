@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { DebugElement, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { UsersManagerComponent } from './users-manager.component';
 
@@ -9,7 +10,8 @@ describe('UsersManagerComponent', () => {
     beforeEach(
         async(() => {
             TestBed.configureTestingModule({
-                declarations: [UsersManagerComponent]
+                declarations: [UsersManagerComponent],
+                schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
             }).compileComponents();
         })
     );

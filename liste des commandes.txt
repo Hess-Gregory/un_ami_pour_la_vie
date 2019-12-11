@@ -10,7 +10,15 @@ git commit -m "commenter le commit"
 
 
 PROJET UAPLV
+cd c:\www/unamipourlavie.be/backend
+
 pm2 start server.js --name NodeServer --log-date-format 'DD/MM HH:mm:ss' --watch
+
+cd c:\www/unamipourlavie.be/frontend
 ng serve --proxy-config proxy.conf.json --open --port 4300
 ou NPM START
+
+
+
+
 sequelize-auto -o "./models" -d un_ami_pour_la_vie -h localhost -u root -p 3306  -e mysql

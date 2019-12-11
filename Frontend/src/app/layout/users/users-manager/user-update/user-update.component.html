@@ -3,6 +3,7 @@
                 <ngb-alert [type]="alert.type" (close)="closeAlert(alert)">Erreur {{ErrorStatus}} : {{ErrorstatusText}}</ngb-alert>
             </p>
     </div>
+    <form [formGroup]="userDetailsForm" (ngSubmit)="onSubmitUserDetails(userDetailsForm.value)">
     <div class="container-fluid">
 
             <div class='text-center'>
@@ -46,27 +47,44 @@
                                 <div class='input-group-prepend'>
                                     <span class='input-group-text'>@</span>
                                 </div>
-                                <input class='form-control' type='text' [(ngModel)]="users.username"   required>
+                                <input value='{{users.username}}' matInput maxlength="25" formControlName="username"  class="form-control form-control-user" placeholder="Nom d'utilisateur" required>
                             </div>
+                             <mat-error *ngFor="let validation of validation_messages.username">
+                                    <mat-error class="error-message" *ngIf="userDetailsForm.get('username').hasError(validation.type) &&
+                                    (userDetailsForm.get('username').dirty || userDetailsForm.get('username').touched)">
+                                      {{validation.message}}
+                                    </mat-error>
+                              </mat-error>
                         </div>
                         <div class='mb-3 mb-3a col-md-12'>
                             <label for='email'>Email </label>
-                            <input  type='email' class='form-control' value='{{users.email}}'  required>
+                            <input  value='{{users.email}}'  matInput formControlName="email" class="form-control form-control-user" placeholder="Adresse mail" required>
+                                <mat-error *ngFor="let validation of validation_messages.email">
+                                    <mat-error class="error-message" *ngIf="userDetailsForm.get('email').hasError(validation.type) &&
+                                    (userDetailsForm.get('email').dirty || userDetailsForm.get('email').touched)">
+                                        {{validation.message}}
+                                    </mat-error>
+                                </mat-error>
+
                         </div>
                         <div class='row row100 col-md-12 pr-0'>
                             <div class='col-md-8 mb-3a mb-3'>
-                                <label  for='ROLE_idROLE'>Rôle</label>
-                                <input   type='text' value='{{status.roleName}}' class='form-control' name='ROLE_idROLE' >
-
+                                <label for='role'>Role : </label>
+                                    <select name='role' class="form-control form-control-user" >
+                                        <option>{{status.roleName}}</option>
+                                        <option *ngFor="let role of roles" [value]="role"> {{role.roleName}}</option>
+                                    </select>
                             </div>
                             <div class='col-md-4 mb-3a mb-3 pr-0'>
-                                <label for='isActive'>Status du compte</label>
-                                <input   name='isActive' class='form-control' value='{{status.status}}'  required>
-
+                                <label for='isActive'>Status du compte :</label>
+                                <select name='isActive' class="form-control form-control-user" >
+                                    <option>{{status.status}}</option>
+                                    <option *ngFor="let activated of activateds" [value]="activated">{{activated.name}}</option>
+                                </select>
                             </div>
                         </div>
                     </div>
-                    <hr class='mb-4'>
+                   <hr class='mb-4'>
                     <h4 class='mb-3'>
                         Informations générales
                     </h4>
@@ -89,7 +107,14 @@
                         <div class='row row100  col-md-12 pr-0'>
                             <div class='col-md-4 mb-3'>
                                 <label  for='birthday'>Date de naissance</label>
-                                <input   class='form-control' value="{{users.birthday| date:'d MMMM y'}}" type='$birthdaytype' name='birthday' >
+<!--<input matInput formControlName="birthday" [matDatepicker]="picker" value='{{users.birthday| date:'d MMMM y'}}' placeholder="Choose a date">
+-->
+
+                                <mat-form-field>
+                                        <input matInput class='form-control'  [matDatepicker]="picker" placeholder="Choose a date">
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
                             </div>
                             <div class='col-md-8 mb-3 pr-0'>
                                 <label for='sexGenre'>Sexe</label>
@@ -218,8 +243,9 @@
                             <label for='longDesc'>Autre information</label>
                             <textarea class="form-control" value='{{users.longDesc}}' name='longDesc' rows="7" ></textarea>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
     </div>
+    </form>
 

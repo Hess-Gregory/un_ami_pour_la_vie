@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { DebugElement, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { UsersComponent } from './users.component';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 describe('UsersComponent', () => {
     let component: UsersComponent;
@@ -9,7 +12,9 @@ describe('UsersComponent', () => {
     beforeEach(
         async(() => {
             TestBed.configureTestingModule({
-                declarations: [UsersComponent]
+                declarations: [UsersComponent],
+                schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+                providers: [HttpClient, Router ]
             }).compileComponents();
         })
     );

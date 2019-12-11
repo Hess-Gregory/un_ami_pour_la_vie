@@ -1,9 +1,11 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { DebugElement, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
 
 import { UserUpdateComponent } from './user-update.component';
+import { Router } from '@angular/router';
 
 describe('UserUpdateComponent', () => {
   let component: UserUpdateComponent;
@@ -11,7 +13,9 @@ describe('UserUpdateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserUpdateComponent ]
+      declarations: [ UserUpdateComponent ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+      providers: [Router ]
     })
     .compileComponents();
   }));

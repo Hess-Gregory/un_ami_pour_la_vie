@@ -1,9 +1,11 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { DebugElement, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
 
 import { UserDetailComponent } from './user-detail.component';
+import { HttpClient } from '@angular/common/http';
 
 describe('UserDetailComponent', () => {
   let component: UserDetailComponent;
@@ -11,7 +13,9 @@ describe('UserDetailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserDetailComponent ]
+      declarations: [ UserDetailComponent ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+      providers: [HttpClient ]
     })
     .compileComponents();
   }));

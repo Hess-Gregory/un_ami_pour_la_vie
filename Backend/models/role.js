@@ -1,7 +1,7 @@
-/* jshint indent: 2 */
+'use strict';
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('role', {
+  const role =  sequelize.define('role', {
     idROLE: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
@@ -13,6 +13,8 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     }
   }, {
+    timestamps: false,
     tableName: 'role'
   });
+  return role;
 };

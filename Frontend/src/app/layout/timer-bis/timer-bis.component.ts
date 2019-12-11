@@ -3,7 +3,7 @@ import * as moment from 'moment';
 import * as jwt_decode from 'jwt-decode';
 import { AuthService } from './../../shared/services/auth.service';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 
 
 @Component({

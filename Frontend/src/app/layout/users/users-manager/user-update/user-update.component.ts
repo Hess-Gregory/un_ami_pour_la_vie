@@ -1,6 +1,5 @@
-import { Component, OnDestroy, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, ElementRef,  ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
-import {UsernameValidator, PasswordValidator, ParentErrorStateMatcher} from './../../../../shared/validators';
 import { routerTransition } from '../../../../router.animations';
 import { User } from './../../../../shared/exports';
 import {Observable, of, Subject} from 'rxjs';
@@ -8,8 +7,10 @@ import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { UserUpdateService } from './user-update.service';
+import { Country, UsernameValidator, ParentErrorStateMatcher, PhoneValidator } from './../../../../shared/validators';
+import { HttpClient } from '@angular/common/http';
+import { MenuItem } from 'primeng/api';
 declare let $: any;
-
 export interface Error {
     objStringError: string;
     objError: any;
@@ -20,10 +21,10 @@ export interface Error {
 @Component({
   selector: 'app-user-update',
   templateUrl: './user-update.component.html',
-  styleUrls: ['./user-update.component.scss']
+  styleUrls: ['./user-update.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class UserUpdateComponent implements OnDestroy, OnInit {
-
 
     previewUrl: any = null;
     [x: string]: any;
@@ -36,17 +37,73 @@ export class UserUpdateComponent implements OnDestroy, OnInit {
     public error: Error;
     alerts: Array<any> = [];
     users: any = [];
+    roles: any = [];
     status: any = [];
     dtTrigger: Subject<any> = new Subject();
     fileData: File = null;
     fileUploadProgress: string = null;
     uploadedFilePath: string = null;
+    public erreur: string;
+    http: any;
+    userDetailsForm: FormGroup;
+    accountDetailsForm: FormGroup;
+    country_phone_group: FormGroup;
+    parentErrorStateMatcher = new ParentErrorStateMatcher();
+    public userRoleId: any;
+    selected = this.userRoleId;
+    genders = [
+      'Male',
+      'Female',
+      'Other'
+    ];
 
+    countries = [
+      new Country('BE', 'Uruguay'),
+      new Country('FR', 'United States')
+    ];
+    activateds = [
 
-  constructor(private userservice: UserUpdateService, private router: Router) {
+            {isActive: '0', name: 'Gelé'},
+            {isActive: '1', name: 'Activé'}
+
+      ];
+    validation_messages = {
+        'username': [
+        { type: 'required', message: 'Le nom d\'utilisateur est obligatoire.' },
+        { type: 'minlength', message: 'Le nom d\'utilisateur doit comporter au moins 5 caractères.' },
+        { type: 'maxlength', message: 'Le nom d\'utilisateur ne doit pas dépasser 25 caractères.' },
+        { type: 'pattern', message: 'Votre nom d\'utilisateur ne doit contenir que des chiffres,des lettres, les espacements doivent être remplacés par: "-" "_".' },
+        { type: 'validUsername', message: 'Votre nom d\'utilisateur a déjà été pris.' }
+        ],
+        'firstName': [
+        { type: 'required', message: 'Le prénom est obligatoire' }
+        ],
+        'lastName': [
+        { type: 'required', message: 'Le nom de famille est obligatoire' },
+        ],
+        'email': [
+        { type: 'required', message: 'L\'adresse mail est obligatoire.' },
+        { type: 'pattern', message: 'Entrez une adresse mail valable.' }
+        ],
+      'bio': [
+        { type: 'maxlength', message: 'Bio cannot be more than 256 characters long' },
+      ],
+      'gender': [
+        { type: 'required', message: 'Please select your gender' },
+      ],
+      'birthday': [
+        { type: 'required', message: 'Please insert your birthday' },
+      ],
+      'phone': [
+        { type: 'required', message: 'Phone is required' },
+        { type: 'validCountryPhone', message: 'Phone incorrect for the country selected' }
+      ]
+    };
+  constructor(private userservice: UserUpdateService, private router: Router, private fb: FormBuilder) {
 
     this.getUsers();
     this.getStatus();
+    this.getRole();
 
     this.alerts.push( {
         id: 3,
@@ -54,94 +111,72 @@ export class UserUpdateComponent implements OnDestroy, OnInit {
         message: 'this.Errormessage',
         });
 
-
-        $(document).ready( function() {
-
-        $('#city').attr('disabled', 'disabled');
-
-        });
-        $('#city').focus( function() {
-
-        $(this).autocomplete( 'search', '' );
-
-        });
-
-        // OnKeyDown Function
-        $('#zip').keyup(function() {
-        const zip_in = $(this);
-        const zip_box = $('#zipbox');
-
-        if (zip_in.val().length < 4) {
-            zip_box.removeClass('error success');
-        } else if ( zip_in.val().length > 4) {
-            zip_box.addClass('error').removeClass('success');
-        } else if ((zip_in.val().length === 4) ) {
-
-            // Make HTTP Request
-            $.ajax({
-            url: 'http://api.zippopotam.us/be/' + zip_in.val(),
-            cache: false,
-            dataType: 'json',
-            type: 'GET',
-            success: function(result: { [x: string]: { [x: string]: { [x: string]: any; }; }; }, success: any) {
-                // Enable the city box
-                $('#city').removeAttr('disabled');
-
-                // FR Post Code Returns multiple location
-                const suggestions = [];
-                for ( const ii in result['places']) {
-                suggestions
-                .push(result['places'][ii]['place name']);
-                }
-                $('#city').autocomplete({ source : suggestions , delay: 50, disabled: false, minLength: 0 });
-                if ( suggestions.length > 0) {
-                $('#city').placeholder = suggestions[0];
-                }
-                zip_box.addClass('success').removeClass('error');
-            },
-            error: function(result: any, success: any) {
-                zip_box.removeClass('success').addClass('error');
-            }
-            });
-        }
-        });
-
+        console.log('2:', this.userRoleId);
+        console.log('3:', this.selected);
     }
 
-ngOnInit() {}
+ngOnInit() {
+    this.createForms();
 
-  onUnlock() {
-    this.locked = false;
-  }
+}
 
-  onSave() {
-    this.locked = true;
-    this.create = false;
-    this.previewUrl = false;
-  }
-  onCreate() {
-    this.create = true;
-  }
-  onCancel() {
-    this.locked = true;
-    this.create = false;
-    this.previewUrl = false;
-  }
+    createForms() {
 
-  onDelete() {
-    this.locked = true;
-    this.previewUrl = false;
-  }
+        const country = new FormControl(this.countries[0], Validators.required);
+        const phone = new FormControl('', {
+            validators: Validators.compose([
+                Validators.required,
+                PhoneValidator.validCountryPhone(country)
+            ])
+        });
+        this.country_phone_group = new FormGroup({
+          country: country,
+          phone: phone
+        });
 
-  onClose() {
-    this.locked = true;
-    this.previewUrl = false;
-    this.router.navigate(['admin/users/all-users']);
-  }
+        // user details form validations
+        this.userDetailsForm = this.fb.group({
+            bio: ['Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s', Validators.maxLength(256)],
+            birthday: ['', Validators.required],
+            gender: new FormControl(this.genders[0], Validators.required),
+            country_phone: this.country_phone_group,
+            firstName: ['', Validators.required ],
+            lastName: ['', Validators.required ],
+            username: new FormControl('', Validators.compose([
+                UsernameValidator.validUsername,
+                Validators.maxLength(25),
+                Validators.minLength(5),
+                Validators.pattern('^[a-zA-Z0-9]+([a-zA-Z0-9](_|-)[a-zA-Z0-9])*[a-zA-Z0-9]+$'),
+                Validators.required
+            ])),
+            email: new FormControl('', Validators.compose([
+                Validators.required,
+                Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+            ]))
+        });
 
-  onFrozen() {
-    this.locked = true;
-  }
+      }
+
+
+
+      onSubmitUserDetails(value: any) {
+        console.log('il est validé');
+        console.log(value);
+
+        this.userservice.update(
+          value.username,
+          value.email,
+          value.firstName,
+          value.lastName
+          )
+        .pipe(first())
+      .subscribe(
+           result => this.router.navigate(['users']),
+          err => this.erreur = 'Il semble avoir un problème'
+        );
+    console.log(localStorage.setItem('username', JSON.stringify(value)));
+
+ }
 
   getUsers() {
 
@@ -152,6 +187,7 @@ ngOnInit() {}
             this.parseUsers = JSON.parse(this.stringifyUsers);
             this.adressbook = this.parseUsers.adressbook;
             this.user_id = this.parseUsers.id;
+            this.user_role = this.parseUsers.role;
             this.dtTrigger.next();
             },
         error => {
@@ -171,7 +207,30 @@ ngOnInit() {}
         this.userservice.getStatus().subscribe(
         response => {
             this.status = response;
+            this.stringifyStatus = JSON.stringify(this.status);
+            this.parseStatus = JSON.parse(this.stringifyStatus);
+            this.userRoleId = this.parseStatus.idROLE;
+            console.log('1:', this.userRoleId);
 
+            this.dtTrigger.next();
+            },
+        error => {
+            this.objStringError = JSON.stringify(error);
+            this.objError = JSON.parse(this.objStringError);
+            this.ErrorStatus = this.objError.status;
+            this.ErrorstatusText = this.objError.statusText;
+            this.Errormessage = this.objError.message;
+            }
+        );
+    }
+    getRole() {
+        this.userservice.getRole().subscribe(
+        response => {
+            this.roles = response;
+            this.stringifyRole = JSON.stringify(this.roles);
+            this.parseRole = JSON.parse(this.stringifyRole);
+            this.roleListName = this.parseRole.roleName;
+            this.roleListId = this.parseRole.idROLE;
             this.dtTrigger.next();
             },
         error => {

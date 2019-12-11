@@ -65,7 +65,15 @@
 .fa.invalid {
   color: #a94442;
 }
-
+.custom-control{
+    text-align: center;
+    width: 25%;
+    background-color: #0abde9;
+    border-radius: 9px;
+    margin: 0 auto;
+    color: #fff;
+    padding: 2px;
+}
 .userActionButton {
   display: inline-block;
   border-radius: 15px;
@@ -165,4 +173,32 @@ margin-right: 10px;
       transition: 2s;
     }
   }
+}
+.error-message{
+    color: red;
+    text-align: center;
+  }
+  .form-control.mat-input-element.mat-form-field-autofill-control.cdk-text-field-autofill-monitored.ng-untouched.ng-invalid.ng-dirty,
+.form-control.mat-input-element.mat-form-field-autofill-control.cdk-text-field-autofill-monitored.ng-dirty.ng-touched.ng-invalid,
+.form-control.mat-input-element.mat-form-field-autofill-control.cdk-text-field-autofill-monitored.ng-pristine.ng-invalid.ng-touched
+{
+  border: 1px solid red;
+  background-color: rgba(125, 0, 0, 0.1);
+}
+.form-control.mat-input-element.mat-form-field-autofill-control.cdk-text-field-autofill-monitored.ng-untouched.ng-dirty.ng-valid,
+.form-control.mat-input-element.mat-form-field-autofill-control.cdk-text-field-autofill-monitored.ng-dirty.ng-touched.ng-valid
+{
+  border: 1px solid green;
+  background-color: rgba(0, 125, 0, 0.1);
+}
+.msgError{color: red}
+form.user .form-control-user {
+    font-size: 0.8rem;
+    border-radius: 10rem;
+    padding: 1.5rem 1rem;
+}
+form.user .btn-user {
+    font-size: 0.8rem;
+    border-radius: 10rem;
+    padding: 0.75rem 1rem;
 }

@@ -138,7 +138,7 @@ module.exports = {
             return res.status(200).send({message:'Utilisateur supprimé'});
         })
         .catch(() => {
-            return res.status(httpStatus.NOT_FOUND).send('UUtilisateur non trouvé');
+            return res.status(httpStatus.NOT_FOUND).send('Utilisateur non trouvé');
         })
     },
 

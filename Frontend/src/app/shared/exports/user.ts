@@ -8,3 +8,7 @@ export class User {
     isActive: boolean;
     roleName: number;
   }
+  export class Role {
+    idROLE: number;
+    roleName: number;
+  }
