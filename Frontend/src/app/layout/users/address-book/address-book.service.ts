@@ -11,7 +11,7 @@ export class AddressBookService {
     constructor(private http: HttpClient) { }
 
     getUsers() {
-        return this.http.get<User[]>('/api/users');
+        return this.http.get<User[]>('/api/admins/user');
       }
 
 }
