@@ -135,7 +135,7 @@ export function tokenGetter() { return localStorage.getItem('access_token'); }
     ],
     declarations: [AppComponent],
     exports: [
-      DataTableDirective, HttpClient
+      DataTableDirective
 
    ],
     providers: [ AuthService, AuthGuard, Globals, { provide: LOCALE_ID, useValue: 'fr-FR' }],
