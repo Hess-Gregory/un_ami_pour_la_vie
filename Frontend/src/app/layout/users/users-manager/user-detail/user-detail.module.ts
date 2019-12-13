@@ -9,6 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { UserDetailComponent } from './user-detail.component';
 import { UserDetailRoutingModule } from './user-detail-routing.module';
+import { UserControlsModule } from '../user-controls/user-controls.module';
 
 @NgModule({
     imports: [
@@ -24,7 +25,8 @@ import { UserDetailRoutingModule } from './user-detail-routing.module';
         MatNativeDateModule,
         MatCheckboxModule,
         MatSelectModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        UserControlsModule
 
     ],
     declarations: [

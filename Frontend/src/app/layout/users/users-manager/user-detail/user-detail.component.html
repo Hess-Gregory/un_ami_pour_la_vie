@@ -19,7 +19,7 @@
                     <p  class='lead'>
                     Inscrit depuis {{ users.created_date| date:'EEEE, d MMMM y à h:mm' }}
                     </p><br>
-
+<app-user-controls></app-user-controls>
             </div>
             <div class='row user'>
                 <div  class='col-md-12'>
@@ -35,7 +35,7 @@
                                 <div class='input-group-prepend'>
                                     <span class='input-group-text'>@</span>
                                 </div>
-                                <input class='form-control' type='text' [(ngModel)]="users.username"   disabled required>
+                                <input class='form-control' type='text' value='{{users.username}}'   disabled required>
                             </div>
                         </div>
                         <div class='mb-3 mb-3a col-md-12'>
@@ -60,7 +60,7 @@
                         Informations générales
                     </h4>
                     <div class="custom-control custom-switch" >
-                        <input type="checkbox"[(ngModel)]="adressbook" data-toggle="toggle" class="custom-control-input" id="customSwitches"  disabled>
+                        <input type="checkbox" value='{{users.adressbook}}' data-toggle="toggle" class="custom-control-input" id="customSwitches"  disabled>
                         <label class="custom-control-label" for="customSwitches">Ajouter au carnet d'adresse</label>
                     </div>
                     <hr class='mb-4'>
