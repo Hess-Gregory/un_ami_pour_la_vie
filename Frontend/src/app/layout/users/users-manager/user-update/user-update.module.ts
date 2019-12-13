@@ -48,6 +48,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import {TabMenuModule} from 'primeng/tabmenu';
+import { UserControlsModule } from '../user-controls/user-controls.module';
 @NgModule({
     imports: [
         CommonModule,
@@ -99,7 +100,8 @@ import {TabMenuModule} from 'primeng/tabmenu';
         MatTreeModule,
         PortalModule,
         ScrollingModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        UserControlsModule
 
     ],
     declarations: [

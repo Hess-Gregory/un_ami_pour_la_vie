@@ -46,26 +46,26 @@ export class UserUpdateComponent implements OnDestroy, OnInit {
     public erreur: string;
     http: any;
     userDetailsForm: FormGroup;
-    accountDetailsForm: FormGroup;
     country_phone_group: FormGroup;
     parentErrorStateMatcher = new ParentErrorStateMatcher();
     public userRoleId: any;
     selected = this.userRoleId;
-    genders = [
-      'Male',
-      'Female',
-      'Other'
-    ];
 
-    countries = [
-      new Country('BE', 'Uruguay'),
-      new Country('FR', 'United States')
+    bookadress: any ;
+
+    sexGenre = [
+      'Homme',
+      'Femme',
+      'Autre'
     ];
+    // countries = [
+    //   new Country('BE', 'Uruguay'),
+    //   new Country('FR', 'United States')
+    // ];
     activateds = [
 
             {isActive: '0', name: 'Gelé'},
             {isActive: '1', name: 'Activé'}
-
       ];
     validation_messages = {
         'username': [
@@ -110,9 +110,17 @@ export class UserUpdateComponent implements OnDestroy, OnInit {
         type: 'danger',
         message: 'this.Errormessage',
         });
+        if (this.adressbook) {
+            this.bookadress = 1;
+            console.log(this.bookadress);
 
-        console.log('2:', this.userRoleId);
-        console.log('3:', this.selected);
+        } else {
+            this.bookadress = 0;
+            console.log(this.bookadress);
+        }
+
+
+
     }
 
 ngOnInit() {
@@ -122,37 +130,72 @@ ngOnInit() {
 
     createForms() {
 
-        const country = new FormControl(this.countries[0], Validators.required);
-        const phone = new FormControl('', {
-            validators: Validators.compose([
-                Validators.required,
-                PhoneValidator.validCountryPhone(country)
-            ])
-        });
-        this.country_phone_group = new FormGroup({
-          country: country,
-          phone: phone
-        });
+        // const country = new FormControl(this.countries[0]);
+        // const phone = new FormControl('', {
+        //     validators: Validators.compose([
+        //         Validators.required,
+        //         PhoneValidator.validCountryPhone(country)
+        //     ])
+        // });
+        // this.country_phone_group = new FormGroup({
+        //   country: country,
+        //   phone: phone
+        // });
 
         // user details form validations
         this.userDetailsForm = this.fb.group({
-            bio: ['Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s', Validators.maxLength(256)],
-            birthday: ['', Validators.required],
-            gender: new FormControl(this.genders[0], Validators.required),
-            country_phone: this.country_phone_group,
-            firstName: ['', Validators.required ],
-            lastName: ['', Validators.required ],
-            username: new FormControl('', Validators.compose([
-                UsernameValidator.validUsername,
-                Validators.maxLength(25),
-                Validators.minLength(5),
-                Validators.pattern('^[a-zA-Z0-9]+([a-zA-Z0-9](_|-)[a-zA-Z0-9])*[a-zA-Z0-9]+$'),
-                Validators.required
-            ])),
-            email: new FormControl('', Validators.compose([
-                Validators.required,
-                Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
-            ]))
+
+        /* Login et Role */
+        username: new FormControl('', Validators.compose([
+            UsernameValidator.validUsername,
+            Validators.maxLength(25),
+            Validators.minLength(5),
+            Validators.pattern('^[a-zA-Z0-9]+([a-zA-Z0-9](_|-)[a-zA-Z0-9])*[a-zA-Z0-9]+$'),
+            Validators.required
+        ])),
+        email: new FormControl('', Validators.compose([
+            Validators.required,
+            Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+        ])),
+        role: ['' ],
+        isActive: ['' ],
+
+        /* Informations générales */
+        adressbook: ['' ],
+        firstName: ['' ],
+        lastName: ['' ],
+        birthday: ['' ],
+        sexGenre: ['' ],
+
+        /* Adresse Privée */
+        adPvNum: ['' ],
+        adPvStreet: ['' ],
+        adPvCountry: ['' ],
+        adPvZip: ['' ],
+        adPvCity: ['' ],
+
+         /* Adresse Privée */
+         firm: ['' ],
+         tva: ['' ],
+         adProNum: ['' ],
+         adProStreet: ['' ],
+         adProCountry: ['' ],
+         adProZip: ['' ],
+         adProCity: ['' ],
+
+         /* Contact */
+         contPhonePv: ['' ],
+         contPhoneGsm: ['' ],
+         contPhonePro: ['' ],
+         contFacebook: ['' ],
+         contWebsite: ['' ],
+
+         /*  Autres informations */
+         asbl: ['' ],
+         shortDesc: ['' ],
+         longDesc: ['' ]
+
+
         });
 
       }
@@ -161,20 +204,51 @@ ngOnInit() {
 
       onSubmitUserDetails(value: any) {
         console.log('il est validé');
-        console.log(value);
+        console.log('value: ' , value);
+        if (value.adressbook) {
+            value.adressbook = 1;
+        } else {
+            value.adressbook = 0;
+        }
 
         this.userservice.update(
-          value.username,
-          value.email,
-          value.firstName,
-          value.lastName
-          )
-        .pipe(first())
-      .subscribe(
-           result => this.router.navigate(['users']),
-          err => this.erreur = 'Il semble avoir un problème'
-        );
-    console.log(localStorage.setItem('username', JSON.stringify(value)));
+    /* Login et Role */
+    value.username,
+    value.email,
+    value.role,
+    value.isActive,
+    /* Informations générales */
+    value.adressbook,
+    value.firstName,
+    value.lastName,
+    value.birthday,
+    value.sexGenre,
+    /* Adresse Privée */
+    value.adPvNum,
+    value.adPvStreet,
+    value.adPvCountry,
+    value.adPvZip,
+    value.adPvCity,
+     /* Adresse Privée */
+     value.firm,
+     value.tva,
+     value.adProNum,
+     value.adProStreet,
+     value.adProCountry,
+     value.adProZip,
+     value.adProCity,
+     /* Contact */
+     value.contPhonePv,
+     value.contPhoneGsm,
+     value.contPhonePro,
+     value.contFacebook,
+     value.contWebsite,
+    /*  Autres informations */
+    value.asbl,
+    value.shortDesc,
+    value.longDesc
+          );
+    // console.log(localStorage.setItem('username', JSON.stringify(value)));
 
  }
 
@@ -210,7 +284,6 @@ ngOnInit() {
             this.stringifyStatus = JSON.stringify(this.status);
             this.parseStatus = JSON.parse(this.stringifyStatus);
             this.userRoleId = this.parseStatus.idROLE;
-            console.log('1:', this.userRoleId);
 
             this.dtTrigger.next();
             },
