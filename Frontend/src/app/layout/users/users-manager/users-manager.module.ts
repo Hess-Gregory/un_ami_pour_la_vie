@@ -6,6 +6,10 @@ import { UsersManagerComponent } from './users-manager.component';
 import { RouterModule } from '@angular/router';
 import { UserControlsModule } from './user-controls/user-controls.module';
 import { UserControlsComponent } from './user-controls/user-controls.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
+import { MatCheckboxModule, MatNativeDateModule, MatInputModule, MatButtonModule, MatDatepickerModule, MatSelectModule } from '@angular/material';
 
 
 
@@ -17,7 +21,7 @@ import { UserControlsComponent } from './user-controls/user-controls.component';
         RouterModule
     ],
     declarations: [
-        UsersManagerComponent, UserControlsComponent
+        UsersManagerComponent
      ]
 })
 export class UsersManagerModule {}
