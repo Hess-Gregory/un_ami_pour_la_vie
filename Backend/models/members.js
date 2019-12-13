@@ -12,6 +12,16 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: '0'
     },
+    username: {
+      type: DataTypes.STRING(60),
+      allowNull: false,
+      primaryKey: true
+    },
+    email: {
+      type: DataTypes.STRING(100),
+      allowNull: true,
+      unique: true
+    },
     isActive: {
       type: DataTypes.INTEGER(1),
       allowNull: true,
@@ -36,7 +46,7 @@ module.exports = function(sequelize, DataTypes) {
     tableName: 'members'
   });
   
-  
+
   members.prototype.validPassword = function (password) {
     return bcrypt.compareSync(password, this.password);
   };
