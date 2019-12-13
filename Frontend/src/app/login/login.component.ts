@@ -17,7 +17,7 @@ export interface Error {
     selector: 'app-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss'],
-    providers: [AuthService, HttpClient],
+    providers: [AuthService],
     animations: [routerTransition()]
 })
 export class LoginComponent implements OnInit {

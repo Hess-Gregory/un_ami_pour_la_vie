@@ -14,8 +14,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
          FormsModule,
          LoginRoutingModule,
          NgbModule,
-         HttpClientModule,
-         HttpClient
+         HttpClientModule
 
     ],
 
