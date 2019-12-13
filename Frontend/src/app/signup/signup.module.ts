@@ -20,8 +20,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
     MatCheckboxModule,
     MatSelectModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    HttpClient
+    HttpClientModule
   ],
   declarations: [SignupComponent],
   exports: [
