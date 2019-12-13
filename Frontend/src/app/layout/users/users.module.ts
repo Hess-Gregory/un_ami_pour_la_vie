@@ -15,8 +15,7 @@ import { RouterModule } from '@angular/router';
         DataTablesModule,
         FormsModule,
         NgbModule,
-        HttpClientModule,
-        RouterModule
+        HttpClientModule
 
     ],
     declarations: [
