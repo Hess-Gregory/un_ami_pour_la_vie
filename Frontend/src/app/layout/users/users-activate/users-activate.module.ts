@@ -6,9 +6,7 @@ import { DataTableDirective, DataTablesModule } from 'angular-datatables';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { JumboUserComponent } from '../services/jumbo-user/jumbo-user.component';
 import { JumboUserModule } from '../services/jumbo-user/jumbo-user.module';
-
 @NgModule({
     imports: [
         CommonModule,
