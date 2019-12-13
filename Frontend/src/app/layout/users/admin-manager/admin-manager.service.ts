@@ -12,7 +12,7 @@ export class AdminManagerService {
     constructor(private http: HttpClient) { }
 
     getAdmins() {
-      return this.http.get<Admin[]>('/api/admins');
+      return this.http.get<Admin[]>('/api/admins/adminlist');
     }
     getUsers() {
         return this.http.get<User[]>('/api/users');
