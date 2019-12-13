@@ -7,6 +7,7 @@ export class User {
     password: string;
     isActive: boolean;
     roleName: number;
+    status: string;
   }
   export class Role {
     idROLE: number;
