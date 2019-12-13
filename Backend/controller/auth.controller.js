@@ -2,7 +2,8 @@ const jwt = require('jsonwebtoken');
 const httpStatus = require('http-status');
 const APIError = require('../helper/APIError');
 const config = require('../config');
-const User = require('../controller/login.controller');
+const Login = require('../controller/login.controller');
+const Register = require('../controller/user.controller');
 
 module.exports = {
 
@@ -15,7 +16,7 @@ module.exports = {
     login(req, res, next) { 
     //console.log(User.generatePassword(req.body.password));
 
-        User.getByEmail(req.body.email)
+        Login.getByEmail(req.body.email)
             .then((foundUser) => {
 
                 if (!foundUser) { 
@@ -41,26 +42,29 @@ module.exports = {
     register(req, res, next) {
         console.log("getByEmail: ", req.body);       
 
-        User.getByEmail(req.body.email)
+        Register.getByEmail(req.body.email)
             .then((foundUser) => {
                 if (foundUser) {
                     return Promise.reject(new APIError('L\'email doit être unique', httpStatus.CONFLICT, true));
                   
                 }
-                req.body.password = User.generatePassword(req.body.password);
-                return User.create(req.body);  
+                req.body.password = Register.generatePassword(req.body.password);
+                console.log('req.body:', req.body);
+
+                   
+                return Register.create(req.body);  
             })
             .then((savedUser) => {
-                const token = jwt.sign(savedUser.safeModel(), config.jwtSecret, {
-                    expiresIn: config.jwtExpiresIn,
-                });
+                // const token = jwt.sign(savedUser.safeModel(), config.jwtSecret, {
+                //     expiresIn: config.jwtExpiresIn,
+                // });
                 if(!savedUser.id){
                     return res.status(200).send({
                         message: savedUser.message,
                     });
                 }else {
                     return res.status(200).send({
-                        token: token,
+                        // token: token,
                         id: savedUser.id,
                         username: savedUser.username,
                         email: savedUser.email,
