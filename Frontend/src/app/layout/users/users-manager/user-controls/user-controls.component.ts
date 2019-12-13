@@ -17,6 +17,8 @@ export class UserControlsComponent implements OnInit {
     locked = true;
     create = false;
     previouspage = true;
+    userDetailsForm: any;
+    userForm: any;
 
   constructor(
       public router: Router,
@@ -45,21 +47,111 @@ export class UserControlsComponent implements OnInit {
     this.router.navigate(['admin/users/user-manager/user-update']);
   }
 
-  onSave(formData: any) {
-      if (this.create) {
-        this.createService.addFormSubmitted.emit(formData);
-      }
-      if (this.create) {
-        this.updateService.editFormSubmitted.emit(formData);
-      }
-      this.locked = true;
-    this.create = false;
+  onSubmitUserDetails(value: any)  {
+
+
+    //   if (this.create) {
+    //     console.log('la création est validé');
+    //     console.log('value: ' , value);
+    //     if (value.adressbook) {
+    //         value.adressbook = 1;
+    //     } else {
+    //         value.adressbook = 0;
+    //     }
+
+    //     this.createService.addUser(
+    //     /* Login et Role */
+    //     value.username,
+    //     value.email,
+    //     value.role,
+    //     value.isActive,
+    //     /* Informations générales */
+    //     value.adressbook,
+    //     value.firstName,
+    //     value.lastName,
+    //     value.birthday,
+    //     value.sexGenre,
+    //     /* Adresse Privée */
+    //     value.adPvNum,
+    //     value.adPvStreet,
+    //     value.adPvCountry,
+    //     value.adPvZip,
+    //     value.adPvCity,
+    //      /* Adresse Privée */
+    //      value.firm,
+    //      value.tva,
+    //      value.adProNum,
+    //      value.adProStreet,
+    //      value.adProCountry,
+    //      value.adProZip,
+    //      value.adProCity,
+    //      /* Contact */
+    //      value.contPhonePv,
+    //      value.contPhoneGsm,
+    //      value.contPhonePro,
+    //      value.contFacebook,
+    //      value.contWebsite,
+    //     /*  Autres informations */
+    //     value.asbl,
+    //     value.shortDesc,
+    //     value.longDesc
+    //       );
+    //   } if  (!this.create) {
+    //     console.log('la mise à jour est validé');
+    //     console.log('value: ' , value);
+    //     if (value.adressbook) {
+    //         value.adressbook = 1;
+    //     } else {
+    //         value.adressbook = 0;
+    //     }
+
+    //     this.updateService.update(
+    //     /* Login et Role */
+    //     value.username,
+    //     value.email,
+    //     value.role,
+    //     value.isActive,
+    //     /* Informations générales */
+    //     value.adressbook,
+    //     value.firstName,
+    //     value.lastName,
+    //     value.birthday,
+    //     value.sexGenre,
+    //     /* Adresse Privée */
+    //     value.adPvNum,
+    //     value.adPvStreet,
+    //     value.adPvCountry,
+    //     value.adPvZip,
+    //     value.adPvCity,
+    //      /* Adresse Privée */
+    //      value.firm,
+    //      value.tva,
+    //      value.adProNum,
+    //      value.adProStreet,
+    //      value.adProCountry,
+    //      value.adProZip,
+    //      value.adProCity,
+    //      /* Contact */
+    //      value.contPhonePv,
+    //      value.contPhoneGsm,
+    //      value.contPhonePro,
+    //      value.contFacebook,
+    //      value.contWebsite,
+    //     /*  Autres informations */
+    //     value.asbl,
+    //     value.shortDesc,
+    //     value.longDesc
+    //       );
+    //   }
+        this.locked = true;
+        this.create = false;
 
   }
   onCreate() {
     this.create = true;
     this.router.navigate(['admin/users/user-manager/user-add']);
   }
+
   onCancel() {
     this.locked = true;
     this.create = false;
