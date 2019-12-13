@@ -78,8 +78,10 @@ module.exports = {
     update(req, res, next) {;
         console.log('Les données a envoyer vers MySQL : ', req.body);
         return user.update({
-                email: req.body.email,
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
                 username: req.body.username,
+                email: req.body.email,
                 //password: User.generatePassword(req.body.password),
                 isActive: req.body.isActive,
                 role: req.body.role,
@@ -88,6 +90,7 @@ module.exports = {
                 lastName: req.body.lastName,
                 birthday: req.body.birthday,
                 sexGenre: req.body.sexGenre,
+                adressbook: req.body.adressbook,
                 adPvStreet: req.body.adPvStreet,
                 adPvNum: req.body.adPvNum,
                 adPvZip: req.body.adPvZip,
@@ -107,9 +110,7 @@ module.exports = {
                 contWebsite: req.body.contWebsite,
                 shortDesc: req.body.shortDesc,
                 longDesc: req.body.longDesc,
-                patchMedia: req.body.patchMedia,
-                newRegister: req.body.newRegister,
-                adressbook: req.body.adressbook
+                pachMedia:  req.body.pachMedia
             },
             {
                 where: {
@@ -147,17 +148,45 @@ module.exports = {
     },
 
     create(userdata) {
-        console.log('Les données suivante sont a envoyer vers MySQL : ', userdata);
+        console.log('Les données suivantes sont envoyé vers MySQL pour la création d\'un nouveau membre: ', userdata);
         return user.create({
-                firstName: userdata.firstName,
-                lastName: userdata.lastName,
-                username: userdata.username,
-                email: userdata.email,
-                password: userdata.password
-                })
+            firstName: userdata.firstName,
+            lastName: userdata.lastName,
+            username: userdata.username,
+            email: userdata.email,
+            password: userdata.password,
+            isActive: userdata.isActive,
+            role: userdata.role,
+            asbl: userdata.asbl,
+            firstName: userdata.firstName,
+            lastName: userdata.lastName,
+            birthday: userdata.birthday,
+            sexGenre: userdata.sexGenre,
+            adressbook: userdata.adressbook,
+            adPvStreet: userdata.adPvStreet,
+            adPvNum: userdata.adPvNum,
+            adPvZip: userdata.adPvZip,
+            adPvCity: userdata.adPvCity,
+            adPvCountry: userdata.adPvCountry,
+            firm: userdata.firm,
+            tva: userdata.tva,
+            adProStreet: userdata.adProStreet,
+            adProNum: userdata.adProNum,
+            adProZip: userdata.adProZip,
+            adProCity: userdata.adProCity,
+            adProCountry: userdata.adProCountry,
+            contPhonePro: userdata.contPhonePro,
+            contPhonePv: userdata.contPhonePv,
+            contPhoneGsm: userdata.contPhoneGsm,
+            contFacebook: userdata.contFacebook,
+            contWebsite: userdata.contWebsite,
+            shortDesc: userdata.shortDesc,
+            longDesc: userdata.longDesc,
+            pachMedia:  userdata.pachMedia
+        })
                 
         .then((savedUser) => {
-            console.log('L\'inscription est OK : ', savedUser);
+           // console.log('L\'inscription est OK : ', savedUser);
                 return savedUser;
         })
         .catch((error) => {

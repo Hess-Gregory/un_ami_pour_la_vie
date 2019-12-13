@@ -41,7 +41,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     asbl: {
       type: DataTypes.STRING(80),
-      allowNull: true
+      allowNull: true,
     },
     firstName: {
       type: DataTypes.STRING(60),
