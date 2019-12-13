@@ -8,9 +8,7 @@ const roleRoutes = require('../routes/role.routes');
 const authRoutes = require('../routes/auth.routes');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../swagger/swagger');
-const validate = require('express-validation');
 const userController = require('../controller/user.controller');
-const paramValidation = require('../routes/user.routes');
 
 
 // Tous les itinéraires sont définis ici.
@@ -46,18 +44,14 @@ router.use(expressJWT({secret:config.jwtSecret}));
                     router.use('/users/role', roleRoutes);      
                 };
                 if (res.locals.session.role >= 3){
+                   router.use('/admins', adminRoutes);
                                        
                 };
                 if (res.locals.session.role >= 4){
                     router.use('/users', userRoutes);
-                    // router.route('/users/:id')
-                    //     .get(validate(paramValidation.getUser),userController.getById)
-                    //     .put(validate(userRoutes.paramValidation.updateUser), userController.update)
-                    //     .delete(validate(userRoutes.paramValidation.getUser), userController.deleteUser);
 
                 };
                 if (res.locals.session.role >= 5){
-                    router.use('/admins', adminRoutes);
 
                 };
                 if (res.locals.session.role >= 6){
