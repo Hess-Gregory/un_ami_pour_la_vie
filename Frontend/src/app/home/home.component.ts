@@ -14,14 +14,9 @@ import { HomepageComponent } from './homepage/homepage.component';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  @Input() count: Boolean ;
   constructor(public globals: Globals, private router: Router) {
-
-
-    console.log(this.count);
   }
 
   ngOnInit() {
-
   }
 }

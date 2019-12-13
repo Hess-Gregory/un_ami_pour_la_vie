@@ -25,9 +25,6 @@ callback: any;
 
     const jwtToken = localStorage.getItem('access_token');
         if (jwtToken) {
-            console.log('Nouveau token: ', jwtToken);
-            console.log('username : ', localStorage.getItem('username'));
-
             const token = localStorage.getItem('access_token');
             const expirationTime = jwt_decode(token)['exp'];
             const current_time2: any  = Date.now() / 1000;
