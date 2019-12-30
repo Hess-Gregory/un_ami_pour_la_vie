@@ -1,25 +1,24 @@
-
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { User, Role } from './../../../../shared/exports';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Observable,  Subject, of } from 'rxjs';
+import { Observable, Subject, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Router} from '@angular/router';
+import { Router } from '@angular/router';
 declare let $: any;
 @Injectable({
   providedIn: 'root'
 })
 export class UserUpdateService {
-    userid: string;
-    userrole: number;
-    users: any;
-    status: any;
-    userdetail: any;
-    stringifydata: string;
-    parsedata: any;
+  userid: string;
+  userrole: number;
+  users: any;
+  status: any;
+  userdetail: any;
+  stringifydata: string;
+  parsedata: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   editFormSubmitted = new EventEmitter<any>();
   getUsers() {
@@ -45,52 +44,50 @@ export class UserUpdateService {
     birthday: any,
     sexGenre: string,
     /* Adresse Privée */
-    adPvNum:  string,
-    adPvStreet:  string,
-    adPvCountry:  string,
+    adPvNum: string,
+    adPvStreet: string,
+    adPvCountry: string,
     adPvZip: number,
     adPvCity: string,
-     /* Adresse Privée */
-     firm:  string,
-     tva:  string,
-     adProNum:  string,
-     adProStreet:  string,
-     adProCountry:  string,
-     adProZip: number,
-     adProCity:  string,
-     /* Contact */
-     contPhonePv:  string,
-     contPhoneGsm:  string,
-     contPhonePro:  string,
-     contFacebook:  string,
-     contWebsite:  string,
-     /*  Autres informations */
-     asbl:  string,
-     shortDesc:  string,
-     longDesc: string
-
-       ) {
-
+    /* Adresse Privée */
+    firm: string,
+    tva: string,
+    adProNum: string,
+    adProStreet: string,
+    adProCountry: string,
+    adProZip: number,
+    adProCity: string,
+    /* Contact */
+    contPhonePv: string,
+    contPhoneGsm: string,
+    contPhonePro: string,
+    contFacebook: string,
+    contWebsite: string,
+    /*  Autres informations */
+    asbl: string,
+    shortDesc: string,
+    longDesc: string
+  ) {
     this.userid = sessionStorage.getItem('idSelect');
-      this.http.put(`/api/users/${this.userid}`,
-      {
-       /* Login et Role */
-       username: username,
-       email: email,
-       role: role,
-       isActive: isActive,
-       /* Informations générales */
-       adressbook: adressbook,
-       firstName: firstName,
-       lastName: lastName,
-       birthday: birthday,
-       sexGenre: sexGenre,
-       /* Adresse Privée */
-       adPvNum: adPvNum,
-       adPvStreet: adPvStreet,
-       adPvCountry: adPvCountry,
-       adPvZip: adPvZip,
-       adPvCity: adPvCity,
+    this.http
+      .put(`/api/users/${this.userid}`, {
+        /* Login et Role */
+        username: username,
+        email: email,
+        role: role,
+        isActive: isActive,
+        /* Informations générales */
+        adressbook: adressbook,
+        firstName: firstName,
+        lastName: lastName,
+        birthday: birthday,
+        sexGenre: sexGenre,
+        /* Adresse Privée */
+        adPvNum: adPvNum,
+        adPvStreet: adPvStreet,
+        adPvCountry: adPvCountry,
+        adPvZip: adPvZip,
+        adPvCity: adPvCity,
         /* Adresse Privée */
         firm: firm,
         tva: tva,
@@ -111,18 +108,18 @@ export class UserUpdateService {
         longDesc: longDesc
       })
       .subscribe(
-        data  => {
-            console.log('PUT Request is successful ', data);
-            this.stringifydata = JSON.stringify(data);
-            this.parsedata = JSON.parse(this.stringifydata);
-            console.log('this.parsedata:', this.parsedata);
+        data => {
+          console.log('PUT Request is successful ', data);
+          this.stringifydata = JSON.stringify(data);
+          this.parsedata = JSON.parse(this.stringifydata);
+          console.log('this.parsedata:', this.parsedata);
 
-             sessionStorage.setItem('idSelect', this.parsedata.id);
-             // this.router.navigate([`admin/users/user-manager/user-get`]);
-            },
+          sessionStorage.setItem('idSelect', this.parsedata.id);
+          // this.router.navigate([`admin/users/user-manager/user-get`]);
+        },
         error => {
-            console.log('Error', error);
-            }
+          console.log('Error', error);
+        }
       );
-    }
+  }
 }

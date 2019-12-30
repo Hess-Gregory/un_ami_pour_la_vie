@@ -6,26 +6,24 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 describe('UsersComponent', () => {
-    let component: UsersComponent;
-    let fixture: ComponentFixture<UsersComponent>;
+  let component: UsersComponent;
+  let fixture: ComponentFixture<UsersComponent>;
 
-    beforeEach(
-        async(() => {
-            TestBed.configureTestingModule({
-                declarations: [UsersComponent],
-                schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-                providers: [HttpClient, Router ]
-            }).compileComponents();
-        })
-    );
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [UsersComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [HttpClient, Router]
+    }).compileComponents();
+  }));
 
-    beforeEach(() => {
-        fixture = TestBed.createComponent(UsersComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
-    });
+  beforeEach(() => {
+    fixture = TestBed.createComponent(UsersComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
-    it('should create', () => {
-        expect(component).toBeTruthy();
-    });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 });

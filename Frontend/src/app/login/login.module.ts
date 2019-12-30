@@ -8,16 +8,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        TranslateModule,
-         FormsModule,
-         LoginRoutingModule,
-         NgbModule,
-         HttpClientModule
+  imports: [
+    CommonModule,
+    TranslateModule,
+    FormsModule,
+    LoginRoutingModule,
+    NgbModule,
+    HttpClientModule
+  ],
 
-    ],
-
-    declarations: [LoginComponent],
+  declarations: [LoginComponent]
 })
 export class LoginModule {}

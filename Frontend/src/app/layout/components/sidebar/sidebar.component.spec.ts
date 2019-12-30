@@ -11,13 +11,8 @@ describe('SidebarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        LayoutModule,
-        RouterTestingModule,
-        TranslateModule.forRoot(),
-      ],
-    })
-    .compileComponents();
+      imports: [LayoutModule, RouterTestingModule, TranslateModule.forRoot()]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

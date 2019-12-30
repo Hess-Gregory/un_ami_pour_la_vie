@@ -1,28 +1,61 @@
-    <div class="container-fluid">
+<!-- <div *ngIf="loading" class="spinner">
+        <img class="dog" src="./assets/images/loading-dog.gif" style="width: 10vw;text-align: center;
+         display: block; vertical-align: middle; margin: auto; margin-top: 25%; margin-bottom: 25%;" alt="">
+ </div> -->
 
-            <div class="py-5 text-center">
-                    <h2>Supprimer un utilisateur</h2>
-                    <img class="d-block mx-auto mb-4" src="./../../../../../assets/images/user-male-circle.png" alt="" width="300" height="300">
-                    <br>
-            </div>
-            <app-user-controls></app-user-controls>
-            <div class="row">
+<div *ngIf="!deleteEnd">
+  <h1 class="text-danger">Attention :</h1>
+  <div>
+    <form action="#" method="post">
+      <h2>La suppression est irréversible</h2>
+      <mat-card class="example-card">
+        <mat-card-header class="header-text">
+          <mat-card-title>Utilisateur "{{ users.username }}"</mat-card-title>
+          <mat-card-subtitle> ID :{{ users.id }}</mat-card-subtitle>
+        </mat-card-header>
+        <img
+          *ngIf="users.pachMedia"
+          class="picture d-block mx-auto mb-4"
+          src="{{ users.pachMedia }}"
+          alt=""
+        />
+        <img
+          *ngIf="!users.pachMedia"
+          class="picture d-block mx-auto mb-4"
+          src="./../../../../../assets/images/user-male-circle.png"
+          alt=""
+        />
 
-                <div class="col-md-12">
-                        <div class="container">
-                                <form action="#" method="post">
-                                    <h3>Attention :</h3>
-                                    <p>la suppression est irréversible.</p>
-                                    <p>Etes-vous sûre de vouloir supprimer le membre ?</p>
-                                    <p style="color:red"></p>
-                                    <input type="radio" name="choix" value="oui">
-                                    <label for="oui">Oui</label>
-                                    <input type="radio" name="choix" value="non">
-                                    <label for="non">Non</label><br>
-                                    <input type="submit" value="Je suis sûr(e)">
-                                </form>
-                        </div>
-                </div>
-            </div>
+        <mat-card-content>
+          <p class="text-danger">
+            Etes-vous sûre de vouloir supprimer le membre ?
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </form>
+  </div>
+</div>
+<button mat-flat-button (click)="deleteUsers()" *ngIf="!deleteEnd">
+  Confirmer
+</button>
+
+<jw-modal id="custom-modal-3">
+  <div>
+    <h1 class="text-danger">Utilisateur "{{ users.username }}"</h1>
+    <div>
+      <form action="#" method="post">
+        <h2>ID :{{ users.id }}</h2>
+        <mat-card class="example-card">
+          <img
+            class="picture d-block mx-auto mb-4"
+            src="./../../../../../assets/images/user-male-circle.png"
+            alt=""
+          />
+          <mat-card-content>
+            <p class="text-danger">{{ alertMsg }}</p>
+          </mat-card-content>
+        </mat-card>
+      </form>
     </div>
-
+  </div>
+</jw-modal>

@@ -1,2 +1,8 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+.no-data-available {
+  text-align: center;
+}
 
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+.dataTables_empty {
+  display: none !important;
+}

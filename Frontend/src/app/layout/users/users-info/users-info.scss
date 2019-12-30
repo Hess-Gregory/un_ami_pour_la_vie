@@ -1,0 +1,179 @@
+.no-data-available {
+  text-align: center;
+}
+.mat-card {
+  margin-top: 0 !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+.mat-card:hover {
+  background-color: lightslategray;
+  cursor: pointer;
+}
+.example-container.mat-elevation-z8 {
+  padding: 12px;
+}
+table {
+  width: 100%;
+}
+th.mat-sort-header-sorted {
+  color: black;
+}
+.mat-header-row {
+  background-color: rgb(52, 58, 64);
+  border: 1px solid rgb(172, 163, 163);
+}
+.mat-row {
+  background-color: rgba(52, 58, 64, 0.7);
+}
+.mat-row:hover .mat-cell {
+  color: rgb(99, 183, 216);
+  cursor: pointer;
+}
+.mat-header-cell {
+  color: #76daff;
+}
+.mat-cell {
+  color: #fff;
+}
+
+// flex: 0 0 28% !important;
+// width: 28% !important;
+.mat-cell:first-child {
+  background-color: rgb(52, 58, 64);
+  color: #76daff !important;
+  border-right: 1px solid rgb(172, 163, 163);
+  width: 10%;
+  flex: 0 0 10% !important;
+  border-bottom-color: rgb(52, 58, 64) !important;
+  border-top-color: rgb(52, 58, 64) !important;
+  border-top: 0px;
+  border-bottom: 0px;
+}
+.mat-header-cell:first-child {
+  width: 10%;
+  flex: 0 0 10% !important;
+}
+
+.mat-row {
+  border-bottom-color: transparent !important;
+  border-bottom: none;
+
+  border-top: none;
+}
+.mat-table {
+  width: 100%;
+  border: solid #ccc 1px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: 0 1px 1px #ccc;
+  -moz-box-shadow: 0 1px 1px #ccc;
+  box-shadow: 0 1px 1px #ccc;
+  border-collapse: separate !important;
+  border-spacing: 0;
+}
+.mat-table .mat-row:hover {
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+}
+.mat-table .mat-cell,
+.mat-table .mat-header-cell {
+  padding: 10px;
+  text-align: left;
+}
+.mat-table .mat-header-cell {
+  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+  border-top: none;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+.mat-table .mat-cell:first-child,
+.mat-table .mat-header-cell:first-child {
+  border-left: none;
+}
+.mat-table .mat-header-cell:first-child {
+  -moz-border-radius: 6px 0 0 0;
+  -webkit-border-radius: 6px 0 0 0;
+  border-radius: 6px 0 0 0;
+}
+.mat-table .mat-header-cell:last-child {
+  -moz-border-radius: 0 6px 0 0;
+  -webkit-border-radius: 0 6px 0 0;
+  border-radius: 0 6px 0 0;
+}
+.mat-table .mat-header-cell:only-child {
+  -moz-border-radius: 6px 6px 0 0;
+  -webkit-border-radius: 6px 6px 0 0;
+  border-radius: 6px 6px 0 0;
+}
+
+.mat-table .mat-row:last-child .mat-row:first-child {
+  -moz-border-radius: 0 0 0 6px;
+  -webkit-border-radius: 0 0 0 6px;
+  border-radius: 0 0 0 6px;
+}
+.mat-table .mat-row:last-child .mat-row:last-child {
+  -moz-border-radius: 0 0 6px 0;
+  -webkit-border-radius: 0 0 6px 0;
+  border-radius: 0 0 6px 0;
+}
+::ng-deep .mat-sort-header-arrow[style] {
+  // Hide default arrow stem
+  .mat-sort-header-stem {
+    display: none;
+  }
+  .mat-sort-header-indicator {
+    opacity: 1;
+    color: black;
+    font-weight: bold;
+
+    // Hide default arrow as its composed of left, right and middle
+    .mat-sort-header-pointer-left,
+    .mat-sort-header-pointer-right,
+    .mat-sort-header-pointer-middle {
+      display: none;
+    }
+  }
+}
+
+[aria-sort='ascending'] {
+  ::ng-deep .mat-sort-header-arrow {
+    .mat-sort-header-indicator {
+      &::before {
+        font: normal normal normal 0.8rem/1 FontAwesome;
+        content: '\f160';
+        position: absolute;
+        top: 0.1em;
+        color: rgb(248, 156, 27);
+        left: 0.5em;
+      }
+    }
+  }
+}
+
+[aria-sort='descending'] {
+  ::ng-deep .mat-sort-header-arrow {
+    .mat-sort-header-indicator {
+      &::before {
+        font: normal normal normal 0.8rem/1 FontAwesome;
+        content: '\f161';
+        position: absolute;
+        top: -0.7em;
+        color: rgb(248, 156, 27);
+        left: 0.5em;
+      }
+    }
+  }
+}
+.mat-header-cell.mat-column-position {
+  direction: rtl;
+}
+
+/* If you want the same default margin for the sort icon */
+:host ::ng-deep .mat-header-cell.mat-column-symbol .mat-sort-header-arrow {
+  margin-right: 6px;
+  margin-left: 0px;
+}

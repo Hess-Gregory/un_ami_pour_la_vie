@@ -9,12 +9,9 @@ describe('ModalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        NgbModule
-      ],
-      declarations: [ ModalComponent ]
-    })
-    .compileComponents();
+      imports: [NgbModule],
+      declarations: [ModalComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

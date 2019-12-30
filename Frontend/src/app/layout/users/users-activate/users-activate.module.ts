@@ -8,22 +8,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { JumboUserModule } from '../services/jumbo-user/jumbo-user.module';
 @NgModule({
-    imports: [
-        CommonModule,
-        UsersActivateRoutingModule,
-        DataTablesModule,
-        FormsModule,
-        NgbModule,
-        HttpClientModule,
-        ReactiveFormsModule,
-        JumboUserModule
-
-    ],
-    declarations: [
-        UsersActivateComponent
-    ],
-    exports: [
-      DataTableDirective
-   ]
+  imports: [
+    CommonModule,
+    UsersActivateRoutingModule,
+    DataTablesModule,
+    FormsModule,
+    NgbModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    JumboUserModule
+  ],
+  declarations: [UsersActivateComponent],
+  exports: [DataTableDirective]
 })
 export class UsersActivateModule {}

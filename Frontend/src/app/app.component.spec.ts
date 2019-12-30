@@ -11,18 +11,14 @@ describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
 
-  beforeEach(
-    async(() => {
-      TestBed.configureTestingModule({
-        imports: [AppModule, RouterTestingModule, HttpClient],
-        declarations: [AppComponent],
-        schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-        providers: [HttpClient,
-          { provide: APP_BASE_HREF, useValue: '/' },
-        ]
-      }).compileComponents();
-    })
-  );
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [AppModule, RouterTestingModule, HttpClient],
+      declarations: [AppComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [HttpClient, { provide: APP_BASE_HREF, useValue: '/' }]
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AppComponent);

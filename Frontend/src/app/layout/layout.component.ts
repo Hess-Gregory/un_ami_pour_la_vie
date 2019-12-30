@@ -1,30 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import * as jwt_decode from 'jwt-decode';
 
 @Component({
-    selector: 'app-layout',
-    templateUrl: './layout.component.html',
-    styleUrls: ['./layout.component.scss']
+  selector: 'app-layout',
+  templateUrl: './layout.component.html',
+  styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
-    Username: string;
-    collapedSideBar: boolean;
-    dateNow = new Date();
-    YearNow = this.dateNow.getFullYear();
+  collapedSideBar: boolean;
+  dateNow = new Date();
+  YearNow = this.dateNow.getFullYear();
 
-    constructor() {
-        const jwtToken = localStorage.getItem('access_token');
-            if (jwtToken) {
-                const token = localStorage.getItem('access_token');
-                this.Username = jwt_decode(token)['username'];
-            }
-    }
+  constructor() {}
 
-    ngOnInit() {
+  ngOnInit() {}
 
-    }
-
-    receiveCollapsed($event: boolean) {
-        this.collapedSideBar = $event;
-    }
+  receiveCollapsed($event: boolean) {
+    this.collapedSideBar = $event;
+  }
 }

@@ -6,11 +6,10 @@ import { User } from './../../../shared/exports';
   providedIn: 'root'
 })
 export class AllUsersService {
-
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getUsers() {
+    sessionStorage.setItem('page', '');
     return this.http.get<User[]>('/api/users');
   }
 }

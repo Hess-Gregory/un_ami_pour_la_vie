@@ -1,12 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
-@import "bootstrap/bootstrap";
-@import "spinner";
-@import "utils";
-@import "rtl";
-@import "responsive";
+@import 'bootstrap/bootstrap';
+@import 'spinner';
+@import 'utils';
+@import 'rtl';
+@import 'responsive';
+@import './../../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 @media print {
-    .breadcrumb {
-        display: none !important;
-    }
+  .breadcrumb {
+    display: none !important;
+  }
+}
+.dataTables_empty {
+  display: none;
 }

@@ -11,13 +11,8 @@ describe('GridComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        GridModule,
-        RouterTestingModule,
-        BrowserAnimationsModule,
-      ],
-    })
-    .compileComponents();
+      imports: [GridModule, RouterTestingModule, BrowserAnimationsModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

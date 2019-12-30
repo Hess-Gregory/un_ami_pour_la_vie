@@ -9,12 +9,9 @@ describe('DropdownComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        NgbModule
-      ],
-      declarations: [ DropdownComponent ]
-    })
-    .compileComponents();
+      imports: [NgbModule],
+      declarations: [DropdownComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

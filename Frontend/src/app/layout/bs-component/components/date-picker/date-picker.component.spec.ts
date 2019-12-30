@@ -10,13 +10,9 @@ describe('DatePickerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        FormsModule,
-        NgbModule
-      ],
-      declarations: [ DatePickerComponent ]
-    })
-    .compileComponents();
+      imports: [FormsModule, NgbModule],
+      declarations: [DatePickerComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

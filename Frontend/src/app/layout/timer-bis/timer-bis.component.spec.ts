@@ -12,12 +12,11 @@ describe('TimerBisComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TimerBisComponent ],
+      declarations: [TimerBisComponent],
 
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-      providers: [HttpClient ]
-    })
-    .compileComponents();
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [HttpClient]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

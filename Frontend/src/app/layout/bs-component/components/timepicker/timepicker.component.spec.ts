@@ -10,13 +10,9 @@ describe('TimepickerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        FormsModule,
-        NgbModule
-      ],
-      declarations: [ TimepickerComponent ]
-    })
-    .compileComponents();
+      imports: [FormsModule, NgbModule],
+      declarations: [TimepickerComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

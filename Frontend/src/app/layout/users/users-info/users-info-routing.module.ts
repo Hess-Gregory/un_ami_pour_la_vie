@@ -3,16 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { UsersInfoComponent } from './users-info.component';
 
 const routes: Routes = [
-    {
-        path: '',
-        data: { breadcrumb: 'Infos Générales' },
-        component: UsersInfoComponent
-    }
+  {
+    path: '',
+    data: { breadcrumb: 'Infos Générales' },
+    component: UsersInfoComponent
+  }
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
-export class UsersInfoRoutingModule {
-}
+export class UsersInfoRoutingModule {}

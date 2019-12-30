@@ -9,17 +9,11 @@ describe('ChartsComponent', () => {
   let component: ChartsComponent;
   let fixture: ComponentFixture<ChartsComponent>;
 
-  beforeEach(
-    async(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          ChartsModule,
-          RouterTestingModule,
-          BrowserAnimationsModule,
-        ],
-      }).compileComponents();
-    })
-  );
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [ChartsModule, RouterTestingModule, BrowserAnimationsModule]
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ChartsComponent);

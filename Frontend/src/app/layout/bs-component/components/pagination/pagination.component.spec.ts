@@ -9,12 +9,9 @@ describe('PaginationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        NgbModule
-      ],
-      declarations: [ PaginationComponent ]
-    })
-    .compileComponents();
+      imports: [NgbModule],
+      declarations: [PaginationComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

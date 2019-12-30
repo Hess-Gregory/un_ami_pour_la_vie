@@ -11,8 +11,7 @@ describe('TooltipComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [BsComponentModule, RouterTestingModule]
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

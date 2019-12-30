@@ -4,8 +4,14 @@ import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupRoutingModule } from './signup-routing.module';
 import { SignupComponent } from './signup.component';
-import { MatButtonModule, MatCheckboxModule, MatSelectModule,  MatDatepickerModule,
-    MatNativeDateModule, MatInputModule } from '@angular/material';
+import {
+  MatButtonModule,
+  MatCheckboxModule,
+  MatSelectModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatInputModule
+} from '@angular/material';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 @NgModule({
   imports: [
@@ -23,8 +29,6 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
     HttpClientModule
   ],
   declarations: [SignupComponent],
-  exports: [
-    TranslateModule
-  ]
+  exports: [TranslateModule]
 })
-export class SignupModule { }
+export class SignupModule {}

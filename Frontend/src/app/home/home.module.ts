@@ -1,4 +1,3 @@
-
 import { TimerComponent } from './components/timer/timer.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -17,6 +16,12 @@ import { HeaderHomepageComponent } from './components/header/header.component';
     NgbDropdownModule,
     TranslateModule
   ],
-  declarations: [HomeComponent, NavbarComponent, HeaderHomepageComponent, FooterComponent,  TimerComponent ]
+  declarations: [
+    HomeComponent,
+    NavbarComponent,
+    HeaderHomepageComponent,
+    FooterComponent,
+    TimerComponent
+  ]
 })
-export class HomeModule { }
+export class HomeModule {}

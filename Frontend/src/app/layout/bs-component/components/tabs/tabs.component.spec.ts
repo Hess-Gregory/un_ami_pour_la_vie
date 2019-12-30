@@ -9,12 +9,9 @@ describe('TabsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        NgbModule
-      ],
-      declarations: [ TabsComponent ]
-    })
-    .compileComponents();
+      imports: [NgbModule],
+      declarations: [TabsComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

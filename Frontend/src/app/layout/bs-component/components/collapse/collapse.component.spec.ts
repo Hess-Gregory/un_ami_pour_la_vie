@@ -9,10 +9,9 @@ describe('CollapseComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ NgbModule ],
-      declarations: [ CollapseComponent ]
-    })
-    .compileComponents();
+      imports: [NgbModule],
+      declarations: [CollapseComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

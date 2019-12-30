@@ -6,7 +6,7 @@ import { TablesComponent } from './tables.component';
 import { PageHeaderModule } from './../../shared';
 
 @NgModule({
-    imports: [CommonModule, TablesRoutingModule, PageHeaderModule],
-    declarations: [TablesComponent]
+  imports: [CommonModule, TablesRoutingModule, PageHeaderModule],
+  declarations: [TablesComponent]
 })
 export class TablesModule {}

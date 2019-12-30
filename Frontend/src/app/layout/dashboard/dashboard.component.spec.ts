@@ -11,13 +11,8 @@ describe('DashboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        DashboardModule,
-        RouterTestingModule,
-        BrowserAnimationsModule,
-       ]
-    })
-    .compileComponents();
+      imports: [DashboardModule, RouterTestingModule, BrowserAnimationsModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

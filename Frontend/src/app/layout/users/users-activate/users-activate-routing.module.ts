@@ -3,16 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { UsersActivateComponent } from './users-activate.component';
 
 const routes: Routes = [
-    {
-        path: '',
-        data: { breadcrumb: 'Activation des membres' },
-        component: UsersActivateComponent
-    }
+  {
+    path: '',
+    data: { breadcrumb: 'Activation des membres' },
+    component: UsersActivateComponent
+  }
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
-export class UsersActivateRoutingModule {
-}
+export class UsersActivateRoutingModule {}

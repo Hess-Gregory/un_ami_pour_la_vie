@@ -10,14 +10,9 @@ describe('ButtonsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        FormsModule,
-        ReactiveFormsModule,
-        NgbModule
-      ],
-      declarations: [ ButtonsComponent ]
-    })
-    .compileComponents();
+      imports: [FormsModule, ReactiveFormsModule, NgbModule],
+      declarations: [ButtonsComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

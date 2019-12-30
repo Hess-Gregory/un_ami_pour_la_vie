@@ -1,177 +1,115 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
+import {
+  Location,
+  LocationStrategy,
+  PathLocationStrategy
+} from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Router, RoutesRecognized } from '@angular/router';
 import { UserAddComponent } from './../user-add/user-add.component';
 import { filter, pairwise } from 'rxjs/operators';
 import { UserAddService } from '../user-add/user-add.service';
 import { UserUpdateService } from '../user-update/user-update.service';
+import { ModalService } from '../../../../shared/modules/_modal';
 @Component({
   selector: 'app-user-controls',
   templateUrl: './user-controls.component.html',
   styleUrls: ['./user-controls.component.scss'],
-  providers: [HttpClient, UserAddComponent, Location ]
+  providers: [HttpClient, UserAddComponent, Location]
 })
 export class UserControlsComponent implements OnInit {
-
-    locked = true;
-    create = false;
-    previouspage = true;
-    userDetailsForm: any;
-    userForm: any;
+  locked = true;
+  create = false;
+  previouspage = true;
+  userDetailsForm: any;
+  userForm: any;
+  page: string;
 
   constructor(
-      public router: Router,
-      private userAdd: UserAddComponent,
-      private _location: Location,
-      public createService: UserAddService,
-      public updateService: UserUpdateService
-      ) {
-        if (router.url === '/admin/users/user-manager/user-add') {
-            this.create = true;
-            this.locked = false;
-        }
+    public router: Router,
+    private userAdd: UserAddComponent,
+    private _location: Location,
+    public createService: UserAddService,
+    public updateService: UserUpdateService,
+    private modalService: ModalService
+  ) {
     this.router.events
-    .pipe(filter((evt: any) => evt instanceof RoutesRecognized), pairwise())
-    .subscribe((events: RoutesRecognized[]) => {
-        if (this.create && events[0].urlAfterRedirects === '/admin/users/user-manager/users-update') {
-            this.previouspage = false;
+      .pipe(
+        filter((evt: any) => evt instanceof RoutesRecognized),
+        pairwise()
+      )
+      .subscribe((events: RoutesRecognized[]) => {
+        if (
+          this.create &&
+          events[0].urlAfterRedirects ===
+            '/admin/users/user-manager/users-update'
+        ) {
+          this.previouspage = false;
         }
-    });
+      });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.deleteUsers() ;
+    this.page = sessionStorage.getItem('page');
+    if (this.page === 'user-add') {
+      this.create = true;
+      this.locked = false;
+    }
+    if (this.page === 'user-update') {
+      this.create = false;
+      this.locked = false;
+    }
+    if (this.page === 'user-get') {
+      this.create = false;
+      this.locked = true;
+    }
+  }
 
   onUnlock() {
-    this.locked = false;
     this.router.navigate(['admin/users/user-manager/user-update']);
   }
 
-  onSubmitUserDetails(value: any)  {
-
-
-    //   if (this.create) {
-    //     console.log('la création est validé');
-    //     console.log('value: ' , value);
-    //     if (value.adressbook) {
-    //         value.adressbook = 1;
-    //     } else {
-    //         value.adressbook = 0;
-    //     }
-
-    //     this.createService.addUser(
-    //     /* Login et Role */
-    //     value.username,
-    //     value.email,
-    //     value.role,
-    //     value.isActive,
-    //     /* Informations générales */
-    //     value.adressbook,
-    //     value.firstName,
-    //     value.lastName,
-    //     value.birthday,
-    //     value.sexGenre,
-    //     /* Adresse Privée */
-    //     value.adPvNum,
-    //     value.adPvStreet,
-    //     value.adPvCountry,
-    //     value.adPvZip,
-    //     value.adPvCity,
-    //      /* Adresse Privée */
-    //      value.firm,
-    //      value.tva,
-    //      value.adProNum,
-    //      value.adProStreet,
-    //      value.adProCountry,
-    //      value.adProZip,
-    //      value.adProCity,
-    //      /* Contact */
-    //      value.contPhonePv,
-    //      value.contPhoneGsm,
-    //      value.contPhonePro,
-    //      value.contFacebook,
-    //      value.contWebsite,
-    //     /*  Autres informations */
-    //     value.asbl,
-    //     value.shortDesc,
-    //     value.longDesc
-    //       );
-    //   } if  (!this.create) {
-    //     console.log('la mise à jour est validé');
-    //     console.log('value: ' , value);
-    //     if (value.adressbook) {
-    //         value.adressbook = 1;
-    //     } else {
-    //         value.adressbook = 0;
-    //     }
-
-    //     this.updateService.update(
-    //     /* Login et Role */
-    //     value.username,
-    //     value.email,
-    //     value.role,
-    //     value.isActive,
-    //     /* Informations générales */
-    //     value.adressbook,
-    //     value.firstName,
-    //     value.lastName,
-    //     value.birthday,
-    //     value.sexGenre,
-    //     /* Adresse Privée */
-    //     value.adPvNum,
-    //     value.adPvStreet,
-    //     value.adPvCountry,
-    //     value.adPvZip,
-    //     value.adPvCity,
-    //      /* Adresse Privée */
-    //      value.firm,
-    //      value.tva,
-    //      value.adProNum,
-    //      value.adProStreet,
-    //      value.adProCountry,
-    //      value.adProZip,
-    //      value.adProCity,
-    //      /* Contact */
-    //      value.contPhonePv,
-    //      value.contPhoneGsm,
-    //      value.contPhonePro,
-    //      value.contFacebook,
-    //      value.contWebsite,
-    //     /*  Autres informations */
-    //     value.asbl,
-    //     value.shortDesc,
-    //     value.longDesc
-    //       );
-    //   }
-        this.locked = true;
-        this.create = false;
-
+  onSubmitUserDetails(value: any) {
+    if (this.previouspage) {
+      this._location.back();
+    } else {
+      this.router.navigate(['admin/users/user-manager/users-list']);
+    }
   }
   onCreate() {
-    this.create = true;
     this.router.navigate(['admin/users/user-manager/user-add']);
   }
 
   onCancel() {
-    this.locked = true;
-    this.create = false;
     if (this.previouspage) {
-        this._location.back();
+      this._location.back();
     } else {
-       this.router.navigate(['admin/users/user-manager/user-get']);
+      this.router.navigate(['admin/users/user-manager/user-get']);
     }
   }
 
   onDelete() {
-    this.router.navigate(['admin/users/user-manager/user-delete']);
+    this.openModal('custom-modal-2');
+    // this.router.navigate(['admin/users/user-manager/user-delete']);
   }
 
   onClose() {
-    this.locked = true;
-    this.router.navigate(['admin/users/user-manager/users-list']);
+    if (this.previouspage) {
+      this._location.back();
+    } else {
+      this.router.navigate(['admin/users/user-manager/users-list']);
+    }
   }
 
   onFrozen() {
     this.locked = true;
+  }
+
+  openModal(id: string) {
+    this.modalService.open(id);
+  }
+  closeModal(id: string) {
+    this.modalService.close(id);
   }
 }

@@ -14,16 +14,28 @@ export class Country {
     const phoneUtil = libphonenumber.PhoneNumberUtil.getInstance();
     const PNF = libphonenumber.PhoneNumberFormat;
     const PNT = libphonenumber.PhoneNumberType;
-    const countryExampleMobileNumber = phoneUtil.getExampleNumberForType(this.iso, PNT.MOBILE);
-    const countryExampleFixedNumber = phoneUtil.getExampleNumberForType(this.iso, PNT.FIXED_LINE);
-        // We need to define what kind of country phone number type we are going to use as a mask.
-        // You can choose between many types including:
-        //    - FIXED_LINE
-        //    - MOBILE
-        //    - For more types please refer to google libphonenumber repo: https://goo.gl/3yAFiV
+    const countryExampleMobileNumber = phoneUtil.getExampleNumberForType(
+      this.iso,
+      PNT.MOBILE
+    );
+    const countryExampleFixedNumber = phoneUtil.getExampleNumberForType(
+      this.iso,
+      PNT.FIXED_LINE
+    );
+    // We need to define what kind of country phone number type we are going to use as a mask.
+    // You can choose between many types including:
+    //    - FIXED_LINE
+    //    - MOBILE
+    //    - For more types please refer to google libphonenumber repo: https://goo.gl/3yAFiV
     if (countryExampleMobileNumber) {
-      const exampleMobileNumberFormatted = phoneUtil.format(countryExampleMobileNumber, PNF.NATIONAL);
-      const exampleFixedNumberFormatted = phoneUtil.format(countryExampleFixedNumber, PNF.NATIONAL);
+      const exampleMobileNumberFormatted = phoneUtil.format(
+        countryExampleMobileNumber,
+        PNF.NATIONAL
+      );
+      const exampleFixedNumberFormatted = phoneUtil.format(
+        countryExampleFixedNumber,
+        PNF.NATIONAL
+      );
       // We need to define how are we going to format the phone number
       // You can choose between many formats including:
       //    - NATIONAL

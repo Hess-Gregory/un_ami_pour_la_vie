@@ -7,9 +7,8 @@ import { TablesModule } from './tables.module';
 describe('TablesComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ TablesModule, RouterTestingModule ],
-    })
-    .compileComponents();
+      imports: [TablesModule, RouterTestingModule]
+    }).compileComponents();
   }));
 
   it('should create', () => {

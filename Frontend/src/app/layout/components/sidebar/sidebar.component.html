@@ -1,46 +1,212 @@
-<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive, collapsed: collapsed}">
-    <div class="list-group">
-        <a routerLink="dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-dashboard"></i>&nbsp;
-            <span>Dashboard</span>
-        </a>
-        <div class="nested-menu">
-                <a class="list-group-item" [routerLink]="['users']"  (click)="addExpandClass('pages')"  [routerLinkActive]="['router-link-active']" >
-                    <i class="fa fa-users"></i>&nbsp;
-                    <span>Utilisateurs</span>
-                </a>
-                <li class="nested" [class.expand]="showMenu === 'pages'">
-                    <ul class="submenu">
-                        <li>
-                            <a [routerLink]="['users/user-manager']" [routerLinkActive]="['router-link-active']" >
-                                <i class="fa fa-users"></i>&nbsp;
-                                <span>Gestion utilisateurs</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a  [routerLink]="['users/users-activate']" [routerLinkActive]="['router-link-active']" >
-                                <i class="fa fa-user-plus"></i>&nbsp;
-                                <span>Activation des comptes</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a  [routerLink]="['users/admin-manager']" [routerLinkActive]="['router-link-active']">
-                                <i class="fa fa-user-plus"></i>&nbsp;
-                                <span>Gestion des admins</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a  [routerLink]="['users/address-book']" [routerLinkActive]="['router-link-active']">
-                                <i class="fa fa-user-plus"></i>&nbsp;
-                                <span>Carnet d'adresse</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </div>
-
-
-         <!-- <a  [routerLink]="['/admin/charts']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+<nav
+  class="sidebar"
+  [ngClass]="{ sidebarPushRight: isActive, collapsed: collapsed }"
+>
+  <div class="list-group">
+    <a
+      routerLink="dashboard"
+      [routerLinkActive]="['router-link-active']"
+      class="list-group-item"
+    >
+      <i class="fa fa-fw fa-dashboard"></i>&nbsp;
+      <span>Dashboard</span>
+    </a>
+    <div *ngIf="level >= 4" class="nested-menu">
+      <a
+        class="list-group-item"
+        [routerLink]="['users']"
+        (click)="addExpandClass('users')"
+        [routerLinkActive]="['router-link-active']"
+      >
+        <i class="fa fa-users"></i>&nbsp;
+        <span>Utilisateurs</span>
+      </a>
+      <li class="nested" [class.expand]="showMenu === 'users'">
+        <ul class="submenu">
+          <li>
+            <a
+              [routerLink]="['users/user-manager']"
+              [routerLinkActive]="['router-link-active']"
+            >
+              <i class="fa fa-users"></i>&nbsp;
+              <span>Gestion utilisateurs {{ level }}</span>
+            </a>
+          </li>
+          <li *ngIf="level >= 6">
+            <a
+              [routerLink]="['users/users-activate']"
+              [routerLinkActive]="['router-link-active']"
+            >
+              <i class="fa fa-user-plus"></i>&nbsp;
+              <span>Activation des comptes</span>
+            </a>
+          </li>
+          <li *ngIf="level >= 6">
+            <a
+              [routerLink]="['users/admin-manager']"
+              [routerLinkActive]="['router-link-active']"
+            >
+              <i class="fa fa-user-plus"></i>&nbsp;
+              <span>Gestion des admins</span>
+            </a>
+          </li>
+          <li>
+            <a
+              [routerLink]="['users/address-book']"
+              [routerLinkActive]="['router-link-active']"
+            >
+              <i class="fa fa-user-plus"></i>&nbsp;
+              <span>Carnet d'adresse</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </div>
+    <div class="nested-menu">
+      <a class="list-group-item" href="javascript:void(0)">
+        <i class="fa fa-users"></i>&nbsp;
+        <span>Nos amis amimaux</span>
+      </a>
+      <li class="nested" [class.expand]="showMenu === 'pages'">
+        <ul class="submenu">
+          <li>
+            <a href="javascript:void(0)">
+              <i class="fa fa-users"></i>&nbsp;
+              <span>Gestion utilisateurs</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <i class="fa fa-user-plus"></i>&nbsp;
+              <span>Activation des comptes</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <i class="fa fa-user-plus"></i>&nbsp;
+              <span>Gestion des admins</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <i class="fa fa-user-plus"></i>&nbsp;
+              <span>Carnet d'adresse</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </div>
+    <div class="nested-menu">
+      <a class="list-group-item" (click)="addExpandClass('pages')">
+        <i class="fa fa-users"></i>&nbsp;
+        <span>Pages, articles ...</span>
+      </a>
+      <li class="nested" [class.expand]="showMenu === 'pages'">
+        <ul class="submenu">
+          <li>
+            <a href="javascript:void(0)">
+              <i class="fa fa-users"></i>&nbsp;
+              <span>Gestion utilisateurs</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <i class="fa fa-user-plus"></i>&nbsp;
+              <span>Activation des comptes</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <i class="fa fa-user-plus"></i>&nbsp;
+              <span>Gestion des admins</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <i class="fa fa-user-plus"></i>&nbsp;
+              <span>Carnet d'adresse</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </div>
+    <div class="nested-menu">
+      <a
+        class="list-group-item"
+        (click)="addExpandClass('pages')"
+        href="javascript:void(0)"
+      >
+        <i class="fa fa-users"></i>&nbsp;
+        <span>Annonces</span>
+      </a>
+      <li class="nested" [class.expand]="showMenu === 'pages'">
+        <ul class="submenu">
+          <li>
+            <a href="javascript:void(0)">
+              <i class="fa fa-users"></i>&nbsp;
+              <span>Gestion utilisateurs</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <i class="fa fa-user-plus"></i>&nbsp;
+              <span>Activation des comptes</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <i class="fa fa-user-plus"></i>&nbsp;
+              <span>Gestion des admins</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <i class="fa fa-user-plus"></i>&nbsp;
+              <span>Carnet d'adresse</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </div>
+    <div class="nested-menu">
+      <a
+        class="list-group-item"
+        (click)="addExpandClass('pages')"
+        href="javascript:void(0)"
+      >
+        <i class="fa fa-users"></i>&nbsp;
+        <span>Configuration du site</span>
+      </a>
+      <li class="nested" [class.expand]="showMenu === 'pages'">
+        <ul class="submenu">
+          <li>
+            <a href="javascript:void(0)">
+              <i class="fa fa-users"></i>&nbsp;
+              <span>Gestion utilisateurs</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <i class="fa fa-user-plus"></i>&nbsp;
+              <span>Activation des comptes</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <i class="fa fa-user-plus"></i>&nbsp;
+              <span>Gestion des admins</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <i class="fa fa-user-plus"></i>&nbsp;
+              <span>Carnet d'adresse</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </div>
+    <!-- <a  [routerLink]="['/admin/charts']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;
             <span>{{ 'Charts' | translate }}</span>
         </a>
@@ -64,7 +230,7 @@
             <i class="fa fa-th-list"></i>&nbsp;
             <span>{{ 'Component' | translate }}</span>
         </a> -->
-     <!--   <div class="nested-menu">
+    <!--   <div class="nested-menu">
             <a class="list-group-item" (click)="addExpandClass('pages')">
                 <i class="fa fa-plus"></i>&nbsp;
                 <span>{{ 'Menu' | translate }}</span>
@@ -101,8 +267,8 @@
             <span>{{ 'More Themes' | translate }}</span>
         </a> -->
 
-        <div class="header-fields">
-            <!-- <a (click)="rltAndLtr()" class="list-group-item">
+    <div class="header-fields">
+      <!-- <a (click)="rltAndLtr()" class="list-group-item">
                 <span><i class="fa fa-arrows-h"></i>&nbsp; RTL/LTR</span>
             </a>
             <div class="nested-menu">
@@ -149,39 +315,56 @@
                     </ul>
                 </li>
             </div> -->
-            <div class="nested-menu">
-                <a class="list-group-item" (click)="addExpandClass('profile')">
-                    <span><i class="fa fa-user"></i>&nbsp; {{ Username }}</span>
-                </a>
-                <li class="nested" [class.expand]="showMenu === 'profile'">
-                    <ul class="submenu">
-                        <li>
-                            <a href="javascript:void(0)">
-                                <span><i class="fa fa-fw fa-user"></i> {{ 'Profile' | translate }}</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">
-                                <span><i class="fa fa-fw fa-envelope"></i> {{ 'Inbox' | translate }}</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">
-                                <span><i class="fa fa-fw fa-gear"></i> {{ 'Settings' | translate }}</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a  [routerLink]="['/admin/login']" (click)="onLoggedout()">
-                                <span><i class="fa fa-fw fa-power-off"></i> {{ 'Log Out' | translate }}</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </div>
-        </div>
+      <div class="nested-menu">
+        <a class="list-group-item" (click)="addExpandClass('profile')">
+          <span><i class="fa fa-user"></i>&nbsp; {{ Username }}</span>
+        </a>
+        <li class="nested" [class.expand]="showMenu === 'profile'">
+          <ul class="submenu">
+            <li>
+              <a href="javascript:void(0)">
+                <span
+                  ><i class="fa fa-fw fa-user"></i>
+                  {{ 'Profile' | translate }}</span
+                >
+              </a>
+            </li>
+            <li>
+              <a href="javascript:void(0)">
+                <span
+                  ><i class="fa fa-fw fa-envelope"></i>
+                  {{ 'Inbox' | translate }}</span
+                >
+              </a>
+            </li>
+            <li>
+              <a href="javascript:void(0)">
+                <span
+                  ><i class="fa fa-fw fa-gear"></i>
+                  {{ 'Settings' | translate }}</span
+                >
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/admin/login']" (click)="onLoggedout()">
+                <span
+                  ><i class="fa fa-fw fa-power-off"></i>
+                  {{ 'Log Out' | translate }}</span
+                >
+              </a>
+            </li>
+          </ul>
+        </li>
+      </div>
     </div>
-    <div class="toggle-button" [ngClass]="{collapsed: collapsed}" (click)="toggleCollapsed()">
-        <i class="fa fa-fw fa-angle-double-{{collapsed?'right':'left'}}"></i>&nbsp;
-        <span>Réduire</span>
-    </div>
+  </div>
+  <div
+    class="toggle-button"
+    [ngClass]="{ collapsed: collapsed }"
+    (click)="toggleCollapsed()"
+  >
+    <i class="fa fa-fw fa-angle-double-{{ collapsed ? 'right' : 'left' }}"></i
+    >&nbsp;
+    <span>Réduire</span>
+  </div>
 </nav>

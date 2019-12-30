@@ -12,8 +12,7 @@ describe('BsElementComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [BsElementModule, RouterTestingModule, BrowserAnimationsModule]
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

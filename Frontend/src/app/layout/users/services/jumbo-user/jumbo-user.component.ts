@@ -6,11 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./jumbo-user.component.scss']
 })
 export class JumboUserComponent implements OnInit {
-    Module: any = sessionStorage.getItem('Module');
-    ModuleName = this.Module;
-  constructor() { }
+  Module: any = sessionStorage.getItem('Module');
+  ModuleName = this.Module;
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

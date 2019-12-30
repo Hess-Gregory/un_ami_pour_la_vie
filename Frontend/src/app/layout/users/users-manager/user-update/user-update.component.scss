@@ -1,33 +1,30 @@
-
-.form-control:disabled{
-	background-color:  rgba(10, 189, 233, 0.6);
-            color:#fff;
-	border: 1px solid #ced4da;
+.form-control:disabled {
+  background-color: rgba(10, 189, 233, 0.6);
+  color: #fff;
+  border: 1px solid #ced4da;
 }
 .mb-3b {
-	display: block;
-    width: 100%;
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #495057;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: .25rem;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-
-
 .row {
-  [class="navbar navbar-default"] {
+  [class='navbar navbar-default'] {
     border-color: transparent;
   }
 }
 
 #sae-navbar {
-  [class="nav navbar-nav"] {
+  [class='nav navbar-nav'] {
     .navbar-text {
       margin-right: 0;
       margin-left: 0;
@@ -36,14 +33,13 @@
       margin: 10px 0;
     }
   }
-  [class="navbar-form navbar-left"] {
+  [class='navbar-form navbar-left'] {
     .button-group {
       margin-right: 5px;
       margin-left: 5px;
     }
   }
 }
-
 
 .clickable {
   cursor: pointer;
@@ -65,47 +61,62 @@
 .fa.invalid {
   color: #a94442;
 }
-.custom-control{
-    text-align: center;
-    width: 25%;
-    background-color: #0abde9;
-    border-radius: 9px;
-    margin: 0 auto;
-    color: #fff;
-    padding: 2px;
+.custom-control {
+  text-align: center;
+  width: 25%;
+  background-color: #0abde9;
+  border-radius: 9px;
+  margin: 0 auto;
+  color: #fff;
+  padding: 2px;
 }
 .userActionButton {
   display: inline-block;
   border-radius: 15px;
   padding: 6px 18px;
   margin: 0 2px;
-  span { color: white }
+  span {
+    color: white;
+  }
 }
-.fa-info-circle{color:#4169e1}
-.fa.invalid{color:#a94442}
-.userActionButton{display:inline-block;border-radius:15px;padding:6px 18px;margin:0 2px}
-.userActionButton span{color:#fff}
-.userActionButton .blueButton{background-color:#2d6da3;border-color:#2d6da3}
+.fa-info-circle {
+  color: #4169e1;
+}
+.fa.invalid {
+  color: #a94442;
+}
+.userActionButton {
+  display: inline-block;
+  border-radius: 15px;
+  padding: 6px 18px;
+  margin: 0 2px;
+}
+.userActionButton span {
+  color: #fff;
+}
+.userActionButton .blueButton {
+  background-color: #2d6da3;
+  border-color: #2d6da3;
+}
 
-.navbar-control{
-    margin: 0 auto;
+.navbar-control {
+  margin: 0 auto;
 
-    border-radius: 15px;
-    width: 60%;
+  border-radius: 15px;
+  width: 60%;
 }
-.btn:disabled{
-opacity: 0.2;
+.btn:disabled {
+  opacity: 0.2;
 }
-.navbar-fa{
-margin-right: 10px;
+.navbar-fa {
+  margin-right: 10px;
 }
-.picture{
-  width:300px ;
+.picture {
+  width: 300px;
   height: 300px;
   margin: 0 auto;
 }
 .gradient-box {
-
   display: flex;
   align-items: center;
   //width: 50vw;
@@ -118,8 +129,8 @@ margin-right: 10px;
   box-sizing: border-box;
 
   $border: 5px;
-  color: #FFF;
-  background: #FFF;
+  color: #fff;
+  background: #fff;
   background-clip: padding-box; /* !importanté */
   border: solid $border transparent; /* !importanté */
   border-radius: 1em;
@@ -127,16 +138,18 @@ margin-right: 10px;
   &:before {
     content: '';
     position: absolute;
-    top: 0; right: 0; bottom: 0; left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     z-index: -1;
     margin: -$border; /* !importanté */
     border-radius: inherit; /* !importanté */
     background: linear-gradient(to right, rgb(10, 189, 233), rgb(248, 156, 27));
   }
 }
-.user{
+.user {
   margin: 30px;
-
 }
 .toggle-switch {
   height: 36px;
@@ -174,31 +187,31 @@ margin-right: 10px;
     }
   }
 }
-.error-message{
-    color: red;
-    text-align: center;
-  }
-  .form-control.mat-input-element.mat-form-field-autofill-control.cdk-text-field-autofill-monitored.ng-untouched.ng-invalid.ng-dirty,
+.error-message {
+  color: red;
+  text-align: center;
+}
+.form-control.mat-input-element.mat-form-field-autofill-control.cdk-text-field-autofill-monitored.ng-untouched.ng-invalid.ng-dirty,
 .form-control.mat-input-element.mat-form-field-autofill-control.cdk-text-field-autofill-monitored.ng-dirty.ng-touched.ng-invalid,
-.form-control.mat-input-element.mat-form-field-autofill-control.cdk-text-field-autofill-monitored.ng-pristine.ng-invalid.ng-touched
-{
+.form-control.mat-input-element.mat-form-field-autofill-control.cdk-text-field-autofill-monitored.ng-pristine.ng-invalid.ng-touched {
   border: 1px solid red;
   background-color: rgba(125, 0, 0, 0.1);
 }
 .form-control.mat-input-element.mat-form-field-autofill-control.cdk-text-field-autofill-monitored.ng-untouched.ng-dirty.ng-valid,
-.form-control.mat-input-element.mat-form-field-autofill-control.cdk-text-field-autofill-monitored.ng-dirty.ng-touched.ng-valid
-{
+.form-control.mat-input-element.mat-form-field-autofill-control.cdk-text-field-autofill-monitored.ng-dirty.ng-touched.ng-valid {
   border: 1px solid green;
   background-color: rgba(0, 125, 0, 0.1);
 }
-.msgError{color: red}
+.msgError {
+  color: red;
+}
 form.user .form-control-user {
-    font-size: 0.8rem;
-    border-radius: 10rem;
-    padding: 1.5rem 1rem;
+  font-size: 0.8rem;
+  border-radius: 10rem;
+  padding: 1.5rem 1rem;
 }
 form.user .btn-user {
-    font-size: 0.8rem;
-    border-radius: 10rem;
-    padding: 0.75rem 1rem;
+  font-size: 0.8rem;
+  border-radius: 10rem;
+  padding: 0.75rem 1rem;
 }

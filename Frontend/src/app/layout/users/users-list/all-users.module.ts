@@ -10,19 +10,17 @@ import { AllUsersComponent } from './all-users.component';
 import { AllUsersRoutingModule } from './all-users-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
-    imports: [
-        CommonModule,
-        AllUsersRoutingModule,
-        DataTablesModule,
-        FormsModule,
-        NgbModule,
-        HttpClientModule,
-        ReactiveFormsModule,
-        JumboUserModule
-    ],
-    declarations: [AllUsersComponent],
-      exports: [
-        DataTableDirective
-     ]
+  imports: [
+    CommonModule,
+    AllUsersRoutingModule,
+    DataTablesModule,
+    FormsModule,
+    NgbModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    JumboUserModule
+  ],
+  declarations: [AllUsersComponent],
+  exports: [DataTableDirective]
 })
 export class AllUsersModule {}

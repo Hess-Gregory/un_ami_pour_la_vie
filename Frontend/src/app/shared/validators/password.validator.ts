@@ -1,15 +1,26 @@
-import { FormControl, FormGroup, NgForm, FormGroupDirective } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  NgForm,
+  FormGroupDirective
+} from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 
 export class ParentErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+  isErrorState(
+    control: FormControl | null,
+    form: FormGroupDirective | NgForm | null
+  ): boolean {
     const isSubmitted = !!(form && form.submitted);
     const controlTouched = !!(control && (control.dirty || control.touched));
     const controlInvalid = !!(control && control.valid);
-    const parentInvalid = !!(control && control.parent && control.parent.invalid &&
-                            (control.parent.dirty || control.parent.touched));
+    const parentInvalid = !!(
+      control &&
+      control.parent &&
+      control.parent.invalid &&
+      (control.parent.dirty || control.parent.touched)
+    );
     return isSubmitted || (controlTouched && (controlInvalid || parentInvalid));
-
   }
 }
 export class PasswordValidator {
@@ -23,13 +34,11 @@ export class PasswordValidator {
 
         if (value === undefined) {
           value = control.value;
-
         } else {
           if (value !== control.value) {
-          console.log('vide ');
+            console.log('vide ');
             valid = false;
             break;
-
           } else {
             valid = true;
           }
@@ -41,7 +50,6 @@ export class PasswordValidator {
       return null;
     }
 
-    
     return {
       areEqual: true
     };

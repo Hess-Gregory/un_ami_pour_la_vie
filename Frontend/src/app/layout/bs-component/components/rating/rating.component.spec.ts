@@ -8,13 +8,11 @@ describe('RatingComponent', () => {
   let component: RatingComponent;
   let fixture: ComponentFixture<RatingComponent>;
 
-  beforeEach(
-    async(() => {
-      TestBed.configureTestingModule({
-        imports: [BsComponentModule, RouterTestingModule],
-      }).compileComponents();
-    })
-  );
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [BsComponentModule, RouterTestingModule]
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(RatingComponent);

@@ -9,12 +9,9 @@ describe('ProgressbarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        NgbModule
-      ],
-      declarations: [ ProgressbarComponent ]
-    })
-    .compileComponents();
+      imports: [NgbModule],
+      declarations: [ProgressbarComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

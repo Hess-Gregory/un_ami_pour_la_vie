@@ -9,22 +9,17 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { JumboUserModule } from '../services/jumbo-user/jumbo-user.module';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        AddressBookRoutingModule,
-        DataTablesModule,
-        FormsModule,
-        NgbModule,
-        HttpClientModule,
-        ReactiveFormsModule,
-        JumboUserModule
-
-    ],
-    declarations: [
-        AddressBookComponent
-    ],
-    exports: [
-      DataTableDirective
-   ]
+  imports: [
+    CommonModule,
+    AddressBookRoutingModule,
+    DataTablesModule,
+    FormsModule,
+    NgbModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    JumboUserModule
+  ],
+  declarations: [AddressBookComponent],
+  exports: [DataTableDirective]
 })
 export class AddressBookModule {}
