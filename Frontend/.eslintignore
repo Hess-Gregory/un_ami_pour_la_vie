@@ -1,0 +1,5 @@
+/node_modules/
+/src/app/styles/bootstrap/
+src/app/styles/bootstrap/
+src/styles/bootstrap/_variables.scss
+src/styles/bootstrap/bootstrap.scss
