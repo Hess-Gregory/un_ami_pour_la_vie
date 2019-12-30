@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "license": "Apache",
   "repository": {
-      "type": "git",
-      "url": "git://https://github.com/Hess-Gregory/un_ami_pour_la_vie/Frontend"
+    "type": "git",
+    "url": "git://https://github.com/Hess-Gregory/un_ami_pour_la_vie/Frontend"
   },
   "scripts": {
     "ng": "ng",

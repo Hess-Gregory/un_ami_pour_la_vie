@@ -1,19 +1,18 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { By } from "@angular/platform-browser";
+import { DebugElement } from "@angular/core";
 
-import { JumboUserComponent } from './jumbo-user.component';
+import { JumboUserComponent } from "./jumbo-user.component";
 
-describe('JumboUserComponent', () => {
+describe("JumboUserComponent", () => {
   let component: JumboUserComponent;
   let fixture: ComponentFixture<JumboUserComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ JumboUserComponent ]
-    })
-    .compileComponents();
+      declarations: [JumboUserComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -22,7 +21,7 @@ describe('JumboUserComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

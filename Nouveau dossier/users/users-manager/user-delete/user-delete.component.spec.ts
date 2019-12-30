@@ -1,19 +1,18 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { By } from "@angular/platform-browser";
+import { DebugElement } from "@angular/core";
 
-import { DeleteUserComponent } from './delete-user.component';
+import { DeleteUserComponent } from "./delete-user.component";
 
-describe('DeleteUserComponent', () => {
+describe("DeleteUserComponent", () => {
   let component: DeleteUserComponent;
   let fixture: ComponentFixture<DeleteUserComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DeleteUserComponent ]
-    })
-    .compileComponents();
+      declarations: [DeleteUserComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -22,7 +21,7 @@ describe('DeleteUserComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

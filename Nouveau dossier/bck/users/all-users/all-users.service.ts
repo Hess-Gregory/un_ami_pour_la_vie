@@ -1,16 +1,14 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { User } from './../../../shared/exports';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { User } from "./../../../shared/exports";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class AllUsersService {
-
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getUsers() {
-    return this.http.get<User[]>('/api/users');
+    return this.http.get<User[]>("/api/users");
   }
 }

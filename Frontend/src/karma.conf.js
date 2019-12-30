@@ -1,7 +1,7 @@
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
-module.exports = function (config) {
+module.exports = function(config) {
   const defaults = {
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
@@ -29,8 +29,8 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
-    singleRun: false,
-  }
+    singleRun: false
+  };
 
   if (process.env.TEST_CI) {
     Object.assign(defaults, {
@@ -43,9 +43,9 @@ module.exports = function (config) {
           flags: ['--no-sandbox']
         }
       },
-      browserNoActivityTimeout: 60000,
-    })
+      browserNoActivityTimeout: 60000
+    });
   }
 
-  config.set(defaults)
+  config.set(defaults);
 };
