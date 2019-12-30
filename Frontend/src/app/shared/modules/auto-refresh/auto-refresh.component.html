@@ -1,0 +1,14 @@
+<a href="/login" title="Re-login">
+  <i class="fa fa-plug" aria-hidden="true"></i>
+</a>
+{{ '  ' + deltaTimeMessage }}
+
+<jw-modal id="custom-modal-1">
+  <h1>Avertissement !</h1>
+  <div>
+    <p>
+      Pensez a sauvegarder vos modifications avant que votre session se termine.
+    </p>
+  </div>
+  <button (click)="closeModal('custom-modal-1')">Close</button>
+</jw-modal>
