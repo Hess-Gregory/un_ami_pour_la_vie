@@ -69,6 +69,8 @@ import { ModalModule } from './shared/modules/_modal';
 import { TimingRefreshModule } from './shared/modules/auto-refresh/timing-refresh.module';
 import { AgmCoreModule } from '@agm/core';
 import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
+import { TimerModule } from './home/components/timer/timer.module';
+import * as libphonenumber from 'google-libphonenumber';
 registerLocaleData(localeFr, 'fr');
 
 export function tokenGetter() {
@@ -78,6 +80,7 @@ export function tokenGetter() {
 @NgModule({
   imports: [
     TimingRefreshModule,
+    TimerModule,
     ModalModule,
     PageHeaderModule,
     NgbDropdownModule,
@@ -159,6 +162,7 @@ export function tokenGetter() {
   declarations: [AppComponent],
   exports: [
     TimingRefreshModule,
+    TimerModule,
     ModalModule,
     DataTableDirective,
     // A11yModule,

@@ -322,7 +322,7 @@ export class UserAddComponent implements OnDestroy, OnInit {
     },
     {
       code: 'CI',
-      name: "Côte D'Ivoire"
+      name: 'Côte D\'Ivoire'
     },
     {
       code: 'DK',
@@ -1086,15 +1086,15 @@ export class UserAddComponent implements OnDestroy, OnInit {
     username: [
       {
         type: 'required',
-        message: "Le nom d'utilisateur est obligatoire."
+        message: 'Le nom d\'utilisateur est obligatoire.'
       },
       {
         type: 'minlength',
-        message: "Le nom d'utilisateur doit comporter au moins 5 caractères."
+        message: 'Le nom d\'utilisateur doit comporter au moins 5 caractères.'
       },
       {
         type: 'maxlength',
-        message: "Le nom d'utilisateur ne doit pas dépasser 25 caractères."
+        message: 'Le nom d\'utilisateur ne doit pas dépasser 25 caractères.'
       },
       {
         type: 'pattern',
@@ -1103,11 +1103,11 @@ export class UserAddComponent implements OnDestroy, OnInit {
       },
       {
         type: 'validUsername',
-        message: "Votre nom d'utilisateur a déjà été pris."
+        message: 'Votre nom d\'utilisateur a déjà été pris.'
       }
     ],
     email: [
-      { type: 'required', message: "L'adresse mail est obligatoire." },
+      { type: 'required', message: 'L\'adresse mail est obligatoire.' },
       { type: 'pattern', message: 'Entrez une adresse mail valable.' }
     ],
     role: [{ type: 'required', message: 'Veuillez selectionner un grade' }],
@@ -1239,16 +1239,16 @@ export class UserAddComponent implements OnDestroy, OnInit {
     contFacebook: [
       {
         type: 'minlength',
-        message: "L'url Facebook doit comporter au moins 13 caractères."
+        message: 'L\'url Facebook doit comporter au moins 13 caractères.'
       },
       {
         type: 'maxlength',
-        message: "L'url Facebook ne doit pas dépasser 25 caractères."
+        message: 'L\'url Facebook ne doit pas dépasser 25 caractères.'
       },
       {
         type: 'pattern',
         message:
-          "L'url Facebook doit etre au format : facebook.com/  www.facebook.com/ http://www.facebook.com/ ou https://www.facebook.com/ "
+          'L\'url Facebook doit etre au format : facebook.com/  www.facebook.com/ http://www.facebook.com/ ou https://www.facebook.com/ '
       }
     ],
     contWebsite: [{ type: 'pattern', message: 'Veuillez une URL valide' }],
@@ -1329,7 +1329,7 @@ export class UserAddComponent implements OnDestroy, OnInit {
     console.log('this.userDetailsForm:', this.userDetailsForm.value.birthday);
   }
   createForms() {
-    let country = new FormControl(this.countries[0], Validators.required);
+    const country = new FormControl(this.countries[0], Validators.required);
     const phone = new FormControl('', {
       validators: Validators.compose([
         Validators.required,
@@ -1397,7 +1397,7 @@ export class UserAddComponent implements OnDestroy, OnInit {
           Validators.minLength(1),
           Validators.maxLength(25),
           Validators.pattern(
-            "^([a-zA-Zàáâäçèéêëìíïîïñòóôöùúûü]+(( |')[a-zA-Zàáâäçèéêëìíïîïñòóôöùúûü]+)*)+([-]([a-zA-Zàáâäçèéêëìíïîïñòóôöùúûü]+(( |')[a-zA-Zàáâäçèéêëìíîïïñòóôöùúûü]+)*)+)*$"
+            '^([a-zA-Zàáâäçèéêëìíïîïñòóôöùúûü]+(( |\')[a-zA-Zàáâäçèéêëìíïîïñòóôöùúûü]+)*)+([-]([a-zA-Zàáâäçèéêëìíïîïñòóôöùúûü]+(( |\')[a-zA-Zàáâäçèéêëìíîïïñòóôöùúûü]+)*)+)*$'
           )
         ])
       ),
@@ -1408,7 +1408,7 @@ export class UserAddComponent implements OnDestroy, OnInit {
           Validators.minLength(1),
           Validators.maxLength(25),
           Validators.pattern(
-            "^([a-zA-Zàáâäçèéêëìíïîïñòóôöùúûü]+(( |')[a-zA-Zàáâäçèéêëìíïîïñòóôöùúûü]+)*)+([-]([a-zA-Zàáâäçèéêëìíïîïñòóôöùúûü]+(( |')[a-zA-Zàáâäçèéêëìíîïïñòóôöùúûü]+)*)+)*$"
+            '^([a-zA-Zàáâäçèéêëìíïîïñòóôöùúûü]+(( |\')[a-zA-Zàáâäçèéêëìíïîïñòóôöùúûü]+)*)+([-]([a-zA-Zàáâäçèéêëìíïîïñòóôöùúûü]+(( |\')[a-zA-Zàáâäçèéêëìíîïïñòóôöùúûü]+)*)+)*$'
           )
         ])
       ),
@@ -1437,7 +1437,7 @@ export class UserAddComponent implements OnDestroy, OnInit {
         Validators.compose([
           Validators.minLength(1),
           Validators.maxLength(25),
-          Validators.pattern("^([A-Za-z' -]+)")
+          Validators.pattern('^([A-Za-z\' -]+)')
         ])
       ),
       adProStreet: new FormControl(
@@ -1445,7 +1445,7 @@ export class UserAddComponent implements OnDestroy, OnInit {
         Validators.compose([
           Validators.minLength(1),
           Validators.maxLength(25),
-          Validators.pattern("^([A-Za-z' -]+)")
+          Validators.pattern('^([A-Za-z\' -]+)')
         ])
       ),
       adPvCountry: new FormControl(
@@ -1453,7 +1453,7 @@ export class UserAddComponent implements OnDestroy, OnInit {
         Validators.compose([
           Validators.minLength(1),
           Validators.maxLength(25),
-          Validators.pattern("^([A-Za-z' -]+)")
+          Validators.pattern('^([A-Za-z\' -]+)')
         ])
       ),
       adProCountry: new FormControl(
@@ -1461,7 +1461,7 @@ export class UserAddComponent implements OnDestroy, OnInit {
         Validators.compose([
           Validators.minLength(1),
           Validators.maxLength(25),
-          Validators.pattern("^([A-Za-z' -]+)")
+          Validators.pattern('^([A-Za-z\' -]+)')
         ])
       ),
       adPvZip: new FormControl(
@@ -1469,7 +1469,7 @@ export class UserAddComponent implements OnDestroy, OnInit {
         Validators.compose([
           Validators.minLength(1),
           Validators.maxLength(25),
-          Validators.pattern("^([A-Za-z' -]+)")
+          Validators.pattern('^([A-Za-z\' -]+)')
         ])
       ),
       adProZip: new FormControl(
@@ -1477,7 +1477,7 @@ export class UserAddComponent implements OnDestroy, OnInit {
         Validators.compose([
           Validators.minLength(1),
           Validators.maxLength(25),
-          Validators.pattern("^([A-Za-z' -]+)")
+          Validators.pattern('^([A-Za-z\' -]+)')
         ])
       ),
       adPvCity: new FormControl(
@@ -1487,7 +1487,7 @@ export class UserAddComponent implements OnDestroy, OnInit {
           Validators.minLength(2),
           Validators.maxLength(25),
           Validators.pattern(
-            "^([a-zA-Zàáâäçèéêëìíïîïñòóôöùúûü]+(( |')[a-zA-Zàáâäçèéêëìíïîïñòóôöùúûü]+)*)+([-]([a-zA-Zàáâäçèéêëìíïîïñòóôöùúûü]+(( |')[a-zA-Zàáâäçèéêëìíîïïñòóôöùúûü]+)*)+)*$"
+            '^([a-zA-Zàáâäçèéêëìíïîïñòóôöùúûü]+(( |\')[a-zA-Zàáâäçèéêëìíïîïñòóôöùúûü]+)*)+([-]([a-zA-Zàáâäçèéêëìíïîïñòóôöùúûü]+(( |\')[a-zA-Zàáâäçèéêëìíîïïñòóôöùúûü]+)*)+)*$'
           )
         ])
       ),
@@ -1498,7 +1498,7 @@ export class UserAddComponent implements OnDestroy, OnInit {
           Validators.minLength(2),
           Validators.maxLength(25),
           Validators.pattern(
-            "^([a-zA-Zàáâäçèéêëìíïîïñòóôöùúûü]+(( |')[a-zA-Zàáâäçèéêëìíïîïñòóôöùúûü]+)*)+([-]([a-zA-Zàáâäçèéêëìíïîïñòóôöùúûü]+(( |')[a-zA-Zàáâäçèéêëìíîïïñòóôöùúûü]+)*)+)*$"
+            '^([a-zA-Zàáâäçèéêëìíïîïñòóôöùúûü]+(( |\')[a-zA-Zàáâäçèéêëìíïîïñòóôöùúûü]+)*)+([-]([a-zA-Zàáâäçèéêëìíïîïñòóôöùúûü]+(( |\')[a-zA-Zàáâäçèéêëìíîïïñòóôöùúûü]+)*)+)*$'
           )
         ])
       ),
@@ -1507,7 +1507,7 @@ export class UserAddComponent implements OnDestroy, OnInit {
         Validators.compose([
           Validators.minLength(1),
           Validators.maxLength(25),
-          Validators.pattern("^([A-Za-z' -]+)")
+          Validators.pattern('^([A-Za-z\' -]+)')
         ])
       ),
       tva: new FormControl(
@@ -1515,7 +1515,7 @@ export class UserAddComponent implements OnDestroy, OnInit {
         Validators.compose([
           Validators.minLength(1),
           Validators.maxLength(25),
-          Validators.pattern("^([A-Za-z' -]+)")
+          Validators.pattern('^([A-Za-z\' -]+)')
         ])
       ),
       contPhonePv: new FormControl(
@@ -1523,7 +1523,7 @@ export class UserAddComponent implements OnDestroy, OnInit {
         Validators.compose([
           Validators.minLength(1),
           Validators.maxLength(25),
-          Validators.pattern("^([A-Za-z' -]+)")
+          Validators.pattern('^([A-Za-z\' -]+)')
         ])
       ),
       contPhoneGsm: new FormControl(
@@ -1531,7 +1531,7 @@ export class UserAddComponent implements OnDestroy, OnInit {
         Validators.compose([
           Validators.minLength(1),
           Validators.maxLength(25),
-          Validators.pattern("^([A-Za-z' -]+)")
+          Validators.pattern('^([A-Za-z\' -]+)')
         ])
       ),
       contPhonePro: new FormControl(
@@ -1539,7 +1539,7 @@ export class UserAddComponent implements OnDestroy, OnInit {
         Validators.compose([
           Validators.minLength(1),
           Validators.maxLength(25),
-          Validators.pattern("^([A-Za-z' -]+)")
+          Validators.pattern('^([A-Za-z\' -]+)')
         ])
       ),
       contFacebook: new FormControl(
@@ -1565,7 +1565,7 @@ export class UserAddComponent implements OnDestroy, OnInit {
         Validators.compose([
           Validators.minLength(1),
           Validators.maxLength(25),
-          Validators.pattern("^([A-Za-z' -]+)")
+          Validators.pattern('^([A-Za-z\' -]+)')
         ])
       ),
       shortDesc: new FormControl(
@@ -1573,7 +1573,7 @@ export class UserAddComponent implements OnDestroy, OnInit {
         Validators.compose([
           Validators.minLength(1),
           Validators.maxLength(25),
-          Validators.pattern("^([A-Za-z' -]+)")
+          Validators.pattern('^([A-Za-z\' -]+)')
         ])
       ),
       longDesc: new FormControl(
@@ -1581,7 +1581,7 @@ export class UserAddComponent implements OnDestroy, OnInit {
         Validators.compose([
           Validators.minLength(1),
           Validators.maxLength(25),
-          Validators.pattern("^([A-Za-z' -]+)")
+          Validators.pattern("^([A-Za-z\' -]+)")
         ])
       )
     });
@@ -1604,7 +1604,7 @@ export class UserAddComponent implements OnDestroy, OnInit {
       /* Login et Role */
       value.username,
       value.email,
-      parseInt(value.role),
+      Number(value.role),
       value.isActive,
       /* Informations générales */
       value.adressbook,

@@ -10,7 +10,7 @@
 import { ModalService } from './modal.service';
 
 @Component({
-  selector: 'jw-modal',
+  selector: 'app-jw-modal',
   templateUrl: 'modal.component.html',
   styleUrls: ['modal.component.less'],
   encapsulation: ViewEncapsulation.None

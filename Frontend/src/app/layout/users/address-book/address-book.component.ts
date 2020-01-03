@@ -93,7 +93,7 @@ export class AddressBookComponent implements OnDestroy, OnInit {
   RowSelected(user: any) {
     this.data = user.id;
     sessionStorage.setItem('idSelect', this.data);
-    if (parseInt(user.newRegister) === 1) {
+    if (Number(user.newRegister) === 1) {
       sessionStorage.setItem('new', 'true');
       console.log('new : true');
     } else {

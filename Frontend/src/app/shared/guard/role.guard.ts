@@ -3,7 +3,7 @@ import * as jwt_decode from 'jwt-decode';
 
 @Injectable()
 export class RoleGuard {
-  //authLevel: number ;
+  // authLevel: number ;
   static authLevel: number;
 
   constructor() {

@@ -5,7 +5,7 @@ import { AddressBookComponent } from './address-book.component';
 const routes: Routes = [
   {
     path: '',
-    data: { breadcrumb: "Carnet d'adresses" },
+    data: { breadcrumb: 'Carnet d\'adresses' },
     component: AddressBookComponent
   }
 ];

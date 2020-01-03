@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { isNullOrUndefined } from 'util';
 
 import {
   ActivatedRoute,
@@ -52,7 +51,7 @@ export class BreadcrumbComponent implements OnInit {
 
       const label =
         child.snapshot.data[BreadcrumbComponent.ROUTE_DATA_BREADCRUMB];
-      if (!isNullOrUndefined(label)) {
+      if (label !== undefined || label !== null) {
         breadcrumbs.push({ label, url });
       }
 

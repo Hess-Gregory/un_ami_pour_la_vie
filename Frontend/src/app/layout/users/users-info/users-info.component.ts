@@ -25,7 +25,6 @@ export class UsersInfoComponent implements OnInit {
   constructor(private thisService: UserInfoService, private router: Router) {}
 
   ngOnInit() {
-    this.bodyText = 'This text can be updated in modal 1';
     this.RenderDataTable();
     this.searchTerm$
       .pipe(
@@ -55,6 +54,7 @@ export class UsersInfoComponent implements OnInit {
   RenderDataTable() {
     this.thisService.GetAllRecords().subscribe(
       data1 => {
+          console.log()
         this.MyDataSource = new MatTableDataSource();
         this.MyDataSource.data = data1;
         this.MyDataSource.paginator = this.paginator;
@@ -62,7 +62,7 @@ export class UsersInfoComponent implements OnInit {
       },
       (err: string) => {
         console.log(
-          "Une erreur s'est produite lors de la récupération des datas: " + err
+          'Une erreur s\'est produite lors de la récupération des datas: ' + err
         );
       }
     );

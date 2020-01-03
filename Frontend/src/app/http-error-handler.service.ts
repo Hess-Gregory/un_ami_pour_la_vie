@@ -20,7 +20,7 @@ export class HttpErrorHandler {
   createHandleError = (serviceName = '') => <T>(
     operation = 'operation',
     result = {} as T
-  ) => this.handleError(serviceName, operation, result);
+  ) => this.handleError(serviceName, operation, result)
 
   /**
    * Retourne une fonction qui gère les échecs d'opération HTTP.

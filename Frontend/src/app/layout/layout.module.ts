@@ -8,7 +8,6 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { BreadcrumbModule, AccordionModule } from 'primeng/primeng';
-import { TimerBisComponent } from './timer-bis/timer-bis.component';
 import { DataTablesModule } from 'angular-datatables';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -39,8 +38,7 @@ import { TimingRefreshModule } from '../shared/modules/auto-refresh/timing-refre
     LayoutComponent,
     SidebarComponent,
     HeaderComponent,
-    BreadcrumbComponent,
-    TimerBisComponent
+    BreadcrumbComponent
   ],
   exports: [NgbModule]
 })

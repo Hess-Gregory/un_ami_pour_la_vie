@@ -90,9 +90,9 @@ export class AutoRefreshComponent implements OnInit {
         this.currentDate = moment(new Date());
 
         if (current_time < expirationTime) {
-          this.date333 = new Date(parseInt(expirationTime) * 1000);
+          this.date333 = new Date(Number(expirationTime) * 1000);
           let Qseconds = (this.date333 - this.currentDate + 30000) / 1000 - 31;
-          let rest = (this.date333 - this.currentDate + 30000) / 1000 - 31;
+          const rest = (this.date333 - this.currentDate + 30000) / 1000 - 31;
 
           if (rest < 180) {
             this.openModal('custom-modal-1');

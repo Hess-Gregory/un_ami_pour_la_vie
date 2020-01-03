@@ -125,7 +125,7 @@ export class AdminManagerComponent implements OnDestroy, OnInit, AfterViewInit {
           this.parseUsers = JSON.parse(this.stringifyUsers);
           let index = -1;
           const filteredRes = this.parseUsers.find(function(item: any, i: any) {
-            if (item.id === parseInt(value.userid)) {
+            if (item.id === Number(value.userid)) {
               index = i;
               return i;
             }
@@ -151,7 +151,7 @@ export class AdminManagerComponent implements OnDestroy, OnInit, AfterViewInit {
               alert('Parfait!! :-)\n\n vous avez changer le grade du membre');
             } else {
               alert(
-                "Désolé!! :-(\n\n vous n'avez pas la permission de changer le grade de ce membre"
+                'Désolé!! :-(\n\n vous n\'avez pas la permission de changer le grade de ce membre'
               );
             }
           }
@@ -284,7 +284,8 @@ export class AdminManagerComponent implements OnDestroy, OnInit, AfterViewInit {
   //                     "sProcessing":     "Traitement en cours...",
   //                     "sSearch":         "Rechercher&nbsp;:",
   //                     "sLengthMenu":     "Afficher _MENU_ &eacute;l&eacute;ments",
-  //                     "sInfo":           "Affichage de l'&eacute;l&eacute;ment _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+  //                     "sInfo":           "Affichage de l'&eacute;l&eacute;ment _START_ &agrave;
+  //                             _END_ sur _TOTAL_ &eacute;l&eacute;ments",
   //                     "sInfoEmpty":      "Affichage de l'&eacute;l&eacute;ment 0 &agrave; 0 sur 0 &eacute;l&eacute;ment",
   //                     "sInfoFiltered":   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
   //                     "sInfoPostFix":    "",
@@ -358,7 +359,7 @@ export class AdminManagerComponent implements OnDestroy, OnInit, AfterViewInit {
 
     this.data = admin.id;
     sessionStorage.setItem('idSelect', this.data);
-    if (parseInt(admin.newRegister) === 1) {
+    if (Number(admin.newRegister) === 1) {
       sessionStorage.setItem('new', 'true');
       console.log('new : true');
     } else {

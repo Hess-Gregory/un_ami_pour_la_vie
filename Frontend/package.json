@@ -10,7 +10,7 @@
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.conf.json --open --port 4300",
     "build": "ng build --prod",
-    "gitbuild": "ng build --prod --base-href /start-angular/SB-Admin-BS4-Angular-7/master/dist/",
+    "gitbuild": "ng build --prod --base-href /Hess-Gregory/un_ami_pour_la_vie/tree/master/Frontend/dist/",
     "test": "ng test",
     "test-ci": "TEST_CI=true ng test",
     "lint": "ng lint",
@@ -74,7 +74,6 @@
     "quill": "^1.3.7",
     "rxjs": "6.5.3",
     "tslib": "^1.10.0",
-    "util": "^0.12.1",
     "webpack": "^4.41.2",
     "zippopotamus": "^0.2.1",
     "zone.js": "^0.9.1"
@@ -85,6 +84,7 @@
     "@angular/language-service": "8.2.13",
     "@types/datatables.net": "^1.10.18",
     "@types/datatables.net-select": "^1.2.6",
+    "@types/google-libphonenumber": "^7.4.17",
     "@types/googlemaps": "^3.38.1",
     "@types/jasmine": "3.4.4",
     "@types/jasminewd2": "2.0.8",
@@ -106,6 +106,7 @@
     "protractor": "5.4.2",
     "ts-node": "8.4.1",
     "tslint": "~5.20.0",
-    "typescript": "3.4.5"
+    "typescript": "3.4.5",
+    "util": "^0.12.1"
   }
 }

@@ -89,7 +89,7 @@ export class UsersActivateComponent implements OnDestroy, OnInit {
   RowSelected1(usersactivate: any) {
     this.data = usersactivate.id;
     sessionStorage.setItem('idSelect', this.data);
-    if (parseInt(usersactivate.newRegister) === 1) {
+    if (Number(usersactivate.newRegister) === 1) {
       sessionStorage.setItem('new', 'true');
       console.log('new : true');
     } else {
@@ -101,7 +101,7 @@ export class UsersActivateComponent implements OnDestroy, OnInit {
   RowSelected2(usersnotactivate: any) {
     this.data = usersnotactivate.id;
     sessionStorage.setItem('idSelect', this.data);
-    if (parseInt(usersnotactivate.newRegister) === 1) {
+    if (Number(usersnotactivate.newRegister) === 1) {
       sessionStorage.setItem('new', 'true');
       console.log('new : true');
     } else {
@@ -128,7 +128,7 @@ export class UsersActivateComponent implements OnDestroy, OnInit {
     let index = -1;
 
     const filteredRes = this.parseUsers.find(function(item: any, i: any) {
-      if (item.id === parseInt(usersactivate.id)) {
+      if (item.id === Number(usersactivate.id)) {
         index = i;
         return i;
       }
@@ -152,7 +152,7 @@ export class UsersActivateComponent implements OnDestroy, OnInit {
         this.allusersservice.setActivate(usersactivate.id);
         alert('Parfait!! :-)\n\n vous avez activé ce membre');
       } else {
-        alert("Désolé!! :-(\n\n vous n'avez pas la permission pour ce membre");
+        alert('Désolé!! :-(\n\n vous n\'avez pas la permission pour ce membre');
       }
     }
     return this.userCurrentRole;
@@ -164,7 +164,7 @@ export class UsersActivateComponent implements OnDestroy, OnInit {
     let index = -1;
 
     const filteredRes = this.parseUsers.find(function(item: any, i: any) {
-      if (item.id === parseInt(usersnotactivate.id)) {
+      if (item.id === Number(usersnotactivate.id)) {
         index = i;
         return i;
       }
@@ -188,7 +188,7 @@ export class UsersActivateComponent implements OnDestroy, OnInit {
         this.allusersservice.setNotactivate(usersnotactivate.id);
         alert('Parfait!! :-)\n\n vous avez gelé ce membre');
       } else {
-        alert("Désolé!! :-(\n\n vous n'avez pas la permission pour ce membre");
+        alert('Désolé!! :-(\n\n vous n\'avez pas la permission pour ce membre');
       }
     }
     return this.userCurrentRole;

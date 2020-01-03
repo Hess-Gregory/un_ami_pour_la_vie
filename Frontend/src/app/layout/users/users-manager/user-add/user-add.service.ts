@@ -74,7 +74,7 @@ export class UserAddService {
         username: username,
         email: email,
         role: role,
-        isActive: parseInt(isActive),
+        isActive: Number(isActive),
         /* Informations générales */
         adressbook: adressbook,
         firstName: firstName,
