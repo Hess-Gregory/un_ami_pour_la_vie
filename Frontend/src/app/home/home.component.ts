@@ -1,10 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { AppComponent } from './../app.component';
+import { Component, OnInit } from '@angular/core';
 import { Globals } from '../globals';
-import * as jwt_decode from 'jwt-decode';
-import * as $ from 'jquery';
 import { Router } from '@angular/router';
-import { HomepageComponent } from './homepage/homepage.component';
 
 @Component({
   selector: 'app-home',

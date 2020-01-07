@@ -49,10 +49,10 @@ export class LoginComponent implements OnInit {
       .login(this.email, this.password)
       .pipe(first())
       .subscribe(
-        result => this.router.navigate(['']),
+        result => this.router.navigate(['/admin']),
         err =>
           (this.Errormessage =
-            "Votre email ou votre mot de passe ne sont pas corrects, ou bien votre compte n'est pas activé.")
+            'Votre email ou votre mot de passe ne sont pas corrects, ou bien votre compte n\'est pas activé.')
       );
   }
   ngOnInit() {}
