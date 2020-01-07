@@ -41,4 +41,5 @@ export class PhoneValidator {
         return undefined;
       }
     };
-  }}
+  };
+}
