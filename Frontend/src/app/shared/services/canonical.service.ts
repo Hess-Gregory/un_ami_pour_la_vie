@@ -4,9 +4,8 @@ import { DOCUMENT } from '@angular/common';
 @Injectable({
   providedIn: 'root'
 })
-
 export class CanonicalService {
-  constructor( @Inject(DOCUMENT) private dom: Document ) { }
+  constructor(@Inject(DOCUMENT) private dom: Document) {}
 
   setCanonicalURL(url?: string) {
     const canURL = url === undefined ? this.dom.URL : url;
@@ -15,5 +14,4 @@ export class CanonicalService {
     this.dom.head.appendChild(link);
     link.setAttribute('href', canURL);
   }
-
 }
