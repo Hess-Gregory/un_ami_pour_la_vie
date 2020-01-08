@@ -1,41 +1,15 @@
 import {
   Component,
   OnDestroy,
-  OnInit,
-  ViewChild,
-  ElementRef,
-  Output,
-  EventEmitter,
-  Injectable
+  OnInit
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  FormControl
-} from '@angular/forms';
-import {
-  UsernameValidator,
-  PasswordValidator,
-  ParentErrorStateMatcher
-} from './../../../../shared/validators';
-import { routerTransition } from '../../../../router.animations';
-import { User } from './../../../../shared/exports';
 import { UserDetailService } from './user-detail.service';
-import { Observable, of, Subject } from 'rxjs';
-import { first } from 'rxjs/operators';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { Title, Meta } from '@angular/platform-browser';
 declare let $: any;
 
-export interface Error {
-  objStringError: string;
-  objError: any;
-  ErrorstatusText: any;
-  Errormessage: string;
-  ErrorStatus: string;
-}
 
 @Component({
   selector: 'app-user-detail',
@@ -44,6 +18,8 @@ export interface Error {
   styleUrls: ['./user-detail.component.scss']
 })
 export class UserDetailComponent implements OnDestroy, OnInit {
+
+  title = 'Un Ami Pour La Vie - Admin : Détails Utilisateur';
   loading = true;
   previewUrl: any = null;
   [x: string]: any;
@@ -53,19 +29,22 @@ export class UserDetailComponent implements OnDestroy, OnInit {
   public ErrorstatusText: any;
   public Errormessage: string;
   public ErrorStatus: string;
-  public error: Error;
   alerts: Array<any> = [];
   users: any = [];
   status: any = [];
-  dtTrigger: Subject<any> = new Subject();
   fileData: File = null;
-  fileUploadProgress: string = null;
-  uploadedFilePath: string = null;
+  public id: string;
 
-  constructor(private userservice: UserDetailService, private router: Router) {
+  constructor(
+      private userservice: UserDetailService,
+      private activatedRoute: ActivatedRoute,
+      private router: Router,
+      private titleService: Title,
+      private metaTagService: Meta
+      ) {
     this.getUsers();
     this.getStatus();
-
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.alerts.push({
       id: 3,
       type: 'danger',
@@ -75,42 +54,17 @@ export class UserDetailComponent implements OnDestroy, OnInit {
 
   ngOnInit() {
     sessionStorage.setItem('page', 'user-get');
+    this.titleService.setTitle(this.title);
+    this.metaTagService.updateTag({
+      name: 'description',
+      content: 'Un Ami Pour La Vie - Admin : Détails Utilisateur'
+    });
   }
 
-  //   onUnlock() {
-  //     this.locked = false;
-  //   }
-
-  //   onSave() {
-  //     this.locked = true;
-  //     this.create = false;
-  //     this.previewUrl = false;
-  //   }
-  //   onCreate() {
-  //     this.create = true;
-  //   }
-  //   onCancel() {
-  //     this.locked = true;
-  //     this.create = false;
-  //     this.previewUrl = false;
-  //   }
-
-  //   onDelete() {
-  //     this.locked = true;
-  //     this.previewUrl = false;
-  //   }
-
-  //   onClose() {
-  //     this.locked = true;
-  //     this.previewUrl = false;
-  //   }
-
-  //   onFrozen() {
-  //     this.locked = true;
-  //   }
 
   getUsers() {
-    this.userservice.getUsers().subscribe(
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');
+    this.userservice.getUsers(this.id).subscribe(
       response => {
         this.loading = false;
         this.users = response;
@@ -134,7 +88,8 @@ export class UserDetailComponent implements OnDestroy, OnInit {
     return this.adressbook;
   }
   getStatus() {
-    this.userservice.getStatus().subscribe(
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');
+    this.userservice.getStatus(this.id).subscribe(
       response => {
         this.status = response;
 
@@ -150,10 +105,6 @@ export class UserDetailComponent implements OnDestroy, OnInit {
     );
   }
 
-  fileProgress(fileInput: any) {
-    this.fileData = <File>fileInput.target.files[0];
-    this.preview();
-  }
 
   preview() {
     // Show preview
@@ -167,26 +118,6 @@ export class UserDetailComponent implements OnDestroy, OnInit {
     reader.onload = _event => {
       this.previewUrl = reader.result;
     };
-  }
-
-  onSubmit() {
-    // const formData = new FormData();
-    // formData.append('files', this.fileData);
-    // this.fileUploadProgress = '0%';
-    // this.http.post('https://us-central1-tutorial-e6ea7.cloudfunctions.net/fileUpload', formData, {
-    //   reportProgress: true,
-    //   observe: 'events'
-    // })
-    // .subscribe(events => {
-    //   if(events.type === HttpEventType.UploadProgress) {
-    //     this.fileUploadProgress = Math.round(events.loaded / events.total * 100) + '%';
-    //     console.log(this.fileUploadProgress);
-    //   } else if(events.type === HttpEventType.Response) {
-    //     this.fileUploadProgress = '';
-    //     console.log(events.body);
-    //     alert('SUCCESS !!');
-    //   }
-    // })
   }
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();

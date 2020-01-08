@@ -5,7 +5,7 @@ import { UserDetailComponent } from './user-detail.component';
 const routes: Routes = [
   {
     path: '',
-    data: { breadcrumb: 'Detail du membre' },
+    data: { breadcrumb: 'Détails membre' },
     component: UserDetailComponent
   }
 ];

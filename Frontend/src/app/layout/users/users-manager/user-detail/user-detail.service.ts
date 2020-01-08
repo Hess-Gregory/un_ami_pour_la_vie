@@ -1,37 +1,37 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { User } from './../../../../shared/exports';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Observable, Subject, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 declare let $: any;
 @Injectable({
   providedIn: 'root'
 })
 export class UserDetailService {
-  userid: string;
-  users: any;
-  status: any;
-  userdetail: any;
+  constructor(private http: HttpClient) {
+  }
 
-  constructor(private http: HttpClient) {}
+  getUsers(id: string): Observable<User[]>  {
 
-  getUsers() {
-    this.userid = sessionStorage.getItem('idSelect');
-    if (sessionStorage.getItem('new')) {
-      this.http.put(`/api/users/${this.userid}`, { newRegister: 0 }).subscribe(
+
+    if (sessionStorage.getItem('new') === 'true') {
+
+
+      this.http.put<User[]>(`/api/admins/user/${id}`, { newRegister: 0 }).subscribe(
         data => {
           console.log('PUT Request is successful ', data);
+          sessionStorage.removeItem('new');
         },
         error => {
-          console.log('Rrror', error);
+          console.log('Error', error);
         }
       );
+    return this.http.get<User[]>(`/api/users/${id}`);
+
+    }if (sessionStorage.getItem('new') === 'false') {
+    return this.http.get<User[]>(`/api/users/${id}`);
     }
-    return this.http.get<User[]>(`/api/users/${this.userid}`);
   }
-  getStatus() {
-    this.userid = sessionStorage.getItem('idSelect');
-    return this.http.get<User[]>(`/api/users/status/${this.userid}`);
+  getStatus(id: string): Observable<User[]>  {
+    return this.http.get<User[]>(`/api/users/status/${id}`);
   }
 }
