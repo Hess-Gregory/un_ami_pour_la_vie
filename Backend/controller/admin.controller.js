@@ -8,6 +8,7 @@ const user = db.user;
 const admin = db.admin;
 const members = db.members;
 const login = db.login;
+const userandrole = db.userandrole;
 const role = db.role;
 
 module.exports = {
@@ -35,6 +36,17 @@ module.exports = {
       .catch(e => next(e));
   },
 
+  // List userandrole :
+  getAllUserAndRole(req, res, next) {
+    return userandrole
+      .findAll({
+        attributes: {
+          exclude: ["password", "createdAt", "updatedAt"]
+        }
+      })
+      .then(userandroles => res.json(userandroles))
+      .catch(e => next(e));
+  },
   // Get one user by ID :
 
   getById(req, res, next) {
@@ -47,7 +59,7 @@ module.exports = {
         if (!uniqueUser) {
           return res
             .status(httpStatus.NOT_FOUND)
-            .send({ message: "Ce membre nexiste pas!" });
+            .send({ message: "Ce membre n'existe pas!" });
         }
         return res.json(uniqueUser);
       });
@@ -90,6 +102,7 @@ module.exports = {
           contFacebook: req.body.contFacebook,
           contWebsite: req.body.contWebsite,
           shortDesc: req.body.shortDesc,
+          newRegister: req.body.newRegister,
           longDesc: req.body.longDesc,
           pachMedia: req.body.pachMedia
         },
