@@ -43,8 +43,6 @@ db.admin = require("../models/admin_list")(sequelize, Sequelize);
 db.members = require("../models/members")(sequelize, Sequelize);
 db.login = require("../models/login")(sequelize, Sequelize);
 db.role = require("../models/role")(sequelize, Sequelize);
-
-//db.user_details = require('../models/user_details')(sequelize, Sequelize);
-//db.connect_jwt = require('../models/connect_jwt')(sequelize, Sequelize);
+db.userandrole = require("../models/userandrole")(sequelize, Sequelize);
 
 module.exports = db;
