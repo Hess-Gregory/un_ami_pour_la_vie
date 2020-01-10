@@ -1,5 +1,3 @@
-
-import { TimerComponent } from './components/timer/timer.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TranslateModule } from '@ngx-translate/core';
@@ -8,15 +6,21 @@ import { HomeRoutingModule } from './home-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
-import { HomepageComponent } from './homepage/homepage.component';
 import { HeaderHomepageComponent } from './components/header/header.component';
+import { TimerModule } from './components/timer/timer.module';
 @NgModule({
   imports: [
     CommonModule,
     HomeRoutingModule,
     NgbDropdownModule,
-    TranslateModule
+    TranslateModule,
+    TimerModule
   ],
-  declarations: [HomeComponent, NavbarComponent, HeaderHomepageComponent, FooterComponent,  TimerComponent ]
+  declarations: [
+    HomeComponent,
+    NavbarComponent,
+    HeaderHomepageComponent,
+    FooterComponent
+  ]
 })
-export class HomeModule { }
+export class HomeModule {}

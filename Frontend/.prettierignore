@@ -1,0 +1,16 @@
+/node_modules/
+/src/app/styles/bootstrap/
+src/app/styles/bootstrap/
+/src/styles/bootstrap/_variables.scss
+/src/styles/bootstrap/bootstrap.scss
+/src/styles/bootstrap/mixins/_image.scss
+src/styles/bootstrap/_variables.scss
+src/styles/bootstrap/bootstrap.scss
+src/styles/bootstrap/mixins/_image.scss
+**/bootstrap/_variables.scss
+**/bootstrap/bootstrap.scss
+**/mixins/_image.scss
+.vscode-test/
+out/
+test-fixtures/
+node_modules/

@@ -1,22 +1,17 @@
-
-import { Component, OnInit, Input } from '@angular/core';
-import { AppComponent} from './../app.component';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Globals } from '../globals';
-import * as jwt_decode from 'jwt-decode';
-import * as $ from 'jquery';
 import { Router } from '@angular/router';
-import { HomepageComponent } from './homepage/homepage.component';
+import { routerTransition } from './../router.animations';
 
 @Component({
   selector: 'app-home',
-  templateUrl:
-'./home.component.html',
-  styleUrls: ['./home.component.scss']
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  animations: [routerTransition()]
 })
 export class HomeComponent implements OnInit {
-  constructor(public globals: Globals, private router: Router) {
-  }
+  constructor(public globals: Globals, private router: Router) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 }

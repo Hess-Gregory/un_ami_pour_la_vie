@@ -1,0 +1,232 @@
+<app-jumbo-user class="btnJumbo"></app-jumbo-user>
+<div *ngIf="loading && !ErrorValid && !alertError" class="spinner">
+  <img
+    class="dog"
+    src="./assets/images/loading-dog.gif"
+    style="width: 10vw;text-align: center;
+     display: block; vertical-align: middle; margin: auto; margin-top: 25%; margin-bottom: 25%;"
+    alt=""
+  />
+</div>
+
+<router-outlet *ngIf="ErrorValid"> </router-outlet>
+<div *ngIf="alertError" class="card-body">
+  <p *ngFor="let alert of alerts" class="alerts">
+    <ngb-alert [type]="alert.type" (close)="closeAlert(alert)">
+      {{ alert.message }}
+    </ngb-alert>
+  </p>
+</div>
+<div class="data-container" *ngIf="!ErrorStatus && !loading">
+  <div class="container">
+    <div class="filter-table">
+      <h2 class="filter-title">Recherche avancé d'un utilisateur</h2>
+
+      <form class="filter-form">
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            (keyup)="applyFilter($event.target.value)"
+            placeholder="Filtre"
+          />
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </form>
+    </div>
+
+    <div class="add-user-button">
+      <button
+        type="button"
+        class="col-12 col-sm-4 col-md-2  btn btn-primary btn-lg"
+        role="button"
+        [routerLink]="['/admin/users/user-manager/user-add']"
+        [routerLinkActive]="['router-link-active']"
+      >
+        Ajouter un nouveau membre
+      </button>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="col col-xl-12 col-lg-12">
+      <div class="card ">
+        <div class="card-header">
+          <div class="alert alert-info">
+            <strong>Liste des utilisateurs</strong>
+          </div>
+          <div class="alert-lexique">
+            <h6 class="lexique-title">
+              <strong>Lexique des status</strong>
+            </h6>
+            <div class="lexique">
+              <div class="lexique1">
+                <div class="circle circleGreen"></div>
+                <p>Compte activé</p>
+              </div>
+              <div class="lexique2">
+                <div class="circle circleYellow"></div>
+                <p>Nouvelle inscription</p>
+              </div>
+              <div class="lexique3">
+                <div class="circle circleOrange"></div>
+                <p>Compte désactivé</p>
+              </div>
+              <div class="lexique4">
+                <div class="circle circleRed"></div>
+                <p>Erreur du compte (compte non vérifié mais activé ! )</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body table-responsive">
+          <div class="example-container mat-elevation-z8">
+            <mat-table
+              #Table
+              [dataSource]="MyDataSource"
+              matSort
+              [class.isMobile]="isMobile"
+            >
+              <!-- For User ID -->
+
+              <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  ID
+                </mat-header-cell>
+                <ng-container *ngIf="MyDataSource.length != 0">
+                  <mat-cell *matCellDef="let post">
+                    {{ post.id }}
+                  </mat-cell>
+                </ng-container>
+                <ng-container *ngIf="MyDataSource.length == 0">
+                  <mat-cell *matCellDef="let post" [attr.colspan]="8">
+                  </mat-cell>
+                </ng-container>
+              </ng-container>
+
+              <!-- For User USERNAME -->
+
+              <ng-container matColumnDef="username">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Nom d'utilisateur
+                </mat-header-cell>
+                <ng-container *ngIf="MyDataSource.length != 0">
+                  <mat-cell *matCellDef="let post">
+                    <span class="mobile-label">Nom d'utilisateur:</span>
+                    {{ post.username }}
+                  </mat-cell>
+                </ng-container>
+              </ng-container>
+
+              <!-- For User FirstName -->
+
+              <ng-container matColumnDef="firstName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Prénom
+                </mat-header-cell>
+                <ng-container *ngIf="MyDataSource.length != 0">
+                  <mat-cell *matCellDef="let post">
+                    <span class="mobile-label">Prénom:</span>
+                    {{ post.firstName }}
+                  </mat-cell>
+                </ng-container>
+              </ng-container>
+
+              <!-- For User LastName -->
+
+              <ng-container matColumnDef="lastName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Nom
+                </mat-header-cell>
+                <ng-container *ngIf="MyDataSource.length != 0">
+                  <mat-cell *matCellDef="let post">
+                    <span class="mobile-label">Nom:</span>
+                    {{ post.lastName }}
+                  </mat-cell>
+                </ng-container>
+              </ng-container>
+
+              <!-- For User EMAIL -->
+
+              <ng-container matColumnDef="email">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Email
+                </mat-header-cell>
+                <ng-container *ngIf="MyDataSource.length != 0">
+                  <mat-cell *matCellDef="let post">
+                    <span class="mobile-label">Email:</span>
+                    {{ post.email }}
+                  </mat-cell>
+                </ng-container>
+              </ng-container>
+
+              <!-- For User date -->
+
+              <ng-container matColumnDef="created_date">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Date d'ajout
+                </mat-header-cell>
+                <ng-container *ngIf="MyDataSource.length != 0">
+                  <mat-cell *matCellDef="let post">
+                    <span class="mobile-label">Date d'ajout:</span>
+                    {{ post.created_date | date: 'd MMMM y à HH:mm':'UTC' }}
+                  </mat-cell>
+                </ng-container>
+              </ng-container>
+
+              <!-- User roleName -->
+
+              <ng-container matColumnDef="roleName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Rôle
+                </mat-header-cell>
+                <ng-container *ngIf="MyDataSource.length != 0">
+                  <mat-cell *matCellDef="let post">
+                    <span class="mobile-label">Rôle:</span>
+                    {{ post.roleName }}
+                  </mat-cell>
+                </ng-container>
+              </ng-container>
+
+              <!-- User Status -->
+
+              <ng-container matColumnDef="status">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Status
+                </mat-header-cell>
+                <ng-container *ngIf="MyDataSource.length != 0">
+                  <mat-cell *matCellDef="let post">
+                    <span class="mobile-label">Status:</span>
+                    <ng-container *ngIf="post.isActive && !post.newRegister">
+                      <div class="circle circleGreen"></div>
+                    </ng-container>
+                    <ng-container *ngIf="!post.isActive && post.newRegister">
+                      <div class="circle circleYellow"></div>
+                    </ng-container>
+                    <ng-container *ngIf="!post.newRegister && !post.isActive">
+                      <div class="circle circleOrange"></div>
+                    </ng-container>
+                    <ng-container *ngIf="post.newRegister && post.isActive">
+                      <div class="circle circleRed"></div>
+                    </ng-container>
+                  </mat-cell>
+                </ng-container>
+              </ng-container>
+
+              <mat-header-row
+                *matHeaderRowDef="displayedColumns"
+              ></mat-header-row>
+              <mat-row
+                *matRowDef="let row; columns: displayedColumns"
+                (click)="RowSelected(row)"
+              ></mat-row>
+            </mat-table>
+            <mat-paginator
+              [pageSizeOptions]="[5, 10, 15]"
+              showFirstLastButtons
+            ></mat-paginator>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

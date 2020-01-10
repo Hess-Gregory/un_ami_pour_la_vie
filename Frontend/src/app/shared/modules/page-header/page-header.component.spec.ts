@@ -10,9 +10,8 @@ describe('PageHeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [PageHeaderModule, RouterTestingModule],
-    })
-    .compileComponents();
+      imports: [PageHeaderModule, RouterTestingModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

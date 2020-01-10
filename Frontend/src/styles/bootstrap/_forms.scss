@@ -79,7 +79,6 @@ select.form-control {
   width: 100%;
 }
 
-
 //
 // Labels
 //
@@ -108,7 +107,6 @@ select.form-control {
   line-height: $input-line-height-sm;
 }
 
-
 // Readonly controls as plain text
 //
 // Apply class to a readonly input to make it appear like regular plain
@@ -131,7 +129,6 @@ select.form-control {
     padding-left: 0;
   }
 }
-
 
 // Form control sizing
 //
@@ -167,7 +164,6 @@ select.form-control-lg {
   }
 }
 
-
 // Form groups
 //
 // Designed to help with the organization and spacing of vertical forms. For
@@ -182,7 +178,6 @@ select.form-control-lg {
   margin-top: $form-text-margin-top;
 }
 
-
 // Form grid
 //
 // Special replacement for our grid system's `.row` for tighter form layouts.
@@ -194,12 +189,11 @@ select.form-control-lg {
   margin-left: -5px;
 
   > .col,
-  > [class*="col-"] {
+  > [class*='col-'] {
     padding-right: 5px;
     padding-left: 5px;
   }
 }
-
 
 // Checkboxes and radios
 //
@@ -240,7 +234,6 @@ select.form-control-lg {
   }
 }
 
-
 // Form validation
 //
 // Provide feedback to users when form field values are valid or invalid. Works
@@ -248,8 +241,8 @@ select.form-control-lg {
 // pseudo-classes but also includes `.is-invalid` and `.is-valid` classes for
 // server side validation.
 
-@include form-validation-state("valid", $form-feedback-valid-color);
-@include form-validation-state("invalid", $form-feedback-invalid-color);
+@include form-validation-state('valid', $form-feedback-valid-color);
+@include form-validation-state('invalid', $form-feedback-invalid-color);
 
 // Inline forms
 //

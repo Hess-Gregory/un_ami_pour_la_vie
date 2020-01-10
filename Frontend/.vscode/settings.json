@@ -5,12 +5,12 @@
   "prettier.printWidth": 140,
   "editor.showFoldingControls": "always",
   "editor.wordWrap": "off",
-  "eslint.enable": false
+  "eslint.enable": false,
   "files.exclude": {
     "**/app/**/*.js.map": true,
     "**/app/**/*.js": {
-        "when": "$(basename).ts"
-        },
+      "when": "$(basename).ts"
+    },
     "typings": true,
     "node_modules": true,
     ".history": false,

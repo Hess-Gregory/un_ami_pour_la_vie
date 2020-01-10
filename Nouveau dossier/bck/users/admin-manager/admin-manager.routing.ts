@@ -1,16 +1,16 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { AdminManagerComponent } from './admin-manager.component';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { AdminManagerComponent } from "./admin-manager.component";
 
 const routes: Routes = [
-    {
-        path: '', component: AdminManagerComponent
-    }
+  {
+    path: "",
+    component: AdminManagerComponent
+  }
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
-export class AdminManagerRoutingModule {
-}
+export class AdminManagerRoutingModule {}

@@ -1,27 +1,16 @@
 {
-  "name": "uaplv",
-  "version": "1.0.1",
-  "description": "Web Application For WebSite https://www.unamipourlavie.be",
-  "main": "server.js",
+  "name": "api-jwt-sequelize-angular",
+  "version": "1.0.0",
+  "description": "Lanceur ",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cc": "npm run startup",
+    "startup": "pm2 start Backend/server.js --name NodeServer --log-date-format 'DD/MM HH:mm:ss' --watch && ng /Frontend/serve --/Frontend/proxy-config proxy.conf.json --open --port 4300"
   },
+  "author": "Gregory Hess",
+  "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Hess-Gregory/un_ami_pour_la_vie.git"
-  },
-  "author": "Gregory HESS",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Hess-Gregory/un_ami_pour_la_vie/issues"
-  },
-  "homepage": "https://github.com/Hess-Gregory/un_ami_pour_la_vie#readme",
-  "dependencies": {
-    "angular-datatables": "^8.0.0",
-    "datatables.net": "^1.10.20",
-    "datatables.net-dt": "^1.10.20"
-  },
-  "devDependencies": {
-    "@types/jquery": "^3.3.31"
+    "url": "git://https://github.com/Hess-Gregory/un_ami_pour_la_vie/Backend"
   }
 }

@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
 // import { DataTablesModule } from 'angular-datatables';
 // import { UsersRoutingModule } from './users-routing.module';
 // import { UsersComponent } from './users.component';
@@ -15,38 +15,36 @@ import { CommonModule } from '@angular/common';
 //     MatNativeDateModule, MatInputModule } from '@angular/material';
 // import { PageHeaderModule } from '../../shared';
 // import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UsersManagerComponent } from './users-manager.component';
-import { GetUserComponent } from './user-detail/user-detail.component';
-import { UpdateUserComponent } from './user-update/user-update.component';
-import { DeleteUserComponent } from './user-delete/user-delete.component';
-import { AddUserComponent } from './user-add/user-add.component';
-
-
+import { UsersManagerComponent } from "./users-manager.component";
+import { GetUserComponent } from "./user-detail/user-detail.component";
+import { UpdateUserComponent } from "./user-update/user-update.component";
+import { DeleteUserComponent } from "./user-delete/user-delete.component";
+import { AddUserComponent } from "./user-add/user-add.component";
 
 @NgModule({
-    imports: [
-        CommonModule, 
-        // UsersRoutingModule, 
-        // DataTablesModule,
-        // FormsModule,
-        // NgbModule, 
-        // HttpClientModule, 
-        // PageHeaderModule,
-        // FormsModule,
-        // MatButtonModule,
-        // MatInputModule,
-        // MatDatepickerModule,
-        // MatNativeDateModule,
-        // MatCheckboxModule,
-        // MatSelectModule,
-        // ReactiveFormsModule
-    ],
-    declarations: [
-        UsersManagerComponent, 
-        GetUserComponent, 
-        UpdateUserComponent,
-        DeleteUserComponent,
-        AddUserComponent
-     ]
+  imports: [
+    CommonModule
+    // UsersRoutingModule,
+    // DataTablesModule,
+    // FormsModule,
+    // NgbModule,
+    // HttpClientModule,
+    // PageHeaderModule,
+    // FormsModule,
+    // MatButtonModule,
+    // MatInputModule,
+    // MatDatepickerModule,
+    // MatNativeDateModule,
+    // MatCheckboxModule,
+    // MatSelectModule,
+    // ReactiveFormsModule
+  ],
+  declarations: [
+    UsersManagerComponent,
+    GetUserComponent,
+    UpdateUserComponent,
+    DeleteUserComponent,
+    AddUserComponent
+  ]
 })
 export class UsersManagerModule {}

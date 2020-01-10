@@ -1,0 +1,25 @@
+<app-header></app-header>
+<app-sidebar (collapsedEvent)="receiveCollapsed($event)"></app-sidebar>
+<section class="main-container" [ngClass]="{ collapsed: collapedSideBar }">
+  <app-breadcrumb></app-breadcrumb>
+  <router-outlet></router-outlet>
+
+  <nav class="navbar footer-navbar navbar-default navbar-fixed-bottom">
+    <div id="navBarBottom">
+      <div id="leftMessage">
+        Powered by
+        <img
+          class="fullhestack-logo"
+          src="./../../assets/images/logo2.png"
+          alt=""
+        />
+        © 2019/{{ YearNow }} - All rights reserved
+
+        <span class="version-info"> - Current build: 1.2.47</span>
+      </div>
+      <div id="rightMessage">
+        <app-session-time></app-session-time>
+      </div>
+    </div>
+  </nav>
+</section>

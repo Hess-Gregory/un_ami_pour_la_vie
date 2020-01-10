@@ -1,0 +1,69 @@
+<div
+  class="navbar-control text-center text-dark bg-white"
+  id="userControl-navbar"
+>
+  <p class="navbar-text navbar-fa">
+    <span class="clickable" *ngIf="locked" (click)="onUnlock()">
+      <i class="fa fa-lock fa-2x"></i>
+    </span>
+    <span *ngIf="!locked">
+      <i class="fa fa-unlock-alt fa-2x"></i>
+    </span>
+  </p>
+  <span class="button-group">
+    <span>
+      <button
+        type="button"
+        class="btn btn-info userActionButton"
+        [disabled]="locked || create"
+        (click)="onCreate()"
+      >
+        Créer un nouveau
+      </button>
+      <button
+        type="submit"
+        class="btn btn-success userActionButton"
+        [disabled]="locked"
+      >
+        Sauvegarder
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary userActionButton"
+        [disabled]="locked"
+        (click)="onCancel()"
+      >
+        Annuler
+      </button>
+      <button
+        type="button"
+        class="btn btn-warning userActionButton"
+        [disabled]="locked || create"
+        (click)="onFrozen()"
+      >
+        Geler le compte
+      </button>
+      <button
+        type="button"
+        class="btn btn-danger userActionButton"
+        [disabled]="locked || create"
+        (click)="onDelete()"
+      >
+        Supprimer l'utilisateur
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary userActionButton"
+        (click)="onClose()"
+      >
+        Quitter
+      </button>
+    </span>
+  </span>
+</div>
+<app-jw-modal id="custom-modal-2">
+  <app-user-delete></app-user-delete>
+  <button mat-flat-button (click)="closeModal('custom-modal-2')">
+    Annuler
+  </button>
+</app-jw-modal>

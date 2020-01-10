@@ -13,15 +13,10 @@ describe('SignupComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        SignupModule,
-        RouterTestingModule,
-        BrowserAnimationsModule,
-      ],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-      providers: [HttpClient ]
-    })
-    .compileComponents();
+      imports: [SignupModule, RouterTestingModule, BrowserAnimationsModule],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [HttpClient]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,0 +1,177 @@
+.form-control:disabled {
+  background-color: rgba(10, 189, 233, 0.6);
+  color: #fff;
+  border: 1px solid #ced4da;
+}
+.mb-3b {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.mat-icon-button.mat-button-base {
+  width: 20px !important;
+  height: 20px !important;
+  line-height: 20px !important;
+}
+.ng-star-inserted {
+  .mat-calendar-header {
+    .mat-calendar-controls {
+      .mat-calendar-next-button.mat-icon-button.mat-button-base {
+        width: 40px !important;
+        height: 40px !important;
+        line-height: 40px !important;
+      }
+      .mat-calendar-previous-button.mat-icon-button.mat-button-base {
+        width: 40px !important;
+        height: 40px !important;
+        line-height: 40px !important;
+      }
+    }
+  }
+}
+.row {
+  [class='navbar navbar-default'] {
+    border-color: transparent;
+  }
+}
+
+.custom-control {
+  text-align: center;
+  width: 25%;
+  background-color: #0abde9;
+  border-radius: 9px;
+  margin: 0 auto;
+  color: #fff;
+  padding: 2px;
+}
+.userActionButton {
+  display: inline-block;
+  border-radius: 15px;
+  padding: 6px 18px;
+  margin: 0 2px;
+  span {
+    color: white;
+  }
+}
+
+.btn:disabled {
+  opacity: 0.2;
+}
+.navbar-fa {
+  margin-right: 10px;
+}
+.picture {
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+}
+.gradient-box {
+  display: flex;
+  align-items: center;
+  //width: 50vw;
+  width: 317px;
+  height: 317px;
+  margin: auto;
+  max-width: 22em;
+
+  position: relative;
+  box-sizing: border-box;
+
+  $border: 5px;
+  color: #fff;
+  background: #fff;
+  background-clip: padding-box; /* !importanté */
+  border: solid $border transparent; /* !importanté */
+  border-radius: 1em;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    margin: -$border; /* !importanté */
+    border-radius: inherit; /* !importanté */
+    background: linear-gradient(to right, rgb(10, 189, 233), rgb(248, 156, 27));
+  }
+}
+.user {
+  margin: 30px;
+}
+.toggle-switch {
+  height: 36px;
+  width: 62px;
+  display: inline-block;
+  position: relative;
+  input {
+    display: none;
+    &:checked + .slider {
+      background-color: blue;
+    }
+    &:checked + .slider::after {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+  }
+  .slider {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: grey;
+    transition: 2s;
+    &::after {
+      position: absolute;
+      content: '';
+      height: 28px;
+      width: 28px;
+      background-color: white;
+      left: 4px;
+      bottom: 4px;
+      transition: 2s;
+    }
+  }
+}
+.error-message {
+  color: red;
+  text-align: center;
+}
+.form-control.mat-input-element.mat-form-field-autofill-control.cdk-text-field-autofill-monitored.ng-untouched.ng-invalid.ng-dirty,
+.form-control.mat-input-element.mat-form-field-autofill-control.cdk-text-field-autofill-monitored.ng-dirty.ng-touched.ng-invalid,
+.form-control.mat-input-element.mat-form-field-autofill-control.cdk-text-field-autofill-monitored.ng-pristine.ng-invalid.ng-touched,
+.form-control.form-control-user.ng-pristine.ng-invalid.ng-touched {
+  border: 1px solid red;
+  background-color: rgba(125, 0, 0, 0.1);
+}
+.form-control.mat-input-element.mat-form-field-autofill-control.cdk-text-field-autofill-monitored.ng-untouched.ng-dirty.ng-valid,
+.form-control.mat-input-element.mat-form-field-autofill-control.cdk-text-field-autofill-monitored.ng-dirty.ng-touched.ng-valid,
+.form-control.form-control-user.ng-touched.ng-dirty.ng-valid {
+  border: 1px solid green;
+  background-color: rgba(0, 125, 0, 0.1);
+}
+.msgError {
+  color: red;
+}
+form.user .form-control-user {
+  font-size: 0.8rem;
+  border-radius: 10rem;
+  padding: 1.5rem 1rem;
+}
+form.user .btn-user {
+  font-size: 0.8rem;
+  border-radius: 10rem;
+  padding: 0.75rem 1rem;
+}
