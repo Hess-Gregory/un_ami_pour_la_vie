@@ -23,7 +23,7 @@ const paramValidation = {
 router
   .route("/")
   // GET /api/users. all the users.
-  .post(userController.getAll);
+  .get(userController.getAll);
 // router.route('/admins')
 // // GET /api/users/admins. all the users.
 //     .get(userController.getAllAdmin);
