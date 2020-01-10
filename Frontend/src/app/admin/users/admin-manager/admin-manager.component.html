@@ -9,7 +9,6 @@
   />
 </div>
 
-
 <router-outlet *ngIf="ErrorValid"> </router-outlet>
 <div *ngIf="alertError" class="card-body">
   <p *ngFor="let alert of alerts" class="alerts">
@@ -35,19 +34,18 @@
       </form>
     </div>
 
-
-  <div class="container-fluid">
-    <div class="col col-xl-12 col-lg-12">
-      <div class="card ">
-        <div class="card-header">
-          <div class="alert alert-info">
-            <strong>Liste des admins</strong>
-          </div>
-          <div class="alert-lexique">
-            <h6 class="lexique-title">
-              <strong>Modifier un rôle d'un utilisateur</strong>
-            </h6>
-                <form
+    <div class="container-fluid">
+      <div class="col col-xl-12 col-lg-12">
+        <div class="card ">
+          <div class="card-header">
+            <div class="alert alert-info">
+              <strong>Liste des admins</strong>
+            </div>
+            <div class="alert-lexique">
+              <h6 class="lexique-title">
+                <strong>Modifier un rôle d'un utilisateur</strong>
+              </h6>
+              <form
                 [formGroup]="adminDetailsForm"
                 (ngSubmit)="onSubmitAdmin(adminDetailsForm.value)"
               >
@@ -61,7 +59,9 @@
                         'is-invalid': submitted && f.userid.errors
                       }"
                     >
-                      <option [ngValue]="null">(Selectionner un utilisateur)</option>
+                      <option [ngValue]="null"
+                        >(Selectionner un utilisateur)</option
+                      >
                       <ng-container *ngFor="let user of user$ | async">
                         <option *ngIf="user.isActive" [value]="user.id"
                           >{{ user.username }} (Actuellement :
@@ -69,7 +69,10 @@
                         >
                       </ng-container>
                     </select>
-                    <div *ngIf="submitted && f.userid.errors" class="invalid-feedback">
+                    <div
+                      *ngIf="submitted && f.userid.errors"
+                      class="invalid-feedback"
+                    >
                       <div *ngIf="f.userid.errors.required">
                         Veuillez choisir un utilisateur
                       </div>
@@ -90,7 +93,10 @@
                         >
                       </ng-container>
                     </select>
-                    <div *ngIf="submitted && f.roleid.errors" class="invalid-feedback">
+                    <div
+                      *ngIf="submitted && f.roleid.errors"
+                      class="invalid-feedback"
+                    >
                       <div *ngIf="f.roleid.errors.required">
                         Veuillez choisir un grade
                       </div>
@@ -105,103 +111,100 @@
                   </div>
                 </div>
               </form>
+            </div>
           </div>
-        </div>
 
-        <div class="card-body table-responsive">
-          <div class="example-container mat-elevation-z8">
+          <div class="card-body table-responsive">
+            <div class="example-container mat-elevation-z8">
+              <mat-table
+                #Table
+                [dataSource]="MyDataSource"
+                matSort
+                [class.isMobile]="isMobile"
+              >
+                <!-- For User USERNAME -->
 
-            <mat-table
-              #Table
-              [dataSource]="MyDataSource"
-              matSort
-              [class.isMobile]="isMobile"
-            >
-
-              <!-- For User USERNAME -->
-
-              <ng-container matColumnDef="username">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
-                  Nom d'utilisateur
-                </mat-header-cell>
-                <ng-container *ngIf="MyDataSource.length != 0">
-                  <mat-cell *matCellDef="let post">
-                    <span class="mobile-label">Nom d'utilisateur:</span>
-                    {{ post.username }}
-                  </mat-cell>
+                <ng-container matColumnDef="username">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Nom d'utilisateur
+                  </mat-header-cell>
+                  <ng-container *ngIf="MyDataSource.length != 0">
+                    <mat-cell *matCellDef="let post">
+                      <span class="mobile-label">Nom d'utilisateur:</span>
+                      {{ post.username }}
+                    </mat-cell>
+                  </ng-container>
                 </ng-container>
-              </ng-container>
 
-              <!-- For User FirstName -->
+                <!-- For User FirstName -->
 
-              <ng-container matColumnDef="firstName">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
-                  Prénom
-                </mat-header-cell>
-                <ng-container *ngIf="MyDataSource.length != 0">
-                  <mat-cell *matCellDef="let post">
-                    <span class="mobile-label">Prénom:</span>
-                    {{ post.firstName }}
-                  </mat-cell>
+                <ng-container matColumnDef="firstName">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Prénom
+                  </mat-header-cell>
+                  <ng-container *ngIf="MyDataSource.length != 0">
+                    <mat-cell *matCellDef="let post">
+                      <span class="mobile-label">Prénom:</span>
+                      {{ post.firstName }}
+                    </mat-cell>
+                  </ng-container>
                 </ng-container>
-              </ng-container>
 
-              <!-- For User LastName -->
+                <!-- For User LastName -->
 
-              <ng-container matColumnDef="lastName">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
-                  Nom
-                </mat-header-cell>
-                <ng-container *ngIf="MyDataSource.length != 0">
-                  <mat-cell *matCellDef="let post">
-                    <span class="mobile-label">Nom:</span>
-                    {{ post.lastName }}
-                  </mat-cell>
+                <ng-container matColumnDef="lastName">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Nom
+                  </mat-header-cell>
+                  <ng-container *ngIf="MyDataSource.length != 0">
+                    <mat-cell *matCellDef="let post">
+                      <span class="mobile-label">Nom:</span>
+                      {{ post.lastName }}
+                    </mat-cell>
+                  </ng-container>
                 </ng-container>
-              </ng-container>
 
-              <!-- For User EMAIL -->
+                <!-- For User EMAIL -->
 
-              <ng-container matColumnDef="email">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
-                  Email
-                </mat-header-cell>
-                <ng-container *ngIf="MyDataSource.length != 0">
-                  <mat-cell *matCellDef="let post">
-                    <span class="mobile-label">Email:</span>
-                    {{ post.email }}
-                  </mat-cell>
+                <ng-container matColumnDef="email">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Email
+                  </mat-header-cell>
+                  <ng-container *ngIf="MyDataSource.length != 0">
+                    <mat-cell *matCellDef="let post">
+                      <span class="mobile-label">Email:</span>
+                      {{ post.email }}
+                    </mat-cell>
+                  </ng-container>
                 </ng-container>
-              </ng-container>
 
+                <!-- User roleName -->
 
-              <!-- User roleName -->
-
-              <ng-container matColumnDef="roleName">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
-                  Rôle
-                </mat-header-cell>
-                <ng-container *ngIf="MyDataSource.length != 0">
-                  <mat-cell *matCellDef="let post">
-                    <span class="mobile-label">Rôle:</span>
-                    {{ post.roleName }}
-                  </mat-cell>
+                <ng-container matColumnDef="roleName">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Rôle
+                  </mat-header-cell>
+                  <ng-container *ngIf="MyDataSource.length != 0">
+                    <mat-cell *matCellDef="let post">
+                      <span class="mobile-label">Rôle:</span>
+                      {{ post.roleName }}
+                    </mat-cell>
+                  </ng-container>
                 </ng-container>
-              </ng-container>
 
-
-              <mat-header-row
-                *matHeaderRowDef="displayedColumns"
-              ></mat-header-row>
-              <mat-row
-                *matRowDef="let row; columns: displayedColumns"
-                (click)="RowSelected(row)"
-              ></mat-row>
-            </mat-table>
-            <mat-paginator
-              [pageSizeOptions]="[5, 10, 15]"
-              showFirstLastButtons
-            ></mat-paginator>
+                <mat-header-row
+                  *matHeaderRowDef="displayedColumns"
+                ></mat-header-row>
+                <mat-row
+                  *matRowDef="let row; columns: displayedColumns"
+                  (click)="RowSelected(row)"
+                ></mat-row>
+              </mat-table>
+              <mat-paginator
+                [pageSizeOptions]="[5, 10, 15]"
+                showFirstLastButtons
+              ></mat-paginator>
+            </div>
           </div>
         </div>
       </div>

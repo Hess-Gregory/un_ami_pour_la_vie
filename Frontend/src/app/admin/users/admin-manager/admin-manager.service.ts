@@ -9,21 +9,22 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AdminManagerService {
-    private wsUrlRoot = '/api/admins/userandrole';
-    private wsUrlRoot2 = '/api/users/role';
-    stringifydata: string;
-    parsedata: any;
+  private wsUrlUserandRole = '/api/admins/userandrole';
+  private wsUrlListAdmin = '/api/admins/adminlist';
+  private wsUrlListRole = '/api/users/role';
+  stringifydata: string;
+  parsedata: any;
 
   constructor(private httpClient: HttpClient, private router: Router) {}
 
   public getUsers() {
-    return this.httpClient.get<User[]>(`${this.wsUrlRoot}`);
+    return this.httpClient.get<User[]>(`${this.wsUrlUserandRole}`);
   }
   public getRoles() {
-    return this.httpClient.get<Role[]>(`${this.wsUrlRoot2}`);
+    return this.httpClient.get<Role[]>(`${this.wsUrlListRole}`);
   }
   public GetAllRecords(): Observable<Object> {
-    return this.httpClient.get<User[]>(`${this.wsUrlRoot}`);
+    return this.httpClient.get<User[]>(`${this.wsUrlListAdmin}`);
   }
   update(userid: number, roleid: number) {
     this.httpClient

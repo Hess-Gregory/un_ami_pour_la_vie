@@ -3,12 +3,7 @@ import {
   rotateInDownLeftOnEnterAnimation,
   rollInAnimation,
   zoomInDownOnEnterAnimation,
-  hueRotateAnimation,
-  rubberBandAnimation,
-  flashAnimation,
-  fadeInOnEnterAnimation,
-  fadeOutOnLeaveAnimation,
-  rubberBandOnEnterAnimation
+  hueRotateAnimation
 } from 'angular-animations';
 
 @Component({

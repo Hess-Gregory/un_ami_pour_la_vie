@@ -3,10 +3,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { debounceTime, switchMap, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import {
-    FormGroup,
-    FormBuilder,
-    Validators,
-    FormControl } from '@angular/forms';
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from './../services/users-export';
 import { Role } from './../../../shared/exports';
@@ -20,36 +21,34 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
   styleUrls: ['./admin-manager.scss']
 })
 export class AdminManagerComponent implements OnInit {
+  [x: string]: any;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
+  title = 'Un Ami Pour La Vie - Admin : Gestion des admins';
+  MyDataSource: any;
+  displayedColumns: string[] = [
+    'username',
+    'firstName',
+    'lastName',
+    'email',
+    'roleName'
+  ];
+  public objStringError: string;
+  public objError: any;
+  public ErrorstatusText: any;
+  public Errormessage: string;
+  public ErrorStatus: string;
+  public ErrorMsg: string;
+  public error: Error;
+  alerts: Array<any> = [];
+  loading = true;
+  ErrorValid = false;
+  alertError = false;
 
-    [x: string]: any;
-    @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
-    @ViewChild(MatSort, { static: false }) sort: MatSort;
-    title = 'Un Ami Pour La Vie - Admin : Gestion des admins';
-    MyDataSource: any;
-    displayedColumns: string[] = [
-      'username',
-      'firstName',
-      'lastName',
-      'email',
-      'roleName'
-    ];
-    public objStringError: string;
-    public objError: any;
-    public ErrorstatusText: any;
-    public Errormessage: string;
-    public ErrorStatus: string;
-    public ErrorMsg: string;
-    public error: Error;
-    alerts: Array<any> = [];
-    loading = true;
-    ErrorValid = false;
-    alertError = false;
-  
-    adminDetailsForm: FormGroup;
-    submitted = false;
-    user$: Observable<User[]>;
-    roles: Observable<Role[]>;
-  
+  adminDetailsForm: FormGroup;
+  submitted = false;
+  user$: Observable<User[]>;
+  roles: Observable<Role[]>;
 
   constructor(
     private thisService: AdminManagerService,
@@ -59,11 +58,10 @@ export class AdminManagerComponent implements OnInit {
     private metaTagService: Meta
   ) {
     sessionStorage.setItem('Module', 'Utilisateurs : Gestion des admins');
-    sessionStorage.setItem('typeIcon', 'Awesone');
-    // sessionStorage.setItem('typeIcon', 'MatIcons');
-    sessionStorage.setItem('nameIcon', 'fa fa-lg fa-user-shield');
+    // sessionStorage.setItem('typeIcon', 'Awesone');
+    sessionStorage.setItem('typeIcon', 'MatIcons');
+    sessionStorage.setItem('nameIcon', 'supervised_user_circle');
   }
-
 
   ngOnInit() {
     this.RenderDataTable();

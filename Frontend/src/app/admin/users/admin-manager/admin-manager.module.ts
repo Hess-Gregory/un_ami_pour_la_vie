@@ -8,14 +8,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {
-    MatCardModule,
-    MatButtonModule,
-    MatInputModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatIconModule,
-    MatTableModule
-  } from '@angular/material';
+  MatCardModule,
+  MatButtonModule,
+  MatInputModule,
+  MatPaginatorModule,
+  MatSortModule,
+  MatIconModule,
+  MatTableModule
+} from '@angular/material';
 
 @NgModule({
   imports: [
