@@ -4,6 +4,7 @@ import { routerTransition } from '../router.animations';
 import { AuthService } from './../shared/services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { first } from 'rxjs/operators';
+import { Title, Meta } from '@angular/platform-browser';
 declare let $: any;
 
 export interface Error {
@@ -21,6 +22,7 @@ export interface Error {
   animations: [routerTransition()]
 })
 export class LoginComponent implements OnInit {
+  title = 'ASBL-Un Ami Pour La Vie (Login)';
   public email: string;
   public password: string;
   public objStringError: string;
@@ -31,7 +33,12 @@ export class LoginComponent implements OnInit {
   public error: Error;
   alerts: Array<any> = [];
   http: any;
-  constructor(private auth: AuthService, public router: Router) {
+  constructor(
+    private auth: AuthService,
+    public router: Router,
+    private titleService: Title,
+    private metaTagService: Meta
+  ) {
     this.alerts.push({
       id: 3,
       type: 'danger',
@@ -55,5 +62,11 @@ export class LoginComponent implements OnInit {
             "Votre email ou votre mot de passe ne sont pas corrects, ou bien votre compte n'est pas activé.")
       );
   }
-  ngOnInit() {}
+  ngOnInit() {
+    this.titleService.setTitle(this.title);
+    this.metaTagService.updateTag({
+      name: 'description',
+      content: 'ASBL-Un Ami Pour La Vie (Login)'
+    });
+  }
 }
