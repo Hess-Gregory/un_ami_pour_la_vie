@@ -1,0 +1,70 @@
+.letter {
+  font-size: 1.5em;
+  display: inline-block;
+  min-width: 0.2em;
+  color: #0abde9;
+}
+.material-icons {
+  font-size: 1.5em !important;
+  line-height: 0.75em;
+  vertical-align: -26% !important;
+  margin-left: 0.5em;
+  color: #ff9f43;
+}
+.fa-lg {
+  font-size: 1em !important;
+  line-height: 0.75em;
+  vertical-align: 21% !important;
+  margin-left: 0.5em;
+  color: #ff9f43;
+}
+.inline-flex {
+  // display: inline-flex;
+  display: flex;
+  // margin: 0 auto;
+  // text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+.btn-valid {
+  max-width: 10% !important;
+}
+.col-4 {
+  width: 100px;
+}
+.btn-lg {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.btn:hover {
+  transform: scale(1.08) !important;
+  background-color: rgba(10, 189, 233, 0.5) !important;
+  margin-left: 7px;
+  margin-right: 7px;
+}
+.button-centre {
+  // max-width: 80%;
+  margin: 0 auto;
+  // padding: 0;
+  justify-content: space-around;
+}
+.jumbotron {
+  margin: 15px;
+  z-index: 5000;
+}
+.router-link-active {
+  background-color: rgb(248, 156, 27) !important;
+}
+.btn-primary {
+  background-color: rgb(10, 189, 233);
+  color: #fff;
+  font-size: 0.7rem;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 540px) {
+  .btn-primary {
+    min-width: 100%;
+  }
+}
