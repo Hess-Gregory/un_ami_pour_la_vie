@@ -7,13 +7,14 @@ import { AgmCoreModule } from '@agm/core';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+    loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
+    data: { breadcrumb: 'Home' }
   },
   {
     path: 'admin',
-    loadChildren: () =>
-      import('./layout/layout.module').then(m => m.LayoutModule),
-    canActivate: [AuthGuard]
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+    canActivate: [AuthGuard],
+    data: { breadcrumb: 'admin' }
   },
   {
     path: 'login',
@@ -48,11 +49,11 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule,
-    RouterModule.forRoot(routes),
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCAWUjNXIL8xtVOS7j1qtX0vGgRapbE2-c'
-    })
+    RouterModule.forRoot(routes, {
+      scrollPositionRestoration: 'enabled',
+      anchorScrolling: 'enabled'
+    }),
+    AgmCoreModule.forRoot({ apiKey: 'AIzaSyCAWUjNXIL8xtVOS7j1qtX0vGgRapbE2-c' })
   ],
   exports: [RouterModule]
 })
