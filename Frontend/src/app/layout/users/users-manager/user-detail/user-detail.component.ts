@@ -1,15 +1,10 @@
-import {
-  Component,
-  OnDestroy,
-  OnInit
-} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserDetailService } from './user-detail.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Title, Meta } from '@angular/platform-browser';
 declare let $: any;
-
 
 @Component({
   selector: 'app-user-detail',
@@ -18,7 +13,6 @@ declare let $: any;
   styleUrls: ['./user-detail.component.scss']
 })
 export class UserDetailComponent implements OnDestroy, OnInit {
-
   title = 'Un Ami Pour La Vie - Admin : Détails Utilisateur';
   loading = true;
   previewUrl: any = null;
@@ -36,12 +30,12 @@ export class UserDetailComponent implements OnDestroy, OnInit {
   public id: string;
 
   constructor(
-      private userservice: UserDetailService,
-      private activatedRoute: ActivatedRoute,
-      private router: Router,
-      private titleService: Title,
-      private metaTagService: Meta
-      ) {
+    private userservice: UserDetailService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private titleService: Title,
+    private metaTagService: Meta
+  ) {
     this.getUsers();
     this.getStatus();
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
@@ -60,7 +54,6 @@ export class UserDetailComponent implements OnDestroy, OnInit {
       content: 'Un Ami Pour La Vie - Admin : Détails Utilisateur'
     });
   }
-
 
   getUsers() {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
@@ -104,7 +97,6 @@ export class UserDetailComponent implements OnDestroy, OnInit {
       }
     );
   }
-
 
   preview() {
     // Show preview

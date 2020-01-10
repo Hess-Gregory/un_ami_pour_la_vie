@@ -7,31 +7,28 @@ declare let $: any;
   providedIn: 'root'
 })
 export class UserDetailService {
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
-  getUsers(id: string): Observable<User[]>  {
-
-
+  getUsers(id: string): Observable<User[]> {
     if (sessionStorage.getItem('new') === 'true') {
-
-
-      this.http.put<User[]>(`/api/admins/user/${id}`, { newRegister: 0 }).subscribe(
-        data => {
-          console.log('PUT Request is successful ', data);
-          sessionStorage.removeItem('new');
-        },
-        error => {
-          console.log('Error', error);
-        }
-      );
-    return this.http.get<User[]>(`/api/users/${id}`);
-
-    }if (sessionStorage.getItem('new') === 'false') {
-    return this.http.get<User[]>(`/api/users/${id}`);
+      this.http
+        .put<User[]>(`/api/admins/user/${id}`, { newRegister: 0 })
+        .subscribe(
+          data => {
+            console.log('PUT Request is successful ', data);
+            sessionStorage.removeItem('new');
+          },
+          error => {
+            console.log('Error', error);
+          }
+        );
+      return this.http.get<User[]>(`/api/users/${id}`);
+    }
+    if (sessionStorage.getItem('new') === 'false') {
+      return this.http.get<User[]>(`/api/users/${id}`);
     }
   }
-  getStatus(id: string): Observable<User[]>  {
+  getStatus(id: string): Observable<User[]> {
     return this.http.get<User[]>(`/api/users/status/${id}`);
   }
 }
