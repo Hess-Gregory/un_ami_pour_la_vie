@@ -20,12 +20,15 @@ export class AdminManagerService {
   public getUsers() {
     return this.httpClient.get<User[]>(`${this.wsUrlUserandRole}`);
   }
+
   public getRoles() {
     return this.httpClient.get<Role[]>(`${this.wsUrlListRole}`);
   }
+
   public GetAllRecords(): Observable<Object> {
     return this.httpClient.get<User[]>(`${this.wsUrlListAdmin}`);
   }
+
   update(userid: number, roleid: number) {
     this.httpClient
       .put(`/api/users/${userid}`, {

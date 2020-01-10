@@ -26,6 +26,7 @@ export class AdminManagerComponent implements OnInit {
   @ViewChild(MatSort, { static: false }) sort: MatSort;
   title = 'Un Ami Pour La Vie - Admin : Gestion des admins';
   MyDataSource: any;
+
   displayedColumns: string[] = [
     'username',
     'firstName',
@@ -33,6 +34,7 @@ export class AdminManagerComponent implements OnInit {
     'email',
     'roleName'
   ];
+
   public objStringError: string;
   public objError: any;
   public ErrorstatusText: any;
