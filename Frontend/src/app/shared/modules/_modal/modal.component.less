@@ -7,13 +7,15 @@ app-jw-modal {
   .jw-modal {
     /* modal container fixed across whole screen */
     position: fixed;
-    top: 0;
+    top: 25vh;
+    margin: 0 auto;
+    width: 75vw;
     right: 0;
     bottom: 0;
     left: 0;
 
     /* z-index must be higher than .jw-modal-background */
-    z-index: 1000;
+    z-index: 7000;
 
     /* enables scrolling for tall modals */
     overflow: auto;
@@ -47,4 +49,13 @@ app-jw-modal {
 body.jw-modal-open {
   /* body overflow is hidden to hide main scrollbar when modal window is open */
   overflow: hidden;
+}
+button {
+    display: inline-block;
+    border-radius: 15px !important;
+    padding: 6px 18px;
+    margin: 0 2px !important;
+    margin-top: 10px !important;
+    cursor: pointer;
+    color: white;
 }
