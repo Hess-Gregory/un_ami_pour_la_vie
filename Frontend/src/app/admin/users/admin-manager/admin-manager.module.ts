@@ -1,26 +1,40 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
 import { AdminManagerRoutingModule } from './admin-manager-routing.module';
 import { AdminManagerComponent } from './admin-manager.component';
-import { DataTablesModule, DataTableDirective } from 'angular-datatables';
+import { JumboUserModule } from '../services/jumbo-user/jumbo-user.module';
+
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { JumboUserModule } from '../services/jumbo-user/jumbo-user.module';
+
+import {
+  MatCardModule,
+  MatButtonModule,
+  MatInputModule,
+  MatPaginatorModule,
+  MatSortModule,
+  MatIconModule,
+  MatTableModule
+} from '@angular/material';
 
 @NgModule({
   imports: [
-    CommonModule,
     AdminManagerRoutingModule,
-    DataTablesModule,
-    FormsModule,
+    JumboUserModule,
+    CommonModule,
     NgbModule,
-    HttpClientModule,
+    FormsModule,
     ReactiveFormsModule,
-    JumboUserModule
+    MatInputModule,
+    MatIconModule,
+    MatCardModule,
+    MatButtonModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule
   ],
   declarations: [AdminManagerComponent],
-  exports: [DataTableDirective]
+  exports: [MatTableModule, MatPaginatorModule, MatSortModule]
 })
 export class AdminManagerModule {}

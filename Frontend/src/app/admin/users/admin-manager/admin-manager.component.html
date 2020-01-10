@@ -1,182 +1,212 @@
-<app-jumbo-user></app-jumbo-user>
-<div *ngIf="loading" class="spinner">
+<app-jumbo-user class="btnJumbo"></app-jumbo-user>
+<div *ngIf="loading && !ErrorValid && !alertError" class="spinner">
   <img
     class="dog"
     src="./assets/images/loading-dog.gif"
     style="width: 10vw;text-align: center;
-         display: block; vertical-align: middle; margin: auto; margin-top: 25%; margin-bottom: 25%;"
+     display: block; vertical-align: middle; margin: auto; margin-top: 25%; margin-bottom: 25%;"
     alt=""
   />
 </div>
-<div *ngIf="!loading" class="row">
-  <div class="col col-xl-12 col-lg-12">
-    <div *ngIf="ErrorStatus" class="card-body">
-      <p *ngFor="let alert of alerts">
-        <ngb-alert [type]="alert.type" (close)="closeAlert(alert)"
-          >Erreur {{ ErrorStatus }} : {{ ErrorstatusText }}</ngb-alert
-        >
-      </p>
-    </div>
-    <div class="card  mb-3">
-      <div class="card-header  bg-dark">
-        <h3><i class="fas fa-user-shield"></i> Gestion des Administrateurs</h3>
-      </div>
 
-      <form
-        [formGroup]="adminDetailsForm"
-        (ngSubmit)="onSubmitAdmin(adminDetailsForm.value)"
-      >
-        <div class="form-group row ">
-          <div class="text-center col-12 inline-flex w-100">
-            <select
-              name="userid"
-              formControlName="userid"
-              class="form-control col-4 mr-5"
-              [ngClass]="{
-                'is-invalid': submitted && f.userid.errors
-              }"
-            >
-              <option [ngValue]="null">(Selectionner un utilisateur)</option>
-              <ng-container *ngFor="let user of user$ | async">
-                <option *ngIf="user.isActive" [value]="user.id"
-                  >{{ user.username }} (Actuellement :
-                  {{ user.roleName }})</option
-                >
-              </ng-container>
-            </select>
-            <div *ngIf="submitted && f.userid.errors" class="invalid-feedback">
-              <div *ngIf="f.userid.errors.required">
-                Veuillez choisir un utilisateur
-              </div>
+<router-outlet *ngIf="ErrorValid"> </router-outlet>
+<div *ngIf="alertError" class="card-body">
+  <p *ngFor="let alert of alerts" class="alerts">
+    <ngb-alert [type]="alert.type" (close)="closeAlert(alert)">
+      {{ alert.message }}
+    </ngb-alert>
+  </p>
+</div>
+<div class="data-container" *ngIf="!ErrorStatus && !loading">
+  <div class="container-fluid">
+    <div class="filter-table">
+      <h2 class="filter-title">Recherche avancé d'un utilisateur</h2>
+
+      <form class="filter-form">
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            (keyup)="applyFilter($event.target.value)"
+            placeholder="Filtre"
+          />
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </form>
+    </div>
+
+    <div class="container-fluid">
+      <div class="col col-xl-12 col-lg-12">
+        <div class="card ">
+          <div class="card-header">
+            <div class="alert alert-info">
+              <strong>Liste des admins</strong>
             </div>
-            <p style="margin: 0 auto;">vers :</p>
-            <select
-              name="roleid"
-              formControlName="roleid"
-              class="form-control col-4 mr-5"
-              [ngClass]="{
-                'is-invalid': submitted && f.roleid.errors
-              }"
-            >
-              <option [ngValue]="null">(Selectionner un role)</option>
-              <ng-container *ngFor="let role of roles | async">
-                <option *ngIf="role.idROLE != 9" [value]="role.idROLE">
-                  {{ role.roleName }}</option
-                >
-              </ng-container>
-            </select>
-            <div *ngIf="submitted && f.roleid.errors" class="invalid-feedback">
-              <div *ngIf="f.roleid.errors.required">
-                Veuillez choisir un grade
-              </div>
+            <div class="alert-lexique">
+              <h6 class="lexique-title">
+                <strong>Modifier un rôle d'un utilisateur</strong>
+              </h6>
+              <form
+                [formGroup]="adminDetailsForm"
+                (ngSubmit)="onSubmitAdmin(adminDetailsForm.value)"
+              >
+                <div class="form-group row ">
+                  <div class="text-center col-12 inline-flex w-100">
+                    <select
+                      name="userid"
+                      formControlName="userid"
+                      class="form-control col-3 mr-5"
+                      [ngClass]="{
+                        'is-invalid': submitted && f.userid.errors
+                      }"
+                    >
+                      <option [ngValue]="null"
+                        >(Selectionner un utilisateur)</option
+                      >
+                      <ng-container *ngFor="let user of user$ | async">
+                        <option *ngIf="user.isActive" [value]="user.id"
+                          >{{ user.username }} (Actuellement :
+                          {{ user.roleName }})</option
+                        >
+                      </ng-container>
+                    </select>
+                    <div
+                      *ngIf="submitted && f.userid.errors"
+                      class="invalid-feedback"
+                    >
+                      <div *ngIf="f.userid.errors.required">
+                        Veuillez choisir un utilisateur
+                      </div>
+                    </div>
+                    <p style="margin: 0 auto;">vers :</p>
+                    <select
+                      name="roleid"
+                      formControlName="roleid"
+                      class="form-control col-3 mr-5"
+                      [ngClass]="{
+                        'is-invalid': submitted && f.roleid.errors
+                      }"
+                    >
+                      <option [ngValue]="null">(Selectionner un role)</option>
+                      <ng-container *ngFor="let role of roles | async">
+                        <option *ngIf="role.idROLE != 9" [value]="role.idROLE">
+                          {{ role.roleName }}</option
+                        >
+                      </ng-container>
+                    </select>
+                    <div
+                      *ngIf="submitted && f.roleid.errors"
+                      class="invalid-feedback"
+                    >
+                      <div *ngIf="f.roleid.errors.required">
+                        Veuillez choisir un grade
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      type="submit"
+                      class="btn btn-valid  btn-secondary col-3"
+                    >
+                      Valider
+                    </button>
+                  </div>
+                </div>
+              </form>
             </div>
-            <button
-              type="button"
-              type="submit"
-              class="btn btn-valid  btn-secondary col-4"
-            >
-              Valider
-            </button>
+          </div>
+
+          <div class="card-body table-responsive">
+            <div class="example-container mat-elevation-z8">
+              <mat-table
+                #Table
+                [dataSource]="MyDataSource"
+                matSort
+                [class.isMobile]="isMobile"
+              >
+                <!-- For User USERNAME -->
+
+                <ng-container matColumnDef="username">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Nom d'utilisateur
+                  </mat-header-cell>
+                  <ng-container *ngIf="MyDataSource.length != 0">
+                    <mat-cell *matCellDef="let post">
+                      <span class="mobile-label">Nom d'utilisateur:</span>
+                      {{ post.username }}
+                    </mat-cell>
+                  </ng-container>
+                </ng-container>
+
+                <!-- For User FirstName -->
+
+                <ng-container matColumnDef="firstName">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Prénom
+                  </mat-header-cell>
+                  <ng-container *ngIf="MyDataSource.length != 0">
+                    <mat-cell *matCellDef="let post">
+                      <span class="mobile-label">Prénom:</span>
+                      {{ post.firstName }}
+                    </mat-cell>
+                  </ng-container>
+                </ng-container>
+
+                <!-- For User LastName -->
+
+                <ng-container matColumnDef="lastName">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Nom
+                  </mat-header-cell>
+                  <ng-container *ngIf="MyDataSource.length != 0">
+                    <mat-cell *matCellDef="let post">
+                      <span class="mobile-label">Nom:</span>
+                      {{ post.lastName }}
+                    </mat-cell>
+                  </ng-container>
+                </ng-container>
+
+                <!-- For User EMAIL -->
+
+                <ng-container matColumnDef="email">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Email
+                  </mat-header-cell>
+                  <ng-container *ngIf="MyDataSource.length != 0">
+                    <mat-cell *matCellDef="let post">
+                      <span class="mobile-label">Email:</span>
+                      {{ post.email }}
+                    </mat-cell>
+                  </ng-container>
+                </ng-container>
+
+                <!-- User roleName -->
+
+                <ng-container matColumnDef="roleName">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Rôle
+                  </mat-header-cell>
+                  <ng-container *ngIf="MyDataSource.length != 0">
+                    <mat-cell *matCellDef="let post">
+                      <span class="mobile-label">Rôle:</span>
+                      {{ post.roleName }}
+                    </mat-cell>
+                  </ng-container>
+                </ng-container>
+
+                <mat-header-row
+                  *matHeaderRowDef="displayedColumns"
+                ></mat-header-row>
+                <mat-row
+                  *matRowDef="let row; columns: displayedColumns"
+                  (click)="RowSelected(row)"
+                ></mat-row>
+              </mat-table>
+              <mat-paginator
+                [pageSizeOptions]="[5, 10, 15]"
+                showFirstLastButtons
+              ></mat-paginator>
+            </div>
           </div>
         </div>
-      </form>
-      <div class="card-body table-responsive">
-        <table
-          datatable
-          [dtOptions]="dtOptions"
-          [dtTrigger]="dtTrigger"
-          class="row-border display compact table bordered"
-        >
-          <thead class=" bg-dark">
-            <tr *ngIf="admins?.length != 0" class="headTr">
-              <th class="text-center">Nom d'utilisateur</th>
-              <th class="text-center">Prénom</th>
-              <th class="text-center">Nom</th>
-              <th class="text-center">Email</th>
-              <th class="text-center">Role</th>
-            </tr>
-          </thead>
-          <thead *ngIf="admins?.length != 0">
-            <tr class="searchTr">
-              <th class="text-center">
-                <input
-                  type="text"
-                  class="inputSearch"
-                  placeholder="Chercher utilisateur"
-                  name="search-username"
-                /><i class="fa fa-search"></i>
-              </th>
-              <th class="text-center">
-                <input
-                  type="text"
-                  class="inputSearch"
-                  placeholder="Chercher prénom"
-                  name="search-lastName"
-                /><i class="fa fa-search"></i>
-              </th>
-              <th class="text-center">
-                <input
-                  type="text"
-                  class="inputSearch"
-                  placeholder="Chercher nom de famille"
-                  name="search-firstName"
-                /><i class="fa fa-search"></i>
-              </th>
-              <th class="text-center">
-                <input
-                  type="text"
-                  class="inputSearch"
-                  placeholder="Chercher email"
-                  name="search-email"
-                /><i class="fa fa-search"></i>
-              </th>
-              <th class="text-center">
-                <input
-                  type="text"
-                  class="inputSearch"
-                  placeholder="Chercher rôle"
-                  name="search-role"
-                /><i class="fa fa-search"></i>
-              </th>
-            </tr>
-          </thead>
-          <tbody *ngIf="admins?.length != 0" class="bg-dark">
-            <tr
-              (click)="RowSelected(admin)"
-              class="{{
-                admin.newRegister == 1 ? 'bg-danger' : 'bg-dark'
-              }} text-white  pt-3 pb-3"
-              *ngFor="let admin of admins"
-            >
-              <td class="text-center">
-                <p>{{ admin.username }}</p>
-              </td>
-              <td class="text-center">
-                <p>{{ admin.lastName }}</p>
-              </td>
-              <td class="text-center">
-                <p>{{ admin.firstName }}</p>
-              </td>
-              <td class="text-center">
-                <p>{{ admin.email }}</p>
-              </td>
-              <td class="text-center">
-                <p>{{ admin.roleName }}</p>
-              </td>
-            </tr>
-          </tbody>
-          <tbody *ngIf="admins?.length == 0">
-            <tr>
-              <td colspan="3" class="no-data-available">
-                <div class="alert alert-danger">
-                  <strong>Oh non!</strong> il n'y as pas de data.
-                </div>
-              </td>
-            </tr>
-          </tbody>
-
-          <tbody></tbody>
-        </table>
       </div>
     </div>
   </div>
