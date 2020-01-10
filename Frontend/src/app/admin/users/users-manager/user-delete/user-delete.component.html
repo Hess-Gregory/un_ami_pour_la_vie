@@ -35,7 +35,12 @@
     </form>
   </div>
 </div>
-<button mat-flat-button (click)="deleteUsers()" *ngIf="!deleteEnd">
+<button
+  mat-flat-button
+  class="btn-success"
+  (click)="deleteUsers()"
+  *ngIf="!deleteEnd"
+>
   Confirmer
 </button>
 
