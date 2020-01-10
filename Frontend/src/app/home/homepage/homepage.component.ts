@@ -1,11 +1,14 @@
 /// <reference types='@types/googlemaps' />
-import { Component, OnInit } from '@angular/core';
 import {} from 'googlemaps';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
+import { routerTransition } from './../../router.animations';
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.scss']
+  styleUrls: ['./homepage.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  animations: [routerTransition()]
 })
 export class HomepageComponent implements OnInit {
   title = 'ASBL-Un Ami Pour La Vie (Page Accueil)';

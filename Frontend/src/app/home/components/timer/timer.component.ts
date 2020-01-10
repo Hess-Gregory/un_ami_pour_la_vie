@@ -62,8 +62,6 @@ export class TimerComponent implements OnInit {
     private router: Router
   ) {
     this.searchEndDate = this.SearchDate.add(this.ElapsTime, 'minutes');
-
-    console.log(this.deltaTimeMessage);
   }
 
   ngOnInit() {
