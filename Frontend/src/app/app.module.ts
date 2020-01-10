@@ -87,8 +87,8 @@ export function tokenGetter() {
     AccordionModule,
     AppRoutingModule,
     BrowserModule,
-    RouterModule,
     BrowserAnimationsModule,
+    RouterModule,
     BreadcrumbModule,
     CommonModule,
     DataTablesModule,
@@ -161,6 +161,8 @@ export function tokenGetter() {
   ],
   declarations: [AppComponent],
   exports: [
+    BrowserModule,
+    BrowserAnimationsModule,
     TimingRefreshModule,
     TimerModule,
     ModalModule,
