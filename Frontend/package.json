@@ -43,6 +43,7 @@
     "@ngx-translate/core": "11.0.1",
     "@ngx-translate/http-loader": "4.0.0",
     "@types/jest": "^24.0.23",
+    "angular-animations": "0.0.10",
     "angular-datatables": "^8.0.0",
     "angular-jwt": "^0.1.11",
     "angular-popper": "^2.0.1",
