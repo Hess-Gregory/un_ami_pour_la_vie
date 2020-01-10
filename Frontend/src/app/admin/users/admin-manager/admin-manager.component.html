@@ -1,0 +1,183 @@
+<app-jumbo-user></app-jumbo-user>
+<div *ngIf="loading" class="spinner">
+  <img
+    class="dog"
+    src="./assets/images/loading-dog.gif"
+    style="width: 10vw;text-align: center;
+         display: block; vertical-align: middle; margin: auto; margin-top: 25%; margin-bottom: 25%;"
+    alt=""
+  />
+</div>
+<div *ngIf="!loading" class="row">
+  <div class="col col-xl-12 col-lg-12">
+    <div *ngIf="ErrorStatus" class="card-body">
+      <p *ngFor="let alert of alerts">
+        <ngb-alert [type]="alert.type" (close)="closeAlert(alert)"
+          >Erreur {{ ErrorStatus }} : {{ ErrorstatusText }}</ngb-alert
+        >
+      </p>
+    </div>
+    <div class="card  mb-3">
+      <div class="card-header  bg-dark">
+        <h3><i class="fas fa-user-shield"></i> Gestion des Administrateurs</h3>
+      </div>
+
+      <form
+        [formGroup]="adminDetailsForm"
+        (ngSubmit)="onSubmitAdmin(adminDetailsForm.value)"
+      >
+        <div class="form-group row ">
+          <div class="text-center col-12 inline-flex w-100">
+            <select
+              name="userid"
+              formControlName="userid"
+              class="form-control col-4 mr-5"
+              [ngClass]="{
+                'is-invalid': submitted && f.userid.errors
+              }"
+            >
+              <option [ngValue]="null">(Selectionner un utilisateur)</option>
+              <ng-container *ngFor="let user of user$ | async">
+                <option *ngIf="user.isActive" [value]="user.id"
+                  >{{ user.username }} (Actuellement :
+                  {{ user.roleName }})</option
+                >
+              </ng-container>
+            </select>
+            <div *ngIf="submitted && f.userid.errors" class="invalid-feedback">
+              <div *ngIf="f.userid.errors.required">
+                Veuillez choisir un utilisateur
+              </div>
+            </div>
+            <p style="margin: 0 auto;">vers :</p>
+            <select
+              name="roleid"
+              formControlName="roleid"
+              class="form-control col-4 mr-5"
+              [ngClass]="{
+                'is-invalid': submitted && f.roleid.errors
+              }"
+            >
+              <option [ngValue]="null">(Selectionner un role)</option>
+              <ng-container *ngFor="let role of roles | async">
+                <option *ngIf="role.idROLE != 9" [value]="role.idROLE">
+                  {{ role.roleName }}</option
+                >
+              </ng-container>
+            </select>
+            <div *ngIf="submitted && f.roleid.errors" class="invalid-feedback">
+              <div *ngIf="f.roleid.errors.required">
+                Veuillez choisir un grade
+              </div>
+            </div>
+            <button
+              type="button"
+              type="submit"
+              class="btn btn-valid  btn-secondary col-4"
+            >
+              Valider
+            </button>
+          </div>
+        </div>
+      </form>
+      <div class="card-body table-responsive">
+        <table
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+          class="row-border display compact table bordered"
+        >
+          <thead class=" bg-dark">
+            <tr *ngIf="admins?.length != 0" class="headTr">
+              <th class="text-center">Nom d'utilisateur</th>
+              <th class="text-center">Prénom</th>
+              <th class="text-center">Nom</th>
+              <th class="text-center">Email</th>
+              <th class="text-center">Role</th>
+            </tr>
+          </thead>
+          <thead *ngIf="admins?.length != 0">
+            <tr class="searchTr">
+              <th class="text-center">
+                <input
+                  type="text"
+                  class="inputSearch"
+                  placeholder="Chercher utilisateur"
+                  name="search-username"
+                /><i class="fa fa-search"></i>
+              </th>
+              <th class="text-center">
+                <input
+                  type="text"
+                  class="inputSearch"
+                  placeholder="Chercher prénom"
+                  name="search-lastName"
+                /><i class="fa fa-search"></i>
+              </th>
+              <th class="text-center">
+                <input
+                  type="text"
+                  class="inputSearch"
+                  placeholder="Chercher nom de famille"
+                  name="search-firstName"
+                /><i class="fa fa-search"></i>
+              </th>
+              <th class="text-center">
+                <input
+                  type="text"
+                  class="inputSearch"
+                  placeholder="Chercher email"
+                  name="search-email"
+                /><i class="fa fa-search"></i>
+              </th>
+              <th class="text-center">
+                <input
+                  type="text"
+                  class="inputSearch"
+                  placeholder="Chercher rôle"
+                  name="search-role"
+                /><i class="fa fa-search"></i>
+              </th>
+            </tr>
+          </thead>
+          <tbody *ngIf="admins?.length != 0" class="bg-dark">
+            <tr
+              (click)="RowSelected(admin)"
+              class="{{
+                admin.newRegister == 1 ? 'bg-danger' : 'bg-dark'
+              }} text-white  pt-3 pb-3"
+              *ngFor="let admin of admins"
+            >
+              <td class="text-center">
+                <p>{{ admin.username }}</p>
+              </td>
+              <td class="text-center">
+                <p>{{ admin.lastName }}</p>
+              </td>
+              <td class="text-center">
+                <p>{{ admin.firstName }}</p>
+              </td>
+              <td class="text-center">
+                <p>{{ admin.email }}</p>
+              </td>
+              <td class="text-center">
+                <p>{{ admin.roleName }}</p>
+              </td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="admins?.length == 0">
+            <tr>
+              <td colspan="3" class="no-data-available">
+                <div class="alert alert-danger">
+                  <strong>Oh non!</strong> il n'y as pas de data.
+                </div>
+              </td>
+            </tr>
+          </tbody>
+
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

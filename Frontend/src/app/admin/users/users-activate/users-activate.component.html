@@ -1,0 +1,183 @@
+<app-jumbo-user></app-jumbo-user>
+<div *ngIf="loading" class="spinner">
+  <img
+    class="dog"
+    src="./assets/images/loading-dog.gif"
+    style="width: 10vw;text-align: center;
+         display: block; vertical-align: middle; margin: auto; margin-top: 25%; margin-bottom: 25%;"
+    alt=""
+  />
+</div>
+<div *ngIf="!loading" class="row">
+  <div class="col col-xl-12 col-lg-12">
+    <div class="card  mb-3">
+      <div class="card-header  bg-dark">
+        <h2>
+          <i class="fa fa-user-lock"></i> Activation/désactivation des comptes
+        </h2>
+      </div>
+      <div *ngIf="ErrorStatus" class="card-body">
+        <p *ngFor="let alert of alerts">
+          <ngb-alert [type]="alert.type" (close)="closeAlert(alert)"
+            >Erreur {{ ErrorStatus }} : {{ ErrorstatusText }}</ngb-alert
+          >
+        </p>
+      </div>
+      <div class="card-body table-responsive">
+        <table
+          datatable
+          [dtOptions]="dtOptions[0]"
+          class="row-border display compact table bordered"
+        >
+          <ng-container *ngIf="users?.length != 0">
+            <thead class=" bg-dark">
+              <tr>
+                <th class="text-center" colspan="5">
+                  Comptes gelé :
+                </th>
+              </tr>
+              <tr>
+                <th class="text-center">#</th>
+                <th class="text-center">Nom d'utilisateur</th>
+                <th class="text-center">Email</th>
+                <th class="text-center">Activation</th>
+                <th class="text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody class="bg-dark" id="usersactivate">
+              <ng-container *ngFor="let usersactivate of users">
+                <tr
+                  *ngIf="!usersactivate.isActive"
+                  class="text-center bg-danger  text-white pt-3 pb-3"
+                >
+                  <td (click)="RowSelected1(usersactivate)">
+                    <p>{{ usersactivate.id }}</p>
+                  </td>
+                  <td (click)="RowSelected1(usersactivate)">
+                    <p>{{ usersactivate.username }}</p>
+                  </td>
+                  <td (click)="RowSelected1(usersactivate)">
+                    <p>{{ usersactivate.email }}</p>
+                  </td>
+                  <td (click)="RowSelected1(usersactivate)">
+                    <p>{{ usersactivate.status }}</p>
+                  </td>
+                  <td class="text-center bg-danger text-white ">
+                    <button
+                      type="button"
+                      (click)="activer(usersactivate)"
+                      class="btn btn-success"
+                      role="button"
+                    >
+                      Activer
+                    </button>
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </ng-container>
+
+          <tbody *ngIf="users?.length == 0">
+            <tr>
+              <td colspan="5" class="no-data-available">
+                <div class="alert alert-danger">
+                  <strong>Oh non!</strong> il n'y as pas de data.
+                </div>
+              </td>
+            </tr>
+          </tbody>
+          <!--
+                            <tfoot *ngIf="users?.length != 0">
+                                <tr >
+                                  <th class="text-center"><input type="text" class="inputSearch" placeholder="chercher #" name="search-id"/></th>
+                                  <th class="text-center"><input type="text" class="inputSearch" placeholder="chercher Nom d'utilisateur" name="search-username"/></th>
+                                  <th class="text-center"><input type="text" class="inputSearch" placeholder="chercher email" name="search-email"/></th>
+                                  <th class="text-center"><input type="text" class="inputSearch" placeholder="chercher Activation" name="search-isActive"/></th>
+
+
+                                </tr>
+                        </tfoot>-->
+        </table>
+      </div>
+      <div class="card-body table-responsive">
+        <table
+          datatable
+          [dtOptions]="dtOptions[1]"
+          class="row-border display compact table bordered"
+        >
+          <ng-container *ngIf="users?.length != 0">
+            <thead class=" bg-dark">
+              <tr>
+                <th class="text-center" colspan="5">
+                  Comptes actif :
+                </th>
+              </tr>
+              <tr>
+                <th class="text-center">#</th>
+                <th class="text-center">Nom d'utilisateur</th>
+                <th class="text-center">Email</th>
+                <th class="text-center">Activation</th>
+                <th class="text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody id="usersnotactivate" class="bg-dark">
+              <ng-container *ngFor="let usersnotactivate of users">
+                <tr
+                  *ngIf="usersnotactivate.isActive"
+                  class="text-center bg-success text-white pt-3 pb-3"
+                >
+                  <td
+                    (click)="RowSelected2(usersnotactivate)"
+                    class="text-blue "
+                  >
+                    <p>{{ usersnotactivate.id }}</p>
+                  </td>
+                  <td (click)="RowSelected2(usersnotactivate)">
+                    <p>{{ usersnotactivate.username }}</p>
+                  </td>
+                  <td (click)="RowSelected2(usersnotactivate)">
+                    <p>{{ usersnotactivate.email }}</p>
+                  </td>
+                  <td (click)="RowSelected2(usersnotactivate)">
+                    <p>{{ usersnotactivate.status }}</p>
+                  </td>
+                  <td class="text-center bg-success text-white ">
+                    <button
+                      type="button"
+                      (click)="desactiver(usersnotactivate)"
+                      class="btn btn-danger"
+                      role="button"
+                    >
+                      Geler
+                    </button>
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </ng-container>
+
+          <tbody *ngIf="users?.length == 0">
+            <tr>
+              <td colspan="5" class="no-data-available">
+                <div class="alert alert-danger">
+                  <strong>Oh non!</strong> il n'y as pas de data.
+                </div>
+              </td>
+            </tr>
+          </tbody>
+          <!--
+                            <tfoot *ngIf="users?.length != 0">
+                                <tr >
+                                  <th class="text-center"><input type="text" class="inputSearch" placeholder="chercher #" name="search-id"/></th>
+                                  <th class="text-center"><input type="text" class="inputSearch" placeholder="chercher Nom d'utilisateur" name="search-username"/></th>
+                                  <th class="text-center"><input type="text" class="inputSearch" placeholder="chercher email" name="search-email"/></th>
+                                  <th class="text-center"><input type="text" class="inputSearch" placeholder="chercher Activation" name="search-isActive"/></th>
+
+
+                                </tr>
+                        </tfoot>-->
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
