@@ -21,11 +21,13 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
   styleUrls: ['./admin-manager.scss']
 })
 export class AdminManagerComponent implements OnInit {
+
   [x: string]: any;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
   title = 'Un Ami Pour La Vie - Admin : Gestion des admins';
   MyDataSource: any;
+
   displayedColumns: string[] = [
     'username',
     'firstName',
@@ -33,6 +35,7 @@ export class AdminManagerComponent implements OnInit {
     'email',
     'roleName'
   ];
+
   public objStringError: string;
   public objError: any;
   public ErrorstatusText: any;
