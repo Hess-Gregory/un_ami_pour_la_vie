@@ -13,11 +13,10 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
   styleUrls: ['./users-info.scss']
 })
 export class UsersInfoComponent implements OnInit {
-    searchTerm = new FormControl();
-    searchTerm$: Observable<string> = this.searchTerm.valueChanges;
-    result: any = [];
+  searchTerm = new FormControl();
+  searchTerm$: Observable<string> = this.searchTerm.valueChanges;
+  result: any = [];
   [x: string]: any;
-
 
   title = 'Un Ami Pour La Vie - Admin : Liste des utilisateurs';
   MyDataSource: any;
@@ -55,17 +54,14 @@ export class UsersInfoComponent implements OnInit {
     this.searchTerm$
       .pipe(
         tap(viewtap => {
-        console.log('1:', viewtap);
-        this.loading = false;
-            }
-        ),
+          console.log('1:', viewtap);
+          this.loading = false;
+        }),
         debounceTime(1000),
         switchMap(word => this.thisService.search(word))
       )
       .subscribe(data => (this.result = data));
   }
-
-
 
   closeAlert(alert: any) {
     this.ErrorValid = true;
@@ -84,5 +80,4 @@ export class UsersInfoComponent implements OnInit {
     }
     this.router.navigate([`admin/users/user-manager/user-get`, res.id]);
   }
-
 }

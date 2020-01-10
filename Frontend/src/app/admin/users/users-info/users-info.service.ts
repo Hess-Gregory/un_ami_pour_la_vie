@@ -25,6 +25,4 @@ export class UserInfoService {
       tap(filteredEvents => console.log('filtered:', filteredEvents))
     );
   }
-
-
 }

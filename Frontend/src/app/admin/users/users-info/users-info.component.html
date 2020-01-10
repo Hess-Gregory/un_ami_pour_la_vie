@@ -18,24 +18,24 @@
   </p>
 </div>
 <div class="data-container" *ngIf="!ErrorStatus && !loading">
-    <h2>Recherche avancé d'un utilisateur</h2>
-    <form>
-      <mat-form-field class="example-full-width">
-        <input
-          matInput
-          [formControl]="searchTerm"
-          placeholder="recherche par nom d'utilisateur ou email...."
-        />
-      </mat-form-field>
-    </form>
-    <div *ngIf="result.length > 0">
-      <mat-card (click)="RowSelected(res)" *ngFor="let res of result">
-        <mat-card-header>
-          <mat-card-title>{{ res.id }} - {{ res.username }}</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <p>{{ res.email }}</p></mat-card-content
-        >
-      </mat-card>
-    </div>
+  <h2>Recherche avancé d'un utilisateur</h2>
+  <form>
+    <mat-form-field class="example-full-width">
+      <input
+        matInput
+        [formControl]="searchTerm"
+        placeholder="recherche par nom d'utilisateur ou email...."
+      />
+    </mat-form-field>
+  </form>
+  <div *ngIf="result.length > 0">
+    <mat-card (click)="RowSelected(res)" *ngFor="let res of result">
+      <mat-card-header>
+        <mat-card-title>{{ res.id }} - {{ res.username }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ res.email }}</p></mat-card-content
+      >
+    </mat-card>
+  </div>
 </div>
