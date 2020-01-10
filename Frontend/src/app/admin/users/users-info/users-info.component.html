@@ -1,0 +1,41 @@
+<app-jumbo-user class="btnJumbo"></app-jumbo-user>
+<div *ngIf="loading && !ErrorValid && !alertError" class="spinner">
+  <img
+    class="dog"
+    src="./assets/images/loading-dog.gif"
+    style="width: 10vw;text-align: center;
+     display: block; vertical-align: middle; margin: auto; margin-top: 25%; margin-bottom: 25%;"
+    alt=""
+  />
+</div>
+
+<router-outlet *ngIf="ErrorValid"> </router-outlet>
+<div *ngIf="alertError" class="card-body">
+  <p *ngFor="let alert of alerts" class="alerts">
+    <ngb-alert [type]="alert.type" (close)="closeAlert(alert)">
+      {{ alert.message }}
+    </ngb-alert>
+  </p>
+</div>
+<div class="data-container" *ngIf="!ErrorStatus && !loading">
+    <h2>Recherche avancé d'un utilisateur</h2>
+    <form>
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          [formControl]="searchTerm"
+          placeholder="recherche par nom d'utilisateur ou email...."
+        />
+      </mat-form-field>
+    </form>
+    <div *ngIf="result.length > 0">
+      <mat-card (click)="RowSelected(res)" *ngFor="let res of result">
+        <mat-card-header>
+          <mat-card-title>{{ res.id }} - {{ res.username }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ res.email }}</p></mat-card-content
+        >
+      </mat-card>
+    </div>
+</div>
