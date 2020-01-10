@@ -24,21 +24,21 @@
   margin-left: 60px;
 }
 .main-container.collapsed {
-    padding-left: 70px;
-  }
+  padding-left: 70px;
+}
 @media screen and (max-width: 992px) {
   .main-container {
     margin-left: 0px !important;
     padding-left: 0px !important;
   }
-#navBarBottom {
+  #navBarBottom {
     display: flex !important;
     flex-direction: column !important;
     height: 70px !important;
-}
-.navbar-fixed-bottom div {
+  }
+  .navbar-fixed-bottom div {
     width: 100% !important;
-}
+  }
   #leftMessage {
     font-size: small !important;
     text-align: center !important;
@@ -50,10 +50,10 @@
     text-align: center !important;
     float: none !important;
   }
-    .fullhestack-logo {
+  .fullhestack-logo {
     height: 33px !important;
     padding-bottom: 5px !important;
-}
+  }
 }
 @media print {
   .main-container {

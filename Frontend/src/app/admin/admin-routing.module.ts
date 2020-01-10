@@ -16,7 +16,6 @@ const routes: Routes = [
         canActivate: [AuthGuard]
       },
 
-
       {
         path: 'dashboard',
         loadChildren: () =>
