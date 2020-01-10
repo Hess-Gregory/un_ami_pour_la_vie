@@ -9,21 +9,17 @@ const router = express.Router();
 const paramValidation = {
   updateUser: {
     body: {
-      firstName: Joi.string().required(),
-      lastName: Joi.string().required(),
-      username: Joi.string().required(),
-      email: Joi.string()
-        .email()
-        .required(),
-      password: Joi.string().required(),
+      firstName: Joi.string(),
+      lastName: Joi.string(),
+      username: Joi.string(),
+      email: Joi.string().email(),
+      password: Joi.string(),
       isActive: Joi.number()
         .min(0)
-        .max(1)
-        .required(),
+        .max(1),
       role: Joi.number()
         .min(1)
-        .max(6)
-        .required(),
+        .max(6),
       asbl: Joi.string(),
       birthday: Joi.date(),
       sexGenre: Joi.string(),
@@ -56,14 +52,12 @@ const paramValidation = {
       pachMedia: Joi.string()
     },
     params: {
-      id: Joi.string().required()
+      id: Joi.string()
     }
   },
   getUser: {
     params: {
-      id: Joi.number()
-        .integer()
-        .required()
+      id: Joi.number().integer()
     }
   }
 };
@@ -92,6 +86,7 @@ router.use((req, res, next) => {
     if (res.locals.session.role >= 4) {
       router.route("/adminlist").get(adminController.getAllAdmin); // GET /api/admins/adminlist
       router.route("/user").get(adminController.getAllUser); // GET /api/admins/user
+      router.route("/userandrole").get(adminController.getAllUserAndRole); // GET /api/admins/user
       router
         .route("/user/:id")
         .get(validate(paramValidation.getUser), adminController.getById); // GET /api/admins/user/activate/:id
