@@ -1,10 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { UserAddService } from './user-add.service';
 import {
-  Country,
   UsernameValidator,
-  ParentErrorStateMatcher,
-  PhoneValidator
+  ParentErrorStateMatcher
 } from './../../../../shared/validators';
 import { Router } from '@angular/router';
 import { Observable, of, Subject } from 'rxjs';
@@ -71,10 +69,6 @@ export class UserAddComponent implements OnDestroy, OnInit {
   minDate = new Date(1910, 0, 1);
   maxDate = new Date(this.maxYearNow, this.MonthNow, this.DayNow);
   genders = ['Homme', 'Femme', 'Autre'];
-  countries = [
-    new Country('BE', 'Uruguay'),
-    new Country('FR', 'United States')
-  ];
   activateds = [
     { isActive: 0, name: 'Gelé' },
     { isActive: 1, name: 'Activé' }
@@ -1327,18 +1321,6 @@ export class UserAddComponent implements OnDestroy, OnInit {
     console.log('this.userDetailsForm:', this.userDetailsForm.value.birthday);
   }
   createForms() {
-    const country = new FormControl(this.countries[0], Validators.required);
-    const phone = new FormControl('', {
-      validators: Validators.compose([
-        Validators.required,
-        PhoneValidator.validCountryPhone(country)
-      ])
-    });
-    this.country_phone_group = new FormGroup({
-      country: country,
-      phone: phone
-    });
-
     // user details form validations
     this.userDetailsForm = this.fb.group({
       /* Login et Role */
