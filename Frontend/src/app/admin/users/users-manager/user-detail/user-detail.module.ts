@@ -10,7 +10,6 @@ import {
   MatInputModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DataTablesModule, DataTableDirective } from 'angular-datatables';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { UserDetailComponent } from './user-detail.component';
@@ -21,7 +20,6 @@ import { UserControlsModule } from '../user-controls/user-controls.module';
   imports: [
     CommonModule,
     UserDetailRoutingModule,
-    DataTablesModule,
     FormsModule,
     NgbModule,
     HttpClientModule,
@@ -35,6 +33,6 @@ import { UserControlsModule } from '../user-controls/user-controls.module';
     UserControlsModule
   ],
   declarations: [UserDetailComponent],
-  exports: [DataTableDirective, UserDetailComponent]
+  exports: [UserDetailComponent]
 })
 export class UserDetailModule {}

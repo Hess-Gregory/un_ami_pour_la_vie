@@ -29,12 +29,13 @@ p {
     display: flex;
 
     .btn-primary {
-      margin: auto;
+      margin: auto !important;
       background-color: rgb(10, 189, 233);
       color: #fff;
       font-size: 0.7rem;
       min-width: 100%;
       cursor: pointer;
+      max-height: 38px;
     }
   }
 }

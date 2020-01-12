@@ -12,7 +12,9 @@ import {
   MatButtonModule,
   MatInputModule,
   MatPaginatorModule,
+  MatGridListModule,
   MatSortModule,
+  MatMenuModule,
   MatIconModule,
   MatTableModule
 } from '@angular/material';
@@ -29,11 +31,19 @@ import {
     MatCardModule,
     MatButtonModule,
     MatInputModule,
+    MatMenuModule,
     MatPaginatorModule,
     MatSortModule,
+    MatGridListModule,
     MatTableModule
   ],
   declarations: [UsersInfoComponent],
-  exports: [MatTableModule, MatPaginatorModule, MatSortModule]
+  exports: [
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatGridListModule,
+    MatMenuModule
+  ]
 })
 export class UsersInfoModule {}

@@ -10,6 +10,7 @@ import { AuthService } from './shared/services/auth.service';
 import { AppRoutingModule } from './app-routing.module';
 import { NgbDropdownModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthGuard, PageHeaderModule } from './shared';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { JwtModule } from '@auth0/angular-jwt';
 import { Globals } from './globals';
 import { TableModule } from 'primeng/table';
@@ -70,7 +71,6 @@ import { TimingRefreshModule } from './shared/modules/auto-refresh/timing-refres
 import { AgmCoreModule } from '@agm/core';
 import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 import { TimerModule } from './home/components/timer/timer.module';
-import * as libphonenumber from 'google-libphonenumber';
 registerLocaleData(localeFr, 'fr');
 
 export function tokenGetter() {
@@ -118,7 +118,7 @@ export function tokenGetter() {
     // MatDividerModule,
     // MatExpansionModule,
     MatFormFieldModule,
-    // MatGridListModule,
+    MatGridListModule,
     MatIconModule,
     MatInputModule,
     MatListModule,
@@ -148,6 +148,8 @@ export function tokenGetter() {
       apiKey: 'AIzaSyCAWUjNXIL8xtVOS7j1qtX0vGgRapbE2-c',
       libraries: ['places']
     }),
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot(),
     TableModule,
     JwtModule.forRoot({
       config: {
@@ -156,8 +158,7 @@ export function tokenGetter() {
         blacklistedRoutes: ['localhost:4000/api/auth']
       }
     }),
-    MatGoogleMapsAutocompleteModule,
-    AgmCoreModule.forRoot()
+    MatGoogleMapsAutocompleteModule
   ],
   declarations: [AppComponent],
   exports: [
@@ -186,7 +187,7 @@ export function tokenGetter() {
     // MatDividerModule,
     // MatExpansionModule,
     MatFormFieldModule,
-    // MatGridListModule,
+    MatGridListModule,
     MatIconModule,
     MatInputModule,
     MatListModule,

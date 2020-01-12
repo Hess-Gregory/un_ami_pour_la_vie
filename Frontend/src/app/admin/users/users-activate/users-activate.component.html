@@ -1,182 +1,285 @@
-<app-jumbo-user></app-jumbo-user>
-<div *ngIf="loading" class="spinner">
+<app-jumbo-user class="btnJumbo"></app-jumbo-user>
+<div *ngIf="loading && !ErrorValid && !alertError" class="spinner">
   <img
     class="dog"
     src="./assets/images/loading-dog.gif"
     style="width: 10vw;text-align: center;
-         display: block; vertical-align: middle; margin: auto; margin-top: 25%; margin-bottom: 25%;"
+     display: block; vertical-align: middle; margin: auto; margin-top: 25%; margin-bottom: 25%;"
     alt=""
   />
 </div>
-<div *ngIf="!loading" class="row">
-  <div class="col col-xl-12 col-lg-12">
-    <div class="card  mb-3">
-      <div class="card-header  bg-dark">
-        <h2>
-          <i class="fa fa-user-lock"></i> Activation/désactivation des comptes
-        </h2>
-      </div>
-      <div *ngIf="ErrorStatus" class="card-body">
-        <p *ngFor="let alert of alerts">
-          <ngb-alert [type]="alert.type" (close)="closeAlert(alert)"
-            >Erreur {{ ErrorStatus }} : {{ ErrorstatusText }}</ngb-alert
-          >
-        </p>
-      </div>
-      <div class="card-body table-responsive">
-        <table
-          datatable
-          [dtOptions]="dtOptions[0]"
-          class="row-border display compact table bordered"
-        >
-          <ng-container *ngIf="users?.length != 0">
-            <thead class=" bg-dark">
-              <tr>
-                <th class="text-center" colspan="5">
-                  Comptes gelé :
-                </th>
-              </tr>
-              <tr>
-                <th class="text-center">#</th>
-                <th class="text-center">Nom d'utilisateur</th>
-                <th class="text-center">Email</th>
-                <th class="text-center">Activation</th>
-                <th class="text-center">Action</th>
-              </tr>
-            </thead>
-            <tbody class="bg-dark" id="usersactivate">
-              <ng-container *ngFor="let usersactivate of users">
-                <tr
-                  *ngIf="!usersactivate.isActive"
-                  class="text-center bg-danger  text-white pt-3 pb-3"
-                >
-                  <td (click)="RowSelected1(usersactivate)">
-                    <p>{{ usersactivate.id }}</p>
-                  </td>
-                  <td (click)="RowSelected1(usersactivate)">
-                    <p>{{ usersactivate.username }}</p>
-                  </td>
-                  <td (click)="RowSelected1(usersactivate)">
-                    <p>{{ usersactivate.email }}</p>
-                  </td>
-                  <td (click)="RowSelected1(usersactivate)">
-                    <p>{{ usersactivate.status }}</p>
-                  </td>
-                  <td class="text-center bg-danger text-white ">
-                    <button
-                      type="button"
-                      (click)="activer(usersactivate)"
-                      class="btn btn-success"
-                      role="button"
-                    >
-                      Activer
-                    </button>
-                  </td>
-                </tr>
+
+<router-outlet *ngIf="ErrorValid"> </router-outlet>
+<div *ngIf="alertError" class="card-body">
+  <p *ngFor="let alert of alerts" class="alerts">
+    <ngb-alert [type]="alert.type" (close)="closeAlert(alert)">
+      {{ alert.message }}
+    </ngb-alert>
+  </p>
+</div>
+<div class="data-container" *ngIf="!ErrorStatus && !loading">
+  <div class="container">
+    <div class="filter-table">
+      <h2 class="filter-title">Recherche avancée d'un utilisateur</h2>
+
+      <form class="filter-form">
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            (keyup)="applyFilter($event.target.value)"
+            placeholder="Filtre"
+          />
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="col col-xl-12 col-lg-12">
+      <div class="card ">
+        <div class="card-header">
+          <div class="alert alert-info">
+            <strong>Comptes gelé :</strong>
+          </div>
+        </div>
+
+        <div class="card-body table-responsive">
+          <div class="example-container mat-elevation-z8 userNotActive">
+            <mat-table
+              #Table
+              [dataSource]="MyDataSourceIsNotActive"
+              matSort
+              #sorter1="matSort"
+              [class.isMobile]="isMobile"
+            >
+              <!-- For User ID -->
+
+              <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  ID
+                </mat-header-cell>
+                <mat-cell *matCellDef="let post">
+                  {{ post.id }}
+                </mat-cell>
               </ng-container>
-            </tbody>
-          </ng-container>
 
-          <tbody *ngIf="users?.length == 0">
-            <tr>
-              <td colspan="5" class="no-data-available">
-                <div class="alert alert-danger">
-                  <strong>Oh non!</strong> il n'y as pas de data.
-                </div>
-              </td>
-            </tr>
-          </tbody>
-          <!--
-                            <tfoot *ngIf="users?.length != 0">
-                                <tr >
-                                  <th class="text-center"><input type="text" class="inputSearch" placeholder="chercher #" name="search-id"/></th>
-                                  <th class="text-center"><input type="text" class="inputSearch" placeholder="chercher Nom d'utilisateur" name="search-username"/></th>
-                                  <th class="text-center"><input type="text" class="inputSearch" placeholder="chercher email" name="search-email"/></th>
-                                  <th class="text-center"><input type="text" class="inputSearch" placeholder="chercher Activation" name="search-isActive"/></th>
+              <!-- For User USERNAME -->
 
+              <ng-container matColumnDef="username">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Nom d'utilisateur
+                </mat-header-cell>
+                <mat-cell *matCellDef="let post">
+                  <span class="mobile-label">Nom d'utilisateur:</span>
+                  {{ post.username }}
+                </mat-cell>
+              </ng-container>
 
-                                </tr>
-                        </tfoot>-->
-        </table>
-      </div>
-      <div class="card-body table-responsive">
-        <table
-          datatable
-          [dtOptions]="dtOptions[1]"
-          class="row-border display compact table bordered"
-        >
-          <ng-container *ngIf="users?.length != 0">
-            <thead class=" bg-dark">
-              <tr>
-                <th class="text-center" colspan="5">
-                  Comptes actif :
-                </th>
-              </tr>
-              <tr>
-                <th class="text-center">#</th>
-                <th class="text-center">Nom d'utilisateur</th>
-                <th class="text-center">Email</th>
-                <th class="text-center">Activation</th>
-                <th class="text-center">Action</th>
-              </tr>
-            </thead>
-            <tbody id="usersnotactivate" class="bg-dark">
-              <ng-container *ngFor="let usersnotactivate of users">
-                <tr
-                  *ngIf="usersnotactivate.isActive"
-                  class="text-center bg-success text-white pt-3 pb-3"
-                >
-                  <td
-                    (click)="RowSelected2(usersnotactivate)"
-                    class="text-blue "
+              <!-- For User FirstName -->
+
+              <ng-container matColumnDef="firstName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Prénom
+                </mat-header-cell>
+                <mat-cell *matCellDef="let post">
+                  <span class="mobile-label">Prénom:</span>
+                  {{ post.firstName }}
+                </mat-cell>
+              </ng-container>
+
+              <!-- For User LastName -->
+
+              <ng-container matColumnDef="lastName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Nom
+                </mat-header-cell>
+                <mat-cell *matCellDef="let post">
+                  <span class="mobile-label">Nom:</span>
+                  {{ post.lastName }}
+                </mat-cell>
+              </ng-container>
+
+              <!-- For User EMAIL -->
+
+              <ng-container matColumnDef="email">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Email
+                </mat-header-cell>
+                <mat-cell *matCellDef="let post">
+                  <span class="mobile-label">Email:</span>
+                  {{ post.email }}
+                </mat-cell>
+              </ng-container>
+
+              <!-- User roleName -->
+
+              <ng-container matColumnDef="status">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Status
+                </mat-header-cell>
+                <mat-cell *matCellDef="let post">
+                  <span class="mobile-label">Status:</span>
+                  {{ post.status }}
+                </mat-cell>
+              </ng-container>
+
+              <!-- User roleName -->
+
+              <ng-container matColumnDef="action">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Action
+                </mat-header-cell>
+                <mat-cell *matCellDef="let post">
+                  <span class="mobile-label">Action:</span>
+                  <button
+                    type="button"
+                    (click)="activer(post, $event)"
+                    class="btn btn-success"
+                    role="button"
                   >
-                    <p>{{ usersnotactivate.id }}</p>
-                  </td>
-                  <td (click)="RowSelected2(usersnotactivate)">
-                    <p>{{ usersnotactivate.username }}</p>
-                  </td>
-                  <td (click)="RowSelected2(usersnotactivate)">
-                    <p>{{ usersnotactivate.email }}</p>
-                  </td>
-                  <td (click)="RowSelected2(usersnotactivate)">
-                    <p>{{ usersnotactivate.status }}</p>
-                  </td>
-                  <td class="text-center bg-success text-white ">
-                    <button
-                      type="button"
-                      (click)="desactiver(usersnotactivate)"
-                      class="btn btn-danger"
-                      role="button"
-                    >
-                      Geler
-                    </button>
-                  </td>
-                </tr>
+                    Activer
+                  </button>
+                </mat-cell>
               </ng-container>
-            </tbody>
-          </ng-container>
 
-          <tbody *ngIf="users?.length == 0">
-            <tr>
-              <td colspan="5" class="no-data-available">
-                <div class="alert alert-danger">
-                  <strong>Oh non!</strong> il n'y as pas de data.
-                </div>
-              </td>
-            </tr>
-          </tbody>
-          <!--
-                            <tfoot *ngIf="users?.length != 0">
-                                <tr >
-                                  <th class="text-center"><input type="text" class="inputSearch" placeholder="chercher #" name="search-id"/></th>
-                                  <th class="text-center"><input type="text" class="inputSearch" placeholder="chercher Nom d'utilisateur" name="search-username"/></th>
-                                  <th class="text-center"><input type="text" class="inputSearch" placeholder="chercher email" name="search-email"/></th>
-                                  <th class="text-center"><input type="text" class="inputSearch" placeholder="chercher Activation" name="search-isActive"/></th>
+              <mat-header-row
+                *matHeaderRowDef="displayedColumns"
+              ></mat-header-row>
+              <mat-row
+                *matRowDef="let row; columns: displayedColumns"
+                (click)="RowSelected(row)"
+              ></mat-row>
+            </mat-table>
+            <mat-paginator
+              [pageSizeOptions]="[5, 10, 15]"
+              showFirstLastButtons
+            ></mat-paginator>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <div class="col col-xl-12 col-lg-12">
+      <div class="card ">
+        <div class="card-header">
+          <div class="alert alert-info">
+            <strong>Comptes actif :</strong>
+          </div>
+        </div>
 
-                                </tr>
-                        </tfoot>-->
-        </table>
+        <div class="card-body table-responsive">
+          <div class="example-container mat-elevation-z8 userActive">
+            <mat-table
+              #Table
+              [dataSource]="MyDataSourceIsActive"
+              matSort
+              #sorter2="matSort"
+              [class.isMobile]="isMobile"
+            >
+              <!-- For User ID -->
+
+              <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  ID
+                </mat-header-cell>
+                <mat-cell *matCellDef="let post">
+                  {{ post.id }}
+                </mat-cell>
+              </ng-container>
+
+              <!-- For User USERNAME -->
+
+              <ng-container matColumnDef="username">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Nom d'utilisateur
+                </mat-header-cell>
+                <mat-cell *matCellDef="let post">
+                  <span class="mobile-label">Nom d'utilisateur:</span>
+                  {{ post.username }}
+                </mat-cell>
+              </ng-container>
+
+              <!-- For User FirstName -->
+
+              <ng-container matColumnDef="firstName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Prénom
+                </mat-header-cell>
+                <mat-cell *matCellDef="let post">
+                  <span class="mobile-label">Prénom:</span>
+                  {{ post.firstName }}
+                </mat-cell>
+              </ng-container>
+
+              <!-- For User LastName -->
+
+              <ng-container matColumnDef="lastName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Nom
+                </mat-header-cell>
+                <mat-cell *matCellDef="let post">
+                  <span class="mobile-label">Nom:</span>
+                  {{ post.lastName }}
+                </mat-cell>
+              </ng-container>
+
+              <!-- For User EMAIL -->
+
+              <ng-container matColumnDef="email">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Email
+                </mat-header-cell>
+                <mat-cell *matCellDef="let post">
+                  <span class="mobile-label">Email:</span>
+                  {{ post.email }}
+                </mat-cell>
+              </ng-container>
+
+              <!-- User roleName -->
+
+              <ng-container matColumnDef="status">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Status
+                </mat-header-cell>
+                <mat-cell *matCellDef="let post">
+                  <span class="mobile-label">Status:</span>
+                  {{ post.status }}
+                </mat-cell>
+              </ng-container>
+
+              <!-- User change Status -->
+
+              <ng-container matColumnDef="action">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Action
+                </mat-header-cell>
+                <mat-cell *matCellDef="let post">
+                  <span class="mobile-label">Action:</span>
+                  <button
+                    type="button"
+                    (click)="desactiver(post, $event)"
+                    class="btn btn-danger"
+                    role="button"
+                  >
+                    Geler
+                  </button>
+                </mat-cell>
+              </ng-container>
+
+              <mat-header-row
+                *matHeaderRowDef="displayedColumns"
+              ></mat-header-row>
+              <mat-row
+                *matRowDef="let row; columns: displayedColumns"
+                (click)="RowSelected(row)"
+              ></mat-row>
+            </mat-table>
+            <mat-paginator
+              [pageSizeOptions]="[5, 10, 15]"
+              showFirstLastButtons
+            ></mat-paginator>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -1,174 +1,343 @@
+p {
+  color: black;
+}
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap-reverse;
+  .filter-table {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    .filter-title {
+      margin: auto;
+      text-align: center;
+    }
+    .filter-form {
+      margin: auto;
+      text-align: center;
+      min-width: 100%;
+
+      .mat-form-field {
+        min-width: 100%;
+      }
+    }
+  }
+  .add-user-button {
+    display: flex;
+
+    .btn-primary {
+      margin: auto !important;
+      background-color: rgb(10, 189, 233);
+      color: #fff;
+      font-size: 0.7rem;
+      min-width: 100%;
+      cursor: pointer;
+      max-height: 38px;
+    }
+  }
+}
+.btn:hover {
+  transform: scale(1.08) !important;
+  background-color: rgba(10, 189, 233, 0.5) !important;
+  margin-left: 7px;
+  margin-right: 7px;
+}
+
+.alert-lexique {
+  text-align: center;
+
+  .lexique-title {
+    margin-bottom: 25px;
+  }
+  .lexique {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .lexique1,
+    .lexique2,
+    .lexique3,
+    .lexique4 {
+      text-align: center;
+    }
+  }
+}
+.alert,
+.btnJumbo {
+  z-index: 5000;
+}
+.spinner {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3000;
+}
+.circle {
+  font-size: small;
+  text-align: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  margin: 0 auto;
+}
+.circleGreen {
+  background: green;
+  background: radial-gradient(circle at 6px 6px, #0cca45, #000);
+}
+.circleGreen::before {
+  content: 'A';
+  color: white;
+}
+.circleYellow {
+  background: rgba(255, 255, 0, 0.781);
+  background: radial-gradient(circle at 6px 6px, #eff147, #000);
+}
+.circleYellow::before {
+  content: 'N';
+  color: white;
+}
+.circleOrange {
+  background: rgba(255, 123, 0, 0.986);
+  background: radial-gradient(circle at 6px 6px, #e99536, #000);
+}
+.circleOrange::before {
+  content: 'D';
+  color: white;
+}
+.circleRed {
+  background: red;
+  background: radial-gradient(circle at 6px 6px, #db1811, #000);
+}
+.circleRed::before {
+  content: 'E';
+  color: white;
+}
+
 .no-data-available {
   text-align: center;
 }
-
-/*
-     src/styles.css (i.e. your global style)
-  */
-.dataTables_empty {
-  display: none;
+.mat-card {
+  margin-top: 0 !important;
+  display: flex !important;
+  justify-content: center !important;
 }
-
-.card {
-  //  color: white;
-  // background-color: #2d303a !important;
-  width: 80vw;
-  margin: 0 auto;
-}
-thead tr th,
-.card-header,
-h2,
-h3,
-h4,
-h5,
-.text-blue {
-  color: #76daff;
-}
-tbody tr th {
-  color: #7db5c9;
-}
-.card-header {
-  border-radius: 18px 18px 0 0;
-}
-tbody tr:hover td {
-  color: rgb(99, 183, 216);
+.mat-card:hover {
+  background-color: lightslategray;
   cursor: pointer;
 }
-
-.table.dataTables_wrapper .table.dataTables_length,
-.table.dataTables_wrapper .table.dataTables_filter,
-.table.dataTables_wrapper .table.dataTables_info,
-.table.dataTables_wrapper .table.dataTables_processing,
-.table.dataTables_wrapper .table.dataTables_paginate {
-  color: white !important;
-}
-.card {
-  border-radius: 18px;
-}
-.card-body {
-  // background-color: darkgray;
-  border-radius: 0 0 18px 18px;
-
-  color: white !important;
-}
-
-.FirstBtn {
-  margin-left: 2rem !important;
-}
-.inputSearch {
-  border: none;
-  border-bottom: 1px solid #76daff;
-  text-align: center;
-  margin-bottom: 8px;
-  margin-top: 8px;
-  color: white;
-  background-color: rgba(52, 58, 64, 0);
-}
-.form-group {
-  width: 100%;
-  margin: 9px;
-  padding: 0;
-  position: initial;
-}
-
-.inline-flex {
-  display: inline-flex;
-  margin: 0 auto;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-}
-.btn-valid {
-  max-width: 10% !important;
-}
-.col-4 {
-  width: 100px;
-}
-.btn-lg {
-  margin-left: 5px;
-  margin-right: 5px;
-}
-.border-bottom {
-  border-bottom: solid 2px rgb(99, 183, 216) !important;
-}
-.border-right {
-  border-right: solid 2px rgb(99, 183, 216) !important;
-}
-.button-centre {
-  max-width: 60%;
-  margin: 0 auto;
-  padding: 0;
-  justify-content: space-between;
-}
-.searchTr {
-  background-color: rgba(52, 58, 64, 0.5);
-}
-::placeholder {
-  //color: rgb(99, 183, 216);
-  color: #1c6079;
-  opacity: 1;
-}
-.headTr {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+.example-container.mat-elevation-z8 {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
 }
 table {
-  border-collapse: separate !important;
-  border-spacing: 0;
+  width: 100%;
 }
-.bordered {
+th.mat-sort-header-sorted {
+  color: black;
+}
+.mat-header-row {
+  background-color: rgb(52, 58, 64);
+  //border: 1px solid rgb(172, 163, 163);
+  border-radius: 8px 8px 0 0;
+}
+.mat-row {
+  background-color: rgba(52, 58, 64, 0.7);
+}
+.mat-row:hover .mat-cell {
+  color: rgb(99, 183, 216);
+  background-color: rgba(52, 58, 64, 0.7);
+  cursor: pointer;
+}
+.mat-header-cell {
+  color: #76daff;
+  flex-direction: column;
+  justify-content: center;
+}
+.mat-cell {
+  color: #fff;
+  text-align: center;
+  justify-content: center;
+}
+.mat-cell:first-child {
+  color: #76daff !important;
+  width: 15%;
+  flex: 0 0 15% !important;
+  border-top: 0px;
+  border-bottom: 0px;
+}
+.mat-header-cell:first-child {
+  width: 15%;
+  flex: 0 0 15% !important;
+}
+
+.mat-row {
+  border-bottom-color: transparent !important;
+  border-bottom: none;
+  min-height: 84px;
+  border-top: none;
+}
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+  width: 100%;
   border: solid #ccc 1px;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
-  border-radius: 6px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
   -webkit-box-shadow: 0 1px 1px #ccc;
   -moz-box-shadow: 0 1px 1px #ccc;
   box-shadow: 0 1px 1px #ccc;
+  border-collapse: separate !important;
+  border-spacing: 0;
 }
-.bordered tr:hover {
-  background-color: #343a40 !important;
+.mat-table .mat-row:hover {
   -webkit-transition: all 0.1s ease-in-out;
   -moz-transition: all 0.1s ease-in-out;
   transition: all 0.1s ease-in-out;
 }
-.bordered td,
-.bordered th {
-  padding: 10px;
-  text-align: left;
+.mat-table .mat-cell,
+.mat-table .mat-header-cell {
+  text-align: center;
 }
-.bordered th {
+.mat-table .mat-header-cell {
   -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
   -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
   border-top: none;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
 }
-.bordered td:first-child,
-.bordered th:first-child {
+.mat-table .mat-cell:first-child,
+.mat-table .mat-header-cell:first-child {
   border-left: none;
 }
-.bordered th:first-child {
-  -moz-border-radius: 6px 0 0 0;
-  -webkit-border-radius: 6px 0 0 0;
-  border-radius: 6px 0 0 0;
+.mat-table .mat-header-cell:first-child {
+  border-radius: 8px 0 0 0;
+  -moz-border-radius: 8px 0 0 0;
+  -webkit-border-radius: 8px 0 0 0;
 }
-.bordered th:last-child {
-  -moz-border-radius: 0 6px 0 0;
-  -webkit-border-radius: 0 6px 0 0;
-  border-radius: 0 6px 0 0;
+.mat-table .mat-header-cell:last-child {
+  border-radius: 0 8px 0 0;
+  -moz-border-radius: 0 8px 0 0;
+  -webkit-border-radius: 0 8px 0 0;
 }
-.bordered th:only-child {
-  -moz-border-radius: 6px 6px 0 0;
-  -webkit-border-radius: 6px 6px 0 0;
-  border-radius: 6px 6px 0 0;
+.mat-table .mat-row:last-child .mat-cell:first-child {
+  border-radius: 0 0 0 8px;
+  -moz-border-radius: 0 0 0 8px;
+  -webkit-border-radius: 0 0 0 8px;
 }
-.bordered tr:last-child td:first-child {
-  -moz-border-radius: 0 0 0 6px;
-  -webkit-border-radius: 0 0 0 6px;
-  border-radius: 0 0 0 6px;
+.mat-table .mat-row:last-child .mat-cell:first-child:hover {
+  border-radius: 0 0 0 8px;
+  -moz-border-radius: 0 0 0 8px;
+  -webkit-border-radius: 0 0 0 8px;
 }
-.bordered tr:last-child td:last-child {
-  -moz-border-radius: 0 0 6px 0;
-  -webkit-border-radius: 0 0 6px 0;
-  border-radius: 0 0 6px 0;
+.mat-table .mat-row:last-child {
+  border-radius: 0 0 8px 8px;
+  -moz-border-radius: 0 0 8px 8px;
+  -webkit-border-radius: 0 0 8px 8px;
+}
+.mat-table .mat-row:last-child:hover {
+  border-radius: 0 0 8px 8px;
+  -moz-border-radius: 0 0 8px 8px;
+  -webkit-border-radius: 0 0 8px 8px;
+}
+::ng-deep .mat-sort-header-arrow[style] {
+  // Hide default arrow stem
+  .mat-sort-header-stem {
+    display: none;
+  }
+  .mat-sort-header-indicator {
+    opacity: 1;
+    color: black;
+    font-weight: bold;
+
+    // Hide default arrow as its composed of left, right and middle
+    .mat-sort-header-pointer-left,
+    .mat-sort-header-pointer-right,
+    .mat-sort-header-pointer-middle {
+      display: none;
+    }
+  }
+}
+
+[aria-sort='ascending'] {
+  ::ng-deep .mat-sort-header-arrow {
+    .mat-sort-header-indicator {
+      &::before {
+        font: normal normal normal 0.8rem/1 FontAwesome;
+        content: '\f160';
+        position: absolute;
+        top: 0.1em;
+        color: rgb(248, 156, 27);
+        left: 0.5em;
+      }
+    }
+  }
+}
+
+[aria-sort='descending'] {
+  ::ng-deep .mat-sort-header-arrow {
+    .mat-sort-header-indicator {
+      &::before {
+        font: normal normal normal 0.8rem/1 FontAwesome;
+        content: '\f161';
+        position: absolute;
+        top: -0.7em;
+        color: rgb(248, 156, 27);
+        left: 0.5em;
+      }
+    }
+  }
+}
+.mat-header-cell.mat-column-position {
+  direction: rtl;
+}
+
+/* If you want the same default margin for the sort icon */
+:host ::ng-deep .mat-header-cell.mat-column-symbol .mat-sort-header-arrow {
+  margin-right: 6px;
+  margin-left: 0px;
+}
+.mobile-label {
+  display: none;
+}
+
+@media (max-width: 992px) {
+  .mat-cell:first-child {
+    width: 100%;
+  }
+  .mobile-label {
+    width: 25vw;
+    display: inline-block;
+    font-weight: bold;
+    text-align: left;
+    color: #76daff !important;
+  }
+
+  .mat-header-row {
+    display: none;
+  }
+
+  .mat-row {
+    flex-direction: column;
+    align-items: start;
+    padding: 8px 24px;
+  }
+  .example-container.mat-elevation-z8 {
+    max-height: 500px;
+  }
+}
+.data-container {
+  display: flex;
+  flex-flow: row wrap;
+  align-content: center;
+  min-height: 68vh;
 }

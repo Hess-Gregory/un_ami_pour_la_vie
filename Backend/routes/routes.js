@@ -44,6 +44,7 @@ router.use((req, res, next) => {
         //router.use("/users/image", userRoutes);
       }
       if (res.locals.session.role >= 3) {
+        router.use("/admins", adminRoutes);
       }
       if (res.locals.session.role >= 4) {
         router.use("/users/status", membersRoutes);
@@ -52,7 +53,6 @@ router.use((req, res, next) => {
       if (res.locals.session.role >= 5) {
       }
       if (res.locals.session.role >= 6) {
-        router.use("/admins", adminRoutes);
       }
       if (res.locals.session.role >= 7) {
         router.use("/users", userRoutes);

@@ -10,18 +10,16 @@ import {
   MatInputModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DataTablesModule, DataTableDirective } from 'angular-datatables';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { UserAddComponent } from './user-add.component';
 import { UserAddRoutingModule } from './user-add-routing.module';
 import { UserControlsModule } from '../user-controls/user-controls.module';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 @NgModule({
   imports: [
     CommonModule,
     UserAddRoutingModule,
-    DataTablesModule,
     FormsModule,
     NgbModule,
     HttpClientModule,
@@ -32,9 +30,11 @@ import { UserControlsModule } from '../user-controls/user-controls.module';
     MatCheckboxModule,
     MatSelectModule,
     ReactiveFormsModule,
-    UserControlsModule
+    UserControlsModule,
+    FroalaEditorModule,
+    FroalaViewModule
   ],
   declarations: [UserAddComponent],
-  exports: [DataTableDirective]
+  exports: []
 })
 export class UserAddModule {}

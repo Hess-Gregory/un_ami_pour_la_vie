@@ -20,10 +20,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { UserUpdateService } from './user-update.service';
 import {
-  Country,
   UsernameValidator,
-  ParentErrorStateMatcher,
-  PhoneValidator
+  ParentErrorStateMatcher
 } from './../../../../shared/validators';
 import { HttpClient } from '@angular/common/http';
 import { Title, Meta } from '@angular/platform-browser';

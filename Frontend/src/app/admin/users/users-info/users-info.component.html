@@ -1,4 +1,5 @@
 <app-jumbo-user class="btnJumbo"></app-jumbo-user>
+<!--
 <div *ngIf="loading && !ErrorValid && !alertError" class="spinner">
   <img
     class="dog"
@@ -8,8 +9,10 @@
     alt=""
   />
 </div>
+-->
 
-<router-outlet *ngIf="ErrorValid"> </router-outlet>
+<router-outlet> </router-outlet>
+<!--
 <div *ngIf="alertError" class="card-body">
   <p *ngFor="let alert of alerts" class="alerts">
     <ngb-alert [type]="alert.type" (close)="closeAlert(alert)">
@@ -17,8 +20,10 @@
     </ngb-alert>
   </p>
 </div>
-<div class="data-container" *ngIf="!ErrorStatus && !loading">
-  <h2>Recherche avancé d'un utilisateur</h2>
+-->
+
+<div class="data-container">
+  <h2>Recherche rapide d'un utilisateur</h2>
   <form>
     <mat-form-field class="example-full-width">
       <input
@@ -28,14 +33,83 @@
       />
     </mat-form-field>
   </form>
-  <div *ngIf="result.length > 0">
-    <mat-card (click)="RowSelected(res)" *ngFor="let res of result">
+  <div *ngIf="result.length > 0" class="row">
+    <mat-card
+      *ngFor="let res of result"
+      (click)="RowSelected(res)"
+      class="example-card example-box col-3"
+      cdkDrag
+    >
       <mat-card-header>
+        <img
+          mat-card-avatar
+          *ngIf="res.pachMedia"
+          class="example-header-image"
+          src="{{ res.pachMedia }}"
+        />
+        <img
+          mat-card-avatar
+          *ngIf="!res.pachMedia"
+          class="example-header-image"
+          src="./../../../../assets/images/user-male-circle.png"
+        />
+
         <mat-card-title>{{ res.id }} - {{ res.username }}</mat-card-title>
+        <mat-card-subtitle
+          >{{ res.firstName }} {{ res.lastName }}</mat-card-subtitle
+        >
       </mat-card-header>
+
+      <img
+        mat-card-image
+        *ngIf="res.pachMedia"
+        class="example-header-image"
+        src="{{ res.pachMedia }}"
+      />
+      <img
+        mat-card-image
+        *ngIf="!res.pachMedia"
+        class="example-header-image"
+        src="./../../../../assets/images/user-male-circle.png"
+      />
+
       <mat-card-content>
-        <p>{{ res.email }}</p></mat-card-content
-      >
+        <h6>Rapport avec l'ASBL :</h6>
+        <p>
+          {{ res.asbl }}
+        </p>
+      </mat-card-content>
     </mat-card>
   </div>
 </div>
+
+<!--
+<div class="grid-container">
+    <h1 class="mat-h1">Dashboard</h1>
+    <mat-grid-list cols="2" rowHeight="350px">
+      <mat-grid-tile class=" example-box" *ngFor="let card of cards" [colspan]="card.cols" [rowspan]="card.rows" >
+
+        <mat-card class="dashboard-card">
+
+          <mat-card-header>
+            <mat-card-title>
+              {{card.title}}
+              <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" xPosition="before">
+                <button mat-menu-item>Expand</button>
+                <button mat-menu-item>Remove</button>
+              </mat-menu>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+            <div>Card Content Here</div>
+          </mat-card-content>
+
+        </mat-card>
+
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+-->

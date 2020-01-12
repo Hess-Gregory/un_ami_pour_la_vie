@@ -11,7 +11,11 @@ describe('AdminComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [AdminManagerModule, RouterTestingModule, TranslateModule.forRoot()]
+      imports: [
+        AdminManagerModule,
+        RouterTestingModule,
+        TranslateModule.forRoot()
+      ]
     }).compileComponents();
   }));
 

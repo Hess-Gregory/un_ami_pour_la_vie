@@ -96,7 +96,11 @@ export class UserControlsComponent implements OnInit {
   }
 
   onClose() {
-    this.router.navigate(['admin/users/user-manager/users-list']);
+    if (this.previouspage) {
+      this._location.back();
+    } else {
+      this.router.navigate(['admin/users/user-manager/users-list']);
+    }
   }
 
   onFrozen() {

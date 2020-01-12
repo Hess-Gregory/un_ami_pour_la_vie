@@ -1,112 +1,190 @@
-<app-jumbo-user></app-jumbo-user>
-<div *ngIf="loading" class="spinner">
+<app-jumbo-user class="btnJumbo"></app-jumbo-user>
+<div *ngIf="loading && !ErrorValid && !alertError" class="spinner">
   <img
     class="dog"
     src="./assets/images/loading-dog.gif"
     style="width: 10vw;text-align: center;
-         display: block; vertical-align: middle; margin: auto; margin-top: 25%; margin-bottom: 25%;"
+     display: block; vertical-align: middle; margin: auto; margin-top: 25%; margin-bottom: 25%;"
     alt=""
   />
 </div>
-<div *ngIf="!loading" class="row">
-  <div class="col col-xl-12 col-lg-12">
-    <div class="card  mb-3">
-      <div class="card-header  bg-dark">
-        <h2><i class="fa fa-address-book"></i> Carnet d'adresses</h2>
-      </div>
-      <div *ngIf="ErrorStatus" class="card-body">
-        <p *ngFor="let alert of alerts">
-          <ngb-alert [type]="alert.type" (close)="closeAlert(alert)"
-            >Erreur {{ ErrorStatus }} : {{ ErrorstatusText }}</ngb-alert
-          >
-        </p>
-      </div>
-      <div class="card-body table-responsive">
-        <table
-          datatable
-          [dtOptions]="dtOptions"
-          [dtTrigger]="dtTrigger"
-          class="row-border display compact table bordered"
-          id="example"
-        >
-          <thead class=" bg-dark">
-            <tr *ngIf="users?.length != 0">
-              <th class="text-center">#</th>
-              <th class="text-center border-bottom">
-                Nom d'utilisateur
-              </th>
-              <th class="text-center border-bottom">Email</th>
-              <th class="text-center border-bottom">Prénom</th>
-              <th class="text-center border-bottom">Nom</th>
-            </tr>
-          </thead>
-          <ng-container *ngIf="users?.length != 0">
-            <tbody class="bg-dark">
-              <tr
-                (click)="RowSelected(user)"
-                class="{{
-                  user.newRegister == 1 ? 'bg-danger' : 'bg-dark'
-                }}  text-white  pt-3 pb-3"
-                *ngFor="let user of users"
-              >
-                <td
-                  *ngIf="user.adressbook === 1"
-                  class="text-center bg-dark text-blue border-right"
-                >
-                  <p>{{ user.id }}</p>
-                </td>
-                <td
-                  *ngIf="user.adressbook === 1"
-                  role="button"
-                  class="bg-dark text-center"
-                >
-                  <p>{{ user.username }}</p>
-                </td>
-                <td
-                  *ngIf="user.adressbook === 1"
-                  role="button"
-                  class="bg-dark text-center"
-                >
-                  <p>{{ user.email }}</p>
-                </td>
-                <td
-                  *ngIf="user.adressbook === 1"
-                  role="button"
-                  class="bg-dark text-center"
-                >
-                  <p>{{ user.firstName }}</p>
-                </td>
-                <td
-                  *ngIf="user.adressbook === 1"
-                  role="button"
-                  class="bg-dark text-center"
-                >
-                  <p>{{ user.lastName }}</p>
-                </td>
-              </tr>
-            </tbody>
-          </ng-container>
 
-          <tbody *ngIf="users?.length == 0">
-            <tr>
-              <td colspan="5" class="no-data-available">
-                <div class="alert alert-danger">
-                  <strong>Oh non!</strong> il n'y as pas de data.
-                </div>
-              </td>
-            </tr>
-          </tbody>
-          <!-- <tfoot *ngIf="users?.length != 0">
-                            <tr >
-                              <th class="text-center"><input type="text" class="inputSearch" placeholder="Search ID" name="search-id"/></th>
-                              <th class="text-center"><input type="text" class="inputSearch" placeholder="Search username" name="search-username"/></th>
-                              <th class="text-center"><input type="text" class="inputSearch" placeholder="Search first name" name="search-firstName"/></th>
-                              <th class="text-center"><input type="text" class="inputSearch" placeholder="Search last name" name="search-lastName"/></th>
-                              <th class="text-center"><input type="text" class="inputSearch" placeholder="Search email" name="search-email"/></th>
-                              <th class="text-center"><input type="text" class="inputSearch" placeholder="Search email" name="search-created_date"/></th>
-                            </tr>
-                    </tfoot> -->
-        </table>
+<!--
+<h2>Recherche avancé d'un utilisateur</h2>
+<form>
+  <mat-form-field class="example-full-width">
+    <input
+      matInput
+      [formControl]="searchTerm"
+      placeholder="recherche par nom d'utilisateur ou email...."
+    />
+  </mat-form-field>
+</form>
+<div *ngIf="result.length > 0">
+  <mat-card (click)="RowSelected(res)" *ngFor="let res of result">
+    <mat-card-header>
+      <mat-card-title>{{ res.id }} - {{ res.username }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ res.email }}</p></mat-card-content
+    >
+  </mat-card>
+</div>
+-->
+
+<router-outlet *ngIf="ErrorValid"> </router-outlet>
+<div *ngIf="alertError" class="card-body">
+  <p *ngFor="let alert of alerts" class="alerts">
+    <ngb-alert [type]="alert.type" (close)="closeAlert(alert)">
+      {{ alert.message }}
+    </ngb-alert>
+  </p>
+</div>
+<div class="data-container" *ngIf="!ErrorStatus && !loading">
+  <div class="container">
+    <div class="filter-table">
+      <h2 class="filter-title">Recherche avancée d'un utilisateur</h2>
+
+      <form class="filter-form">
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            (keyup)="applyFilter($event.target.value)"
+            placeholder="Filtre"
+          />
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="col col-xl-12 col-lg-12">
+      <div class="card ">
+        <div class="card-header">
+          <div class="alert alert-info">
+            <strong>Contacts :</strong>
+          </div>
+        </div>
+
+        <div class="card-body table-responsive">
+          <div class="example-container mat-elevation-z8">
+            <mat-table
+              #Table
+              [dataSource]="MyDataSource"
+              matSort
+              #sorter1="matSort"
+              [class.isMobile]="isMobile"
+            >
+              <!-- For name firm -->
+
+              <ng-container matColumnDef="firm">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Société
+                </mat-header-cell>
+                <mat-cell *matCellDef="let post">
+                  <span class="mobile-label">Société:</span>
+                  {{ post.firm }}
+                </mat-cell>
+              </ng-container>
+
+              <!-- For User like with asbl -->
+
+              <ng-container matColumnDef="asbl">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Notre lien
+                </mat-header-cell>
+                <mat-cell *matCellDef="let post">
+                  <span class="mobile-label">Notre lien:</span>
+                  {{ post.asbl }}
+                </mat-cell>
+              </ng-container>
+
+              <!-- For User FirstName -->
+
+              <ng-container matColumnDef="firstName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Prénom
+                </mat-header-cell>
+                <mat-cell *matCellDef="let post">
+                  <span class="mobile-label">Prénom:</span>
+                  {{ post.firstName }}
+                </mat-cell>
+              </ng-container>
+
+              <!-- For User LastName -->
+
+              <ng-container matColumnDef="lastName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Nom
+                </mat-header-cell>
+                <mat-cell *matCellDef="let post">
+                  <span class="mobile-label">Nom:</span>
+                  {{ post.lastName }}
+                </mat-cell>
+              </ng-container>
+
+              <!-- For User phone private -->
+
+              <ng-container matColumnDef="contPhonePv">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Tel privé
+                </mat-header-cell>
+                <mat-cell *matCellDef="let post">
+                  <span class="mobile-label">Tel privé:</span>
+                  {{ post.contPhonePv }}
+                </mat-cell>
+              </ng-container>
+
+              <!-- User gsm -->
+
+              <ng-container matColumnDef="contPhoneGsm">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  GSM
+                </mat-header-cell>
+                <mat-cell *matCellDef="let post">
+                  <span class="mobile-label">GSM:</span>
+                  {{ post.contPhoneGsm }}
+                </mat-cell>
+              </ng-container>
+
+              <!-- User phone pro -->
+
+              <ng-container matColumnDef="contPhonePro">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Tel Pro
+                </mat-header-cell>
+                <mat-cell *matCellDef="let post">
+                  <span class="mobile-label">Tel Pro:</span>
+                  {{ post.contPhonePro }}
+                </mat-cell>
+              </ng-container>
+
+              <!-- User email -->
+
+              <ng-container matColumnDef="email">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Email
+                </mat-header-cell>
+                <mat-cell *matCellDef="let post">
+                  <span class="mobile-label">Email:</span>
+                  {{ post.email }}
+                </mat-cell>
+              </ng-container>
+
+              <mat-header-row
+                *matHeaderRowDef="displayedColumns"
+              ></mat-header-row>
+              <mat-row
+                *matRowDef="let row; columns: displayedColumns"
+                (click)="RowSelected(row)"
+              ></mat-row>
+            </mat-table>
+            <mat-paginator
+              [pageSizeOptions]="[5, 10, 15]"
+              showFirstLastButtons
+            ></mat-paginator>
+          </div>
+        </div>
       </div>
     </div>
   </div>

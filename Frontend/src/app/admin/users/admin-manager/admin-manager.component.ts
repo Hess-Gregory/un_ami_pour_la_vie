@@ -71,7 +71,7 @@ export class AdminManagerComponent implements OnInit {
     this.user$ = this.thisService.getUsers();
     this.roles = this.thisService.getRoles();
     this.createForms();
-    sessionStorage.setItem('page', 'users-list');
+    sessionStorage.setItem('page', 'admin-manager');
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag({
       name: 'description',

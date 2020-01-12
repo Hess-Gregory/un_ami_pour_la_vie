@@ -2,7 +2,8 @@
   <h2 class="text-muted">
     Tableau de bord <small>Vue d'ensemble des statistiques</small>
   </h2>
-  <!-- <div class="row">
+  <div class="row">
+    <!--
         <div class="col-md-12">
             <ngb-carousel>
                 <ng-template ngbSlide *ngFor="let slider of sliders">
@@ -15,57 +16,88 @@
             </ngb-carousel>
         </div>
     </div>
-    <hr> -->
-  <!-- <div class="row">
-        <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'primary'" [icon]="'fa-comments'" [count]="26" [label]="'New Comments!'" ></app-stat>
-        </div>
-        <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'warning'" [icon]="'fa-tasks'" [count]="12" [label]="'New task!'" ></app-stat>
-        </div>
-        <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'success'" [icon]="'fa-shopping-cart'" [count]="124" [label]="'New Orders!'" ></app-stat>
-        </div>
-        <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'danger'" [icon]="'fa-support'" [count]="13" [label]="'New Tickets!'"></app-stat>
-        </div>
-    </div> -->
-  <hr />
-  <ngb-alert
-    [type]="alert.type"
-    (close)="closeAlert(alert)"
-    *ngFor="let alert of alerts"
-    >{{ alert.message }}</ngb-alert
-  >
-  <hr />
-  <div class="row">
-    <div class="col-lg-8">
-      <div class="card card-default">
-        <div class="card-header">
-          <i class="fa fa-clock-o fa-fw"></i> Responsive Timeline
-        </div>
-        <!-- /.card-header -->
-        <app-timeline></app-timeline>
-        <!-- /.card-body -->
-      </div>
-      <!-- /.card -->
-    </div>
-    <!-- /.col-lg-8 -->
-    <div class="col-lg-4">
-      <app-chat></app-chat>
+-->
 
-      <div class="card card-default mb-3">
-        <div class="card-header">
-          <i class="fa fa-bell fa-fw"></i> Notifications card
-        </div>
-        <!-- /.card-header -->
-        <app-notification></app-notification>
-        <!-- /.card-body -->
+    <hr />
+    <div class="row">
+      <div class="col-xl-3 col-lg-6">
+        <app-stat
+          [bgClass]="'primary'"
+          [icon]="'fa-users'"
+          [count]="26"
+          [label]="'Nouveau membres!'"
+        ></app-stat>
       </div>
-      <!-- /.card -->
-
-      <!-- /.card .chat-card -->
+      <div class="col-xl-3 col-lg-6">
+        <app-stat
+          [bgClass]="'warning'"
+          [icon]="'fa-paw'"
+          [count]="12"
+          [label]="'Animaux chez nous!'"
+        ></app-stat>
+      </div>
+      <div class="col-xl-3 col-lg-6">
+        <app-stat
+          [bgClass]="'success'"
+          [icon]="'fa-thumbs-up'"
+          [count]="124"
+          [label]="'Adoptions!'"
+        ></app-stat>
+      </div>
+      <div class="col-xl-3 col-lg-6">
+        <app-stat
+          [bgClass]="'danger'"
+          [icon]="'fa-binoculars'"
+          [count]="13"
+          [label]="'Animaux disparus!'"
+        ></app-stat>
+      </div>
     </div>
-    <!-- /.col-lg-4 -->
+    <hr />
+    <ngb-alert
+      [type]="alert.type"
+      (close)="closeAlert(alert)"
+      *ngFor="let alert of alerts"
+      >{{ alert.message }}</ngb-alert
+    >
+    <hr />
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="card card-default example-box" cdkDrag>
+          <div class="example-handle" cdkDragHandle>
+            <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"
+              ></path>
+              <path d="M0 0h24v24H0z" fill="none"></path>
+            </svg>
+          </div>
+          <div class="card-header">
+            <i class="fa fa-clock-o fa-fw"></i> Responsive Timeline
+          </div>
+          <!-- /.card-header -->
+          <app-timeline></app-timeline>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.col-lg-8 -->
+      <div class="col-lg-4">
+        <app-chat></app-chat>
+
+        <div class="card card-default mb-3">
+          <div class="card-header">
+            <i class="fa fa-bell fa-fw"></i> Notifications card
+          </div>
+          <!-- /.card-header -->
+          <app-notification></app-notification>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
+        <!-- /.card .chat-card -->
+      </div>
+      <!-- /.col-lg-4 -->
+    </div>
   </div>
 </div>
