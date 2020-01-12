@@ -84,8 +84,8 @@ router.use((req, res, next) => {
     }
 
     if (res.locals.session.role >= 4) {
-      router.route("/adminlist").get(adminController.getAllAdmin); // GET /api/admins/adminlist
-      router.route("/user").get(adminController.getAllUser); // GET /api/admins/user
+      router.route("/adressbook").get(adminController.getAllAdress); // GET /api/admins/user
+      router.route("/adminlist").get(adminController.getAllAdmin); // GET /api/admins/adminlist2
       router.route("/userandrole").get(adminController.getAllUserAndRole); // GET /api/admins/user
       router
         .route("/user/:id")
@@ -94,17 +94,26 @@ router.use((req, res, next) => {
     }
 
     if (res.locals.session.role >= 5) {
-      router.route("/user/add").post(adminController.addUser); // POST /api/admins/user/add
-      router
-        .route("/user/:id")
-        .put(validate(paramValidation.updateUser), adminController.updateUser) // PUT /api/admins/user/:id
-        .delete(validate(paramValidation.getUser), adminController.deleteUser); // DELETE /api/admins/user/:id
     }
 
     if (res.locals.session.role >= 6) {
+      router.route("/user").get(adminController.getAllUser); // GET /api/admins/user
+      router
+        .route("/user/:id")
+        .get(validate(paramValidation.getUser), adminController.getById) // GET /api/admins/user/activate/:id
+        .put(validate(paramValidation.updateUser), adminController.updateUser); // PUT /api/admins/user/:id
+      router.route("/list_users_active").get(adminController.getAllUserActive); // GET /api/admins/user
+      router
+        .route("/list_users_not_active")
+        .get(adminController.getAllUserNotActive); // GET /api/admins/user
+      router.route("/user/activate/:id").put(adminController.putActivateUser); // GET /api/admins/user/activate/:id
     }
 
     if (res.locals.session.role >= 7) {
+      router.route("/user/add").post(adminController.addUser); // POST /api/admins/user/add
+      router
+        .route("/user/:id")
+        .delete(validate(paramValidation.getUser), adminController.deleteUser); // DELETE /api/admins/user/:id
     }
 
     next();

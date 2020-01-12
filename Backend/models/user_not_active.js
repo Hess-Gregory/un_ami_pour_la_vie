@@ -4,15 +4,14 @@ const bcrypt = require("bcrypt-nodejs");
 const _ = require("lodash");
 
 module.exports = function(sequelize, DataTypes) {
-  const members = sequelize.define(
-    "members",
+  const user_is_notactive = sequelize.define(
+    "user_is_notactive",
     {
       id: {
         type: DataTypes.INTEGER(11),
-        primaryKey: true,
-        autoIncrement: true,
         allowNull: false,
-        defaultValue: "0"
+        primaryKey: true,
+        autoIncrement: true
       },
       username: {
         type: DataTypes.STRING(60),
@@ -64,16 +63,9 @@ module.exports = function(sequelize, DataTypes) {
     },
     {
       timestamps: false,
-      tableName: "members"
+      tableName: "user_is_notactive"
     }
   );
 
-  members.prototype.validPassword = function(password) {
-    return bcrypt.compareSync(password, this.password);
-  };
-  members.prototype.safeModel = function() {
-    return _.omit(this.toJSON(), ["password"]);
-  };
-
-  return members;
+  return user_is_notactive;
 };

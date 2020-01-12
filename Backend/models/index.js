@@ -44,5 +44,8 @@ db.members = require("../models/members")(sequelize, Sequelize);
 db.login = require("../models/login")(sequelize, Sequelize);
 db.role = require("../models/role")(sequelize, Sequelize);
 db.userandrole = require("../models/userandrole")(sequelize, Sequelize);
+db.user_active = require("../models/user_active")(sequelize, Sequelize);
+db.user_not_active = require("../models/user_not_active")(sequelize, Sequelize);
+db.adressbook = require("../models/adressbook")(sequelize, Sequelize);
 
 module.exports = db;

@@ -10,9 +10,39 @@ const members = db.members;
 const login = db.login;
 const userandrole = db.userandrole;
 const role = db.role;
+const user_active = db.user_active;
+const user_not_active = db.user_not_active;
+const adressbook = db.adressbook;
 
 module.exports = {
+  // List all users :
+
+  getAllUser(req, res, next) {
+    return user
+      .findAll({
+        attributes: {
+          exclude: ["password", "createdAt", "updatedAt"]
+        }
+      })
+      .then(users => res.json(users))
+      .catch(e => next(e));
+  },
+
+  // List adress :
+
+  getAllAdress(req, res, next) {
+    return adressbook
+      .findAll({
+        attributes: {
+          exclude: ["password", "createdAt", "updatedAt"]
+        }
+      })
+      .then(adressbooks => res.json(adressbooks))
+      .catch(e => next(e));
+  },
+
   // List all admins :
+
   getAllAdmin(req, res, next) {
     return admin
       .findAll({
@@ -25,18 +55,33 @@ module.exports = {
   },
 
   // List all users :
-  getAllUser(req, res, next) {
-    return user
+
+  getAllUserActive(req, res, next) {
+    return user_active
       .findAll({
         attributes: {
           exclude: ["password", "createdAt", "updatedAt"]
         }
       })
-      .then(users => res.json(users))
+      .then(usersActive => res.json(usersActive))
+      .catch(e => next(e));
+  },
+
+  // List all users :
+
+  getAllUserNotActive(req, res, next) {
+    return user_not_active
+      .findAll({
+        attributes: {
+          exclude: ["password", "createdAt", "updatedAt"]
+        }
+      })
+      .then(usersNotActive => res.json(usersNotActive))
       .catch(e => next(e));
   },
 
   // List userandrole :
+
   getAllUserAndRole(req, res, next) {
     return userandrole
       .findAll({
@@ -47,6 +92,7 @@ module.exports = {
       .then(userandroles => res.json(userandroles))
       .catch(e => next(e));
   },
+
   // Get one user by ID :
 
   getById(req, res, next) {
@@ -64,6 +110,7 @@ module.exports = {
         return res.json(uniqueUser);
       });
   },
+
   // update a user:
 
   updateUser(req, res, next) {
