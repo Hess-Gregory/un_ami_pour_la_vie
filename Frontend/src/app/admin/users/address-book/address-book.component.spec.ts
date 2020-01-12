@@ -11,7 +11,11 @@ describe('AddressBookComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [AddressBookModule, RouterTestingModule, TranslateModule.forRoot()]
+      imports: [
+        AddressBookModule,
+        RouterTestingModule,
+        TranslateModule.forRoot()
+      ]
     }).compileComponents();
   }));
 

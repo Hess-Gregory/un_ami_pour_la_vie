@@ -8,15 +8,13 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AddressBookService {
-    private wsUrlRoot = '/api/admins/adressbook';
-    stringifydata: string;
-    parsedata: any;
+  private wsUrlRoot = '/api/admins/adressbook';
+  stringifydata: string;
+  parsedata: any;
 
-    constructor(private httpClient: HttpClient, private router: Router) {}
+  constructor(private httpClient: HttpClient, private router: Router) {}
 
-    public GetAllRecords(): Observable<Object> {
-      return this.httpClient.get<User[]>(`${this.wsUrlRoot}`);
-    }
-
-
+  public GetAllRecords(): Observable<Object> {
+    return this.httpClient.get<User[]>(`${this.wsUrlRoot}`);
   }
+}

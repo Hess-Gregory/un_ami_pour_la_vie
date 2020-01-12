@@ -56,11 +56,8 @@
         </mat-form-field>
       </form>
     </div>
-
-
   </div>
   <div class="container-fluid">
-
     <div class="col col-xl-12 col-lg-12">
       <div class="card ">
         <div class="card-header">
@@ -71,7 +68,6 @@
 
         <div class="card-body table-responsive">
           <div class="example-container mat-elevation-z8">
-
             <mat-table
               #Table
               [dataSource]="MyDataSource"
@@ -79,104 +75,101 @@
               #sorter1="matSort"
               [class.isMobile]="isMobile"
             >
-                   <!-- For name firm -->
+              <!-- For name firm -->
 
-                   <ng-container matColumnDef="firm">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>
-                      Société
-                    </mat-header-cell>
-                    <mat-cell *matCellDef="let post">
-                        <span class="mobile-label">Société:</span>
-                            {{ post.firm }}
-                    </mat-cell>
-                  </ng-container>
+              <ng-container matColumnDef="firm">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Société
+                </mat-header-cell>
+                <mat-cell *matCellDef="let post">
+                  <span class="mobile-label">Société:</span>
+                  {{ post.firm }}
+                </mat-cell>
+              </ng-container>
 
-                  <!-- For User like with asbl -->
+              <!-- For User like with asbl -->
 
-                  <ng-container matColumnDef="asbl">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>
-                      Notre lien
-                    </mat-header-cell>
-                    <mat-cell *matCellDef="let post">
-                        <span class="mobile-label">Notre lien:</span>
-                        {{ post.asbl }}
-                    </mat-cell>
-                  </ng-container>
+              <ng-container matColumnDef="asbl">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Notre lien
+                </mat-header-cell>
+                <mat-cell *matCellDef="let post">
+                  <span class="mobile-label">Notre lien:</span>
+                  {{ post.asbl }}
+                </mat-cell>
+              </ng-container>
 
-                  <!-- For User FirstName -->
+              <!-- For User FirstName -->
 
-                  <ng-container matColumnDef="firstName">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>
-                      Prénom
-                    </mat-header-cell>
-                    <mat-cell *matCellDef="let post">
-                        <span class="mobile-label">Prénom:</span>
-                        {{ post.firstName }}
-                    </mat-cell>
-                  </ng-container>
+              <ng-container matColumnDef="firstName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Prénom
+                </mat-header-cell>
+                <mat-cell *matCellDef="let post">
+                  <span class="mobile-label">Prénom:</span>
+                  {{ post.firstName }}
+                </mat-cell>
+              </ng-container>
 
+              <!-- For User LastName -->
 
-                  <!-- For User LastName -->
+              <ng-container matColumnDef="lastName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Nom
+                </mat-header-cell>
+                <mat-cell *matCellDef="let post">
+                  <span class="mobile-label">Nom:</span>
+                  {{ post.lastName }}
+                </mat-cell>
+              </ng-container>
 
-                  <ng-container matColumnDef="lastName">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>
-                      Nom
-                    </mat-header-cell>
-                    <mat-cell *matCellDef="let post">
-                        <span class="mobile-label">Nom:</span>
-                        {{ post.lastName }}
-                    </mat-cell>
-                  </ng-container>
+              <!-- For User phone private -->
 
+              <ng-container matColumnDef="contPhonePv">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Tel privé
+                </mat-header-cell>
+                <mat-cell *matCellDef="let post">
+                  <span class="mobile-label">Tel privé:</span>
+                  {{ post.contPhonePv }}
+                </mat-cell>
+              </ng-container>
 
-                  <!-- For User phone private -->
+              <!-- User gsm -->
 
-                  <ng-container matColumnDef="contPhonePv">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>
-                      Tel privé
-                    </mat-header-cell>
-                    <mat-cell *matCellDef="let post">
-                        <span class="mobile-label">Tel privé:</span>
-                        {{ post.contPhonePv }}
-                    </mat-cell>
-                  </ng-container>
+              <ng-container matColumnDef="contPhoneGsm">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  GSM
+                </mat-header-cell>
+                <mat-cell *matCellDef="let post">
+                  <span class="mobile-label">GSM:</span>
+                  {{ post.contPhoneGsm }}
+                </mat-cell>
+              </ng-container>
 
+              <!-- User phone pro -->
 
-                  <!-- User gsm -->
+              <ng-container matColumnDef="contPhonePro">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Tel Pro
+                </mat-header-cell>
+                <mat-cell *matCellDef="let post">
+                  <span class="mobile-label">Tel Pro:</span>
+                  {{ post.contPhonePro }}
+                </mat-cell>
+              </ng-container>
 
-                  <ng-container matColumnDef="contPhoneGsm">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>
-                      GSM
-                    </mat-header-cell>
-                    <mat-cell *matCellDef="let post">
-                        <span class="mobile-label">GSM:</span>
-                        {{ post.contPhoneGsm }}
-                    </mat-cell>
-                  </ng-container>
+              <!-- User email -->
 
-                   <!-- User phone pro -->
-
-                   <ng-container matColumnDef="contPhonePro">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>
-                      Tel Pro
-                    </mat-header-cell>
-                    <mat-cell *matCellDef="let post">
-                        <span class="mobile-label">Tel Pro:</span>
-                        {{ post.contPhonePro }}
-                    </mat-cell>
-                  </ng-container>
-
-                   <!-- User email -->
-
-                   <ng-container matColumnDef="email">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>
-                      Email
-                    </mat-header-cell>
-                    <mat-cell *matCellDef="let post">
-                        <span class="mobile-label">Email:</span>
-                        {{ post.email }}
-                    </mat-cell>
-                  </ng-container>
+              <ng-container matColumnDef="email">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Email
+                </mat-header-cell>
+                <mat-cell *matCellDef="let post">
+                  <span class="mobile-label">Email:</span>
+                  {{ post.email }}
+                </mat-cell>
+              </ng-container>
 
               <mat-header-row
                 *matHeaderRowDef="displayedColumns"
