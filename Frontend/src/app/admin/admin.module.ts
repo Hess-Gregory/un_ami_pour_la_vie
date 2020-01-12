@@ -8,7 +8,6 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { BreadcrumbModule, AccordionModule } from 'primeng/primeng';
-import { DataTablesModule } from 'angular-datatables';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PageHeaderModule } from '../shared';
@@ -26,7 +25,6 @@ import { TimingRefreshModule } from '../shared/modules/auto-refresh/timing-refre
     LanguageTranslationModule,
     NgbDropdownModule,
     BreadcrumbModule,
-    DataTablesModule,
     NgbModule,
     HttpClientModule,
     PageHeaderModule,
