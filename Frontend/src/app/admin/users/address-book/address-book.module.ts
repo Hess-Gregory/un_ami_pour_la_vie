@@ -1,25 +1,42 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { JumboUserModule } from '../services/jumbo-user/jumbo-user.module';
 import { AddressBookComponent } from './address-book.component';
 import { AddressBookRoutingModule } from './address-book-routing.module';
-import { DataTableDirective, DataTablesModule } from 'angular-datatables';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { JumboUserModule } from '../services/jumbo-user/jumbo-user.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
+
+import {
+  MatCardModule,
+  MatButtonModule,
+  MatInputModule,
+  MatPaginatorModule,
+  MatSortModule,
+  MatIconModule,
+  MatTableModule
+} from '@angular/material';
 
 @NgModule({
   imports: [
-    CommonModule,
     AddressBookRoutingModule,
-    DataTablesModule,
-    FormsModule,
+    JumboUserModule,
+    CommonModule,
     NgbModule,
-    HttpClientModule,
+    FormsModule,
     ReactiveFormsModule,
-    JumboUserModule
+    MatInputModule,
+    MatIconModule,
+    MatCardModule,
+    MatButtonModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule
   ],
   declarations: [AddressBookComponent],
-  exports: [DataTableDirective]
+  exports: [MatTableModule, MatPaginatorModule, MatSortModule]
 })
 export class AddressBookModule {}
