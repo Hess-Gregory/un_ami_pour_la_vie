@@ -8,7 +8,7 @@ import { User } from '../services/users-export';
   providedIn: 'root'
 })
 export class UserInfoService {
-  private wsUrlRoot = '/api/admins/userandrole';
+  private wsUrlRoot = '/api/admins/user';
 
   constructor(private httpClient: HttpClient) {}
 

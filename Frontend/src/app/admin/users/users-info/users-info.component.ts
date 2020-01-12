@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-users-info',
@@ -18,7 +17,7 @@ export class UsersInfoComponent implements OnInit {
   result: any = [];
   [x: string]: any;
 
-  title = 'Un Ami Pour La Vie - Admin : Liste des utilisateurs';
+  title = 'Un Ami Pour La Vie - Admin : Infos générales Utilisateurs';
   MyDataSource: any;
 
   public objStringError: string;
@@ -44,12 +43,19 @@ export class UsersInfoComponent implements OnInit {
     sessionStorage.setItem('nameIcon', 'supervisor_account');
   }
 
+  cards = [
+    { title: 'Card 1', cols: 2, rows: 1 },
+    { title: 'Card 2', cols: 1, rows: 1 },
+    { title: 'Card 3', cols: 1, rows: 2 },
+    { title: 'Card 4', cols: 1, rows: 1 }
+  ];
+
   ngOnInit() {
     sessionStorage.setItem('page', 'users-list');
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag({
       name: 'description',
-      content: 'Un Ami Pour La Vie - Admin : Liste des utilisateurs'
+      content: 'Un Ami Pour La Vie - Admin : Infos générales Utilisateurs'
     });
     this.searchTerm$
       .pipe(
