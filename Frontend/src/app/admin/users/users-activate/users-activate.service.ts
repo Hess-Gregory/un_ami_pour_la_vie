@@ -1,20 +1,29 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { User } from './../../../shared/exports';
+import { User } from '../services/users-export';
 import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersActivateService {
-  constructor(private http: HttpClient, private router: Router) {}
+  private wsUrlRoot = '/api/users';
+  private wsUrlActive = '/api/admins/list_users_active';
+  private wsUrlNotActive = '/api/admins/list_users_not_active';
+  stringifydata: string;
+  parsedata: any;
 
-  getStatusUsers() {
-    sessionStorage.setItem('page', '');
-    return this.http.get<User[]>('/api/users/status');
+  constructor(private httpClient: HttpClient, private router: Router) {}
+
+  public GetAllRecordsActive(): Observable<Object> {
+    return this.httpClient.get<User[]>(`${this.wsUrlActive}`);
+  }
+  public GetAllRecordsNotActive(): Observable<Object> {
+    return this.httpClient.get<User[]>(`${this.wsUrlNotActive}`);
   }
   setActivate(id: number) {
-    this.http.put(`/api/users/${id}`, { isActive: 1 }).subscribe(
+    this.httpClient.put(`${this.wsUrlRoot}/${id}`, { isActive: 1 }).subscribe(
       data => {
         console.log('Activation set :', data);
         this.router.routeReuseStrategy.shouldReuseRoute = function() {
@@ -33,7 +42,7 @@ export class UsersActivateService {
   }
 
   setNotactivate(id: number) {
-    this.http.put(`/api/users/${id}`, { isActive: 0 }).subscribe(
+    this.httpClient.put(`${this.wsUrlRoot}/${id}`, { isActive: 0 }).subscribe(
       data => {
         console.log('Activation set :', data);
         this.router.routeReuseStrategy.shouldReuseRoute = function() {
