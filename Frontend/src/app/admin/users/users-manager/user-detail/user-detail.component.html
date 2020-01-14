@@ -105,10 +105,10 @@
       <div class="custom-control custom-switch">
         <input
           type="checkbox"
-          value="{{ users.adressbook }}"
           data-toggle="toggle"
           class="custom-control-input"
           id="customSwitches"
+          [checked]="users.adressbook"
           disabled
         />
         <label class="custom-control-label" for="customSwitches"

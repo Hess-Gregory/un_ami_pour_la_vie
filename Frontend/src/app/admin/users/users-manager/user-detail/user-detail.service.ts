@@ -10,6 +10,7 @@ export class UserDetailService {
   constructor(private http: HttpClient) {}
 
   getUsers(id: string): Observable<User[]> {
+    console.log('service detail gutusers id:', id);
     if (sessionStorage.getItem('new') === 'true') {
       this.http
         .put<User[]>(`/api/admins/user/${id}`, { newRegister: 0 })
@@ -29,6 +30,7 @@ export class UserDetailService {
     }
   }
   getStatus(id: string): Observable<User[]> {
+    console.log('service detail getstatus id:', id);
     return this.http.get<User[]>(`/api/users/status/${id}`);
   }
 }
