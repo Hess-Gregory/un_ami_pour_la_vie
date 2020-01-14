@@ -67,6 +67,7 @@ export class UserControlsComponent implements OnInit {
   }
 
   onUnlock() {
+    console.log(this.id);
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.router.navigate(['admin/users/user-manager/user-update', this.id]);
   }
