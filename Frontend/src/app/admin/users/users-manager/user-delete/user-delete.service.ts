@@ -30,17 +30,15 @@ export class UserDeleteService {
 
   constructor(private httpClient: HttpClient, private router: Router) {}
 
-  public getUsers() {
-    this.userid = sessionStorage.getItem('idSelect');
-    return this.httpClient.get<User[]>(
-      `${this.wsUrlRoot}/users/${this.userid}`
-    );
+  public getUsers(id: string) {
+    // this.userid = sessionStorage.getItem('idSelect');
+    return this.httpClient.get<User[]>(`${this.wsUrlRoot}/users/${id}`);
   }
 
-  public deleteUser() {
-    this.userid = sessionStorage.getItem('idSelect');
+  public deleteUser(id: string) {
+    // this.userid = sessionStorage.getItem('idSelect');
     return this.httpClient
-      .delete<User[]>(`${this.wsUrlRoot}/admins/user/300`)
+      .delete<User[]>(`${this.wsUrlRoot}/admins/user/${id}`)
       .subscribe(
         success => {
           this.stringifysuccess = JSON.stringify(success);

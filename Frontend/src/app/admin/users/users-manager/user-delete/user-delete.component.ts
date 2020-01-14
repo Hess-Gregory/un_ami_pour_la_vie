@@ -4,7 +4,7 @@ import { UserDeleteService } from './user-delete.service';
 import { HttpClient } from '@angular/common/http';
 import { ModalService } from '../../../../shared/modules/_modal';
 import * as jwt_decode from 'jwt-decode';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-delete',
@@ -28,9 +28,11 @@ export class UserDeleteComponent implements OnInit {
   public ErrorStatus: string;
   alertMsg = this.userDeleteservice.alertMsg;
   deleteEnd = this.userDeleteservice.deleteEnd;
+  public id: string;
 
   constructor(
     private userDeleteservice: UserDeleteService,
+    private activatedRoute: ActivatedRoute,
     private modalService: ModalService,
     private router: Router
   ) {}
@@ -52,7 +54,8 @@ export class UserDeleteComponent implements OnInit {
   }
 
   getUsers() {
-    this.userDeleteservice.getUsers().subscribe(
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');
+    this.userDeleteservice.getUsers(this.id).subscribe(
       response => {
         this.loading = false;
         this.users = response;
@@ -72,6 +75,7 @@ export class UserDeleteComponent implements OnInit {
   }
 
   deleteUsers() {
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');
     const jwtToken = localStorage.getItem('access_token');
     if (jwtToken) {
       const token = localStorage.getItem('access_token');
@@ -81,10 +85,10 @@ export class UserDeleteComponent implements OnInit {
         (itRole === 9 && itId === 1) || // Si Super-admin , alors pas de restriction // ou :
         (itRole > 6 && // Si admin plus élevé que redacteur (min. modérateur)
         itRole > this.role && // empecher qu'il modifie un admin egal ou superieur à son grade
-        itId !== this.userid && // empecher qu'il se modifie lui-méme
+        itId !== this.id && // empecher qu'il se modifie lui-méme
           this.role !== 9) // empecher un super admin de modifier un autre super admin
       ) {
-        this.userDeleteservice.deleteUser();
+        this.userDeleteservice.deleteUser(this.id);
 
         setTimeout(() => {
           this.alertMsg = this.userDeleteservice.alertMsg;
