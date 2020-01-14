@@ -120,7 +120,7 @@ export class UserAddService {
             );
           }, 1500);
 
-          sessionStorage.setItem('idSelect', this.parsesuccess.id);
+          // sessionStorage.setItem('idSelect', this.parsesuccess.id);
           sessionStorage.setItem('page', 'user-get');
           this.router.navigate([`admin/users/user-manager/user-get`]);
         },

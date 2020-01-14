@@ -20,7 +20,6 @@ import {
   MAT_DATE_LOCALE
 } from '@angular/material/core';
 import * as _moment from 'moment';
-
 export interface Error {
   objStringError: string;
   objError: any;
@@ -1250,7 +1249,31 @@ export class UserAddComponent implements OnDestroy, OnInit {
     shortDesc: [{ type: 'pattern', message: 'Veuillez selectionner le sexe' }],
     longDesc: [{ type: 'pattern', message: 'Veuillez selectionner le sexe' }]
   };
-
+  public options: Object = {
+    charCounterCount: true,
+    toolbarButtons: ['bold', 'italic', 'underline', 'paragraphFormat', 'alert'],
+    toolbarButtonsXS: [
+      'bold',
+      'italic',
+      'underline',
+      'paragraphFormat',
+      'alert'
+    ],
+    toolbarButtonsSM: [
+      'bold',
+      'italic',
+      'underline',
+      'paragraphFormat',
+      'alert'
+    ],
+    toolbarButtonsMD: [
+      'bold',
+      'italic',
+      'underline',
+      'paragraphFormat',
+      'alert'
+    ]
+  };
   constructor(
     private useraddservice: UserAddService,
     private router: Router,
@@ -1320,6 +1343,7 @@ export class UserAddComponent implements OnDestroy, OnInit {
     this.createForms();
     console.log('this.userDetailsForm:', this.userDetailsForm.value.birthday);
   }
+
   createForms() {
     // user details form validations
     this.userDetailsForm = this.fb.group({
