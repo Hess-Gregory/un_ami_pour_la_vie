@@ -20,10 +20,8 @@ const paramValidation = {
     }
   }
 };
-router
-  .route("/")
-  // GET /api/users. all the users.
-  .get(userController.getAll);
+router.route("/").get(userController.getAll);
+// GET /api/users. all the users.
 // router.route('/admins')
 // // GET /api/users/admins. all the users.
 //     .get(userController.getAllAdmin);

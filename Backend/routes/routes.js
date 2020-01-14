@@ -6,6 +6,7 @@ const adminRoutes = require("../routes/admin.routes");
 const membersRoutes = require("../routes/members.routes");
 const roleRoutes = require("../routes/role.routes");
 const authRoutes = require("../routes/auth.routes");
+const uploadRoutes = require("../routes/upload.routes");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("../swagger/swagger");
 const userController = require("../controller/user.controller");
@@ -16,6 +17,7 @@ const router = express.Router();
 router.get("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 router.use("/api-paths", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 router.use("/auth", authRoutes);
+router.use("/fileupload", uploadRoutes);
 
 //valider toutes les API avec le token jwt. (a commenter en cas de probléme de token)
 router.use(expressJWT({ secret: config.jwtSecret }));
@@ -41,7 +43,6 @@ router.use((req, res, next) => {
       }
       if (res.locals.session.role >= 2) {
         router.route("/users/profile").get(userController.getProfile);
-        //router.use("/users/image", userRoutes);
       }
       if (res.locals.session.role >= 3) {
         router.use("/admins", adminRoutes);

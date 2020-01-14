@@ -82,7 +82,6 @@ module.exports = {
   },
 
   update(req, res, next) {
-    console.log("Les données a envoyer vers MySQL : ", req.body);
     return user
       .update(
         {

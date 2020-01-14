@@ -8,51 +8,9 @@ const config = require("../config/index");
 const router = express.Router();
 const paramValidation = {
   updateUser: {
-    body: {
-      firstName: Joi.string(),
-      lastName: Joi.string(),
-      username: Joi.string(),
-      email: Joi.string().email(),
-      password: Joi.string(),
-      isActive: Joi.number()
-        .min(0)
-        .max(1),
-      role: Joi.number()
-        .min(1)
-        .max(6),
-      asbl: Joi.string(),
-      birthday: Joi.date(),
-      sexGenre: Joi.string(),
-      adressbook: Joi.number()
-        .min(0)
-        .max(1),
-      adPvStreet: Joi.string(),
-      adPvNum: Joi.string(),
-      adPvZip: Joi.number()
-        .min(1000)
-        .max(98999),
-      adPvCity: Joi.string(),
-      adPvCountry: Joi.string(),
-      firm: Joi.string(),
-      tva: Joi.string(),
-      adProStreet: Joi.string(),
-      adProNum: Joi.string(),
-      adProZip: Joi.number()
-        .min(1000)
-        .max(98999),
-      adProCity: Joi.string(),
-      adProCountry: Joi.string(),
-      contPhonePro: Joi.string(),
-      contPhonePv: Joi.string(),
-      contPhoneGsm: Joi.string(),
-      contFacebook: Joi.string(),
-      contWebsite: Joi.string(),
-      shortDesc: Joi.string(),
-      longDesc: Joi.string(),
-      pachMedia: Joi.string()
-    },
+    body: {},
     params: {
-      id: Joi.string()
+      id: Joi.string().required()
     }
   },
   getUser: {

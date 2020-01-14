@@ -14,8 +14,10 @@ const jwt = require("jsonwebtoken");
 const logger = require("morgan");
 const methodOverride = require("method-override");
 const Sequelize = require("sequelize");
+const multer = require("multer");
+const fileUpload = require("express-fileupload");
 const util = require("util");
-
+// const appRoot = require('app-root-path');
 const app = express();
 const server = http.createServer(app);
 
@@ -28,12 +30,14 @@ if (config.env === "development") {
 
   app.use(logger("dev"));
 }
+global.appRoot = __dirname;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(methodOverride());
 app.use(cors());
+app.use(fileUpload());
 
 app.use("/api", routes);
 

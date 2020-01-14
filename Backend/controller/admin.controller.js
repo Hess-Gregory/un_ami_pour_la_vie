@@ -115,6 +115,34 @@ module.exports = {
 
   updateUser(req, res, next) {
     console.log("Les données a envoyer vers MySQL : ", req.body);
+    if (!req.body.username) {
+      console.log("username n'existe pas");
+    }
+
+    if (req.body.username == null) {
+      console.log("username est  null");
+    }
+
+    if (req.body.username == "") {
+      console.log("username est vide ");
+    }
+    if (req.body.username == undefined) {
+      console.log("username est undefined");
+    }
+    if (req.body.username) {
+      console.log("username nexiste ");
+    }
+
+    if (req.body.username != null) {
+      console.log("username est pas null");
+    }
+
+    if (req.body.username != "") {
+      console.log("username est pas vide ");
+    }
+    if (req.body.username != undefined) {
+      console.log("username est pas undefined");
+    }
     return user
       .update(
         {
@@ -233,6 +261,7 @@ module.exports = {
   // Activated a user:
   putActivateUser(req, res, next) {
     console.log("Les données a envoyer vers MySQL : ", req.body);
+
     return user
       .update(
         {

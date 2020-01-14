@@ -10,13 +10,18 @@
     "precommit": "npm run pretty-quick --staged",
     "pretty-quick": "pretty-quick"
   },
-  "author": "Gregory Hess",
+  "author": {
+    "name": "HESS Gregory",
+    "email": "hessgregory@hotmail.com",
+    "url": "http://www.hess-gregory.be/"
+  },
   "license": "ISC",
   "repository": {
     "type": "git",
     "url": "git://https://github.com/Hess-Gregory/un_ami_pour_la_vie/Backend"
   },
   "dependencies": {
+    "app-root-path": "^3.0.0",
     "assert": "^2.0.0",
     "basic-auth": "^2.0.1",
     "bcrypt": "^3.0.6",
@@ -28,6 +33,7 @@
     "debug": "^4.1.1",
     "dotenv": "^8.2.0",
     "express": "^4.15.3",
+    "express-fileupload": "^1.1.6",
     "express-jwt": "^5.3.1",
     "express-validation": "^1.0.3",
     "file-system": "^2.2.2",

@@ -47,5 +47,6 @@ db.userandrole = require("../models/userandrole")(sequelize, Sequelize);
 db.user_active = require("../models/user_active")(sequelize, Sequelize);
 db.user_not_active = require("../models/user_not_active")(sequelize, Sequelize);
 db.adressbook = require("../models/adressbook")(sequelize, Sequelize);
+db.pictureUser = require("../models/picture")(sequelize, Sequelize);
 
 module.exports = db;
