@@ -1,21 +1,11 @@
-import {
-  Component,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-  ElementRef,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
   Validators,
   FormControl
 } from '@angular/forms';
-import { routerTransition } from '../../../../router.animations';
-import { User } from './../../../../shared/exports';
 import { Observable, of, Subject } from 'rxjs';
-import { first } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { UserUpdateService } from './user-update.service';
@@ -23,9 +13,8 @@ import {
   UsernameValidator,
   ParentErrorStateMatcher
 } from './../../../../shared/validators';
-import { HttpClient } from '@angular/common/http';
 import { Title, Meta } from '@angular/platform-browser';
-import { MenuItem } from 'primeng/api';
+import { HttpClient, HttpEventType } from '@angular/common/http';
 declare let $: any;
 export interface Error {
   objStringError: string;
@@ -40,7 +29,7 @@ export interface Error {
   styleUrls: ['./user-update.component.scss']
 })
 export class UserUpdateComponent implements OnDestroy, OnInit {
-  title = 'Un Ami Pour La Vie - Admin : Modification Utilisateur';
+  title = 'Un Ami Pour La Vie - Admin : Modification Utilisateur ';
   loading = true;
   locked = false;
   previewUrl: any = null;
@@ -54,6 +43,35 @@ export class UserUpdateComponent implements OnDestroy, OnInit {
   public error: Error;
   alerts: Array<any> = [];
   users: any = [];
+  user_username: any;
+  user_email: any;
+  user_role: any;
+  user_isActive: any;
+  user_adressbook: any;
+  user_firstName: any;
+  user_lastName: any;
+  user_birthday: any;
+  user_sexGenre: any;
+  user_adPvNum: any;
+  user_adPvStreet: any;
+  user_adPvCountry: any;
+  user_adPvZip: any;
+  user_adPvCity: any;
+  user_firm: any;
+  user_tva: any;
+  user_adProNum: any;
+  user_adProStreet: any;
+  user_adProCountry: any;
+  user_adProZip: any;
+  user_adProCity: any;
+  user_contPhonePv: any;
+  user_contPhoneGsm: any;
+  user_contPhonePro: any;
+  user_contFacebook: any;
+  user_contWebsite: any;
+  user_asbl: any;
+  user_shortDesc: any;
+  user_longDesc: any;
   roles: any = [];
   status: any = [];
   dtTrigger: Subject<any> = new Subject();
@@ -61,7 +79,6 @@ export class UserUpdateComponent implements OnDestroy, OnInit {
   fileUploadProgress: string = null;
   uploadedFilePath: string = null;
   public erreur: string;
-  http: any;
   userDetailsForm: FormGroup;
   country_phone_group: FormGroup;
   parentErrorStateMatcher = new ParentErrorStateMatcher();
@@ -128,33 +145,34 @@ export class UserUpdateComponent implements OnDestroy, OnInit {
       }
     ]
   };
+
   constructor(
     private userservice: UserUpdateService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private titleService: Title,
     private metaTagService: Meta,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private http: HttpClient
   ) {
-    this.getUsers();
-    this.getStatus();
-    this.getRole();
-
     this.alerts.push({
       id: 3,
       type: 'danger',
       message: 'this.Errormessage'
     });
     if (this.adressbook) {
-      this.bookadress = 1;
+      this.bookadress = true;
     } else {
-      this.bookadress = 0;
+      this.bookadress = false;
     }
   }
 
   ngOnInit() {
     sessionStorage.setItem('page', 'user-update');
     this.createForms();
+    this.getUsers();
+    this.getStatus();
+    this.getRole();
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag({
       name: 'description',
@@ -166,6 +184,8 @@ export class UserUpdateComponent implements OnDestroy, OnInit {
     // user details form validations
     this.userDetailsForm = this.fb.group({
       /* Login et Role */
+
+      image: [undefined],
       username: new FormControl(
         '',
         Validators.compose([
@@ -185,56 +205,190 @@ export class UserUpdateComponent implements OnDestroy, OnInit {
           Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
         ])
       ),
-      role: [''],
-      isActive: [''],
+      role: [undefined],
+      isActive: [undefined],
 
       /* Informations générales */
-      adressbook: [''],
-      firstName: [''],
-      lastName: [''],
-      birthday: [''],
-      sexGenre: [''],
+      adressbook: [undefined],
+      firstName: [undefined],
+      lastName: [undefined],
+      birthday: [undefined],
+      sexGenre: [undefined],
 
       /* Adresse Privée */
-      adPvNum: [''],
-      adPvStreet: [''],
-      adPvCountry: [''],
-      adPvZip: [''],
-      adPvCity: [''],
+      adPvNum: [undefined],
+      adPvStreet: [undefined],
+      adPvCountry: [undefined],
+      adPvZip: [undefined],
+      adPvCity: [undefined],
 
       /* Adresse Privée */
-      firm: [''],
-      tva: [''],
-      adProNum: [''],
-      adProStreet: [''],
-      adProCountry: [''],
-      adProZip: [''],
-      adProCity: [''],
+      firm: [undefined],
+      tva: [undefined],
+      adProNum: [undefined],
+      adProStreet: [undefined],
+      adProCountry: [undefined],
+      adProZip: [undefined],
+      adProCity: [undefined],
 
       /* Contact */
-      contPhonePv: [''],
-      contPhoneGsm: [''],
-      contPhonePro: [''],
-      contFacebook: [''],
-      contWebsite: [''],
+      contPhonePv: [undefined],
+      contPhoneGsm: [undefined],
+      contPhonePro: [undefined],
+      contFacebook: [undefined],
+      contWebsite: [undefined],
 
       /*  Autres informations */
-      asbl: [''],
-      shortDesc: [''],
-      longDesc: ['']
+      asbl: [undefined],
+      shortDesc: [undefined],
+      longDesc: [undefined]
     });
   }
 
   onSubmitUserDetails(value: any) {
-    console.log('il est validé');
-    console.log('value: ', value);
+    console.log('value: ', value.image);
     if (value.adressbook) {
       value.adressbook = 1;
     } else {
       value.adressbook = 0;
     }
 
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');
+    value.id = this.id;
+    if (value.username === null || value.username === '' || !value.username) {
+      value.username = this.user_username;
+    }
+    if (value.email === null || value.email === '' || !value.email) {
+      value.email = this.user_email;
+    }
+    if (value.role === null || value.role === '' || !value.role) {
+      value.role = this.user_role;
+    }
+    if (value.isActive === null || value.isActive === '' || !value.isActive) {
+      value.isActive = this.user_isActive;
+    }
+    if (
+      value.firstName === null ||
+      value.firstName === '' ||
+      !value.firstName
+    ) {
+      value.firstName = this.user_firstName;
+    }
+    if (value.lastName === null || value.lastName === '' || !value.lastName) {
+      value.lastName = this.user_lastName;
+    }
+    if (value.birthday === null || value.birthday === '' || !value.birthday) {
+      value.birthday = this.user_birthday;
+    }
+    if (value.sexGenre === null || value.sexGenre === '' || !value.sexGenre) {
+      value.sexGenre = this.user_sexGenre;
+    }
+    if (value.adPvNum === null || value.adPvNum === '' || !value.adPvNum) {
+      value.adPvNum = this.user_adPvNum;
+    }
+    if (
+      value.adPvStreet === null ||
+      value.adPvStreet === '' ||
+      !value.adPvStreet
+    ) {
+      value.adPvStreet = this.user_adPvStreet;
+    }
+    if (
+      value.adPvCountry === null ||
+      value.adPvCountry === '' ||
+      !value.adPvCountry
+    ) {
+      value.adPvCountry = this.user_adPvCountry;
+    }
+    if (value.adPvZip === null || value.adPvZip === '' || !value.adPvZip) {
+      value.adPvZip = this.user_adPvZip;
+    }
+    if (value.adPvCity === null || value.adPvCity === '' || !value.adPvCity) {
+      value.adPvCity = this.user_adPvCity;
+    }
+    if (value.firm === null || value.firm === '' || !value.firm) {
+      value.firm = this.user_firm;
+    }
+    if (value.tva === null || value.tva === '' || !value.tva) {
+      value.tva = this.user_tva;
+    }
+    if (value.adProNum === null || value.adProNum === '' || !value.adProNum) {
+      value.adProNum = this.user_adProNum;
+    }
+    if (
+      value.adProStreet === null ||
+      value.adProStreet === '' ||
+      !value.adProStreet
+    ) {
+      value.adProStreet = this.user_adProStreet;
+    }
+    if (
+      value.adProCountry === null ||
+      value.adProCountry === '' ||
+      !value.adProCountry
+    ) {
+      value.adProCountry = this.user_adProCountry;
+    }
+    if (value.adProZip === null || value.adProZip === '' || !value.adProZip) {
+      value.adProZip = this.user_adProZip;
+    }
+    if (
+      value.adProCity === null ||
+      value.adProCity === '' ||
+      !value.adProCity
+    ) {
+      value.adProCity = this.user_adProCity;
+    }
+    if (
+      value.contPhonePv === null ||
+      value.contPhonePv === '' ||
+      !value.contPhonePv
+    ) {
+      value.contPhonePv = this.user_contPhonePv;
+    }
+    if (
+      value.contPhoneGsm === null ||
+      value.contPhoneGsm === '' ||
+      !value.contPhoneGsm
+    ) {
+      value.contPhoneGsm = this.user_contPhoneGsm;
+    }
+    if (
+      value.contPhonePro === null ||
+      value.contPhonePro === '' ||
+      !value.contPhonePro
+    ) {
+      value.contPhonePro = this.user_contPhonePro;
+    }
+    if (
+      value.contFacebook === null ||
+      value.contFacebook === '' ||
+      !value.contFacebook
+    ) {
+      value.contFacebook = this.user_contFacebook;
+    }
+    if (
+      value.contWebsite === null ||
+      value.contWebsite === '' ||
+      !value.contWebsite
+    ) {
+      value.contWebsite = this.user_contWebsite;
+    }
+    if (value.asbl === null || value.asbl === '' || !value.asbl) {
+      value.asbl = this.user_asbl;
+    }
+    if (
+      value.shortDesc === null ||
+      value.shortDesc === '' ||
+      !value.shortDesc
+    ) {
+      value.shortDesc = this.user_shortDesc;
+    }
+    if (value.longDesc === null || value.longDesc === '' || !value.longDesc) {
+      value.longDesc = this.user_longDesc;
+    }
     this.userservice.update(
+      value.id,
       /* Login et Role */
       value.username,
       value.email,
@@ -284,7 +438,35 @@ export class UserUpdateComponent implements OnDestroy, OnInit {
         this.parseUsers = JSON.parse(this.stringifyUsers);
         this.adressbook = this.parseUsers.adressbook;
         this.user_id = this.parseUsers.id;
-        this.user_role = this.parseUsers.role;
+        this.user_username = this.parseUsers.username;
+        this.user_email = this.parseUsers.email;
+        this.user_role = this.parseUsers.idROLE;
+        this.user_isActive = this.parseUsers.isActive;
+        this.user_adressbook = this.parseUsers.adressbook;
+        this.user_firstName = this.parseUsers.firstName;
+        this.user_lastName = this.parseUsers.lastName;
+        this.user_birthday = this.parseUsers.birthday;
+        this.user_sexGenre = this.parseUsers.sexGenre;
+        this.user_adPvNum = this.parseUsers.adPvNum;
+        this.user_adPvStreet = this.parseUsers.adPvStreet;
+        this.user_adPvCountry = this.parseUsers.adPvCountry;
+        this.user_adPvZip = this.parseUsers.adPvZip;
+        this.user_adPvCity = this.parseUsers.adPvCity;
+        this.user_firm = this.parseUsers.firm;
+        this.user_tva = this.parseUsers.tva;
+        this.user_adProNum = this.parseUsers.adProNum;
+        this.user_adProStreet = this.parseUsers.adProStreet;
+        this.user_adProCountry = this.parseUsers.adProCountry;
+        this.user_adProZip = this.parseUsers.adProZip;
+        this.user_adProCity = this.parseUsers.adProCity;
+        this.user_contPhonePv = this.parseUsers.contPhonePv;
+        this.user_contPhoneGsm = this.parseUsers.contPhoneGsm;
+        this.user_contPhonePro = this.parseUsers.contPhonePro;
+        this.user_contFacebook = this.parseUsers.contFacebook;
+        this.user_contWebsite = this.parseUsers.contWebsite;
+        this.user_asbl = this.parseUsers.asbl;
+        this.user_shortDesc = this.parseUsers.shortDesc;
+        this.user_longDesc = this.parseUsers.longDesc;
         this.dtTrigger.next();
       },
       error => {
@@ -361,8 +543,15 @@ export class UserUpdateComponent implements OnDestroy, OnInit {
   }
 
   onSubmit() {
-    // const formData = new FormData();
-    // formData.append('files', this.fileData);
+    const formData = new FormData();
+    formData.append('files', this.fileData);
+
+    this.http.post('http://localhost:4000', formData).subscribe(res => {
+      console.log(res);
+      this.uploadedFilePath = res.data.filePath;
+      alert('SUCCESS !!');
+    });
+
     // this.fileUploadProgress = '0%';
     // this.http.post('https://us-central1-tutorial-e6ea7.cloudfunctions.net/fileUpload', formData, {
     //   reportProgress: true,

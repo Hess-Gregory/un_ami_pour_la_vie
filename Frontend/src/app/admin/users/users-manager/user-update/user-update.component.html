@@ -23,7 +23,8 @@
     <div class="text-center">
       <h2>
         Modification utilisateur :<br />
-        {{ users.username }}
+        <ng-container *ngIf="!username">{{ users.username }}</ng-container>
+        <ng-container *ngIf="username">{{ username }}</ng-container>
       </h2>
       <div class="image-preview mb-3 picture-user gradient-box">
         <img
@@ -41,7 +42,12 @@
         <img *ngIf="previewUrl" [src]="previewUrl" class="picture" />
       </div>
       <div class="form-group">
-        <input type="file" name="image" (change)="fileProgress($event)" />
+        <input
+          type="file"
+          formControlName="image"
+          name="image"
+          (change)="fileProgress($event)"
+        />
       </div>
       <div *ngIf="fileUploadProgress">
         Progression chargement: {{ fileUploadProgress }}
@@ -84,6 +90,7 @@
                 formControlName="username"
                 class="form-control form-control-user"
                 placeholder="Nom d'utilisateur"
+                [(ngModel)]="username"
               />
             </div>
             <mat-error *ngFor="let validation of validation_messages.username">
@@ -127,9 +134,10 @@
               <select
                 name="role"
                 formControlName="role"
-                [(ngModel)]="selected"
                 class="form-control form-control-user"
+                [value]="status.idROLE"
               >
+                <option [value]="status.idROLE">{{ status.roleName }}</option>
                 <option *ngFor="let role of roles" [value]="role.idROLE">
                   {{ role.roleName }}</option
                 >
@@ -141,19 +149,18 @@
                 name="isActive"
                 formControlName="isActive"
                 class="form-control form-control-user"
+                [value]="status.isActive"
               >
-                <option>{{ status.status }}</option>
+                <option [value]="status.isActive">{{ status.status }}</option>
                 <option
                   *ngFor="let activated of activateds"
-                  [value]="activated"
+                  [value]="activated.isActive"
                   >{{ activated.name }}</option
                 >
               </select>
             </div>
           </div>
         </div>
-
-        <button type="submit" class="btn btn-primary"></button>
 
         <hr class="mb-4" />
         <h4 class="mb-3">
@@ -163,15 +170,16 @@
           <input
             type="checkbox"
             formControlName="adressbook"
-            [(ngModel)]="adressbook"
             data-toggle="toggle"
             class="custom-control-input"
             id="customSwitches"
+            [checked]="users.adressbook"
           />
           <label class="custom-control-label" for="customSwitches"
             >Ajouter au carnet d'adresse</label
           >
         </div>
+
         <hr class="mb-4" />
         <div class="row">
           <div class="row row100 col-md-12 pr-0">
@@ -405,26 +413,24 @@
         <div class="row">
           <div class="row row100  col-md-12 pr-0">
             <div class="col-md-6 mb-3">
-              <label for="contFacebook">Facebook</label
-              ><a href="{{ users.contFacebook }}">
-                <input
-                  type="url"
-                  value="{{ users.contFacebook }}"
-                  formControlName="contFacebook"
-                  name="contFacebook"
-                  class="form-control"
-              /></a>
+              <label for="contFacebook">Facebook</label>
+              <input
+                type="url"
+                value="{{ users.contFacebook }}"
+                formControlName="contFacebook"
+                name="contFacebook"
+                class="form-control"
+              />
             </div>
             <div class="col-md-6 mb-3 pr-0">
-              <label for="contWebsite">Site Web</label
-              ><a href="{{ users.contWebsite }}">
-                <input
-                  type="url"
-                  value="{{ users.contWebsite }}"
-                  formControlName="contWebsite"
-                  name="contWebsite"
-                  class="form-control"
-              /></a>
+              <label for="contWebsite">Site Web</label>
+              <input
+                type="url"
+                value="{{ users.contWebsite }}"
+                formControlName="contWebsite"
+                name="contWebsite"
+                class="form-control"
+              />
             </div>
           </div>
         </div>

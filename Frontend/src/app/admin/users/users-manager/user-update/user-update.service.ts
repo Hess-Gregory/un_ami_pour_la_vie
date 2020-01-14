@@ -10,29 +10,29 @@ declare let $: any;
   providedIn: 'root'
 })
 export class UserUpdateService {
-  userid: string;
   userrole: number;
   users: any;
   status: any;
   userdetail: any;
   stringifydata: string;
   parsedata: any;
+  private wsUrlgetUsers = '/api/admins/user';
 
   constructor(private http: HttpClient) {}
 
   editFormSubmitted = new EventEmitter<any>();
   getUsers(id: string): Observable<User[]> {
-    this.userid = sessionStorage.getItem('idSelect');
-    return this.http.get<User[]>(`/api/users/${this.userid}`);
+    console.log('service update id:', id);
+    return this.http.get<User[]>(`${this.wsUrlgetUsers}/${id}`);
   }
   getRole(id: string): Observable<Role[]> {
     return this.http.get<Role[]>('/api/users/role');
   }
   getStatus(id: string): Observable<User[]> {
-    this.userid = sessionStorage.getItem('idSelect');
-    return this.http.get<User[]>(`/api/users/status/${this.userid}`);
+    return this.http.get<User[]>(`/api/users/status/${id}`);
   }
   update(
+    id: string,
     username: string,
     email: string,
     role: number,
@@ -68,9 +68,8 @@ export class UserUpdateService {
     shortDesc: string,
     longDesc: string
   ) {
-    this.userid = sessionStorage.getItem('idSelect');
     this.http
-      .put(`/api/users/${this.userid}`, {
+      .put(`${this.wsUrlgetUsers}/${id}`, {
         /* Login et Role */
         username: username,
         email: email,
@@ -114,7 +113,7 @@ export class UserUpdateService {
           this.parsedata = JSON.parse(this.stringifydata);
           console.log('this.parsedata:', this.parsedata);
 
-          sessionStorage.setItem('idSelect', this.parsedata.id);
+          // sessionStorage.setItem('idSelect', this.parsedata.id);
           // this.router.navigate([`admin/users/user-manager/user-get`]);
         },
         error => {
