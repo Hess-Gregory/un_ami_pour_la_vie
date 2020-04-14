@@ -23,7 +23,8 @@ export class UserAddService {
   parsesuccess: any;
   previouspage = true;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {
+  }
 
   getRole() {
     return this.http.get<Role[]>('/api/users/role');
@@ -33,6 +34,10 @@ export class UserAddService {
   }
   msgError() {}
   addUser(
+    adProLat: number,
+    adProLong: number,
+    adPvLat: number,
+    adPvLong: number,
     username: string,
     email: string,
     role: number,
@@ -70,6 +75,10 @@ export class UserAddService {
   ) {
     this.http
       .post(`/api/admins/user/add`, {
+        adProLat: adProLat,
+        adProLong: adProLong,
+        adPvLat: adPvLat,
+        adPvLong: adPvLong,
         /* Login et Role */
         username: username,
         email: email,
@@ -119,10 +128,8 @@ export class UserAddService {
               `Message: ${this.parsesuccess.message}.\n Identifiant: ${this.parsesuccess.id} \n Email :${this.parsesuccess.email}\nUsername : ${this.parsesuccess.username}`
             );
           }, 1500);
+          this.router.navigate([`admin/users/user-manager/user-get/${this.parsesuccess.id}`]);
 
-          // sessionStorage.setItem('idSelect', this.parsesuccess.id);
-          sessionStorage.setItem('page', 'user-get');
-          this.router.navigate([`admin/users/user-manager/user-get`]);
         },
         error => {
           let timeoutId;

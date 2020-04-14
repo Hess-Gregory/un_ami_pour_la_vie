@@ -16,6 +16,7 @@ import {
   MatIconModule,
   MatTableModule
 } from '@angular/material';
+import { RouterModule } from '@angular/router';
 @NgModule({
   imports: [
     CommonModule,
@@ -31,7 +32,8 @@ import {
     MatInputModule,
     MatPaginatorModule,
     MatSortModule,
-    MatTableModule
+    MatTableModule,
+    RouterModule
   ],
   declarations: [AllUsersComponent],
   exports: [MatTableModule, MatPaginatorModule, MatSortModule]

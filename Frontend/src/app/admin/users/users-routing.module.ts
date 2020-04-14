@@ -20,8 +20,8 @@ const routes: Routes = [
             m => m.UsersManagerModule
           )
       },
-      // { path: 'user-manager', loadChildren: () => import('./users-list/all-users.module')
-      //     .then(m => m.AllUsersModule) },
+      { path: 'user-manager', loadChildren: () => import('./users-list/all-users.module')
+          .then(m => m.AllUsersModule) },
       {
         path: 'admin-manager',
         loadChildren: () =>

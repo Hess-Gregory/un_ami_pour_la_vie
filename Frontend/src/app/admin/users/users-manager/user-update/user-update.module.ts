@@ -18,15 +18,21 @@ import {
   MatSelectModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatInputModule
+  MatInputModule,
+  MatCardModule
 } from '@angular/material';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { UserControlsModule } from '../user-controls/user-controls.module';
+import { DragDropUniqueModule } from './../../../../shared/modules/drag-drop-unique/drag-drop-unique.module';
+import { ControlAvatarModule } from './../../../../shared/modules/control-avatar/control-avatar.module';
+import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 @NgModule({
   imports: [
     CommonModule,
     TabMenuModule,
     UserUpdateRoutingModule,
+    DragDropUniqueModule,
+    ControlAvatarModule,
     FormsModule,
     NgbModule,
     HttpClientModule,
@@ -44,7 +50,9 @@ import { UserControlsModule } from '../user-controls/user-controls.module';
     PortalModule,
     ScrollingModule,
     ReactiveFormsModule,
-    UserControlsModule
+    MatGoogleMapsAutocompleteModule,
+    UserControlsModule,
+    MatCardModule
   ],
   declarations: [UserUpdateComponent],
   exports: []

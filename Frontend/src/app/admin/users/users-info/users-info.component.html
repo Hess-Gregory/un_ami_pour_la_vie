@@ -23,17 +23,28 @@
 -->
 
 <div class="data-container">
-  <h2>Recherche rapide d'un utilisateur</h2>
-  <form>
-    <mat-form-field class="example-full-width">
+  <h2 class="text-center">Recherche rapide d'un utilisateur</h2>
+  <form class="text-center" id="test">
+    <mat-form-field class="example-full-width w-50">
       <input
-        matInput
+        matInput 
         [formControl]="searchTerm"
         placeholder="recherche par nom d'utilisateur ou email...."
       />
     </mat-form-field>
   </form>
-  <div *ngIf="result.length > 0" class="row">
+      <div class="add-user-button">
+      <button
+        type="button"
+        class="col-12 col-sm-4 col-md-2  btn btn-primary btn-lg"
+        role="button"
+        [routerLink]="['/admin/users/user-manager/user-add']"
+        [routerLinkActive]="['router-link-active']"
+      >
+        Ajouter un nouveau membre
+      </button>
+    </div>
+  <div *ngIf="result.length > 0" class="row justifyContent">
     <mat-card
       *ngFor="let res of result"
       (click)="RowSelected(res)"

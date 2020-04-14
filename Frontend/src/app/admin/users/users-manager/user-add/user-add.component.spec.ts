@@ -1,9 +1,11 @@
-/* tslint:disable:no-unused-variable */
+
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DebugElement, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { DebugElement, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { UserAddComponent } from './user-add.component';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('UserAddComponent', () => {
   let component: UserAddComponent;
@@ -12,7 +14,8 @@ describe('UserAddComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [UserAddComponent],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+      schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+      imports: [ ReactiveFormsModule, MatSnackBarModule ]
     }).compileComponents();
   }));
 

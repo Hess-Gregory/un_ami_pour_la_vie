@@ -154,7 +154,7 @@ export class AdminManagerComponent implements OnInit {
 
   RowSelected(res: any) {
     this.data = res.id;
-    sessionStorage.setItem('idSelect', this.data);
+    // sessionStorage.setItem('idSelect', this.data);
     if (Math.floor(res.newRegister) === 1) {
       sessionStorage.setItem('new', 'true');
     } else {

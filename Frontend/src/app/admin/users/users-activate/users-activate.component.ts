@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+
 import * as jwt_decode from 'jwt-decode';
 
 @Component({
@@ -140,9 +141,9 @@ export class UsersActivateComponent implements OnInit {
       ) {
         this.submitted = true;
         this.thisService.setActivate(post.id);
-        alert('Parfait!! :-)\n\n vous avez gelé ce membre');
+        alert('Parfait!! :-)\n\n vous avez activé ce membre');
       } else {
-        alert("Désolé!! :-(\n\n vous n'avez pas la permission pour ce membre");
+        alert('Désolé!! :-(\n\n vous n\'avez pas la permission pour ce membre');
       }
     }
     return this.post.idROLE;
@@ -168,7 +169,7 @@ export class UsersActivateComponent implements OnInit {
         this.thisService.setNotactivate(post.id);
         alert('Parfait!! :-)\n\n vous avez gelé ce membre');
       } else {
-        alert("Désolé!! :-(\n\n vous n'avez pas la permission pour ce membre");
+        alert('Désolé!! :-(\n\n vous n\'avez pas la permission pour ce membre');
       }
     }
     return this.post.idROLE;
@@ -176,7 +177,7 @@ export class UsersActivateComponent implements OnInit {
 
   RowSelected(res: any) {
     this.data = res;
-    sessionStorage.setItem('idSelect', this.data);
+    // sessionStorage.setItem('idSelect', this.data);
     if (Math.floor(res.newRegister) === 1) {
       sessionStorage.setItem('new', 'true');
     } else {

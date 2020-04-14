@@ -4,6 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { UsersActivateComponent } from './users-activate.component';
 import { UsersActivateModule } from './users-activate.module';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('UsersActivateComponent', () => {
   let component: UsersActivateComponent;
@@ -14,6 +15,7 @@ describe('UsersActivateComponent', () => {
       imports: [
         UsersActivateModule,
         RouterTestingModule,
+        HttpClientModule,
         TranslateModule.forRoot()
       ]
     }).compileComponents();

@@ -21,7 +21,8 @@ export class AddressBookComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
-  title = "Un Ami Pour La Vie - Admin : Carnet d'adresses ";
+  title = 'Un Ami Pour La Vie - Admin : Carnet d\'adresses ';
+  MyDataSource: any;
 
   displayedColumns: any[] = [
     'firm',
@@ -37,11 +38,6 @@ export class AddressBookComponent implements OnInit {
   MyDataSourceIsNotActive: any;
   MyDataSourceIsActive: any;
 
-  public objStringError: string;
-  public objError: any;
-  public ErrorstatusText: any;
-  public Errormessage: string;
-  public ErrorStatus: string;
   public ErrorMsg: string;
   public error: Error;
   alerts: Array<any> = [];
@@ -55,7 +51,7 @@ export class AddressBookComponent implements OnInit {
     private titleService: Title,
     private metaTagService: Meta
   ) {
-    sessionStorage.setItem('Module', "Carnet d'adresses");
+    sessionStorage.setItem('Module', 'Carnet d\'adresses');
     sessionStorage.setItem('typeIcon', 'Awesone');
     sessionStorage.setItem('nameIcon', 'fa fa-lg fa-address-book');
     // sessionStorage.setItem('typeIcon', 'MatIcons');
@@ -69,7 +65,7 @@ export class AddressBookComponent implements OnInit {
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag({
       name: 'description',
-      content: "Un Ami Pour La Vie - Admin : Carnet d'adresses "
+      content: 'Un Ami Pour La Vie - Admin : Carnet d\'adresses '
     });
   }
 
@@ -108,7 +104,8 @@ export class AddressBookComponent implements OnInit {
 
   RowSelected(res: any) {
     this.data = res;
-    sessionStorage.setItem('idSelect', this.data);
+    console.log(res);
+    // sessionStorage.setItem('idSelect', this.data);
     if (Math.floor(res.newRegister) === 1) {
       sessionStorage.setItem('new', 'true');
     } else {

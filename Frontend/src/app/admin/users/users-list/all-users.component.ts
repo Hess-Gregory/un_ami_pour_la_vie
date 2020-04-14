@@ -3,7 +3,7 @@ import { AllUsersService } from './all-users.service';
 import { debounceTime, switchMap, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 
@@ -48,7 +48,7 @@ export class AllUsersComponent implements OnInit {
     private metaTagService: Meta
   ) {
     sessionStorage.setItem('Module', 'Gestion des utilisateurs');
-    //sessionStorage.setItem('typeIcon', 'Awesone');
+    // sessionStorage.setItem('typeIcon', 'Awesone');
     sessionStorage.setItem('typeIcon', 'MatIcons');
     sessionStorage.setItem('nameIcon', 'supervisor_account');
   }
@@ -75,7 +75,7 @@ export class AllUsersComponent implements OnInit {
 
   RowSelected(res: any) {
     this.data = res.id;
-    sessionStorage.setItem('idSelect', this.data);
+    // sessionStorage.setItem('idSelect', this.data);
     if (Math.floor(res.newRegister) === 1) {
       sessionStorage.setItem('new', 'true');
     } else {

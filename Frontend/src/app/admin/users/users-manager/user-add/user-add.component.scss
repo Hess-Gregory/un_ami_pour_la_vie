@@ -1,20 +1,87 @@
 .form-control:disabled {
-  background-color: rgba(10, 189, 233, 0.6);
-  color: #fff;
-  border: 1px solid #ced4da;
+  background-color: rgba(10, 189, 233, 0.6) !important;
+  color: #fff !important;
+  border: 1px solid #ced4da !important;
 }
+.form-control, .ng-tns-c12-1 {
+    width: 100%;
+
+}
+.form-control:focus {
+    border: 2px solid;
+}
+.form-control:hover {
+    border: rgba(10, 189, 233, 0.6) 1px solid;
+}
+
+.custom-switch{
+    margin: 0 auto;
+}
+.required:after {
+    content:" *";
+    color: red;
+  }
+  .dog{
+    width: 10vw;
+    text-align: center;
+    display: block;
+    vertical-align: middle;
+    margin: auto;
+    margin-top: 25%;
+    margin-bottom: 25%;
+}
+h4{
+    background-color: rgba(10, 189, 233, 0.6) !important;
+    border-radius: 10px !important;
+    padding-left: 14px !important;
+    padding-bottom: 3px !important;
+    padding-top: 3px !important;
+    color: #ff9f43;
+}
+.option-select{
+    width: 100%;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    -webkit-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.mat-input-element{
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da !important;
+    border-radius: 0.25rem !important;
+    -webkit-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
 .mb-3b {
-  display: block;
-  width: 100%;
-  padding: 0.375rem 0.75rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  color: #495057;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid #ced4da;
-  border-radius: 0.25rem;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  display: block !important;
+  width: 100% !important;
+  padding: 0.375rem 0.75rem !important;
+  font-size: 1rem !important;
+  line-height: 1.5 !important;
+  color: #495057 !important;
+  background-color: #fff !important;
+  background-clip: padding-box !important;
+  border: 1px solid #ced4da !important;
+  border-radius: 0.25rem !important;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
 }
 
 .mat-icon-button.mat-button-base {
@@ -26,153 +93,150 @@
   .mat-calendar-header {
     .mat-calendar-controls {
       .mat-calendar-next-button.mat-icon-button.mat-button-base {
-        width: 40px !important;
-        height: 40px !important;
-        line-height: 40px !important;
+        width: 40px  !important;
+        height: 40px  !important;
+        line-height: 40px  !important;
       }
       .mat-calendar-previous-button.mat-icon-button.mat-button-base {
-        width: 40px !important;
-        height: 40px !important;
-        line-height: 40px !important;
+        width: 40px  !important;
+        height: 40px  !important;
+        line-height: 40px  !important;
       }
     }
   }
 }
 .row {
   [class='navbar navbar-default'] {
-    border-color: transparent;
+    border-color: transparent !important;
   }
 }
 
 .custom-control {
-  text-align: center;
-  width: 25%;
-  background-color: #0abde9;
-  border-radius: 9px;
-  margin: 0 auto;
-  color: #fff;
-  padding: 2px;
+  text-align: center !important;
+  width: 25% !important;
+  background-color: #0abde9 !important;
+  border-radius: 9px !important;
+  margin: 0 auto !important;
+  color: #fff !important;
+  padding: 2px !important;
 }
 .userActionButton {
-  display: inline-block;
-  border-radius: 15px;
-  padding: 6px 18px;
-  margin: 0 2px;
+  display: inline-block !important;
+  border-radius: 15px !important;
+  padding: 6px 18px !important;
+  margin: 0 2px !important;
   span {
-    color: white;
+    color: white !important;
   }
 }
 
 .btn:disabled {
-  opacity: 0.2;
+  opacity: 0.2 !important;
 }
 .navbar-fa {
-  margin-right: 10px;
+  margin-right: 10px !important;
 }
 .picture {
-  width: 307px;
-  height: 307px;
-  margin: 24px auto;
-  border-radius: 9px;
+  width: 307px !important;
+  height: 307px !important;
+  margin: 24px auto !important;
+  border-radius: 9px !important;
 }
-.gradient-box {
-  display: flex;
-  align-items: center;
-  //width: 50vw;
-  width: 317px;
-  height: 317px;
-  margin: auto;
-  max-width: 22em;
 
-  position: relative;
-  box-sizing: border-box;
-
-  $border: 5px;
-  color: #fff;
-  background: #fff;
-  background-clip: padding-box; /* !importanté */
-  border: solid $border transparent; /* !importanté */
-  border-radius: 1em;
-
-  &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: -1;
-    margin: -$border; /* !importanté */
-    border-radius: inherit; /* !importanté */
-    background: linear-gradient(to right, rgb(10, 189, 233), rgb(248, 156, 27));
-  }
-}
 .user {
-  margin: 30px;
+  margin: 30px !important;
 }
 .toggle-switch {
-  height: 36px;
-  width: 62px;
-  display: inline-block;
-  position: relative;
+  height: 36px !important;
+  width: 62px !important;
+  display: inline-block !important;
+  position: relative !important;
   input {
-    display: none;
+    display: none !important;
     &:checked + .slider {
-      background-color: blue;
+      background-color: blue !important;
     }
     &:checked + .slider::after {
-      -webkit-transform: translateX(26px);
-      -ms-transform: translateX(26px);
-      transform: translateX(26px);
+      -webkit-transform: translateX(26px) !important;
+      -ms-transform: translateX(26px) !important;
+      transform: translateX(26px) !important;
     }
   }
   .slider {
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    background-color: grey;
-    transition: 2s;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background-color: grey !important;
+    transition: 2s !important;
     &::after {
-      position: absolute;
-      content: '';
-      height: 28px;
-      width: 28px;
-      background-color: white;
-      left: 4px;
-      bottom: 4px;
-      transition: 2s;
+      position: absolute !important;
+      content: '' !important;
+      height: 28px !important;
+      width: 28px !important;
+      background-color: white !important;
+      left: 4px !important;
+      bottom: 4px !important;
+      transition: 2s !important;
     }
   }
 }
 .error-message {
-  color: red;
-  text-align: center;
+    color: red !important;
+    text-align: center !important;
+
+     //left: 25px;
+position: static !important;
+    /* top: 40px; */
+    /* left: 0; */
+    font-size: 0.8rem;
+    color: #f44336;
+}
+.mat-form-field-label{
+    display: none !important;
+}
+.mat-form-field-appearance-legacy .mat-form-field-infix {
+    padding: .0em 0;
 }
 .form-control.mat-input-element.mat-form-field-autofill-control.cdk-text-field-autofill-monitored.ng-untouched.ng-invalid.ng-dirty,
 .form-control.mat-input-element.mat-form-field-autofill-control.cdk-text-field-autofill-monitored.ng-dirty.ng-touched.ng-invalid,
 .form-control.mat-input-element.mat-form-field-autofill-control.cdk-text-field-autofill-monitored.ng-pristine.ng-invalid.ng-touched,
 .form-control.form-control-user.ng-pristine.ng-invalid.ng-touched {
-  border: 1px solid red;
-  background-color: rgba(125, 0, 0, 0.1);
+  border: 1px solid red !important;
+  background-color: rgba(125, 0, 0, 0.1) !important;
 }
 .form-control.mat-input-element.mat-form-field-autofill-control.cdk-text-field-autofill-monitored.ng-untouched.ng-dirty.ng-valid,
 .form-control.mat-input-element.mat-form-field-autofill-control.cdk-text-field-autofill-monitored.ng-dirty.ng-touched.ng-valid,
 .form-control.form-control-user.ng-touched.ng-dirty.ng-valid {
-  border: 1px solid green;
-  background-color: rgba(0, 125, 0, 0.1);
+  border: 1px solid green !important;
+  background-color: rgba(0, 125, 0, 0.1) !important;
 }
 .msgError {
-  color: red;
+  color: red !important;
 }
 form.user .form-control-user {
-  font-size: 0.8rem;
-  border-radius: 10rem;
-  padding: 1.5rem 1rem;
+  font-size: 0.8rem !important;
+  border-radius: 10rem !important;
+  padding: 1.5rem 1rem !important;
 }
 form.user .btn-user {
-  font-size: 0.8rem;
-  border-radius: 10rem;
-  padding: 0.75rem 1rem;
+  font-size: 0.8rem !important;
+  border-radius: 10rem !important;
+  padding: 0.75rem 1rem !important;
+}
+.mat-icon-button {
+    width: 20px !important;
+    height: 24px !important;
+}
+.mat-icon-button.mat-button-base{
+    margin-top: 0px !important;
+}
+
+
+
+
+
+.mat-form-field {
+    width: 100% !important;
 }

@@ -1,7 +1,6 @@
 import { AdminManagerRoutingModule } from './admin-manager-routing.module';
 import { AdminManagerComponent } from './admin-manager.component';
 import { JumboUserModule } from '../services/jumbo-user/jumbo-user.module';
-
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';

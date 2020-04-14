@@ -4,7 +4,32 @@
   margin-left: 7px;
   margin-right: 7px;
 }
+#test ::ng-deep .mat-form-field-hide-placeholder .mat-form-field-label-wrapper {
+   text-align: center;
+   top: -25px;
+}
 
+#test ::ng-deep .mat-form-field-should-float {
+   text-align: center;
+}
+  .add-user-button {
+    display: flex;
+
+    .btn-primary {
+      margin: auto !important;
+      background-color: rgb(10, 189, 233);
+      color: #fff;
+      font-size: 0.7rem;
+      cursor: pointer;
+      max-height: 38px;
+    }
+    .btn:hover {
+  transform: scale(1.08) !important;
+  background-color: rgba(10, 189, 233, 0.5) !important;
+  margin-left: 7px;
+  margin-right: 7px;
+}
+  }
 .alert,
 .btnJumbo {
   z-index: 5000;
@@ -46,12 +71,18 @@
 }
 .example-card {
   max-width: 400px;
-  margin: 15px auto;
+  margin: 15px;
   text-align: center;
   border: 1px solid;
   border-radius: 12px;
 }
-
+.justifyContent{
+  justify-content: center;
+}
+.justifyContent::after {
+  content: "";
+  flex: auto;
+}
 .grid-container {
   margin: 20px;
 }

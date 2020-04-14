@@ -7,7 +7,9 @@ import {
   MatSelectModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatInputModule
+  MatInputModule,
+  MatIconModule,
+  MatCardModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -15,7 +17,7 @@ import { UserAddComponent } from './user-add.component';
 import { UserAddRoutingModule } from './user-add-routing.module';
 import { UserControlsModule } from '../user-controls/user-controls.module';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
-
+import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 @NgModule({
   imports: [
     CommonModule,
@@ -23,6 +25,8 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     FormsModule,
     NgbModule,
     HttpClientModule,
+    MatCardModule,
+    MatIconModule,
     MatButtonModule,
     MatInputModule,
     MatDatepickerModule,
@@ -32,6 +36,7 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     ReactiveFormsModule,
     UserControlsModule,
     FroalaEditorModule,
+    MatGoogleMapsAutocompleteModule,
     FroalaViewModule
   ],
   declarations: [UserAddComponent],

@@ -1,477 +1,940 @@
 <div *ngIf="loading" class="spinner">
-  <img
+    <img
     class="dog"
     src="./assets/images/loading-dog.gif"
-    style="width: 10vw;text-align: center;
-         display: block; vertical-align: middle; margin: auto; margin-top: 25%; margin-bottom: 25%;"
-    alt=""
-  />
+    alt="loading dog" />
 </div>
-<form
-  [formGroup]="userDetailsForm"
-  (ngSubmit)="onSubmitUserDetails(userDetailsForm.value)"
->
-  <div *ngIf="ErrorStatus" class="card-body">
+
+<div *ngIf="ErrorStatus" class="card-body">
     <p *ngFor="let alert of alerts">
-      <ngb-alert [type]="alert.type" (close)="closeAlert(alert)"
-        >Erreur {{ ErrorStatus }} : {{ ErrorstatusText }}</ngb-alert
-      >
+        <ngb-alert [type]="alert.type" (close)="closeAlert(alert)" >Erreur {{ ErrorStatus }} : {{ ErrorstatusText }}</ngb-alert>
     </p>
-  </div>
+</div>
 
-  <div *ngIf="!loading" class="container-fluid">
+<div *ngIf="!loading" class="container-fluid">
     <div class="text-center">
-      <h2>
-        Modification utilisateur :<br />
-        <ng-container *ngIf="!username">{{ users.username }}</ng-container>
-        <ng-container *ngIf="username">{{ username }}</ng-container>
-      </h2>
-      <div class="image-preview mb-3 picture-user gradient-box">
-        <img
-          *ngIf="users.pachMedia && !previewUrl"
-          class="picture d-block mx-auto mb-4"
-          src="{{ users.pachMedia }}"
-          alt=""
-        />
-        <img
-          *ngIf="!users.pachMedia && !previewUrl"
-          class="picture d-block mx-auto mb-4"
-          src="./../../../../../assets/images/user-male-circle.png"
-          alt=""
-        />
-        <img *ngIf="previewUrl" [src]="previewUrl" class="picture" />
-      </div>
-      <div class="form-group">
-        <input
-          type="file"
-          formControlName="image"
-          name="image"
-          (change)="fileProgress($event)"
-        />
-      </div>
-      <div *ngIf="fileUploadProgress">
-        Progression chargement: {{ fileUploadProgress }}
-      </div>
-      <div class="mb-3" *ngIf="uploadedFilePath">
-        {{ uploadedFilePath }}
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary" (click)="onSubmit()">
-          Valider la nouvelle photo
-        </button>
-      </div>
+        <h2>
+            Modification utilisateur :<br />
+                <ng-container *ngIf="!new_username">
+                    {{ users.username }}
+                </ng-container>
+                <ng-container *ngIf="new_username">
+                    {{ new_username }}
+                </ng-container>
+        </h2>
 
-      <p class="lead">
-        Inscrit depuis
-        {{ users.created_date | date: 'EEEE, d MMMM y à h:mm' }}
-      </p>
-      <br />
-      <app-user-controls></app-user-controls>
+        <app-control-avatar></app-control-avatar>
+
+        <p class="lead">
+            Inscrit depuis
+            {{ users.created_date | date: 'EEEE, d MMMM y à h:mm' }}
+        </p>
+
+        <br/>
+
+        <app-drag-drop-unique></app-drag-drop-unique>
+
     </div>
 
-    <div class="row user">
-      <div class="col-md-12">
-        <hr class="mb-4" />
-        <h4 class="mb-3">
-          Login et Rôle
-        </h4>
-        <hr class="mb-4" />
-        <div class="row">
-          <div class="mb-3 mb-3a col-md-12">
-            <label for="login">Login</label>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">@</span>
-              </div>
-              <input
-                value="{{ users.username }}"
-                matInput
-                maxlength="25"
-                formControlName="username"
-                class="form-control form-control-user"
-                placeholder="Nom d'utilisateur"
-                [(ngModel)]="username"
-              />
-            </div>
-            <mat-error *ngFor="let validation of validation_messages.username">
-              <mat-error
-                class="error-message"
-                *ngIf="
-                  userDetailsForm.get('username').hasError(validation.type) &&
-                  (userDetailsForm.get('username').dirty ||
-                    userDetailsForm.get('username').touched)
-                "
-              >
-                {{ validation.message }}
-              </mat-error>
-            </mat-error>
-          </div>
-          <div class="mb-3 mb-3a col-md-12">
-            <label for="email">Email </label>
-            <input
-              value="{{ users.email }}"
-              matInput
-              formControlName="email"
-              class="form-control form-control-user"
-              placeholder="Adresse mail"
-            />
-            <mat-error *ngFor="let validation of validation_messages.email">
-              <mat-error
-                class="error-message"
-                *ngIf="
-                  userDetailsForm.get('email').hasError(validation.type) &&
-                  (userDetailsForm.get('email').dirty ||
-                    userDetailsForm.get('email').touched)
-                "
-              >
-                {{ validation.message }}
-              </mat-error>
-            </mat-error>
-          </div>
-          <div class="row row100 col-md-12 pr-0">
-            <div class="col-md-8 mb-3a mb-3">
-              <label for="role">Role : {{ selected }}</label>
-              <select
-                name="role"
-                formControlName="role"
-                class="form-control form-control-user"
-                [value]="status.idROLE"
-              >
-                <option [value]="status.idROLE">{{ status.roleName }}</option>
-                <option *ngFor="let role of roles" [value]="role.idROLE">
-                  {{ role.roleName }}</option
-                >
-              </select>
-            </div>
-            <div class="col-md-4 mb-3a mb-3 pr-0">
-              <label for="isActive">Status du compte :</label>
-              <select
-                name="isActive"
-                formControlName="isActive"
-                class="form-control form-control-user"
-                [value]="status.isActive"
-              >
-                <option [value]="status.isActive">{{ status.status }}</option>
-                <option
-                  *ngFor="let activated of activateds"
-                  [value]="activated.isActive"
-                  >{{ activated.name }}</option
-                >
-              </select>
-            </div>
-          </div>
-        </div>
+    <form
+    [formGroup]="userDetailsForm"
+    (ngSubmit)="onSubmitUserDetails(userDetailsForm.value)">
 
-        <hr class="mb-4" />
-        <h4 class="mb-3">
-          Informations générales
-        </h4>
-        <div class="custom-control custom-switch">
-          <input
-            type="checkbox"
-            formControlName="adressbook"
-            data-toggle="toggle"
-            class="custom-control-input"
-            id="customSwitches"
-            [checked]="users.adressbook"
-          />
-          <label class="custom-control-label" for="customSwitches"
-            >Ajouter au carnet d'adresse</label
-          >
-        </div>
+    <app-user-controls></app-user-controls>
+        <div class="row user">
+            <div class="col-md-12">
+                    <div class="form-group">
+            </div>
 
-        <hr class="mb-4" />
-        <div class="row">
-          <div class="row row100 col-md-12 pr-0">
-            <div class="col-md-6 mb-3">
-              <label for="firstName">Prénom : </label>
-              <input
-                type="text"
-                formControlName="firstName"
-                name="firstName"
-                class="form-control"
-                value="{{ users.firstName }}"
-                required
-              />
-            </div>
-            <div class="col-md-6 mb-3 pr-0">
-              <label for="lastName">Nom</label>
-              <input
-                type="text"
-                formControlName="lastName"
-                name="lastName"
-                class="form-control"
-                value="{{ users.lastName }}"
-                required
-              />
-            </div>
-          </div>
-          <div class="row row100  col-md-12 pr-0">
-            <div class="col-md-4 mb-3">
-              <label for="birthday">Date de naissance</label>
-              <!--<input matInput formControlName="birthday" [matDatepicker]="picker" value='{{users.birthday| date:'d MMMM y'}}' placeholder="Choose a date">
+            <hr class="mb-4" />
+                <h4 class="mb-3">
+                    Login et Rôle
+                </h4>
+            <hr class="mb-4" />
+
+                <div class="row">
+                    <div class="mb-3 mb-3a col-md-12">
+                        <label for="login">Login <span class="required"></span> : </label>
+                        <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">@</span>
+                        </div>
+                        <input
+                            value="{{ users.username }}"
+                            matInput
+                            maxlength="25"
+                            formControlName="username"
+                            class="form-control form-control-user"
+                            placeholder="Nom d'utilisateur"
+                            [(ngModel)]="new_username"
+                            required/>
+
+                        </div>
+                        <mat-error *ngFor="let validation of validation_messages.username">
+                        <mat-error
+                            class="error-message"
+                            *ngIf="
+                            userDetailsForm.get('username').hasError(validation.type) &&
+                            (userDetailsForm.get('username').dirty ||
+                                userDetailsForm.get('username').touched)
+                            "
+                        >
+                            {{ validation.message }}
+                        </mat-error>
+                        </mat-error>
+                    </div>
+                    <div class="mb-3 mb-3a col-md-12">
+                        <label for="email">Email <span class="required"></span> : </label>
+                        <input
+                        value="{{ users.email }}"
+
+                        formControlName="email"
+                        class="form-control form-control-user"
+                        placeholder="Adresse mail"
+                        required/>
+                        <mat-error *ngFor="let validation of validation_messages.email">
+                        <mat-error
+                            class="error-message"
+                            *ngIf="
+                            userDetailsForm.get('email').hasError(validation.type) &&
+                            (userDetailsForm.get('email').dirty ||
+                                userDetailsForm.get('email').touched)
+                            "
+                        >
+                            {{ validation.message }}
+                        </mat-error>
+                        </mat-error>
+                    </div>
+                    <div class="row row100 col-md-12 pr-0">
+                        <div class="col-md-8 mb-3a mb-3">
+                        <label for="role">Role <span class="required"></span> :</label>
+                        <select
+                            name="role"
+                            formControlName="role"
+                            class="form-control form-control-user"
+                            [value]="status.idROLE"
+                            required>
+                            <option [value]="status.idROLE">{{ status.roleName }}</option>
+                            <option *ngFor="let role of roles" [value]="role.idROLE">
+                            {{ role.roleName }}</option >
+                        </select>
+                        <mat-error *ngFor="let validation of validation_messages.role">
+                            <mat-error class="error-message" *ngIf="userDetailsForm.get('role')
+                            .hasError(validation.type) && (userDetailsForm.get('role')
+                            .dirty || userDetailsForm.get('role').touched)">
+                                {{ validation.message }}
+                            </mat-error>
+                        </mat-error>
+                        </div>
+                        <div class="col-md-4 mb-3a mb-3 pr-0">
+                        <label for="isActive">Status du compte <span class="required"></span> :</label>
+                        <select
+                            name="isActive"
+                            formControlName="isActive"
+                            class="form-control form-control-user"
+                            [value]="status.isActive"
+                            required>
+                            <option [value]="status.isActive">{{ status.status }}</option>
+                            <option
+                            *ngFor="let activated of activateds"
+                            [value]="activated.isActive"
+                            >{{ activated.name }}</option
+                            >
+                        </select>
+                        <mat-error *ngFor="let validation of validation_messages.isActive">
+                            <mat-error class="error-message" *ngIf="userDetailsForm.get('isActive')
+                            .hasError(validation.type) && (userDetailsForm.get('isActive')
+                            .dirty || userDetailsForm.get('isActive').touched)">
+                                {{ validation.message }}
+                            </mat-error>
+                        </mat-error>
+                        </div>
+                    </div>
+                </div>
+
+            <hr class="mb-4" />
+                <h4 class="mb-3">
+                    Informations générales
+                </h4>
+            <hr class="mb-4" />
+<div class="row">
+                <div class="custom-control custom-switch">
+                    <input
+                        type="checkbox"
+                        formControlName="adressbook"
+                        data-toggle="toggle"
+                        class="custom-control-input"
+                        id="customSwitches"
+                        [checked]="users.adressbook"
+                    />
+                    <label class="custom-control-label" for="customSwitches"
+                        >Ajouter au carnet d'adresse</label
+                    >
+                </div>
 
 
-                                        <mat-form-field>
-                                                <input matInput class='form-control'  [matDatepicker]="picker" placeholder="Choose a date">
-                                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                                <mat-datepicker #picker></mat-datepicker>
-                                        </mat-form-field>-->
+</div>
+
+                <hr class="mb-4" />
+                    <div class="row">
+                    <div class="row row100 col-md-12 pr-0">
+                        <div class="col-md-6 mb-3">
+                        <label for="firstName">Prénom  <span class="required"></span> :</label>
+                        <input
+                            type="text"
+                            formControlName="firstName"
+                            name="firstName"
+                            class="form-control"
+                            value="{{ users.firstName }}"
+                            required/>
+                            <mat-error *ngFor="let validation of validation_messages.firstName">
+                                <mat-error class="error-message" *ngIf="userDetailsForm
+                                .get('firstName').hasError(validation.type) &&
+                                (userDetailsForm.get('firstName')
+                                .dirty || userDetailsForm.get('firstName').touched)">
+                                    {{ validation.message }}
+                                </mat-error>
+                            </mat-error>
+                        </div>
+                        <div class="col-md-6 mb-3 pr-0">
+                        <label for="lastName">Nom <span class="required"></span> :</label>
+                        <input
+                            type="text"
+                            formControlName="lastName"
+                            name="lastName"
+                            class="form-control"
+                            value="{{ users.lastName }}"
+                            required/>
+                                <mat-error *ngFor="let validation of validation_messages.lastName">
+                                    <mat-error class="error-message"
+                                    *ngIf="userDetailsForm.get('lastName')
+                                    .hasError(validation.type) && (userDetailsForm.get('lastName')
+                                    .dirty ||userDetailsForm.get('lastName').touched) ">
+                                        {{ validation.message }}
+                                    </mat-error>
+                                </mat-error>
+                        </div>
+                    </div>
+                    <div class="row row100  col-md-12 pr-0">
+                        <div class="col-md-4 mb-3">
+                            <label for="birthday">
+                                Date de naissance (min.18ans)
+                            </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <mat-datepicker-toggle
+                                class="input-group-text"
+                                matSuffix [for]="birthday">
+                                </mat-datepicker-toggle>
+                            </div>
+                            <input name="birthday"
+                            [min]="minDate"
+                            [max]="maxDate"
+                            formControlName="birthday"
+                            [formControl]="user_birthday"
+
+                            class="form-control form-control-user"
+
+                        [matDatepicker]="birthday"
+                        placeholder="Cliquez sur le calendrier"
+                    />
+                    <mat-datepicker #birthday></mat-datepicker>
+                    <mat-error
+                        *ngFor="let validation of validation_messages.birthday"
+                    >
+                        <mat-error
+                        class="error-message"
+                        *ngIf="
+                            userDetailsForm
+                            .get('birthday')
+                            .hasError(validation.type) &&
+                            (userDetailsForm.get('birthday').dirty ||
+                            userDetailsForm.get('birthday').touched)
+                        "
+                        >
+                        {{ validation.message }}
+                        </mat-error>
+                    </mat-error>
+                    </div>
+                </div>
+                        <div class="col-md-8 mb-3 pr-0">
+                        <label for="sexGenre">Sexe</label>
+                        <select
+                        name="sexGenre"
+                        formControlName="sexGenre"
+                        class="form-control form-control-user"
+                        [value]="users.sexGenre"
+                        >
+                        <option [value]="users.sexGenre">{{ users.sexGenre }}</option>
+                        <option *ngFor="let gender of genders" [value]="gender">
+                            {{ gender }}</option>
+                    </select>
+                    <mat-error
+                        *ngFor="let validation of validation_messages.sexGenre"
+                    >
+                        <mat-error
+                        class="error-message"
+                        *ngIf="
+                            userDetailsForm.get('sexGenre').hasError(validation.type) &&
+                            (userDetailsForm.get('sexGenre').dirty ||
+                            userDetailsForm.get('sexGenre').touched)
+                        "
+                        >{{ validation.message }}</mat-error
+                        >
+                    </mat-error>
+                        </div>
+                    </div>
+                    </div>
+
+            <hr class="mb-4" />
+                <h4 class="mb-3">
+                    Adresse Privée
+                </h4>
+            <hr class="mb-4" />
+
+                <div class="row">
+                    <div class="row  row100 col-md-12 pr-0">
+                            <div class="mb-3 mb-3a col-md-12">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="material-icons">
+                                        search
+                                        </i></span>
+                                    </div>
+                                    <input
+                                        class="form-control form-control-user"
+                                        matValidateAddress
+                                        matGoogleMapsAutocomplete
+                                        #matGoogleMapsAutocomplete="matGoogleMapsAutocomplete"
+                                        placeholder="Chercher une addresse"
+                                        searchAddressLabel="Chercher une addresse"
+                                        [(country)]="countryprivate"
+                                        types="address"
+                                        (onGermanAddressMapped)="privateAdress($event)"
+                                        >
+
+                                </div>
+                            </div>
+                        <div class="col-md-2 mb-3">
+                        <label for="adPvNum">Numéro et boite</label>
+                        <input *ngIf="!adPvNum1"
+                            type="text"
+                            formControlName="adPvNum"
+                            value="{{ users.adPvNum }}"
+                            class="form-control"
+                            name="adPvNum"
+                        />
+                        <input *ngIf="adPvNum1"
+                            type="text"
+                            formControlName="adPvNum"
+                            [(value)]="adPvNum1"
+                            class="form-control"
+                            name="adPvNum"
+                        />
+                        <mat-error *ngFor="let validation of validation_messages.adPvNum">
+                            <mat-error
+                            class="error-message"
+                            *ngIf="
+                                userDetailsForm.get('adPvNum').hasError(validation.type) &&
+                                (userDetailsForm.get('adPvNum').dirty ||
+                                userDetailsForm.get('adPvNum').touched)">
+                            {{ validation.message }}
+                            </mat-error>
+                        </mat-error>
+                        </div>
+                        <div class="col-md-10 mb-3 pr-0">
+                        <label for="adPvStreet">Rue</label>
+                        <input *ngIf="!adPvStreet1"
+                            type="text"
+                            formControlName="adPvStreet"
+                            [(value)]="users.adPvStreet"
+                            class="form-control"
+                            name="adPvStreet"
+                        />
+                        <input *ngIf="adPvStreet1"
+                            type="text"
+                            formControlName="adPvStreet"
+                            [(value)]="adPvStreet1"
+                            class="form-control"
+                            name="adPvStreet"
+                        />
+                        <mat-error
+                            *ngFor="let validation of validation_messages.adPvStreet"
+                        >
+                            <mat-error
+                            class="error-message"
+                            *ngIf="
+                                userDetailsForm
+                                .get('adPvStreet')
+                                .hasError(validation.type) &&
+                                (userDetailsForm.get('adPvStreet').dirty ||
+                                userDetailsForm.get('adPvStreet').touched)
+                            "
+                            >
+                            {{ validation.message }}
+                            </mat-error>
+                        </mat-error>
+                        </div>
+                    </div>
+                    <div class="row row100  col-md-12 pr-0">
+                        <div class="col-md-5 mb-3">
+                        <label for="adPvCountry">Choisir un pays</label>
+                            <select
+                            [(ngModel)]="countryprivate"
+                            formControlName="adPvCountry"
+                            class="form-control form-control-user"
+                            [value]="users.adPvCountry"
+                            >
+                            <option [value]="users.adPvCountry">{{ users.adPvCountry }}</option>
+
+                            <option class="option-select"
+                                *ngFor="let country of allCountries"
+                                [value]="country.code">{{ country.name }}</option>
+                            </select>
+                            <mat-error
+                                *ngFor="let validation of validation_messages.adPvCountry"
+                            >
+                                <mat-error
+                                class="error-message"
+                                *ngIf="
+                                    userDetailsForm
+                                    .get('adPvCountry')
+                                    .hasError(validation.type) &&
+                                    (userDetailsForm.get('adPvCountry').dirty ||
+                                    userDetailsForm.get('adPvCountry').touched)
+                                "
+                                >
+                                {{ validation.message }}
+                                </mat-error>
+                            </mat-error>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                        <label for="adPvZip">Code Postal</label>
+                        <input *ngIf="!adPvZip1"
+                            type="text"
+                            formControlName="adPvZip"
+                            [(value)]="users.adPvZip"
+                            class="form-control"
+                            name="adPvZip"
+                        />
+                        <input *ngIf="adPvZip1"
+                            type="text"
+                            formControlName="adPvZip"
+                            [(value)]="adPvZip1"
+                            class="form-control"
+                            name="adPvZip"
+                        />
+                        <mat-error *ngFor="let validation of validation_messages.adPvZip">
+                            <mat-error
+                            class="error-message"
+                            *ngIf="
+                                userDetailsForm.get('adPvZip').hasError(validation.type) &&
+                                (userDetailsForm.get('adPvZip').dirty ||
+                                userDetailsForm.get('adPvZip').touched)
+                            "
+                            >
+                            {{ validation.message }}
+                            </mat-error>
+                        </mat-error>
+                        </div>
+                        <div class="col-md-3 mb-3 pr-0">
+                        <label for="adPvCity">Ville</label>
+                        <input *ngIf="!adPvCity1"
+                            type="text"
+                            formControlName="adPvCity"
+                            [(value)]="users.adPvCity"
+                            class="form-control"
+                            name="adPvCity"
+                        />
+                        <input *ngIf="adPvCity1"
+                            type="text"
+                            formControlName="adPvCity"
+                            [(value)]="adPvCity1"
+                            class="form-control"
+                            name="adPvCity"
+                        />
+                        <mat-error
+                            *ngFor="let validation of validation_messages.adPvCity"
+                        >
+                            <mat-error
+                            class="error-message"
+                            *ngIf="
+                                userDetailsForm.get('adPvCity').hasError(validation.type) &&
+                                (userDetailsForm.get('adPvCity').dirty ||
+                                userDetailsForm.get('adPvCity').touched)
+                            "
+                            >
+                            {{ validation.message }}
+                            </mat-error>
+                        </mat-error>
+                        </div>
+                    </div>
+                </div>
+
+            <hr class="mb-4" />
+                <h4 class="mb-3">
+                Adresse Professionnelle
+                </h4>
+            <hr class="mb-4" />
+
+                <div class="row">
+                    <div class="mb-3 mb-3a col-md-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="material-icons">
+                                search
+                                </i></span>
+                            </div>
+                            <input
+                                class="form-control form-control-user"
+                                matValidateAddress
+                                matGoogleMapsAutocomplete
+                                #matGoogleMapsAutocomplete="matGoogleMapsAutocomplete"
+                                placeholder="Chercher une société"
+                                [(country)]="countrypro"
+                                types="establishment"
+                                (onGermanAddressMapped)="onLocationSelected($event)"
+                                >
+                        </div>
+                    </div>
+                <div class="mb-3 mb-3a col-md-12">
+                    <label for="firm">Société </label>
+                    <input *ngIf="!firm1"
+                    type="text"
+                    formControlName="firm"
+                    value="{{ users.firm }}"
+                    class="form-control"
+                    name="firm"
+                    />
+                    <input *ngIf="firm1"
+                    type="text"
+                    formControlName="firm"
+                    value="firm1"
+                    class="form-control"
+                    name="firm"
+                    [(value)]="firm1"
+                    />
+                    <mat-error *ngFor="let validation of validation_messages.firm">
+                        <mat-error
+                        class="error-message"
+                        *ngIf="
+                            userDetailsForm.get('firm').hasError(validation.type) &&
+                            (userDetailsForm.get('firm').dirty ||
+                            userDetailsForm.get('firm').touched)
+                        "
+                        >
+                        {{ validation.message }}
+                        </mat-error>
+                    </mat-error>
+                </div>
+                <div class="mb-3 mb-3a col-md-12">
+                    <label for="tva">Numéro de TVA </label>
+                    <input
+                    type="text"
+                    formControlName="tva"
+                    value="{{ users.tva }}"
+                    class="form-control"
+                    name="tva"
+                    />
+                    <mat-error *ngFor="let validation of validation_messages.tva">
+                        <mat-error
+                        class="error-message"
+                        *ngIf="
+                            userDetailsForm.get('tva').hasError(validation.type) &&
+                            (userDetailsForm.get('tva').dirty ||
+                            userDetailsForm.get('tva').touched)
+                        "
+                        >
+                        {{ validation.message }}
+                        </mat-error>
+                    </mat-error>
+                </div>
+                <div class="row row100  col-md-12 pr-0">
+                    <div class="col-md-2 mb-3">
+                    <label for="adProNum">Numéro et boite</label>
+                    <input *ngIf="!adProNum1"
+                        type="text"
+                        formControlName="adProNum"
+                        value="{{ users.adProNum }}"
+                        class="form-control"
+                        name="adProNum"
+                    />
+                    <input *ngIf="adProNum1"
+                        type="text"
+                        formControlName="adProNum"
+                        [(value)]="adProNum1"
+                        class="form-control"
+                        name="adProNum"
+                    />
+                    <mat-error
+                        *ngFor="let validation of validation_messages.adProNum"
+                    >
+                        <mat-error
+                        class="error-message"
+                        *ngIf="
+                            userDetailsForm.get('adProNum').hasError(validation.type) &&
+                            (userDetailsForm.get('adProNum').dirty ||
+                            userDetailsForm.get('adProNum').touched)
+                        "
+                        >
+                        {{ validation.message }}
+                        </mat-error>
+                    </mat-error>
+                    </div>
+                    <div class="col-md-10 mb-3 pr-0">
+                    <label for="adProStreet">Rue</label>
+                    <input *ngIf="!adProStreet1"
+                        type="text"
+                        formControlName="adProStreet"
+                        value="{{ users.adProStreet }}"
+                        class="form-control"
+                        name="adProStreet"
+                    />
+                    <input *ngIf="adProStreet1"
+                    [(value)]="adProStreet1"
+                        type="text"
+                        formControlName="adProStreet"
+                        class="form-control"
+                        name="adProStreet"
+                    />
+                    <mat-error
+                        *ngFor="let validation of validation_messages.adProStreet"
+                    >
+                        <mat-error
+                        class="error-message"
+                        *ngIf="
+                            userDetailsForm
+                            .get('adProStreet')
+                            .hasError(validation.type) &&
+                            (userDetailsForm.get('adProStreet').dirty ||
+                            userDetailsForm.get('adProStreet').touched)
+                        "
+                        >
+                        {{ validation.message }}
+                        </mat-error>
+                    </mat-error>
+                    </div>
+                </div>
+                <div class="row  row100 col-md-12 pr-0">
+                    <div class="col-md-5 mb-3">
+                    <label for="adProCountry">Choisir un pays</label>
+                        <select
+                        [(ngModel)]="countrypro"
+                        formControlName="adProCountry"
+                        class="form-control form-control-user"
+                        [value]="users.adProCountry">
+                        <option [value]="users.adProCountry">{{ users.adProCountry }}</option>
+
+                        <option class="option-select"
+                            *ngFor="let country of allCountries"
+                            [value]="country.code">{{ country.name }}</option>
+                        </select>
+                        <mat-error
+                            *ngFor="let validation of validation_messages.adProCountry"
+                        >
+                            <mat-error
+                            class="error-message"
+                            *ngIf="
+                                userDetailsForm
+                                .get('adProCountry')
+                                .hasError(validation.type) &&
+                                (userDetailsForm.get('adProCountry').dirty ||
+                                userDetailsForm.get('adProCountry').touched)
+                            "
+                            >
+                            {{ validation.message }}
+                            </mat-error>
+                        </mat-error>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                    <label for="adProZip">Code Postal</label>
+                    <input *ngIf="!adProZip1"
+                        value="{{ users.adProZip }}"
+                        formControlName="adProZip"
+                        type="text"
+                        class="form-control"
+                        name="adProZip"
+                    />
+                    <input *ngIf="adProZip1"
+                    [(value)]="adProZip1"
+                        formControlName="adProZip"
+                        type="number"
+                        class="form-control"
+                        name="adProZip"
+                    />
+                    <mat-error
+                        *ngFor="let validation of validation_messages.adProZip"
+                    >
+                        <mat-error
+                        class="error-message"
+                        *ngIf="
+                            userDetailsForm.get('adProZip').hasError(validation.type) &&
+                            (userDetailsForm.get('adProZip').dirty ||
+                            userDetailsForm.get('adProZip').touched)
+                        "
+                        >
+                        {{ validation.message }}
+                        </mat-error>
+                    </mat-error>
+                    </div>
+                    <div class="col-md-3 mb-3 pr-0">
+                    <label for="adProCity">Ville</label>
+                    <input *ngIf="!adProCity1"
+                        type="text"
+                        value="{{ users.adProCity }}"
+                        formControlName="adProCity"
+                        class="form-control"
+                        name="adProCity"
+                    />
+                    <input *ngIf="adProCity1"
+                    [(value)]="adProCity1"
+                        type="text"
+                        formControlName="adProCity"
+                        class="form-control"
+                        name="adProCity"
+                    />
+                    <mat-error
+                        *ngFor="let validation of validation_messages.adProCity"
+                    >
+                        <mat-error
+                        class="error-message"
+                        *ngIf="
+                            userDetailsForm
+                            .get('adProCity')
+                            .hasError(validation.type) &&
+                            (userDetailsForm.get('adProCity').dirty ||
+                            userDetailsForm.get('adProCity').touched)
+                        "
+                        >
+                        {{ validation.message }}
+                        </mat-error>
+                    </mat-error>
+                    </div>
+                </div>
+                </div>
+
+            <hr class="mb-4" />
+                <h4 class="mb-3">
+                Contacts
+                </h4>
+            <hr class="mb-4" />
+
+                    <div class="row">
+                    <div class="row row100  col-md-12 pr-0">
+                        <div class="col-md-4 mb-3">
+                        <label for="contPhonePv">Télèphone privé</label>
+                        <input
+                            type="tel"
+                            value="{{ users.contPhonePv }}"
+                            formControlName="contPhonePv"
+                            name="contPhonePv"
+                            class="form-control"
+                        />
+                        <mat-error
+                            *ngFor="let validation of validation_messages.contPhonePv"
+                        >
+                            <mat-error
+                            class="error-message"
+                            *ngIf="
+                                userDetailsForm
+                                .get('contPhonePv')
+                                .hasError(validation.type) &&
+                                (userDetailsForm.get('contPhonePv').dirty ||
+                                userDetailsForm.get('contPhonePv').touched)
+                            "
+                            >
+                            {{ validation.message }}
+                            </mat-error>
+                        </mat-error>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                        <label for="contPhoneGsm">GSM</label>
+                        <input
+                            type="tel"
+                            value="{{ users.contPhoneGsm }}"
+                            formControlName="contPhoneGsm"
+                            name="contPhoneGsm"
+                            class="form-control"
+                        />
+                        <mat-error
+                            *ngFor="let validation of validation_messages.contPhoneGsm"
+                        >
+                            <mat-error
+                            class="error-message"
+                            *ngIf="
+                                userDetailsForm
+                                .get('contPhoneGsm')
+                                .hasError(validation.type) &&
+                                (userDetailsForm.get('contPhoneGsm').dirty ||
+                                userDetailsForm.get('contPhoneGsm').touched)
+                            "
+                            >
+                            {{ validation.message }}
+                            </mat-error>
+                        </mat-error>
+                        </div>
+                        <div class="col-md-4 mb-3 pr-0">
+                        <label for="contPhonePro">Télèphone (bureau)</label>
+                        <input
+                            type="tel"
+                            value="{{ users.contPhonePro }}"
+                            formControlName="contPhonePro"
+                            name="contPhonePro"
+                            class="form-control"
+                        />
+                        <mat-error
+                            *ngFor="let validation of validation_messages.contPhonePro"
+                        >
+                            <mat-error
+                            class="error-message"
+                            *ngIf="
+                                userDetailsForm
+                                .get('contPhonePro')
+                                .hasError(validation.type) &&
+                                (userDetailsForm.get('contPhonePro').dirty ||
+                                userDetailsForm.get('contPhonePro').touched)
+                            "
+                            >
+                            {{ validation.message }}
+                            </mat-error>
+                        </mat-error>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                    <div class="row row100  col-md-12 pr-0">
+                        <div class="col-md-6 mb-3">
+                        <label for="contFacebook">Facebook</label>
+                        <input
+                            type="url"
+                            value="{{ users.contFacebook }}"
+                            formControlName="contFacebook"
+                            name="contFacebook"
+                            class="form-control"
+                        />
+                        <mat-error
+                            *ngFor="let validation of validation_messages.contFacebook"
+                        >
+                            <mat-error
+                            class="error-message"
+                            *ngIf="
+                                userDetailsForm
+                                .get('contFacebook')
+                                .hasError(validation.type) &&
+                                (userDetailsForm.get('contFacebook').dirty ||
+                                userDetailsForm.get('contFacebook').touched)
+                            "
+                            >
+                            {{ validation.message }}
+                            </mat-error>
+                        </mat-error>
+                        </div>
+                        <div class="col-md-6 mb-3 pr-0">
+                        <label for="contWebsite">Site Web</label>
+                        <input
+                            type="url"
+                            value="{{ users.contWebsite }}"
+                            formControlName="contWebsite"
+                            name="contWebsite"
+                            class="form-control"
+                        />
+                        <mat-error
+                            *ngFor="let validation of validation_messages.contWebsite"
+                        >
+                            <mat-error
+                            class="error-message"
+                            *ngIf="
+                                userDetailsForm
+                                .get('contWebsite')
+                                .hasError(validation.type) &&
+                                (userDetailsForm.get('contWebsite').dirty ||
+                                userDetailsForm.get('contWebsite').touched)
+                            "
+                            >
+                            {{ validation.message }}
+                            </mat-error>
+                        </mat-error>
+                        </div>
+                    </div>
+                    </div>
+
+            <hr class="mb-4" />
+                <h4 class="mb-3">
+                    Autres informations
+                </h4>
+            <hr class="mb-4" />
+
+                <div class="row">
+                <div class="mb-3 col-md-12">
+                    <label for="asbl">En rapport avec l'ASBL </label>
+                    <input
+                    type="text"
+                    value="{{ users.asbl }}"
+                    formControlName="asbl"
+                    class="form-control"
+                    name="asbl"
+                    />
+                    <mat-error *ngFor="let validation of validation_messages.asbl">
+                        <mat-error
+                        class="error-message"
+                        *ngIf="
+                            userDetailsForm.get('asbl').hasError(validation.type) &&
+                            (userDetailsForm.get('asbl').dirty ||
+                            userDetailsForm.get('asbl').touched)
+                        "
+                        >
+                        {{ validation.message }}
+                        </mat-error>
+                    </mat-error>
+                </div>
+                <div class="mb-3 col-md-12">
+                    <label for="shortDesc">Petite description </label>
+                    <textarea
+                    value="{{ users.shortDesc }}"
+                    formControlName="shortDesc"
+                    class="form-control"
+                    name="shortDesc"
+                    rows="3"
+                    ></textarea>
+                    <mat-error *ngFor="let validation of validation_messages.shortDesc">
+                        <mat-error
+                        class="error-message"
+                        *ngIf="
+                            userDetailsForm.get('shortDesc').hasError(validation.type) &&
+                            (userDetailsForm.get('shortDesc').dirty ||
+                            userDetailsForm.get('shortDesc').touched)
+                        "
+                        >
+                        {{ validation.message }}
+                        </mat-error>
+                    </mat-error>
+                </div>
+                <div class="mb-3 col-md-12">
+                    <label for="longDesc">Autre information</label>
+                    <textarea
+                    class="form-control"
+                    formControlName="longDesc"
+                    value="{{ users.longDesc }}"
+                    name="longDesc"
+                    rows="7"
+                    ></textarea>
+                    <mat-error *ngFor="let validation of validation_messages.longDesc">
+                        <mat-error
+                        class="error-message"
+                        *ngIf="
+                            userDetailsForm.get('longDesc').hasError(validation.type) &&
+                            (userDetailsForm.get('longDesc').dirty ||
+                            userDetailsForm.get('longDesc').touched)
+                        "
+                        >
+                        {{ validation.message }}
+                        </mat-error>
+                    </mat-error>
+                </div>
+                </div>
+
             </div>
-            <div class="col-md-8 mb-3 pr-0">
-              <label for="sexGenre">Sexe</label>
-              <input
-                type="text"
-                formControlName="sexGenre"
-                value="{{ users.sexGenre }}"
-                name="gender"
-                class="form-control"
-              />
-            </div>
-          </div>
+
         </div>
-        <hr class="mb-4" />
-        <h4 class="mb-3">
-          Adresse Privée
-        </h4>
-        <hr class="mb-4" />
-        <div class="row">
-          <div class="row  row100 col-md-12 pr-0">
-            <div class="col-md-2 mb-3">
-              <label for="adPvNum">Numéro et boite</label>
-              <input
-                type="text"
-                formControlName="adPvNum"
-                value="{{ users.adPvNum }}"
-                class="form-control"
-                name="adPvNum"
-              />
-            </div>
-            <div class="col-md-10 mb-3 pr-0">
-              <label for="adPvStreet">Rue</label>
-              <input
-                type="text"
-                formControlName="adPvStreet"
-                value="{{ users.adPvStreet }}"
-                class="form-control"
-                name="adPvStreet"
-              />
-            </div>
-          </div>
-          <div class="row row100  col-md-12 pr-0">
-            <div class="col-md-5 mb-3">
-              <label for="adPvCountry">Choisir un pays</label>
-              <input
-                type="text"
-                formControlName="adPvCountry"
-                value="{{ users.adPvCountry }}"
-                class="form-control"
-                name="adPvCountry"
-              />
-            </div>
-            <div class="col-md-4 mb-3">
-              <label for="adPvZip">Code Postal</label>
-              <input
-                type="text"
-                formControlName="adPvZip"
-                value="{{ users.adPvZip }}"
-                class="form-control"
-                name="adPvZip"
-              />
-            </div>
-            <div class="col-md-3 mb-3 pr-0">
-              <label for="adPvCity">Ville</label>
-              <input
-                type="text"
-                formControlName="adPvCity"
-                value="{{ users.adPvCity }}"
-                class="form-control"
-                name="adPvCity"
-              />
-            </div>
-          </div>
-        </div>
-        <hr class="mb-4" />
-        <h4 class="mb-3">
-          Adresse Professionnelle
-        </h4>
-        <hr class="mb-4" />
-        <div class="row">
-          <div class="mb-3 mb-3a col-md-12">
-            <label for="firm">Société </label>
-            <input
-              type="text"
-              formControlName="firm"
-              value="{{ users.firm }}"
-              class="form-control"
-              name="firm"
-            />
-          </div>
-          <div class="mb-3 mb-3a col-md-12">
-            <label for="tva">Numéro de TVA </label>
-            <input
-              type="text"
-              formControlName="tva"
-              value="{{ users.tva }}"
-              class="form-control"
-              name="tva"
-            />
-          </div>
-          <div class="row row100  col-md-12 pr-0">
-            <div class="col-md-2 mb-3">
-              <label for="adProNum">Numéro et boite</label>
-              <input
-                type="text"
-                formControlName="adProNum"
-                value="{{ users.adProNum }}"
-                class="form-control"
-                name="adProNum"
-              />
-            </div>
-            <div class="col-md-10 mb-3 pr-0">
-              <label for="adProStreet">Rue</label>
-              <input
-                type="text"
-                formControlName="adProStreet"
-                value="{{ users.adProStreet }}"
-                class="form-control"
-                name="adProStreet"
-              />
-            </div>
-          </div>
-          <div class="row  row100 col-md-12 pr-0">
-            <div class="col-md-5 mb-3">
-              <label for="adProCountry">Choisir un pays</label>
-              <input
-                value="{{ users.adProCountry }}"
-                formControlName="adProCountry"
-                class="form-control"
-                name="adProCountry"
-              />
-            </div>
-            <div class="col-md-4 mb-3">
-              <label for="adProZip">Code Postal</label>
-              <input
-                value="{{ users.adProZip }}"
-                formControlName="adProZip"
-                type="text"
-                class="form-control"
-                name="adProZip"
-              />
-            </div>
-            <div class="col-md-3 mb-3 pr-0">
-              <label for="adProCity">Ville</label>
-              <input
-                type="text"
-                value="{{ users.adProCity }}"
-                formControlName="adProCity"
-                class="form-control"
-                name="adProCity"
-              />
-            </div>
-          </div>
-        </div>
-        <hr class="mb-4" />
-        <h4 class="mb-3">
-          Contacts
-        </h4>
-        <hr class="mb-4" />
-        <div class="row">
-          <div class="row row100  col-md-12 pr-0">
-            <div class="col-md-4 mb-3">
-              <label for="contPhonePv">Télèphone privé</label>
-              <input
-                type="tel"
-                value="{{ users.contPhonePv }}"
-                formControlName="contPhonePv"
-                name="contPhonePv"
-                class="form-control"
-              />
-            </div>
-            <div class="col-md-4 mb-3">
-              <label for="contPhoneGsm">GSM</label>
-              <input
-                type="tel"
-                value="{{ users.contPhoneGsm }}"
-                formControlName="contPhoneGsm"
-                name="contPhoneGsm"
-                class="form-control"
-              />
-            </div>
-            <div class="col-md-4 mb-3 pr-0">
-              <label for="contPhonePro">Télèphone (bureau)</label>
-              <input
-                type="tel"
-                value="{{ users.contPhonePro }}"
-                formControlName="contPhonePro"
-                name="contPhonePro"
-                class="form-control"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="row row100  col-md-12 pr-0">
-            <div class="col-md-6 mb-3">
-              <label for="contFacebook">Facebook</label>
-              <input
-                type="url"
-                value="{{ users.contFacebook }}"
-                formControlName="contFacebook"
-                name="contFacebook"
-                class="form-control"
-              />
-            </div>
-            <div class="col-md-6 mb-3 pr-0">
-              <label for="contWebsite">Site Web</label>
-              <input
-                type="url"
-                value="{{ users.contWebsite }}"
-                formControlName="contWebsite"
-                name="contWebsite"
-                class="form-control"
-              />
-            </div>
-          </div>
-        </div>
-        <hr class="mb-4" />
-        <h4 class="mb-3">
-          Autres informations
-        </h4>
-        <hr class="mb-4" />
-        <div class="row">
-          <div class="mb-3 col-md-12">
-            <label for="asbl">En rapport avec l'ASBL </label>
-            <input
-              type="text"
-              value="{{ users.asbl }}"
-              formControlName="asbl"
-              class="form-control"
-              name="asbl"
-            />
-          </div>
-          <div class="mb-3 col-md-12">
-            <label for="shortDesc">Petite description </label>
-            <textarea
-              value="{{ users.shortDesc }}"
-              formControlName="shortDesc"
-              class="form-control"
-              name="shortDesc"
-              rows="3"
-            ></textarea>
-          </div>
-          <div class="mb-3 col-md-12">
-            <label for="longDesc">Autre information</label>
-            <textarea
-              class="form-control"
-              formControlName="longDesc"
-              value="{{ users.longDesc }}"
-              name="longDesc"
-              rows="7"
-            ></textarea>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</form>
+    </form>
+</div>
