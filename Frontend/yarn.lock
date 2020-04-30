@@ -158,7 +158,7 @@
   optionalDependencies:
     parse5 "^5.0.0"
 
-"@angular/cli@^8.0.2", "@angular/cli@^8.3.17":
+"@angular/cli@^8.3.17":
   version "8.3.22"
   resolved "https://registry.yarnpkg.com/@angular/cli/-/cli-8.3.22.tgz#2512e0aeaffdbb30ace35dc288eeba9a86f28b95"
   integrity sha512-OT2rzwnxwI0ETP7rXCxjxsIAZEYo9wHP/5rRbu3m15GlQ3Bclq34ZDRwC/bRxXL5+1DfmhAs9AjtYNoFoDM4Tg==
@@ -985,21 +985,6 @@
   resolved "https://registry.yarnpkg.com/@types/chart.js/-/chart.js-2.8.10.tgz#df3a74630e25310e42e4a90a17c51b5a2e0691f4"
   integrity sha512-lqfq12r5midn9wr+TfzAnRpVRkHwwQcyLnXI2URy7+cQLp+xTItKFCM1K5hDuQSz8zOvye9c8DrFNqZrTs6WCQ==
 
-"@types/datatables.net-select@^1.2.6":
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/@types/datatables.net-select/-/datatables.net-select-1.2.6.tgz#2a3ca96f9f528a45895c491c2d6087a07de1b451"
-  integrity sha512-F114lcN6EuAELInU/ZSb1gGyQNfUFCAdZRbo12dRNtdt+HYxiRHVmow46J7Qy0Hv44/6DaPHwHKhVq35eY3LPg==
-  dependencies:
-    "@types/datatables.net" "*"
-    "@types/jquery" "*"
-
-"@types/datatables.net@*", "@types/datatables.net@^1.10.18":
-  version "1.10.18"
-  resolved "https://registry.yarnpkg.com/@types/datatables.net/-/datatables.net-1.10.18.tgz#620c318cdd4a4a11b2e1c619b6747745a25c1d8d"
-  integrity sha512-uz80YsSHTLGd14/A3P4+EIp4n5SqBIbjtd2Hl7SwsXl/9zpsXzE2OY+sz0Gm8TF2jPfsKl0+9yB7/8RtoD3qoA==
-  dependencies:
-    "@types/jquery" "*"
-
 "@types/events@*":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@types/events/-/events-3.0.0.tgz#2862f3f58a9a7f7c3e78d79f130dd4d71c25c2a7"
@@ -1013,11 +998,6 @@
     "@types/events" "*"
     "@types/minimatch" "*"
     "@types/node" "*"
-
-"@types/google-libphonenumber@^7.4.17":
-  version "7.4.17"
-  resolved "https://registry.yarnpkg.com/@types/google-libphonenumber/-/google-libphonenumber-7.4.17.tgz#26974213353cb459e403a5740812115a596cf170"
-  integrity sha512-NdqFHXBGxwiGjJn7dTAjcCckgxE+LbE3jik6/SNiC9ZfG4BxHJM1X6m8w+/ZpSGRN5s0+4dIL+MaD/KSXywp1g==
 
 "@types/googlemaps@^3.38.1":
   version "3.39.1"
@@ -1067,7 +1047,7 @@
   dependencies:
     jest-diff "^24.3.0"
 
-"@types/jquery@*", "@types/jquery@^3.3.31":
+"@types/jquery@^3.3.31":
   version "3.3.31"
   resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-3.3.31.tgz#27c706e4bf488474e1cb54a71d8303f37c93451b"
   integrity sha512-Lz4BAJihoFw5nRzKvg4nawXPzutkv7wmfQ5121avptaSIXlDNJCUuxZxX/G+9EVidZGuO0UBlk+YjKbwRKJigg==
@@ -1417,12 +1397,12 @@ angular-animations@0.0.10:
   dependencies:
     tslib "^1.9.0"
 
-angular-datatables@^8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/angular-datatables/-/angular-datatables-8.0.0.tgz#5ed344fe183422f081560162748855931c08524c"
-  integrity sha512-J/aJr0CBROpZJheFnixYtFjax8+EsFa6fJjk8n5SA/JqfrpQqcYB3n716HW33X/SM4UtJgQMOUEGa77+FHgnVA==
+angular-froala-wysiwyg@^3.0.6:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/angular-froala-wysiwyg/-/angular-froala-wysiwyg-3.1.1.tgz#a1da342d5f8bca9727e66fb071efe46099cc767b"
+  integrity sha512-wwxax6IZArPd+XLi/LS0UvQRAVroq62TG2Dv6hIes3hbU4Fm/ShfkpBOPV4FTBTYEke4DnuvmSZ9ks7tEwU1fA==
   dependencies:
-    "@angular/cli" "^8.0.2"
+    froala-editor "^3.1.1"
 
 angular-jwt@^0.1.11:
   version "0.1.11"
@@ -2829,55 +2809,6 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
-datatables.net-dt@^1.10.15, datatables.net-dt@^1.10.20:
-  version "1.10.20"
-  resolved "https://registry.yarnpkg.com/datatables.net-dt/-/datatables.net-dt-1.10.20.tgz#998ab7d035e1ad52ad406451026ab968d1e63849"
-  integrity sha512-D+65buDke96a3WlJo2re+SbcAVfjPh2nsFZG198Vbkz3i1wKPdB+wkV2K07qYIiIpypcXWOnD2pz3MvnUqM9Tw==
-  dependencies:
-    datatables.net "1.10.20"
-    jquery ">=1.7"
-
-datatables.net-responsive-dt@^2.2.3:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/datatables.net-responsive-dt/-/datatables.net-responsive-dt-2.2.3.tgz#dbba47b61945ab35580a9266debc7fd3c56241f6"
-  integrity sha512-NGxuii+3sWGG150AWmQ5NYCrTaFKUHo6GeizBR8o2Uuy68PnuNrSO27hyLvOYNLHQ9kALT66f/gTaBc2TdznFA==
-  dependencies:
-    datatables.net-dt "^1.10.15"
-    datatables.net-responsive "2.2.3"
-    jquery ">=1.7"
-
-datatables.net-responsive@2.2.3, datatables.net-responsive@^2.2.3:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/datatables.net-responsive/-/datatables.net-responsive-2.2.3.tgz#50a2b1b4955b16b32f573a3f00f473b0bfbee913"
-  integrity sha512-8D6VtZcyuH3FG0Hn5A4LPZQEOX3+HrRFM7HjpmsQc/nQDBbdeBLkJX4Sh/o1nzFTSneuT1Wh/lYZHVPpjcN+Sw==
-  dependencies:
-    datatables.net "^1.10.15"
-    jquery ">=1.7"
-
-datatables.net-select-dt@^1.3.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/datatables.net-select-dt/-/datatables.net-select-dt-1.3.1.tgz#7d82a7f5a79605858a2dc4912e7b2f5a9d9fe4b7"
-  integrity sha512-vLuwFpR2Yh6S2Ko54Icp9XkwybRjxPeqc9GBM/5IjX8+mGVr0qQJvNhCHBmcEA5o9v0coNMxhEYSxQPtSzSC1w==
-  dependencies:
-    datatables.net-dt "^1.10.15"
-    datatables.net-select "1.3.1"
-    jquery ">=1.7"
-
-datatables.net-select@1.3.1, datatables.net-select@^1.3.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/datatables.net-select/-/datatables.net-select-1.3.1.tgz#ec2c3ad7df2bc9c13c09587d0bfd0ceba52a8bff"
-  integrity sha512-PeVd/hlAX58QzL0+mGvxnXP7ylLtzZMeAots/uZkQi+6c/KI6JuP8LCJoEMHAsSjQM/BnG7Uw8E1YGOz1tZpQQ==
-  dependencies:
-    datatables.net "^1.10.15"
-    jquery ">=1.7"
-
-datatables.net@1.10.20, datatables.net@^1.10.15, datatables.net@^1.10.20:
-  version "1.10.20"
-  resolved "https://registry.yarnpkg.com/datatables.net/-/datatables.net-1.10.20.tgz#9d65ecc3c83cbe7baa4fa5a053405c8fe42c1350"
-  integrity sha512-4E4S7tTU607N3h0fZPkGmAtr9mwy462u+VJ6gxYZ8MxcRIjZqHy3Dv1GNry7i3zQCktTdWbULVKBbkAJkuHEnQ==
-  dependencies:
-    jquery ">=1.7"
-
 date-format@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/date-format/-/date-format-2.1.0.tgz#31d5b5ea211cf5fd764cd38baf9d033df7e125cf"
@@ -3764,6 +3695,11 @@ fresh@0.5.2:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/fresh/-/fresh-0.5.2.tgz#3d8cadd90d976569fa835ab1f8e4b23a105605a7"
 
+froala-editor@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/froala-editor/-/froala-editor-3.1.1.tgz#546f42b40b586c2811e1d70df9273203081a6e1b"
+  integrity sha512-1VYBEL5QN92Qmlvc1tgL6Ij55hMDXnkStv1c/MoNwdkTdK81W1JYmS4LaLFfUmva1Zvp5DWEM+G3G8+VyfvDEQ==
+
 from2@^2.1.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/from2/-/from2-2.3.0.tgz#8bfb5502bde4a4d36cfdeea007fcca21d7e382af"
@@ -3980,11 +3916,6 @@ globby@^7.1.1:
     ignore "^3.3.5"
     pify "^3.0.0"
     slash "^1.0.0"
-
-google-libphonenumber@^3.2.6:
-  version "3.2.6"
-  resolved "https://registry.yarnpkg.com/google-libphonenumber/-/google-libphonenumber-3.2.6.tgz#3d725b48ff44706b80246e77f95f2c2fdc6fd729"
-  integrity sha512-6QCQAaKJlSd/1dUqvdQf7zzfb3uiZHsG8yhCfOdCVRfMuPZ/VDIEB47y5SYwjPQJPs7ebfW5jj6PeobB9JJ4JA==
 
 google-maps-ng2@^1.0.10:
   version "1.0.10"
@@ -4939,10 +4870,10 @@ jest-worker@24.9.0:
     merge-stream "^2.0.0"
     supports-color "^6.1.0"
 
-jquery@>=1.7, jquery@^3.4.1:
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
-  integrity sha512-36+AdBzCL+y6qjw5Tx7HgzeGCzC81MDDgaUP8ld2zhx58HdqXGoBd+tHdrBMiyjGQs0Hxs/MLZTu/eHNJJuWPw==
+jquery@^3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.5.0.tgz#9980b97d9e4194611c36530e7dc46a58d7340fc9"
+  integrity sha512-Xb7SVYMvygPxbFMpTFQiHh1J7HClEaThguL15N/Gg37Lri/qKyhRGZYzHRyLH8Stq3Aow0LsHO2O2ci86fCrNQ==
 
 js-levenshtein@^1.1.3:
   version "1.1.6"
@@ -6612,11 +6543,6 @@ pretty-quick@^2.0.1:
     ignore "^5.1.4"
     mri "^1.1.4"
     multimatch "^4.0.0"
-
-primeicons@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/primeicons/-/primeicons-2.0.0.tgz#ec3e5a8d4d04a09309225a5a57deb911e08dc0d3"
-  integrity sha512-GJTCeMSQU8UU1GqbsaDrg/IH+b/vSinJQl52NVpdJ7sShYLZA8Eq6jLF48Ye3N/dQloGrE07i7XsZvxQ9pNbqg==
 
 primeng@^8.1.1:
   version "8.1.1"
