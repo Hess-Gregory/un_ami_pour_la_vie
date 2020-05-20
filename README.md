@@ -1,3 +1,18 @@
+
+# introduction
+
+This project is a website (under Angular 8), for an animal association, it has an administrator interface for managing staff and managing animals.
+Visitors to the site can report a lost animal, this report will be entered in the database with the characteristics of the animal as well as its identification number (electronic chip).
+If the lost animal is already in the shelter, the owner receives an alert on his screen when the report is finalized.
+Visitors to the site can report an animal found, this report will be confused with the database in order to verify if the animal has not been declared as "lost". If this is the case, the association will be notified as well as its owner.
+All animals in the shelter will be followed by the approved veterinarian. Each animal has its identity card and medical report in the application database, this has, in fact, that the veterinarian can be alerted of the animal is in poor health, reported directly by the staff of the shelter animale.
+
+
+We are looking for volunteers to work on this project.
+If you have in-depth knowledge of Angular and NodeJS, you are welcome.
+You can contact me, see at the bottom of the page.
+
+
 # Projet Site Web pour l'ABSL - Un Ami Pour La Vie
 
 <a href="http://www.unamipourlavie.be"><img src="http://www.unamipourlavie.be/images/logo.jpg" title="ASBL - Un Ami Pour La Vie" alt="Un Ami Pour La Vie"></a>
