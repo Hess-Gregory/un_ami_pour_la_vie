@@ -36,4 +36,5 @@ import {
   declarations: [AdminManagerComponent],
   exports: [MatTableModule, MatPaginatorModule, MatSortModule]
 })
+
 export class AdminManagerModule {}

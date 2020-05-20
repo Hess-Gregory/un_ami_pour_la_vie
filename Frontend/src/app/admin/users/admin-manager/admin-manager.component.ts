@@ -21,6 +21,7 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
   styleUrls: ['./admin-manager.scss']
 })
 export class AdminManagerComponent implements OnInit {
+
   [x: string]: any;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
