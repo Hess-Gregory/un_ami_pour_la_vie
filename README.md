@@ -153,121 +153,121 @@ Password:
 
 ## Directory Layout
 ```
-├───e2e                     
-│   └───src                 
-│       └───.history        
-└───src                     
-    ├───.history            
-    │   ├───app             
-    │   │   ├───admin       
-    │   │   │   ├───dashboar
-    │   │   │   └───users   
-    │   │   │       └───user
-    │   │   │           ├───
-    │   │   │           ├───
-    │   │   │           ├───
-    │   │   │           └───
-    │   │   └───shared      
-    │   │       ├───exports 
-    │   │       ├───modules 
-    │   │       │   └───cont
-    │   │       └───validato
-    │   └───environments    
-    ├───app                 
-    │   ├───.history        
-    │   │   ├───home        
-    │   │   │   └───componen
-    │   │   │       └───navb
-    │   │   └───layout      
-    │   │       ├───componen
-    │   │       │   └───side
-    │   │       └───users   
-    │   │           └───user
-    │   ├───access-denied   
-    │   ├───admin           
-    │   │   ├───blank-page  
-    │   │   ├───breadcrumb  
+├───e2e
+│   └───src
+│       └───.history
+└───src
+    ├───.history
+    │   ├───app
+    │   │   ├───admin
+    │   │   │   ├───dashboard
+    │   │   │   └───users
+    │   │   │       └───users-manager
+    │   │   │           ├───user-add
+    │   │   │           ├───user-controls
+    │   │   │           ├───user-detail
+    │   │   │           └───user-update
+    │   │   └───shared
+    │   │       ├───exports
+    │   │       ├───modules
+    │   │       │   └───control-avatar
+    │   │       └───validators
+    │   └───environments
+    ├───app
+    │   ├───.history
+    │   │   ├───home
+    │   │   │   └───components
+    │   │   │       └───navbar
+    │   │   └───layout
+    │   │       ├───components
+    │   │       │   └───sidebar
+    │   │       └───users
+    │   │           └───users-manager
+    │   ├───access-denied
+    │   ├───admin
+    │   │   ├───blank-page
+    │   │   ├───breadcrumb
     │   │   ├───bs-component
-    │   │   │   └───componen
-    │   │   │       ├───aler
-    │   │   │       ├───butt
-    │   │   │       ├───coll
-    │   │   │       ├───date
-    │   │   │       ├───drop
-    │   │   │       ├───moda
-    │   │   │       ├───pagi
-    │   │   │       ├───pop-
-    │   │   │       ├───prog
-    │   │   │       ├───rati
+    │   │   │   └───components
+    │   │   │       ├───alert
+    │   │   │       ├───buttons
+    │   │   │       ├───collapse
+    │   │   │       ├───date-picker
+    │   │   │       ├───dropdown
+    │   │   │       ├───modal
+    │   │   │       ├───pagination
+    │   │   │       ├───pop-over
+    │   │   │       ├───progressbar
+    │   │   │       ├───rating
     │   │   │       ├───tabs
-    │   │   │       ├───time
-    │   │   │       └───tool
-    │   │   ├───bs-element  
-    │   │   ├───charts      
-    │   │   ├───components  
-    │   │   │   ├───header  
-    │   │   │   └───sidebar 
-    │   │   ├───dashboard   
-    │   │   │   └───componen
+    │   │   │       ├───timepicker
+    │   │   │       └───tooltip
+    │   │   ├───bs-element
+    │   │   ├───charts
+    │   │   ├───components
+    │   │   │   ├───header
+    │   │   │   └───sidebar
+    │   │   ├───dashboard
+    │   │   │   └───components
     │   │   │       ├───chat
-    │   │   │       ├───noti
-    │   │   │       └───time
-    │   │   ├───form        
-    │   │   ├───grid        
-    │   │   ├───tables      
-    │   │   └───users       
-    │   │       ├───address-
-    │   │       ├───admin-ma
+    │   │   │       ├───notification
+    │   │   │       └───timeline
+    │   │   ├───form
+    │   │   ├───grid
+    │   │   ├───tables
+    │   │   └───users
+    │   │       ├───address-book
+    │   │       ├───admin-manager
     │   │       ├───services
-    │   │       │   └───jumb
-    │   │       ├───users-ac
-    │   │       ├───users-in
-    │   │       ├───users-li
-    │   │       └───users-ma
-    │   │           ├───user
-    │   │           ├───user
-    │   │           ├───user
-    │   │           ├───user
-    │   │           └───user
-    │   ├───home            
-    │   │   ├───components  
-    │   │   │   ├───footer  
-    │   │   │   ├───header  
-    │   │   │   ├───navbar  
-    │   │   │   └───timer   
-    │   │   └───homepage    
-    │   ├───login           
-    │   ├───not-found       
-    │   ├───server-error    
-    │   ├───shared          
-    │   │   ├───exports     
-    │   │   ├───guard       
-    │   │   ├───modules     
-    │   │   │   ├───auto-ref
-    │   │   │   ├───control-
-    │   │   │   ├───drag-dro
-    │   │   │   ├───language
-    │   │   │   ├───page-hea
-    │   │   │   ├───stat    
-    │   │   │   └───_modal  
-    │   │   ├───pipes       
-    │   │   ├───services    
-    │   │   ├───validators  
-    │   │   └───validatorsfo
-    │   └───signup          
-    ├───assets              
-    │   ├───i18n            
-    │   └───images          
-    │       ├───about       
-    │       ├───carousel    
-    │       ├───logos       
-    │       ├───portfolio   
-    │       └───team        
-    ├───environments        
-    └───styles              
-        └───bootstrap       
-            ├───mixins      
-            └───utilities  
+    │   │       │   └───jumbo-user
+    │   │       ├───users-activate
+    │   │       ├───users-info
+    │   │       ├───users-list
+    │   │       └───users-manager
+    │   │           ├───user-add
+    │   │           ├───user-controls
+    │   │           ├───user-delete
+    │   │           ├───user-detail
+    │   │           └───user-update
+    │   ├───home
+    │   │   ├───components
+    │   │   │   ├───footer
+    │   │   │   ├───header
+    │   │   │   ├───navbar
+    │   │   │   └───timer
+    │   │   └───homepage
+    │   ├───login
+    │   ├───not-found
+    │   ├───server-error
+    │   ├───shared
+    │   │   ├───exports
+    │   │   ├───guard
+    │   │   ├───modules
+    │   │   │   ├───auto-refresh
+    │   │   │   ├───control-avatar
+    │   │   │   ├───drag-drop-unique
+    │   │   │   ├───language-translation
+    │   │   │   ├───page-header
+    │   │   │   ├───stat
+    │   │   │   └───_modal
+    │   │   ├───pipes
+    │   │   ├───services
+    │   │   ├───validators
+    │   │   └───validatorsform
+    │   └───signup
+    ├───assets
+    │   ├───i18n
+    │   └───images
+    │       ├───about
+    │       ├───carousel
+    │       ├───logos
+    │       ├───portfolio
+    │       └───team
+    ├───environments
+    └───styles
+        └───bootstrap
+            ├───mixins
+            └───utilities
 ```
 
 ## Licence
