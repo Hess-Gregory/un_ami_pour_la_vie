@@ -179,7 +179,10 @@ module.exports = {
           shortDesc: req.body.shortDesc,
           newRegister: req.body.newRegister,
           longDesc: req.body.longDesc,
-          pachMedia: req.body.pachMedia
+          adProLat: req.body.adProLat,
+          adProLong: req.body.adProLong,
+          adPvLat: req.body.adPvLat,
+          adPvLong: req.body.adPvLong
         },
         { where: { id: req.params.id } }
       )

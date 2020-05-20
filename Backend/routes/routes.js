@@ -10,9 +10,12 @@ const uploadRoutes = require("../routes/upload.routes");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("../swagger/swagger");
 const userController = require("../controller/user.controller");
-
-// Tous les itinéraires sont définis ici.
+const mediaController = require("../controller/media.controller");
+const db = require("../models");
+const pictureUser = db.pictureUser;
 const router = express.Router();
+
+// Tous les itinéraires sont définis ici:
 
 router.get("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 router.use("/api-paths", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
@@ -43,6 +46,47 @@ router.use((req, res, next) => {
       }
       if (res.locals.session.role >= 2) {
         router.route("/users/profile").get(userController.getProfile);
+        router.post(
+          "/userpicture/:id",
+          mediaController.uploadUsers.array("avatar", 6),
+          (req, res, next) => {
+            const url = req.protocol + "://" + req.get("host");
+
+            var allPicture = [];
+            for (var i = 0; i < req.files.length; i++) {
+              var pictureObj = {
+                id_user: req.params.id,
+                url: url + mediaController.DIRUsers + req.files[i].filename,
+                name: req.files[i].filename
+              };
+
+              allPicture.push(pictureObj);
+            }
+            return pictureUser
+              .bulkCreate(allPicture, {
+                returning: true
+              })
+              .then(function(dbPictures) {
+                // res.status(201).json({
+                //   message: "Téléchargement terminé!",
+                //   PictureCreated: {
+                //     id: result.id,
+                //     id_user: req.params.id,
+                //     name: result.name,
+                //     url: result.url,
+                //     description: result.description,
+                //     active: req.body.active
+                //   }
+                res.json(dbPictures);
+              })
+              .catch(function(err) {
+                console.log(err),
+                  res.status(500).json({
+                    error: err
+                  });
+              });
+          }
+        );
       }
       if (res.locals.session.role >= 3) {
         router.use("/admins", adminRoutes);

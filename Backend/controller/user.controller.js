@@ -117,7 +117,10 @@ module.exports = {
           contWebsite: req.body.contWebsite,
           shortDesc: req.body.shortDesc,
           longDesc: req.body.longDesc,
-          pachMedia: req.body.pachMedia
+          adProLat: req.body.adProLat,
+          adProLong: req.body.adProLong,
+          adPvLat: req.body.adPvLat,
+          adPvLong: req.body.adPvLong
         },
         {
           where: {
@@ -201,7 +204,10 @@ module.exports = {
           contWebsite: userdata.contWebsite,
           shortDesc: userdata.shortDesc,
           longDesc: userdata.longDesc,
-          pachMedia: userdata.pachMedia
+          adProLat: userdata.adProLat,
+          adProLong: userdata.adProLong,
+          adPvLat: userdata.adPvLat,
+          adPvLong: userdata.adPvLong
         })
         //     .then((userdata) => {
         //         res.status(200).send({database:'L\'inscription est OK'});

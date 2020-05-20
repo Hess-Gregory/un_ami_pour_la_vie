@@ -95,6 +95,14 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.STRING(60),
         allowNull: true
       },
+      adPvLat: {
+        type: DataTypes.DECIMAL(10, 8),
+        allowNull: true
+      },
+      adPvLong: {
+        type: DataTypes.DECIMAL(11, 8),
+        allowNull: true
+      },
       firm: {
         type: DataTypes.STRING(255),
         allowNull: true
@@ -121,6 +129,14 @@ module.exports = function(sequelize, DataTypes) {
       },
       adProCountry: {
         type: DataTypes.STRING(60),
+        allowNull: true
+      },
+      adProLat: {
+        type: DataTypes.DECIMAL(10, 8),
+        allowNull: true
+      },
+      adProLong: {
+        type: DataTypes.DECIMAL(11, 8),
         allowNull: true
       },
       contPhonePro: {

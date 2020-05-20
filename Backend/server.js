@@ -37,9 +37,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(methodOverride());
 app.use(cors());
-app.use(fileUpload());
 
 app.use("/api", routes);
+// Make Images "Uploads" Folder Publicly Available
+app.use("/public", express.static("public"));
 
 app.use((err, req, res, next) => {
   if (err instanceof expressValidation.ValidationError) {
@@ -75,7 +76,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-const PORT = 4000;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(
     "La magie se passe sur le port : ",

@@ -14,7 +14,6 @@ module.exports = {
    */
   login(req, res, next) {
     //console.log(User.generatePassword(req.body.password));
-
     Login.getByEmail(req.body.email)
       .then(foundUser => {
         if (!foundUser) {

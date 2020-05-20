@@ -63,9 +63,9 @@ module.exports = function(sequelize, DataTypes) {
   login.prototype.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
   };
+
   login.prototype.safeModel = function() {
     return _.omit(this.toJSON(), ["password"]);
   };
-
   return login;
 };
