@@ -1,0 +1,72 @@
+<div class="container-fluid fileUploadWrapper">
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="col-md-12">
+        <div
+          class="fileupload"
+          appDragDropFileUpload
+          (click)="fileField.click()"
+          (fileDropped)="upload($event)"
+        >
+          <span *ngIf="new" class="ddinfo"
+            >Choisir des images ou glissez les ici</span
+          >
+          <span *ngIf="!new" class="ddinfo">Choisir d'autres images</span>
+          <input
+            type="file"
+            name="avatars"
+            #fileField
+            (change)="upload($event.target.files)"
+            hidden
+            multiple
+          />
+        </div>
+      </div>
+    </div>
+    <!-- Progress Bar -->
+    <div class="col-md-12" *ngIf="progress">
+      <div class="progress form-group">
+        <div
+          class="progress-bar progress-bar-striped bg-success"
+          role="progressbar"
+          [style.width.%]="progress"
+        ></div>
+      </div>
+    </div>
+    <div class="row send-serve" *ngIf="fileArrValid">
+      <button
+        class="btn btn-primary valid-btn"
+        (click)="onSubmit($event)"
+        *ngIf="fileArrValid"
+      >
+        Envoyer sur le serveur
+      </button>
+      <div class="col-md-12 d1">
+        <div
+          class="col-md-3 d2 center"
+          *ngFor="let file of fileArr; let i = index"
+        >
+          <img class="image" [src]="sanitize(file['url'])" alt="" />
+          <div class="image-list">
+            <p>{{ file.item.name }}</p>
+          </div>
+          <label for="description">Nom de l'image : </label>
+          <div class="input-group">
+            <input
+              type="text"
+              name="description"
+              formControlName="description"
+              [value]="titleImg(file.item.name)"
+              class="form-control form-control-user"
+              [placeholder]=""
+              (change)="onSubmit($event.target.files)"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="okmsg">
+      <p class="message">{{ msg }}</p>
+    </div>
+  </form>
+</div>

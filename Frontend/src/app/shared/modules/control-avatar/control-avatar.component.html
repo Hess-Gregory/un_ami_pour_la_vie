@@ -1,0 +1,188 @@
+<p>{{ pictureActive2 }}</p>
+<p>{{ activeExist }}</p>
+<div class="image-preview mb-3 picture-user gradient-box">
+  <!-- test ok
+    <div *ngIf="alertError1" class="card-body">
+        <p *ngFor="let alert of alerts1" class="alerts">
+          <ngb-alert [type]="alert.type" (close)="closeAlert1(alert)">
+            {{ alert.message }}
+          </ngb-alert>
+        </p>
+      </div> -->
+  <div *ngIf="activeExist">
+    <p>{{ activePicture.url }}</p>
+    <img
+      class="picture d-block mx-auto mb-4"
+      src="{{ activePicture.url }}"
+      alt="{{ activePicture.description }}"
+    />
+    <p>{{ activePicture.url }}</p>
+  </div>
+  <div *ngFor="let picture of activePicture">
+    <img
+      class="picture d-block mx-auto mb-4"
+      src="{{ picture.url }}"
+      alt="{{ picture.description }}"
+    />
+    <p>{{ picture.url }}</p>
+  </div>
+
+  <div *ngFor="let item of disablePicture">
+    <p>{{ item.url }}</p>
+  </div>
+</div>
+<!-- <div *ngIf='!isLoading'>
+    test non
+</div> -->
+<!--
+<div class="margin-auto demo-div box-shadow" [ngStyle]="{'width':sliderWidth+'px', 'min-height': sliderImageHeight+'px'}">
+
+    <ng-image-slider
+[images]="imageObject"
+[infinite]="sliderInfinite"
+[imagePopup]="sliderImagePopup"
+[showArrow]="sliderArrowShow"
+[imageSize]="{width: sliderImageWidth, height: sliderImageHeight}"
+[autoSlide]="sliderAutoSlide ? 1 : 0"
+[slideImage]="sliderSlideImage"
+[animationSpeed]="sliderAnimationSpeed"
+class="col-4"
+*ngIf="pictureObjet1" #nav></ng-image-slider>
+
+
+</div>
+
+<div class="col-md-12">
+    <ngb-carousel>
+        <ng-template ngbSlide *ngFor="let slider of sliders">
+            <img class="img-fluid mx-auto d-block col-3" [src]="slider.image" alt="Random first slide" width="100%">
+           <div class="row send-serve">
+                <div class="d1">
+                    <div class="flex">
+                        <div class="d2 center">
+                            <form (ngSubmit)="activate(slider.id)">
+                                <img class="pictures2 d-block mx-auto mb-4 image img-fluid"
+                                [src]="slider.image"
+                                />
+
+                                <div class="flex image-list">
+                                    <button class="btn btn-success valid-btn" type="button" type="submit">
+                                        activer
+                                    </button>
+                                    <button class="btn btn-danger valid-btn" (click)="delete(slider.id)">
+                                        supprimer
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </ngb-carousel>
+</div>
+
+
+
+<div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item" *ngFor="let slider of sliders">
+        <div class="row send-serve">
+            <div class="d1">
+                <div class="flex">
+                    <div class="d2 center">
+                        <form (ngSubmit)="activate(slider.id)">
+                            <img class="pictures2 d-block mx-auto mb-4 image img-fluid"
+                            [src]="slider.image"/>
+                            <div class="flex image-list">
+                                <button class="btn btn-success valid-btn" type="button" type="submit">
+                                    activer
+                                </button>
+                                <button class="btn btn-danger valid-btn" (click)="delete(slider.id)">
+                                    supprimer
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>-->
+
+<!--   <swiper  [config]="config" *ngIf="disablePicture.length != 0">
+<div class="swiper-wrapper">
+    <div class="swiper-slide">
+        <div class="row send-serve">
+            <div class="d1">
+                <div class="flex">
+                    <div class="d2 center">
+                        <p>{{slide}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+       <div  *ngFor="let slide of imageObject">
+            <div class="row send-serve">
+                <div class="d1">
+                    <div class="flex">
+                        <div class="d2 center">
+                            <form (ngSubmit)="activate(picture.id)">
+                                <img class="pictures2 d-block mx-auto mb-4 image img-fluid"
+                                [src]="slide.image"
+                                />
+
+                                <div class="flex image-list">
+                                    <button class="btn btn-success valid-btn" type="button" type="submit">
+                                        activer
+                                    </button>
+                                    <button class="btn btn-danger valid-btn" (click)="delete(picture.id)">
+                                        supprimer
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+    <div class="swiper-scrollbar"></div>
+
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </swiper>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-10 offset-1">
+
+        <owl-carousel-o [options]="customOptions" (translated)="getPassedData($event)">
+
+          <ng-container *ngFor="let item of disablePicture">
+            <ng-template carouselSlide >
+              <div class="slider">
+                <p>{{item.image}}</p>
+
+              </div><!-- /.carousel-item team-member -->
+<!--  </ng-template>
+          </ng-container>
+
+        </owl-carousel-o>-->
+
+<!-- </div>  /.col-sm-10 col-sm-offset-1
+
+    </div>  row
+
+  </div>
+</div>-->
