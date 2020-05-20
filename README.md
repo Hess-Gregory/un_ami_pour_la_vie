@@ -151,6 +151,125 @@ Password:
 
 <a name="caractéristiques"></a>
 
+## Directory Layout
+```
+├───e2e                     
+│   └───src                 
+│       └───.history        
+└───src                     
+    ├───.history            
+    │   ├───app             
+    │   │   ├───admin       
+    │   │   │   ├───dashboar
+    │   │   │   └───users   
+    │   │   │       └───user
+    │   │   │           ├───
+    │   │   │           ├───
+    │   │   │           ├───
+    │   │   │           └───
+    │   │   └───shared      
+    │   │       ├───exports 
+    │   │       ├───modules 
+    │   │       │   └───cont
+    │   │       └───validato
+    │   └───environments    
+    ├───app                 
+    │   ├───.history        
+    │   │   ├───home        
+    │   │   │   └───componen
+    │   │   │       └───navb
+    │   │   └───layout      
+    │   │       ├───componen
+    │   │       │   └───side
+    │   │       └───users   
+    │   │           └───user
+    │   ├───access-denied   
+    │   ├───admin           
+    │   │   ├───blank-page  
+    │   │   ├───breadcrumb  
+    │   │   ├───bs-component
+    │   │   │   └───componen
+    │   │   │       ├───aler
+    │   │   │       ├───butt
+    │   │   │       ├───coll
+    │   │   │       ├───date
+    │   │   │       ├───drop
+    │   │   │       ├───moda
+    │   │   │       ├───pagi
+    │   │   │       ├───pop-
+    │   │   │       ├───prog
+    │   │   │       ├───rati
+    │   │   │       ├───tabs
+    │   │   │       ├───time
+    │   │   │       └───tool
+    │   │   ├───bs-element  
+    │   │   ├───charts      
+    │   │   ├───components  
+    │   │   │   ├───header  
+    │   │   │   └───sidebar 
+    │   │   ├───dashboard   
+    │   │   │   └───componen
+    │   │   │       ├───chat
+    │   │   │       ├───noti
+    │   │   │       └───time
+    │   │   ├───form        
+    │   │   ├───grid        
+    │   │   ├───tables      
+    │   │   └───users       
+    │   │       ├───address-
+    │   │       ├───admin-ma
+    │   │       ├───services
+    │   │       │   └───jumb
+    │   │       ├───users-ac
+    │   │       ├───users-in
+    │   │       ├───users-li
+    │   │       └───users-ma
+    │   │           ├───user
+    │   │           ├───user
+    │   │           ├───user
+    │   │           ├───user
+    │   │           └───user
+    │   ├───home            
+    │   │   ├───components  
+    │   │   │   ├───footer  
+    │   │   │   ├───header  
+    │   │   │   ├───navbar  
+    │   │   │   └───timer   
+    │   │   └───homepage    
+    │   ├───login           
+    │   ├───not-found       
+    │   ├───server-error    
+    │   ├───shared          
+    │   │   ├───exports     
+    │   │   ├───guard       
+    │   │   ├───modules     
+    │   │   │   ├───auto-ref
+    │   │   │   ├───control-
+    │   │   │   ├───drag-dro
+    │   │   │   ├───language
+    │   │   │   ├───page-hea
+    │   │   │   ├───stat    
+    │   │   │   └───_modal  
+    │   │   ├───pipes       
+    │   │   ├───services    
+    │   │   ├───validators  
+    │   │   └───validatorsfo
+    │   └───signup          
+    ├───assets              
+    │   ├───i18n            
+    │   └───images          
+    │       ├───about       
+    │       ├───carousel    
+    │       ├───logos       
+    │       ├───portfolio   
+    │       └───team        
+    ├───environments        
+    └───styles              
+        └───bootstrap       
+            ├───mixins      
+            └───utilities  
+```
+
 ## Licence
 
 Ce projet est sous licence MIT - voir le fichier [LICENSE.md](https://github.com/Hess-Gregory/un_ami_pour_la_vie/blob/master/LICENSE) pour plus de détails.
