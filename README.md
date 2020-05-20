@@ -12,6 +12,9 @@ We are looking for volunteers to work on this project.
 If you have in-depth knowledge of Angular and NodeJS, you are welcome.
 You can contact me, see at the bottom of the page.
 
+The association is registered by a VAT number in Belgium under the status of "ASBL"
+Any financial donation will be welcome so that the association can see the light of day, the association is also looking for one ground in Wallonia (Belgium). -> www.unamipourlavie.be
+
 
 # Projet Site Web pour l'ABSL - Un Ami Pour La Vie
 
