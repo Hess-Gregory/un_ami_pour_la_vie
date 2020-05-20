@@ -23,7 +23,7 @@
 
 ## Versioning
 
-Nous utilisons GitHub pour la gestion des versions. Pour les versions disponibles, voir les Tags sur ce [référentiel](https://github.com/Hess-Gregory/uaplv/tags).
+Nous utilisons GitHub pour la gestion des versions. Pour les versions disponibles, voir les Tags sur ce [référentiel](https://github.com/Hess-Gregory/un_ami_pour_la_vie/tags).
 
 <a name="équipe"></a>
 
@@ -39,7 +39,7 @@ Nous utilisons GitHub pour la gestion des versions. Pour les versions disponible
 
 ### Contribuant
 
-Voir aussi la liste des [contributeurs](https://github.com/Hess-Gregory/uaplv/graphs/contributors) ayant participé à ce projet.
+- **HESS Gregory** - _Full Stack Developer_ - [FullHestack](https://github.com/Hess-Gregory)
 
 <a name="installation"></a>
 
@@ -142,10 +142,12 @@ Ce projet est sous licence MIT - voir le fichier [LICENSE.md](https://github.com
 ## Support
 
 Des problèmes avec cette page? Découvrez nos [documentation](https://help.github.com/categories/github-pages-basics/).
+Des problèmes avec ce repo? Contactez-moi (https://www.hess-gregory.be/).
+
 <a name="contact"></a>
 
 ## Contact
-
+info@hess-gregory.be
 [contact](https://github.com/contact) ici nous vous aiderons à résoudre votre problèmes.
 
 <a name="remerciements"></a>
