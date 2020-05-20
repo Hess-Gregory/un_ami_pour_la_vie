@@ -1,43 +1,39 @@
-<div *ngIf="loading" class="spinner">
-    <img
-      class="dog"
-      src="./assets/images/loading-dog.gif"
-      style="width: 10vw;text-align: center;
-           display: block; vertical-align: middle; margin: auto; margin-top: 25%; margin-bottom: 25%;"
-      alt=""
-    />
-  </div>
-  <div *ngIf="ErrorStatus" class="card-body">
-    <p *ngFor="let alert of alerts">
-      <ngb-alert [type]="alert.type" (close)="closeAlert(alert)"
-        >Erreur {{ ErrorStatus }} : {{ ErrorstatusText }}</ngb-alert
-      >
+<div *ngIf="isLoadingResults && !ErrorValid && !alertError" class="spinner">
+  <img
+    class="dog"
+    src="./assets/images/loading-dog.gif"
+    style="width: 10vw;text-align: center;
+       display: block; vertical-align: middle; margin: auto; margin-top: 25%; margin-bottom: 25%;"
+    alt=""
+  />
+</div>
+<div class="container-fluid">
+  <router-outlet *ngIf="ErrorValid"> </router-outlet>
+  <div *ngIf="alertError" class="card-body">
+    <p *ngFor="let alert of alerts" class="alerts">
+      <ngb-alert [type]="alert.type" (close)="closeAlert(alert)">
+        {{ alert.code }} - {{ alert.message }}
+      </ngb-alert>
     </p>
   </div>
-  <div *ngIf="!loading" class="container-fluid">
+
+  <div *ngIf="!alertError && !isLoadingResults">
     <div class="text-center">
       <h2>
         Fiche de l'utilisateur :<br />
-        {{ users.username }}
+        {{ user.username }}
       </h2>
       <div class="image-preview mb-3 picture-user gradient-box">
         <img
-          *ngIf="users.pachMedia"
           class="picture d-block mx-auto mb-4"
-          src="{{ users.pachMedia }}"
-          alt=""
-        />
-        <img
-          *ngIf="!users.pachMedia"
-          class="picture d-block mx-auto mb-4"
-          src="./../../../../../assets/images/user-male-circle.png"
-          alt=""
+          src="{{ activePicture.url }}"
+          alt="{{ activePicture.description }}"
         />
       </div>
 
       <p class="lead">
         Inscrit depuis
-        {{ users.created_date | date: 'EEEE, d MMMM y à h:mm' }}
+        {{ user.created_date | date: 'EEEE, d MMMM y à h:mm' }}
       </p>
       <br />
       <app-user-controls></app-user-controls>
@@ -59,9 +55,8 @@
               <input
                 class="form-control"
                 type="text"
-                value="{{ users.username }}"
+                value="{{ user.username }}"
                 disabled
-                required
               />
             </div>
           </div>
@@ -70,9 +65,8 @@
             <input
               type="email"
               class="form-control"
-              value="{{ users.email }}"
+              value="{{ user.email }}"
               disabled
-              required
             />
           </div>
           <div class="row row100 col-md-12 pr-0">
@@ -80,7 +74,7 @@
               <label for="ROLE_idROLE">Rôle</label>
               <input
                 type="text"
-                value="{{ status.roleName }}"
+                value="{{ statusUser.roleName }}"
                 class="form-control"
                 name="ROLE_idROLE"
                 disabled
@@ -91,9 +85,8 @@
               <input
                 name="isActive"
                 class="form-control"
-                value="{{ status.status }}"
+                value="{{ statusUser.status }}"
                 disabled
-                required
               />
             </div>
           </div>
@@ -105,14 +98,14 @@
         <div class="custom-control custom-switch">
           <input
             type="checkbox"
-            value="{{ users.adressbook }}"
             data-toggle="toggle"
             class="custom-control-input"
             id="customSwitches"
+            [checked]="user.adressbook"
             disabled
           />
           <label class="custom-control-label" for="customSwitches"
-            >Ajouter au carnet d'adresse</label
+            >Dans le carnet d'adresse ?</label
           >
         </div>
         <hr class="mb-4" />
@@ -124,9 +117,8 @@
                 type="text"
                 name="FirstName"
                 class="form-control"
-                value="{{ users.firstName }}"
+                value="{{ user.firstName }}"
                 disabled
-                required
               />
             </div>
             <div class="col-md-6 mb-3 pr-0">
@@ -135,9 +127,8 @@
                 type="text"
                 name="lastName"
                 class="form-control"
-                value="{{ users.lastName }}"
+                value="{{ user.lastName }}"
                 disabled
-                required
               />
             </div>
           </div>
@@ -146,7 +137,7 @@
               <label for="birthday">Date de naissance</label>
               <input
                 class="form-control"
-                value="{{ users.birthday | date: 'd MMMM y' }}"
+                value="{{ user.birthday | date: 'd MMMM y' }}"
                 type="$birthdaytype"
                 name="birthday"
                 disabled
@@ -156,7 +147,7 @@
               <label for="sexGenre">Sexe</label>
               <input
                 type="text"
-                value="{{ users.sexGenre }}"
+                value="{{ user.sexGenre }}"
                 name="sexGenre"
                 class="form-control"
                 disabled
@@ -169,13 +160,14 @@
           Adresse Privée
         </h4>
         <hr class="mb-4" />
+
         <div class="row">
           <div class="row  row100 col-md-12 pr-0">
             <div class="col-md-2 mb-3 pr-0">
               <label for="adPvNum">Numéro et boite</label>
               <input
                 type="text"
-                value="{{ users.adPvNum }}"
+                value="{{ user.adPvNum }}"
                 class="form-control"
                 name="adPvNum"
                 disabled
@@ -185,7 +177,7 @@
               <label for="adPvStreet">Rue</label>
               <input
                 type="text"
-                value="{{ users.adPvStreet }}"
+                value="{{ user.adPvStreet }}"
                 class="form-control"
                 name="adPvStreet"
                 disabled
@@ -197,7 +189,7 @@
               <label for="adPvCountry">Choisir un pays</label>
               <input
                 type="text"
-                value="{{ users.adPvCountry }}"
+                value="{{ user.adPvCountry }}"
                 class="form-control"
                 name="adPvCountry"
                 disabled
@@ -207,7 +199,7 @@
               <label for="adPvZip">Code Postal</label>
               <input
                 type="text"
-                value="{{ users.adPvZip }}"
+                value="{{ user.adPvZip }}"
                 class="form-control"
                 name="adPvZip"
                 disabled
@@ -217,12 +209,50 @@
               <label for="adPvCity">Ville</label>
               <input
                 type="text"
-                value="{{ users.adPvCity }}"
+                value="{{ user.adPvCity }}"
                 class="form-control"
                 name="adPvCity"
                 disabled
               />
             </div>
+          </div>
+          <div class="row  row100 col-md-12 pr-0" *ngIf="latitude && longitude">
+            <mat-accordion>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <span class="input-group-text mapperIcon"
+                      ><i class="fa fa-map-marker" aria-hidden="true"></i
+                    ></span>
+                    Visible sur Google Map
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    (Adresse Privée)
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div
+                  class="container"
+                  fxLayout="column"
+                  fxLayoutAlign="center"
+                  *ngIf="GoogleLoading"
+                >
+                  <div fxFlex>
+                    <agm-map
+                      [latitude]="latitude"
+                      [longitude]="longitude"
+                      [scrollwheel]="false"
+                      [zoom]="zoom"
+                    >
+                      <agm-marker
+                        [latitude]="latitude"
+                        [longitude]="longitude"
+                        [markerDraggable]="true"
+                      ></agm-marker>
+                    </agm-map>
+                  </div>
+                </div>
+              </mat-expansion-panel>
+            </mat-accordion>
           </div>
         </div>
         <hr class="mb-4" />
@@ -235,7 +265,7 @@
             <label for="firm">Société </label>
             <input
               type="text"
-              value="{{ users.firm }}"
+              value="{{ user.firm }}"
               class="form-control"
               name="firm"
               disabled
@@ -245,7 +275,7 @@
             <label for="tva">Numéro de TVA </label>
             <input
               type="text"
-              value="{{ users.tva }}"
+              value="{{ user.tva }}"
               class="form-control"
               name="tva"
               disabled
@@ -256,7 +286,7 @@
               <label for="adProNum">Numéro et boite</label>
               <input
                 type="text"
-                value="{{ users.adProNum }}"
+                value="{{ user.adProNum }}"
                 class="form-control"
                 name="adProNum"
                 disabled
@@ -266,7 +296,7 @@
               <label for="adProStreet">Rue</label>
               <input
                 type="text"
-                value="{{ users.adProStreet }}"
+                value="{{ user.adProStreet }}"
                 class="form-control"
                 name="adProStreet"
                 disabled
@@ -277,7 +307,7 @@
             <div class="col-md-5 mb-3 pr-0">
               <label for="adProCountry">Choisir un pays</label>
               <input
-                value="{{ users.adProCountry }}"
+                value="{{ user.adProCountry }}"
                 class="form-control"
                 name="adProCountry"
                 disabled
@@ -286,7 +316,7 @@
             <div class="col-md-4 mb-3 pr-0">
               <label for="adProZip">Code Postal</label>
               <input
-                value="{{ users.adProZip }}"
+                value="{{ user.adProZip }}"
                 type="text"
                 class="form-control"
                 name="adProZip"
@@ -297,12 +327,54 @@
               <label for="adProCity">Ville</label>
               <input
                 type="text"
-                value="{{ users.adProCity }}"
+                value="{{ user.adProCity }}"
                 class="form-control"
                 name="adProCity"
                 disabled
               />
             </div>
+          </div>
+
+          <div
+            class="row  row100 col-md-12 pr-0"
+            *ngIf="latitude2 && longitude2"
+          >
+            <mat-accordion>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <span class="input-group-text mapperIcon"
+                      ><i class="fa fa-map-marker" aria-hidden="true"></i
+                    ></span>
+                    Visible sur Google Map
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    (Adresse Professionnelle)
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div
+                  class="container"
+                  fxLayout="column"
+                  fxLayoutAlign="center"
+                  *ngIf="GoogleLoading"
+                >
+                  <div fxFlex>
+                    <agm-map
+                      [latitude]="latitude2"
+                      [longitude]="longitude2"
+                      [scrollwheel]="false"
+                      [zoom]="zoom"
+                    >
+                      <agm-marker
+                        [latitude]="latitude2"
+                        [longitude]="longitude2"
+                        [markerDraggable]="true"
+                      ></agm-marker>
+                    </agm-map>
+                  </div>
+                </div>
+              </mat-expansion-panel>
+            </mat-accordion>
           </div>
         </div>
         <hr class="mb-4" />
@@ -316,7 +388,7 @@
               <label for="contPhonePv">Télèphone privé</label>
               <input
                 type="tel"
-                value="{{ users.contPhonePv }}"
+                value="{{ user.contPhonePv }}"
                 name="contPhonePv"
                 class="form-control"
                 disabled
@@ -326,7 +398,7 @@
               <label for="contPhoneGsm">GSM</label>
               <input
                 type="tel"
-                value="{{ users.contPhoneGsm }}"
+                value="{{ user.contPhoneGsm }}"
                 name="contPhoneGsm"
                 class="form-control"
                 disabled
@@ -336,7 +408,7 @@
               <label for="contPhonePro">Télèphone (bureau)</label>
               <input
                 type="tel"
-                value="{{ users.contPhonePro }}"
+                value="{{ user.contPhonePro }}"
                 name="contPhonePro"
                 class="form-control"
                 disabled
@@ -348,10 +420,10 @@
           <div class="row row100  col-md-12 pr-0">
             <div class="col-md-6 mb-3 pr-0">
               <label for="contFacebook">Facebook</label
-              ><a href="{{ users.contFacebook }}">
+              ><a href="{{ user.contFacebook }}">
                 <input
                   type="url"
-                  value="{{ users.contFacebook }}"
+                  value="{{ user.contFacebook }}"
                   name="contFacebook"
                   class="form-control"
                   disabled
@@ -359,10 +431,10 @@
             </div>
             <div class="col-md-6 mb-3 pr-0">
               <label for="contWebsite">Site Web</label
-              ><a href="{{ users.contWebsite }}">
+              ><a href="{{ user.contWebsite }}">
                 <input
                   type="url"
-                  value="{{ users.contWebsite }}"
+                  value="{{ user.contWebsite }}"
                   name="contWebsite"
                   class="form-control"
                   disabled
@@ -380,7 +452,7 @@
             <label for="asbl">En rapport avec l'ASBL </label>
             <input
               type="text"
-              value="{{ users.asbl }}"
+              value="{{ user.asbl }}"
               class="form-control"
               name="asbl"
               disabled
@@ -389,7 +461,7 @@
           <div class="mb-3 col-md-12">
             <label for="shortDesc">Petite description </label>
             <textarea
-              value="{{ users.shortDesc }}"
+              value="{{ user.shortDesc }}"
               class="form-control"
               name="shortDesc"
               rows="3"
@@ -400,7 +472,7 @@
             <label for="longDesc">Autre information</label>
             <textarea
               class="form-control"
-              value="{{ users.longDesc }}"
+              value="{{ user.longDesc }}"
               name="longDesc"
               rows="7"
               disabled
@@ -410,5 +482,4 @@
       </div>
     </div>
   </div>
-
-  >
+</div>

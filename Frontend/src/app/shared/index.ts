@@ -4,3 +4,4 @@ export * from './guard';
 export * from './services/user.service';
 export * from './exports';
 export * from './services/canonical.service';
+export * from './validatorsform';

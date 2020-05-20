@@ -17,3 +17,57 @@
 body.push-right .main-container {
   padding-left: 260px;
 }
+.fab {
+  display: inline-block !important;
+  font: normal normal normal 14px/1 FontAwesome !important;
+  font-size: inherit !important;
+  text-rendering: auto !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+.fas {
+  font-weight: 900;
+  display: inline-block !important;
+  font: normal normal normal 14px/1 FontAwesome !important;
+  font-size: inherit !important;
+  text-rendering: auto !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  font-family: 'Font Awesome 5 Free';
+  -webkit-font-smoothing: antialiased;
+}
+a.px-3 {
+  background: #4285f4;
+  display: inline-block;
+  padding: 0;
+  margin: 10px;
+  overflow: hidden;
+  vertical-align: middle;
+  cursor: pointer;
+  border-radius: 50%;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease-in-out;
+  width: 47px;
+  height: 47px;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  display: inline-block;
+  width: inherit;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  .fas {
+    top: 26%;
+    position: relative;
+    margin: 0 auto;
+    left: 4%;
+  }
+}

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "test-ng7": {
+    "Un_Ami_Pour_La_Vie": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -20,10 +20,21 @@
             "styles": [
               "node_modules/primeng/resources/themes/nova-light/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
+
               "node_modules/froala-editor/css/froala_editor.pkgd.min.css",
               "node_modules/froala-editor/css/froala_style.min.css",
+
               "node_modules/font-awesome/css/font-awesome.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
+
+              "node_modules/angular-bootstrap-md/assets/scss/bootstrap/bootstrap.scss",
+              "node_modules/angular-bootstrap-md/assets/scss/mdb.scss",
+
+              "node_modules/swiper/css/swiper.css",
+              "node_modules/animate.css/animate.min.css",
+              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
+              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css",
+
               "src/styles/app.scss"
             ],
             "scripts": [
@@ -34,7 +45,9 @@
               "node_modules/hammerjs/hammer.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "node_modules/headroom.js/dist/headroom.min.js",
-              "node_modules/headroom.js/dist/angular.headroom.min.js"
+              "node_modules/headroom.js/dist/angular.headroom.min.js",
+
+              "node_modules/swiper/js/swiper.js"
             ]
           },
           "configurations": {
@@ -57,8 +70,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+                  "maximumWarning": "15mb",
+                  "maximumError": "17mb"
                 }
               ]
             }
@@ -68,18 +81,18 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "port": 4100,
-            "browserTarget": "test-ng7:build"
+            "browserTarget": "Un_Ami_Pour_La_Vie:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "test-ng7:build:production"
+              "browserTarget": "Un_Ami_Pour_La_Vie:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "test-ng7:build"
+            "browserTarget": "Un_Ami_Pour_La_Vie:build"
           }
         },
         "test": {
@@ -106,7 +119,7 @@
         }
       }
     },
-    "test-ng7-e2e": {
+    "Un_Ami_Pour_La_Vie-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -115,25 +128,30 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "test-ng7:serve"
+            "devServerTarget": "Un_Ami_Pour_La_Vie:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "test-ng7:serve:production"
+              "devServerTarget": "Un_Ami_Pour_La_Vie:serve:production"
             }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.e2e.json",
+              "e2e/tsconfig.json"
+            ],
             "exclude": ["**/node_modules/**"]
           }
         }
       }
     }
   },
-  "defaultProject": "test-ng7",
+  "defaultProject": "Un_Ami_Pour_La_Vie",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",

@@ -9,11 +9,11 @@ import {
   MatDatepickerModule,
   MatNativeDateModule,
   MatInputModule,
-   MatIconModule
+  MatIconModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {AgmCoreModule} from '@agm/core';
+import { AgmCoreModule } from '@agm/core';
 import { UserDetailComponent } from './user-detail.component';
 import { UserDetailRoutingModule } from './user-detail-routing.module';
 import { UserControlsModule } from '../user-controls/user-controls.module';

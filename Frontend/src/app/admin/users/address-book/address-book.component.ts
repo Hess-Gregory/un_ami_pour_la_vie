@@ -21,7 +21,7 @@ export class AddressBookComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
-  title = 'Un Ami Pour La Vie - Admin : Carnet d\'adresses ';
+  title = "Un Ami Pour La Vie - Admin : Carnet d'adresses ";
   MyDataSource: any;
 
   displayedColumns: any[] = [
@@ -51,7 +51,7 @@ export class AddressBookComponent implements OnInit {
     private titleService: Title,
     private metaTagService: Meta
   ) {
-    sessionStorage.setItem('Module', 'Carnet d\'adresses');
+    sessionStorage.setItem('Module', "Carnet d'adresses");
     sessionStorage.setItem('typeIcon', 'Awesone');
     sessionStorage.setItem('nameIcon', 'fa fa-lg fa-address-book');
     // sessionStorage.setItem('typeIcon', 'MatIcons');
@@ -65,7 +65,7 @@ export class AddressBookComponent implements OnInit {
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag({
       name: 'description',
-      content: 'Un Ami Pour La Vie - Admin : Carnet d\'adresses '
+      content: "Un Ami Pour La Vie - Admin : Carnet d'adresses "
     });
   }
 

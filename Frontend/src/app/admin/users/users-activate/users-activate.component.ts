@@ -143,7 +143,7 @@ export class UsersActivateComponent implements OnInit {
         this.thisService.setActivate(post.id);
         alert('Parfait!! :-)\n\n vous avez activé ce membre');
       } else {
-        alert('Désolé!! :-(\n\n vous n\'avez pas la permission pour ce membre');
+        alert("Désolé!! :-(\n\n vous n'avez pas la permission pour ce membre");
       }
     }
     return this.post.idROLE;
@@ -169,7 +169,7 @@ export class UsersActivateComponent implements OnInit {
         this.thisService.setNotactivate(post.id);
         alert('Parfait!! :-)\n\n vous avez gelé ce membre');
       } else {
-        alert('Désolé!! :-(\n\n vous n\'avez pas la permission pour ce membre');
+        alert("Désolé!! :-(\n\n vous n'avez pas la permission pour ce membre");
       }
     }
     return this.post.idROLE;

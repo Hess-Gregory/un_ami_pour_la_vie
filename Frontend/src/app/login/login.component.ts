@@ -23,6 +23,7 @@ export interface Error {
 })
 export class LoginComponent implements OnInit {
   title = 'ASBL-Un Ami Pour La Vie (Login)';
+
   public email: string;
   public password: string;
   public objStringError: string;

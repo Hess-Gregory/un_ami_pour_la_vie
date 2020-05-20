@@ -13,3 +13,13 @@ export class Role {
   idROLE: number;
   roleName: number;
 }
+export class Picture {
+  id: number;
+  id_user: number;
+  name: string;
+  created_date: string;
+  updated_date: string;
+  description: string;
+  url: string;
+  active: number;
+}

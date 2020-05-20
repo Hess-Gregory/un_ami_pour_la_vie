@@ -23,8 +23,7 @@ export class UserAddService {
   parsesuccess: any;
   previouspage = true;
 
-  constructor(private http: HttpClient, private router: Router) {
-  }
+  constructor(private http: HttpClient, private router: Router) {}
 
   getRole() {
     return this.http.get<Role[]>('/api/users/role');
@@ -128,8 +127,9 @@ export class UserAddService {
               `Message: ${this.parsesuccess.message}.\n Identifiant: ${this.parsesuccess.id} \n Email :${this.parsesuccess.email}\nUsername : ${this.parsesuccess.username}`
             );
           }, 1500);
-          this.router.navigate([`admin/users/user-manager/user-get/${this.parsesuccess.id}`]);
-
+          this.router.navigate([
+            `admin/users/user-manager/user-get/${this.parsesuccess.id}`
+          ]);
         },
         error => {
           let timeoutId;

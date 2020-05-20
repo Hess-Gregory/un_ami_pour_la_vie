@@ -1,115 +1,127 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+/// <reference types="@types/googlemaps" />
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserDetailService } from './user-detail.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { NgForm } from '@angular/forms';
 import { Title, Meta } from '@angular/platform-browser';
+
 declare let $: any;
 
 @Component({
   selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',
   providers: [HttpClient],
-  styleUrls: ['./user-detail.component.scss']
+  styleUrls: ['./user-detail.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class UserDetailComponent implements OnInit {
+  id: string = this.activatedRoute.snapshot.paramMap.get('id');
   title = 'Un Ami Pour La Vie - Admin : Détails Utilisateur';
-  loading = true;
-  previewUrl: any = null;
-  [x: string]: any;
-  adressbook = false;
-  public objStringError: string;
-  public objError: any;
-  public ErrorstatusText: any;
-  public Errormessage: string;
-  public ErrorStatus: string;
+
+  isLoadingResults = true;
+  user: any = {};
+  statusUser: any = {};
+  activePicture: any = {};
+  adressbook: boolean;
+
   alerts: Array<any> = [];
-  users: any = [];
-  status: any = [];
+  ErrorValid = false;
+  alertError = false;
+  stringifyError: any;
+  parseError: any;
+  public ErrorCode: any;
+  public ErrorText: any;
+
+  // Google Map:
+  public GoogleLoading = false;
   fileData: File = null;
-  public id: string;
+  public zoom: number;
+  public latitudePv: any;
+  public longitudePv: any;
+  public latitude: number;
+  public longitude: number;
+  public latitudePro: any;
+  public longitudePro: any;
+  public latitude2: number;
+  public longitude2: number;
+  public latitudeCurrent: number;
+  public longitudeCurrent: number;
 
   constructor(
     private userservice: UserDetailService,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
     private titleService: Title,
+    private router: Router,
     private metaTagService: Meta
-  ) {
-    this.getUsers();
-    this.getStatus();
-    this.id = this.activatedRoute.snapshot.paramMap.get('id');
-    this.alerts.push({
-      id: 3,
-      type: 'danger',
-      message: 'this.Errormessage'
-    });
-  }
+  ) {}
 
   ngOnInit() {
     sessionStorage.setItem('page', 'user-get');
     this.titleService.setTitle(this.title);
     this.metaTagService.updateTag({
       name: 'description',
-      content: 'Un Ami Pour La Vie - Admin : Détails Utilisateur'
+      content: `Les details de l\'utilisateur : ${this.id} du panneau admin`
     });
+
+    this.setCurrentPosition();
+    this.getAllurl();
+    setTimeout(() => {
+      this.latitude = parseFloat(this.latitudePv);
+      this.longitude = parseFloat(this.longitudePv);
+      this.latitude2 = parseFloat(this.latitudePro);
+      this.longitude2 = parseFloat(this.longitudePro);
+    }, 500);
+    setTimeout(() => {
+      this.GoogleLoading = true;
+    }, 1000);
+    this.zoom = 12;
   }
 
-  getUsers() {
+  getAllurl() {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
-    this.userservice.getUsers(this.id).subscribe(
-      response => {
-        this.loading = false;
-        this.users = response;
-        this.stringifyUsers = JSON.stringify(this.users);
-        this.parseUsers = JSON.parse(this.stringifyUsers);
-        this.adressbook = this.parseUsers.adressbook;
-        this.user_id = this.parseUsers.id;
+    this.userservice.getAllurl(this.id).subscribe(
+      res => {
+        this.activePicture = res[0];
+        this.statusUser = res[1];
+        this.user = res[2];
+        this.adressbook = this.user.adressbook;
+        this.latitudePv = this.user.adPvLat;
+        this.longitudePv = this.user.adPvLong;
+        this.latitudePro = this.user.adProLat;
+        this.longitudePro = this.user.adProLong;
+        this.isLoadingResults = false;
       },
-      error => {
-        this.objStringError = JSON.stringify(error);
-        this.objError = JSON.parse(this.objStringError);
-        this.ErrorStatus = this.objError.status;
-        this.ErrorstatusText = this.objError.statusText;
-        this.Errormessage = this.objError.message;
+      err => {
+        console.log(err);
+        this.stringifyError = JSON.stringify(err);
+        this.parseError = JSON.parse(this.stringifyError);
+        this.ErrorCode = this.parseError.status;
+        this.ErrorText = this.parseError.error.message;
+        this.alerts.push({
+          type: 'danger',
+          code: this.ErrorCode,
+          message: this.ErrorText
+        });
+        this.alertError = true;
+        this.isLoadingResults = false;
       }
     );
   }
 
-  getBook() {
-    return this.adressbook;
-  }
-  getStatus() {
-    this.id = this.activatedRoute.snapshot.paramMap.get('id');
-    this.userservice.getStatus(this.id).subscribe(
-      response => {
-        this.status = response;
-      },
-      error => {
-        this.objStringError = JSON.stringify(error);
-        this.objError = JSON.parse(this.objStringError);
-        this.ErrorStatus = this.objError.status;
-        this.ErrorstatusText = this.objError.statusText;
-        this.Errormessage = this.objError.message;
-      }
-    );
-  }
-
-  preview() {
-    // Show preview
-    const mimeType = this.fileData.type;
-    if (mimeType.match(/image\/*/) == null) {
-      return;
+  private setCurrentPosition() {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(position => {
+        this.latitudeCurrent = position.coords.latitude;
+        this.longitudeCurrent = position.coords.longitude;
+        this.zoom = 12;
+      });
     }
-
-    const reader = new FileReader();
-    reader.readAsDataURL(this.fileData);
-    reader.onload = _event => {
-      this.previewUrl = reader.result;
-    };
   }
-  public closeAlert(alert: any) {
+
+  closeAlert(alert: any) {
+    this.ErrorValid = true;
     const index: number = this.alerts.indexOf(alert);
     this.alerts.splice(index, 1);
+    this.router.navigate(['admin/users/users-info/not-found']);
   }
 }

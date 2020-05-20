@@ -15,7 +15,11 @@ import {
 } from './../../../../shared/validators';
 import { Title, Meta } from '@angular/platform-browser';
 import { HttpEvent, HttpClient, HttpEventType } from '@angular/common/http';
-import {Appearance, GermanAddress, Location} from '@angular-material-extensions/google-maps-autocomplete';
+import {
+  Appearance,
+  GermanAddress,
+  Location
+} from '@angular-material-extensions/google-maps-autocomplete';
 // import moment from 'moment';
 import { countryList } from '../../../../shared/exports/form-data';
 import { validationMsg } from './../../../../shared/validators/msg-validator-data';
@@ -29,7 +33,7 @@ declare let $: any;
   styleUrls: ['./user-update.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class UserUpdateComponent implements  OnInit {
+export class UserUpdateComponent implements OnInit {
   title = 'Un Ami Pour La Vie - Admin : Modification Utilisateur ';
   loading = true;
   locked = false;
@@ -45,15 +49,15 @@ export class UserUpdateComponent implements  OnInit {
   public error: Error;
   alerts: Array<any> = [];
   users: any = [];
-    firm1 ='';
+  firm1 = '';
   adProNum1: any;
-  adProStreet1 ='';
+  adProStreet1 = '';
   adProZip1: any;
   adProCity1: any;
-  countrypro1 ='';
-  countrypro ='';
+  countrypro1 = '';
+  countrypro = '';
   adPvNum1: any;
-  adPvStreet1 ='';
+  adPvStreet1 = '';
   adPvZip1: any;
   adPvCity1: any;
   countryprivate: string[];
@@ -120,14 +124,12 @@ export class UserUpdateComponent implements  OnInit {
   minDate = new Date(1910, 0, 1);
   maxDate = new Date(this.maxYearNow, this.MonthNow, this.DayNow);
 
-
   genders = ['Homme', 'Femme', 'Autre'];
 
   activateds = [
     { isActive: '0', name: 'Gelé' },
     { isActive: '1', name: 'Activé' }
   ];
-
 
   constructor(
     private userservice: UserUpdateService,
@@ -147,7 +149,6 @@ export class UserUpdateComponent implements  OnInit {
   }
 
   ngOnInit() {
-
     sessionStorage.setItem('page', 'user-update');
 
     this.getAllInfoUser();
@@ -163,20 +164,20 @@ export class UserUpdateComponent implements  OnInit {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
 
     this.userservice.getActivePictures(this.id).subscribe(
-        response => {
+      response => {
         this.activePictures = response;
         this.stringifyPicture = JSON.stringify(this.activePictures);
         this.parsePicture = JSON.parse(this.stringifyPicture);
         this.idPictureActive = this.parsePicture.id;
-        return this.activateExist = true;
-        },
-        error => {
+        return (this.activateExist = true);
+      },
+      error => {
         this.objStringError = JSON.stringify(error);
         this.objError = JSON.parse(this.objStringError);
         this.ErrorStatus = this.objError.status;
         this.ErrorstatusText = this.objError.statusText;
         this.Errormessage = this.objError.message;
-        }
+      }
     );
 
     this.userservice.getActivePicture(this.id).subscribe(
@@ -201,10 +202,9 @@ export class UserUpdateComponent implements  OnInit {
 
   createForms() {
     this.userDetailsForm = this.formbuilder.createFormsBuild;
-}
+  }
 
-
-  privateAdress($event: GermanAddress ) {
+  privateAdress($event: GermanAddress) {
     console.log('onGermanAddressMapped2', $event);
     console.log('onGermanAddressMapped2', $event.streetName);
     this.adPvNum1 = $event.streetNumber;
@@ -214,7 +214,7 @@ export class UserUpdateComponent implements  OnInit {
     this.adPvLat1 = $event.geoLocation.latitude;
     this.adPvLong1 = $event.geoLocation.longitude;
   }
-  onLocationSelected($event: GermanAddress ) {
+  onLocationSelected($event: GermanAddress) {
     console.log('onGermanAddressMapped2', $event);
     console.log('onGermanAddressMapped2', $event.name);
     this.firm1 = $event.name;
@@ -262,78 +262,114 @@ export class UserUpdateComponent implements  OnInit {
       value.lastName = this.user_lastName;
     }
     if (value.birthday === null || value.birthday === '' || !value.birthday) {
-    value.birthday = this.user_birthday;
+      value.birthday = this.user_birthday;
     }
     if (value.sexGenre === null || value.sexGenre === '' || !value.sexGenre) {
       value.sexGenre = this.user_sexGenre;
     }
 
-    if (value.adPvNum === null || value.adPvNum === '' || !value.adPvNum) {value.adPvNum = this.user_adPvNum; }
-   if (this.adPvNum1 && value.adPvNum === null) {
-
-        value.adPvNum = this.adPvNum1 ;
+    if (value.adPvNum === null || value.adPvNum === '' || !value.adPvNum) {
+      value.adPvNum = this.user_adPvNum;
+    }
+    if (this.adPvNum1 && value.adPvNum === null) {
+      value.adPvNum = this.adPvNum1;
     }
 
-
-    if ( value.adPvStreet === null ||value.adPvStreet === '' ||!value.adPvStreet) {value.adPvStreet = this.user_adPvStreet; }
-        if (this.adPvStreet1 && value.adPvStreet === null) {
-        value.adPvStreet = this.adPvStreet1 ;
+    if (
+      value.adPvStreet === null ||
+      value.adPvStreet === '' ||
+      !value.adPvStreet
+    ) {
+      value.adPvStreet = this.user_adPvStreet;
+    }
+    if (this.adPvStreet1 && value.adPvStreet === null) {
+      value.adPvStreet = this.adPvStreet1;
     }
 
+    if (
+      value.adPvCountry === null ||
+      value.adPvCountry === '' ||
+      value.adPvCountry
+    ) {
+      value.adPvCountry = this.user_adPvCountry;
+    }
 
-    if (value.adPvCountry === null ||value.adPvCountry === '' ||value.adPvCountry) { value.adPvCountry = this.user_adPvCountry; }
-
-
-
-    if (value.adPvZip === null || value.adPvZip === '' || !value.adPvZip) { value.adPvZip = this.user_adPvZip;}
+    if (value.adPvZip === null || value.adPvZip === '' || !value.adPvZip) {
+      value.adPvZip = this.user_adPvZip;
+    }
     if (this.adPvZip1 && value.adPvZip === null) {
-        value.adPvZip = this.adPvZip1 ;
-
+      value.adPvZip = this.adPvZip1;
     }
 
-    if (value.adPvCity === null || value.adPvCity === '' || !value.adPvCity) { value.adPvCity = this.user_adPvCity; }
+    if (value.adPvCity === null || value.adPvCity === '' || !value.adPvCity) {
+      value.adPvCity = this.user_adPvCity;
+    }
     if (this.adPvCity1 && value.adPvCity === null) {
-        value.adPvCity = this.adPvCity1 ;
+      value.adPvCity = this.adPvCity1;
     }
 
-
-    if (value.firm === null || value.firm === '' || !value.firm) { value.firm = this.user_firm;}
+    if (value.firm === null || value.firm === '' || !value.firm) {
+      value.firm = this.user_firm;
+    }
     if (this.firm1 && value.firm === null) {
-        value.firm = this.firm1 ;
+      value.firm = this.firm1;
     }
 
+    if (value.tva === null || value.tva === '' || !value.tva) {
+      value.tva = this.user_tva;
+    }
 
-    if (value.tva === null || value.tva === '' || !value.tva) { value.tva = this.user_tva; }
-
-    if (value.adProNum === null || value.adProNum === '' || !value.adProNum) { value.adProNum = this.user_adProNum; }
+    if (value.adProNum === null || value.adProNum === '' || !value.adProNum) {
+      value.adProNum = this.user_adProNum;
+    }
     if (this.adProNum1 && value.adProNum === null) {
-        value.adProNum = this.adProNum1 ;
+      value.adProNum = this.adProNum1;
     }
 
-
-    if ( value.adProStreet === null ||value.adProStreet === '' || !value.adProStreet ) {  value.adProStreet = this.user_adProStreet; }
+    if (
+      value.adProStreet === null ||
+      value.adProStreet === '' ||
+      !value.adProStreet
+    ) {
+      value.adProStreet = this.user_adProStreet;
+    }
     if (this.adProStreet1 && value.adProStreet === null) {
-        value.adProStreet = this.adProStreet1 ;
+      value.adProStreet = this.adProStreet1;
     }
 
+    if (
+      value.adProCountry === null ||
+      value.adProCountry === '' ||
+      !value.adProCountry
+    ) {
+      value.adProCountry = this.user_adProCountry;
+    }
 
-    if ( value.adProCountry === null || value.adProCountry === '' || !value.adProCountry ) { value.adProCountry = this.user_adProCountry; }
-
-
-
-    if (value.adProZip === null || value.adProZip === '' || !value.adProZip) { value.adProZip = this.user_adProZip; }
+    if (value.adProZip === null || value.adProZip === '' || !value.adProZip) {
+      value.adProZip = this.user_adProZip;
+    }
     if (this.adProZip1 && value.adProZip === null) {
-        value.adProZip = this.adProZip1 ;
+      value.adProZip = this.adProZip1;
     }
 
-
-    if (value.adProCity === null ||value.adProCity === '' || !value.adProCity ) { value.adProCity = this.user_adProCity; }
+    if (
+      value.adProCity === null ||
+      value.adProCity === '' ||
+      !value.adProCity
+    ) {
+      value.adProCity = this.user_adProCity;
+    }
     if (this.adProCity1 && value.adProCity === null) {
-        value.adProCity = this.adProCity1 ;
+      value.adProCity = this.adProCity1;
     }
 
-
-    if ( value.contPhonePv === null || value.contPhonePv === '' || !value.contPhonePv  ) { value.contPhonePv = this.user_contPhonePv; }
+    if (
+      value.contPhonePv === null ||
+      value.contPhonePv === '' ||
+      !value.contPhonePv
+    ) {
+      value.contPhonePv = this.user_contPhonePv;
+    }
 
     if (
       value.contPhoneGsm === null ||
@@ -374,7 +410,6 @@ export class UserUpdateComponent implements  OnInit {
       value.shortDesc = this.user_shortDesc;
     }
 
-
     if (value.longDesc === null || value.longDesc === '' || !value.longDesc) {
       value.longDesc = this.user_longDesc;
     }
@@ -383,7 +418,6 @@ export class UserUpdateComponent implements  OnInit {
     value.adProLong = this.adProLong1;
     value.adPvLat = this.adPvLat1;
     value.adPvLong = this.adPvLong1;
-
 
     // const dateObj = new Date(value.birthday);
     // const momentObj = moment(dateObj);
@@ -434,8 +468,6 @@ export class UserUpdateComponent implements  OnInit {
     // console.log(localStorage.setItem('username', JSON.stringify(value)));
   }
 
-
-
   getBook() {
     return this.adressbook;
   }
@@ -445,7 +477,6 @@ export class UserUpdateComponent implements  OnInit {
     this.userservice.getDisablePicture(this.id).subscribe(
       response => {
         this.disablePicture = response;
-
       },
       error => {
         const objStringError = JSON.stringify(error);
@@ -457,113 +488,109 @@ export class UserUpdateComponent implements  OnInit {
     );
   }
 
-
   getAllInfoUser() {
-
     // users= res[0]  activePicture= res[1]  status= res[2]
 
-        this.id = this.activatedRoute.snapshot.paramMap.get('id');
-        this.userservice.getAllInfoUser(this.id)
-        .subscribe(
-        res => {
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');
+    this.userservice.getAllInfoUser(this.id).subscribe(
+      res => {
+        // users= res[0]
+        this.users = res[0];
 
-            // users= res[0]
-            this.users = res[0];
+        if (this.users) {
+          const stringifyUsers = JSON.stringify(this.users);
+          const parseUsers = JSON.parse(stringifyUsers);
+          this.adressbook = parseUsers.adressbook;
+          this.user_id = parseUsers.id;
+          this.user_username = parseUsers.username;
+          this.user_email = parseUsers.email;
+          this.user_role = parseUsers.idROLE;
+          this.user_isActive = parseUsers.isActive;
+          this.user_adressbook = parseUsers.adressbook;
+          this.user_firstName = parseUsers.firstName;
+          this.user_lastName = parseUsers.lastName;
+          if (parseUsers.birthday) {
+            this.user_birthday = new FormControl(
+              new Date(parseUsers.birthday).toISOString().slice(0, -1)
+            );
+          }
+          this.user_sexGenre = parseUsers.sexGenre;
+          this.user_adPvNum = parseUsers.adPvNum;
+          this.user_adPvStreet = parseUsers.adPvStreet;
+          this.user_adPvCountry = parseUsers.adPvCountry;
+          this.user_adPvZip = parseUsers.adPvZip;
+          this.user_adPvCity = parseUsers.adPvCity;
+          this.user_firm = parseUsers.firm;
+          this.user_tva = parseUsers.tva;
+          this.user_adProNum = parseUsers.adProNum;
+          this.user_adProStreet = parseUsers.adProStreet;
+          this.user_adProCountry = parseUsers.adProCountry;
+          this.user_adProZip = parseUsers.adProZip;
+          this.user_adProCity = parseUsers.adProCity;
+          this.user_contPhonePv = parseUsers.contPhonePv;
+          this.user_contPhoneGsm = parseUsers.contPhoneGsm;
+          this.user_contPhonePro = parseUsers.contPhonePro;
+          this.user_contFacebook = parseUsers.contFacebook;
+          this.user_contWebsite = parseUsers.contWebsite;
+          this.user_asbl = parseUsers.asbl;
+          this.user_shortDesc = parseUsers.shortDesc;
+          this.user_longDesc = parseUsers.longDesc;
+        }
 
-            if (this.users) {
-                const stringifyUsers = JSON.stringify(this.users);
-                const parseUsers = JSON.parse(stringifyUsers);
-                this.adressbook = parseUsers.adressbook;
-                this.user_id = parseUsers.id;
-                this.user_username = parseUsers.username;
-                this.user_email = parseUsers.email;
-                this.user_role = parseUsers.idROLE;
-                this.user_isActive = parseUsers.isActive;
-                this.user_adressbook = parseUsers.adressbook;
-                this.user_firstName = parseUsers.firstName;
-                this.user_lastName = parseUsers.lastName;
-                if (parseUsers.birthday) {
-                this.user_birthday =  new FormControl(new Date(parseUsers.birthday).toISOString().slice(0, -1));
-                }
-                this.user_sexGenre = parseUsers.sexGenre;
-                this.user_adPvNum = parseUsers.adPvNum;
-                this.user_adPvStreet = parseUsers.adPvStreet;
-                this.user_adPvCountry = parseUsers.adPvCountry;
-                this.user_adPvZip = parseUsers.adPvZip;
-                this.user_adPvCity = parseUsers.adPvCity;
-                this.user_firm = parseUsers.firm;
-                this.user_tva = parseUsers.tva;
-                this.user_adProNum = parseUsers.adProNum;
-                this.user_adProStreet = parseUsers.adProStreet;
-                this.user_adProCountry = parseUsers.adProCountry;
-                this.user_adProZip = parseUsers.adProZip;
-                this.user_adProCity = parseUsers.adProCity;
-                this.user_contPhonePv = parseUsers.contPhonePv;
-                this.user_contPhoneGsm = parseUsers.contPhoneGsm;
-                this.user_contPhonePro = parseUsers.contPhonePro;
-                this.user_contFacebook = parseUsers.contFacebook;
-                this.user_contWebsite = parseUsers.contWebsite;
-                this.user_asbl = parseUsers.asbl;
-                this.user_shortDesc = parseUsers.shortDesc;
-                this.user_longDesc = parseUsers.longDesc;
-            }
+        // roles= res[1]
+        this.roles = res[1];
 
-            // roles= res[1]
-            this.roles  = res[1];
+        if (this.roles) {
+          const stringifyRole = JSON.stringify(this.roles);
+          const parseRole = JSON.parse(stringifyRole);
+          this.roleListName = parseRole.roleName;
+          this.roleListId = parseRole.idROLE;
+        }
 
-            if (this.roles) {
-                const stringifyRole = JSON.stringify(this.roles);
-                const parseRole = JSON.parse(stringifyRole);
-                this.roleListName = parseRole.roleName;
-                this.roleListId = parseRole.idROLE;
-            }
+        // status= res[2]
+        this.status = res[2];
 
-            // status= res[2]
-            this.status  = res[2];
-
-            if (this.status) {
-                const stringifyStatus = JSON.stringify(this.status);
-                const parseStatus = JSON.parse(stringifyStatus);
-                this.userRoleId = parseStatus.idROLE;
-            }
-            if (this.users && this.roles && this.status) {
-                this.loading = false;
-            }
-    },
-        err => {
-              const stringifyError = JSON.stringify(err);
-              const parseError = JSON.parse(stringifyError);
-              this.ErrorCode1 = parseError.status;
-              this.ErrorText1 = parseError.error.message;
-              if (this.idPicture) {
-                  this.activeExist = true;
-              } else {
-                this.alerts.push({
-                  type: 'danger',
-                  code: this.ErrorCode1,
-                  message: this.ErrorText1
-                });
-              this.alertError = true;
-              this.isLoadingResults = false;
-              }
-        });
-
-    }
-
-
-
+        if (this.status) {
+          const stringifyStatus = JSON.stringify(this.status);
+          const parseStatus = JSON.parse(stringifyStatus);
+          this.userRoleId = parseStatus.idROLE;
+        }
+        if (this.users && this.roles && this.status) {
+          this.loading = false;
+        }
+      },
+      err => {
+        const stringifyError = JSON.stringify(err);
+        const parseError = JSON.parse(stringifyError);
+        this.ErrorCode1 = parseError.status;
+        this.ErrorText1 = parseError.error.message;
+        if (this.idPicture) {
+          this.activeExist = true;
+        } else {
+          this.alerts.push({
+            type: 'danger',
+            code: this.ErrorCode1,
+            message: this.ErrorText1
+          });
+          this.alertError = true;
+          this.isLoadingResults = false;
+        }
+      }
+    );
+  }
 
   onSubmit(e) {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
-    this.fileArr.forEach((item) => {
-        this.fileObj.push(item.item);
-      });
+    this.fileArr.forEach(item => {
+      this.fileObj.push(item.item);
+    });
     this.userDetailsForm.patchValue({
-        avatar: this.fileObj
-      });
+      avatar: this.fileObj
+    });
 
-      this.userDetailsForm.get('avatar').updateValueAndValidity();
-    this.userservice.addFiles(this.id, this.userDetailsForm.value.avatar)
+    this.userDetailsForm.get('avatar').updateValueAndValidity();
+    this.userservice
+      .addFiles(this.id, this.userDetailsForm.value.avatar)
       .subscribe((event: HttpEvent<any>) => {
         switch (event.type) {
           case HttpEventType.Sent:
@@ -573,7 +600,7 @@ export class UserUpdateComponent implements  OnInit {
             console.log('Response header has been received!');
             break;
           case HttpEventType.UploadProgress:
-            this.progress = Math.round(event.loaded / event.total * 100);
+            this.progress = Math.round((event.loaded / event.total) * 100);
             console.log(`Uploaded! ${this.progress}%`);
             this.fileArrValid = true;
             break;
@@ -587,54 +614,47 @@ export class UserUpdateComponent implements  OnInit {
             }, 3000);
         }
       });
-
   }
   activate(e) {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
 
-      this.userservice.getActivePicture(this.id).subscribe(
-        response => {
-          this.pictureActive = response;
-          console.log('response :', response);
-          const stringifyPicture = JSON.stringify(this.pictureActive);
-            this.idPicture = stringifyPicture['id'];
-            const obj = JSON.parse(this.stringifyPicture);
+    this.userservice.getActivePicture(this.id).subscribe(
+      response => {
+        this.pictureActive = response;
+        console.log('response :', response);
+        const stringifyPicture = JSON.stringify(this.pictureActive);
+        this.idPicture = stringifyPicture['id'];
+        const obj = JSON.parse(this.stringifyPicture);
 
-            console.log('id 1:', obj.id);
-            this.idPictureActive = obj.id;
-            if (this.activateExist) {
-                console.log('photo active existe');
-                this.userservice.disablePicture(this.idPictureActive, 0);
-                this.userservice.enablePicture(e, 1);
-
-            } else {
-                console.log('aucune photo active');
-                this.userservice.enablePicture(e, 1);
-            }
-
-        },
-        error => {
-          const objStringError = JSON.stringify(error);
-          const objError = JSON.parse(objStringError);
-          this.ErrorStatus = objError.status;
-          this.ErrorstatusText = objError.statusText;
-          this.Errormessage = objError.message;
+        console.log('id 1:', obj.id);
+        this.idPictureActive = obj.id;
+        if (this.activateExist) {
+          console.log('photo active existe');
+          this.userservice.disablePicture(this.idPictureActive, 0);
+          this.userservice.enablePicture(e, 1);
+        } else {
+          console.log('aucune photo active');
+          this.userservice.enablePicture(e, 1);
         }
-      );
-
+      },
+      error => {
+        const objStringError = JSON.stringify(error);
+        const objError = JSON.parse(objStringError);
+        this.ErrorStatus = objError.status;
+        this.ErrorstatusText = objError.statusText;
+        this.Errormessage = objError.message;
+      }
+    );
   }
-//   delete(e) {
+  //   delete(e) {
 
-//     this.userDetailsForm.deletePicture({
-//         id: e
-//       });
-//   }
+  //     this.userDetailsForm.deletePicture({
+  //         id: e
+  //       });
+  //   }
 
   public closeAlert(alert: any) {
     const index: number = this.alerts.indexOf(alert);
     this.alerts.splice(index, 1);
   }
-
-
-
 }

@@ -1,7 +1,10 @@
-
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DebugElement, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
+import {
+  DebugElement,
+  CUSTOM_ELEMENTS_SCHEMA,
+  NO_ERRORS_SCHEMA
+} from '@angular/core';
 
 import { UserAddComponent } from './user-add.component';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material';
@@ -15,7 +18,7 @@ describe('UserAddComponent', () => {
     TestBed.configureTestingModule({
       declarations: [UserAddComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
-      imports: [ ReactiveFormsModule, MatSnackBarModule ]
+      imports: [ReactiveFormsModule, MatSnackBarModule]
     }).compileComponents();
   }));
 

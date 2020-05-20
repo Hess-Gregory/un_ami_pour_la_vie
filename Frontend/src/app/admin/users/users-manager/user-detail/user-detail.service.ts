@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from './../../../../shared/exports';
-import { Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 declare let $: any;
 @Injectable({
   providedIn: 'root'
 })
 export class UserDetailService {
+  private wsUrlRoot = '/api/fileupload/userpicture';
   constructor(private http: HttpClient) {}
 
-  getUsers(id: string): Observable<User[]> {
+  getAllurl(id: string): Observable<any> {
+    const Picture = this.http.get(`${this.wsUrlRoot}/active/${id}`);
+    const status = this.http.get(`/api/users/status/${id}`);
+
     if (sessionStorage.getItem('new') === 'true') {
       this.http
         .put<User[]>(`/api/admins/user/${id}`, { newRegister: 0 })
@@ -22,13 +26,10 @@ export class UserDetailService {
             console.log('Error', error);
           }
         );
-      return this.http.get<User[]>(`/api/users/${id}`);
+      const user = this.http.get(`/api/users/${id}`);
     }
-    if (sessionStorage.getItem('new') === 'false') {
-      return this.http.get<User[]>(`/api/users/${id}`);
-    }
-  }
-  getStatus(id: string): Observable<User[]> {
-    return this.http.get<User[]>(`/api/users/status/${id}`);
+    const user = this.http.get(`/api/users/${id}`);
+
+    return forkJoin([Picture, status, user]);
   }
 }

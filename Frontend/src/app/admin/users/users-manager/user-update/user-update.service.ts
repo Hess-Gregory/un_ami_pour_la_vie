@@ -1,5 +1,9 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { HttpErrorResponse, HttpClient, HttpClientModule } from '@angular/common/http';
+import {
+  HttpErrorResponse,
+  HttpClient,
+  HttpClientModule
+} from '@angular/common/http';
 import { User, Role } from './../../../../shared/exports';
 import { forkJoin, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -43,55 +47,54 @@ export class UserUpdateService {
   getStatus(id: string): Observable<User[]> {
     return this.http.get<User[]>(`/api/users/status/${id}`);
   }
-  getDisablePicture(id: string): Observable<User[]>  {
+  getDisablePicture(id: string): Observable<User[]> {
     return this.http.get<User[]>(`/api/fileupload/userpicture/disable/${id}`);
   }
-  getActivePicture(id: string): Observable<User[]>  {
+  getActivePicture(id: string): Observable<User[]> {
     return this.http.get<User[]>(`/api/fileupload/userpicture/active/${id}`);
   }
-  getActivePictures(id: string): Observable<User[]>  {
+  getActivePictures(id: string): Observable<User[]> {
     return this.http.get<User[]>(`/api/fileupload/userpicture/actives/${id}`);
   }
   disablePicture(id: string, active: number) {
-    this.http.put(`/api/fileupload/userpicture/disable/${id}`, {active: active})
-    .subscribe(
-      data => {
-        console.log('La demande PUT a réussi ', data);
-        this.stringifydata = JSON.stringify(data);
-        this.parsedata = JSON.parse(this.stringifydata);
+    this.http
+      .put(`/api/fileupload/userpicture/disable/${id}`, { active: active })
+      .subscribe(
+        data => {
+          console.log('La demande PUT a réussi ', data);
+          this.stringifydata = JSON.stringify(data);
+          this.parsedata = JSON.parse(this.stringifydata);
 
-        // sessionStorage.setItem('idSelect', this.parsedata.id);
-        // this.router.navigate([`admin/users/user-manager/user-get`]);
-      },
-      error => {
-        console.log('Erreur', error);
-      }
-    );
-}
+          // sessionStorage.setItem('idSelect', this.parsedata.id);
+          // this.router.navigate([`admin/users/user-manager/user-get`]);
+        },
+        error => {
+          console.log('Erreur', error);
+        }
+      );
+  }
 
-enablePicture(id: string, active: number) {
-    this.http.put(`/api/fileupload/userpicture/enable/${id}`, { active: active })
-    .subscribe(
-      data => {
-        console.log('La demande PUT a réussi ', data);
-        this.stringifydata = JSON.stringify(data);
-        this.parsedata = JSON.parse(this.stringifydata);
+  enablePicture(id: string, active: number) {
+    this.http
+      .put(`/api/fileupload/userpicture/enable/${id}`, { active: active })
+      .subscribe(
+        data => {
+          console.log('La demande PUT a réussi ', data);
+          this.stringifydata = JSON.stringify(data);
+          this.parsedata = JSON.parse(this.stringifydata);
 
-        // sessionStorage.setItem('idSelect', this.parsedata.id);
-        // this.router.navigate([`admin/users/user-manager/user-get`]);
-      },
-      error => {
-        console.log('Erreur', error);
-      }
-    );
-}
+          // sessionStorage.setItem('idSelect', this.parsedata.id);
+          // this.router.navigate([`admin/users/user-manager/user-get`]);
+        },
+        error => {
+          console.log('Erreur', error);
+        }
+      );
+  }
 
-// deletePicture(id:string) {
+  // deletePicture(id:string) {
 
-// }
-
-
-
+  // }
 
   addFiles(id: string, images: File) {
     const arr = [];
@@ -101,13 +104,12 @@ enablePicture(id: string, active: number) {
     arr[0].forEach((item, i) => {
       formData.append('avatar', arr[0][i]);
     });
-      return this.http.post(`/api/userpicture/${id}`, formData, {
+    return this.http
+      .post(`/api/userpicture/${id}`, formData, {
         reportProgress: true,
         observe: 'events'
-      }).pipe(
-        catchError(this.errorMgmt)
-      );
-
+      })
+      .pipe(catchError(this.errorMgmt));
   }
   errorMgmt(error: HttpErrorResponse) {
     let errorMessage = '';
@@ -166,7 +168,6 @@ enablePicture(id: string, active: number) {
     shortDesc: string,
     longDesc: string
   ) {
-
     this.http
       .put(`${this.wsUrlgetUsers}/${id}`, {
         adProLat: adProLat,
@@ -217,51 +218,47 @@ enablePicture(id: string, active: number) {
           console.log(this.parsedata);
           let timeoutId;
           timeoutId = setTimeout(() => {
-            alert(
-              `Message: ${this.parsedata.message}`
-            );
+            alert(`Message: ${this.parsedata.message}`);
           }, 1500);
           this.router.navigate([`admin/users/user-manager/user-get/${id}`]);
         },
         error => {
-            let timeoutId;
-            timeoutId = setTimeout(() => {
-              this.objStringError = JSON.stringify(error);
-              this.objError = JSON.parse(this.objStringError);
-              this.ErrorStatus = this.objError.status;
-              this.ErrorstatusText = this.objError.statusText;
-              this.url = this.objError.url;
-              this.name = this.objError.name;
-              this.message = this.objError.message;
-              this.error = this.objError.error;
-              // tslint:disable-next-line:max-line-length
-              alert(
-                `Avertissement !!: \n\n Vous ne pouvez pas valider le formulaire, il y a des erreurs ou des champs obligatoire qui sont vide.\n\n Code erreur: ${this.ErrorStatus}.\n Motif: (${this.ErrorstatusText}) \n${this.error.message}.\n\n(${this.name} from ${this.url}).`
-              );
-            }, 1500);
+          let timeoutId;
+          timeoutId = setTimeout(() => {
+            this.objStringError = JSON.stringify(error);
+            this.objError = JSON.parse(this.objStringError);
+            this.ErrorStatus = this.objError.status;
+            this.ErrorstatusText = this.objError.statusText;
+            this.url = this.objError.url;
+            this.name = this.objError.name;
+            this.message = this.objError.message;
+            this.error = this.objError.error;
+            // tslint:disable-next-line:max-line-length
+            alert(
+              `Avertissement !!: \n\n Vous ne pouvez pas valider le formulaire, il y a des erreurs ou des champs obligatoire qui sont vide.\n\n Code erreur: ${this.ErrorStatus}.\n Motif: (${this.ErrorstatusText}) \n${this.error.message}.\n\n(${this.name} from ${this.url}).`
+            );
+          }, 1500);
         }
       );
   }
 
-  getAllInfoUser(id: string): Observable<any>  {
-
+  getAllInfoUser(id: string): Observable<any> {
     const users = this.http.get(`${this.wsUrlgetUsers}/${id}`);
     const role = this.http.get(`${this.wsUrlUsers}/role`);
     const status = this.http.get(`/api/users/status/${id}`);
 
-      return forkJoin([users, role, status ]);
-}
+    return forkJoin([users, role, status]);
+  }
 
-  getAllPicture(id: string): Observable<any>  {
-
-    const disablePicture = this.http.get(`${this.wsUrlRootMedia}/disable/${id}`);
+  getAllPicture(id: string): Observable<any> {
+    const disablePicture = this.http.get(
+      `${this.wsUrlRootMedia}/disable/${id}`
+    );
     const activePicture = this.http.get(`${this.wsUrlRootMedia}/active/${id}`);
-    const activesPicture = this.http.get(`${this.wsUrlRootMedia}/actives/${id}`);
+    const activesPicture = this.http.get(
+      `${this.wsUrlRootMedia}/actives/${id}`
+    );
 
-  return forkJoin([disablePicture, activePicture, activesPicture ]);
-}
-
-
-
-
+    return forkJoin([disablePicture, activePicture, activesPicture]);
+  }
 }

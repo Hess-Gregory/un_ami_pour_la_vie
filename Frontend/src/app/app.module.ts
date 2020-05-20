@@ -16,7 +16,6 @@ import { Globals } from './globals';
 import { TableModule } from 'primeng/table';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccordionModule } from 'primeng/accordion';
-import { DataTablesModule, DataTableDirective } from 'angular-datatables';
 import { BreadcrumbModule, DragDropModule } from 'primeng/primeng';
 import { A11yModule } from '@angular/cdk/a11y';
 import {
@@ -91,11 +90,9 @@ export function tokenGetter() {
     RouterModule,
     BreadcrumbModule,
     CommonModule,
-    DataTablesModule,
     HttpClientModule,
     FormsModule,
     LanguageTranslationModule,
-    DataTablesModule,
     FormsModule,
     NgbModule,
     HttpClientModule,
@@ -167,7 +164,6 @@ export function tokenGetter() {
     TimingRefreshModule,
     TimerModule,
     ModalModule,
-    DataTableDirective,
     // A11yModule,
     // CdkStepperModule,
     // CdkTableModule,

@@ -5,31 +5,31 @@
   margin-right: 7px;
 }
 #test ::ng-deep .mat-form-field-hide-placeholder .mat-form-field-label-wrapper {
-   text-align: center;
-   top: -25px;
+  text-align: center;
+  top: -25px;
 }
 
 #test ::ng-deep .mat-form-field-should-float {
-   text-align: center;
+  text-align: center;
 }
-  .add-user-button {
-    display: flex;
+.add-user-button {
+  display: flex;
 
-    .btn-primary {
-      margin: auto !important;
-      background-color: rgb(10, 189, 233);
-      color: #fff;
-      font-size: 0.7rem;
-      cursor: pointer;
-      max-height: 38px;
-    }
-    .btn:hover {
-  transform: scale(1.08) !important;
-  background-color: rgba(10, 189, 233, 0.5) !important;
-  margin-left: 7px;
-  margin-right: 7px;
-}
+  .btn-primary {
+    margin: auto !important;
+    background-color: rgb(10, 189, 233);
+    color: #fff;
+    font-size: 0.7rem;
+    cursor: pointer;
+    max-height: 38px;
   }
+  .btn:hover {
+    transform: scale(1.08) !important;
+    background-color: rgba(10, 189, 233, 0.5) !important;
+    margin-left: 7px;
+    margin-right: 7px;
+  }
+}
 .alert,
 .btnJumbo {
   z-index: 5000;
@@ -76,11 +76,11 @@
   border: 1px solid;
   border-radius: 12px;
 }
-.justifyContent{
+.justifyContent {
   justify-content: center;
 }
 .justifyContent::after {
-  content: "";
+  content: '';
   flex: auto;
 }
 .grid-container {
