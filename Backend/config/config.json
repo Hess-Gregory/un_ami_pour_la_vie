@@ -4,8 +4,7 @@
     "password": null,
     "database": "un_ami_pour_la_vie",
     "host": "127.0.0.1",
-    "dialect": "mysql",
-    "port": "3308"
+    "dialect": "mysql"
   },
   "test": {
     "username": "root",
@@ -13,8 +12,7 @@
     "database": "un_ami_pour_la_vie",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "logging": false,
-    "port": "3308"
+    "logging": false
   },
   "production": {
     "username": "root",
@@ -22,7 +20,6 @@
     "database": "un_ami_pour_la_vie",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "logging": false,
-    "port": "3308"
+    "logging": false
   }
 }

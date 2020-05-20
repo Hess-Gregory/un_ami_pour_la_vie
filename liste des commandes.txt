@@ -22,3 +22,9 @@ ou NPM START
 
 
 sequelize-auto -o "./models" -d un_ami_pour_la_vie -h localhost -u root -p 3306  -e mysql
+
+http://localhost/phpmyadmin/ (sql)
+
+
+ng build --prod
+http-server dist
