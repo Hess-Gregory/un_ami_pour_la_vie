@@ -33,7 +33,7 @@ Nous utilisons GitHub pour la gestion des versions. Pour les versions disponible
 
 ### Auteur
 
-- **HESS Gregory** - _Full Stack Developer_ - [GsweeT-WebDesign](https://github.com/Hess-Gregory)
+- **HESS Gregory** - _Full Stack Developer_ - [FullHestack](https://github.com/Hess-Gregory)
 
 <a name="contribuant"></a>
 
