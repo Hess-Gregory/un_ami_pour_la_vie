@@ -64,7 +64,7 @@
     "headroom.js": "^0.10.3",
     "jquery": "^3.4.1",
     "jwt-decode": "^2.2.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "lodash-es": "^4.17.15",
     "moment": "^2.24.0",
     "ng-image-slider": "^2.3.0",
