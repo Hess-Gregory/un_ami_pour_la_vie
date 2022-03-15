@@ -65,7 +65,7 @@
     "jquery": "^3.4.1",
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.15",
-    "lodash-es": "^4.17.15",
+    "lodash-es": "^4.17.21",
     "moment": "^2.24.0",
     "ng-image-slider": "^2.3.0",
     "ng2-charts": "2.3.0",
